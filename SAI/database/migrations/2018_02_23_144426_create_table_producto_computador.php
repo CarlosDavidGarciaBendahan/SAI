@@ -38,6 +38,7 @@ class CreateTableProductoComputador extends Migration
      */
     public function down()
     {
+        Schema::disableForeignKeyConstraints();
         Schema::dropIfExists('producto_computador');
     }
 }

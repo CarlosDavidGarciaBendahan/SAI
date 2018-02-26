@@ -33,6 +33,7 @@ class CreateTableClienteJuridico extends Migration
      */
     public function down()
     {
+        Schema::disableForeignKeyConstraints();
         Schema::dropIfExists('cliente_juridico');
     }
 }

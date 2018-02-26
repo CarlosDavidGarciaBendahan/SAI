@@ -32,6 +32,7 @@ class CreateTableCodigopc extends Migration
      */
     public function down()
     {
+        Schema::disableForeignKeyConstraints();
         Schema::dropIfExists('codigopc');
     }
 }

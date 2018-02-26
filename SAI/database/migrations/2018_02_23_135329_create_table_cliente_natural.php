@@ -38,6 +38,7 @@ class CreateTableClienteNatural extends Migration
      */
     public function down()
     {
+        Schema::disableForeignKeyConstraints();
         Schema::dropIfExists('cliente_natural');
     }
 }

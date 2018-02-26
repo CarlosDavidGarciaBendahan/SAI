@@ -38,6 +38,7 @@ class CreateTableContactoCorreo extends Migration
      */
     public function down()
     {
+        Schema::disableForeignKeyConstraints();
         Schema::dropIfExists('contacto_correo');
     }
 }

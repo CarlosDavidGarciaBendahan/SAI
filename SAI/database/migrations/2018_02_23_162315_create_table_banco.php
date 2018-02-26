@@ -29,6 +29,7 @@ class CreateTableBanco extends Migration
      */
     public function down()
     {
+        Schema::disableForeignKeyConstraints();
         Schema::dropIfExists('banco');
     }
 }

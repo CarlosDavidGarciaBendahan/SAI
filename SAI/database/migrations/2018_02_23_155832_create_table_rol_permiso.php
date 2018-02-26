@@ -30,6 +30,7 @@ class CreateTableRolPermiso extends Migration
      */
     public function down()
     {
+        Schema::disableForeignKeyConstraints();
         Schema::dropIfExists('rol_permiso');
     }
 }

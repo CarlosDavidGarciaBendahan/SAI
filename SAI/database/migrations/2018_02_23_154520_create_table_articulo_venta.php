@@ -31,6 +31,7 @@ class CreateTableArticuloVenta extends Migration
      */
     public function down()
     {
+        Schema::disableForeignKeyConstraints();
         Schema::dropIfExists('articulo_venta');
     }
 }
