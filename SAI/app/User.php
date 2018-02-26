@@ -27,4 +27,13 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+
+    public function Personal(){
+        return $this->belongsTo('App\Personal','fk_personal','id');
+    }
+
+    public function Roles(){
+        return $this->belongsToMany('App\Rol','rol_user','rol_use_fk_user','rol_use_fk_rol');
+    }
 }

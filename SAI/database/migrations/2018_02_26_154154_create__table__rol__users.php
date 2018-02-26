@@ -19,7 +19,7 @@ class CreateTableRolUsers extends Migration
             $table->integer('rol_use_fk_users')->unsigned()->nullable(false);
             $table->timestamps();
 
-            $table->foreign('rol_use_fk_users')->references('id')->on('users');
+            $table->foreign('rol_use_fk_user')->references('id')->on('users');
             $table->foreign('rol_use_fk_rol')->references('id')->on('rol');
 
             $table->unique(['rol_use_fk_rol','rol_use_fk_users'],

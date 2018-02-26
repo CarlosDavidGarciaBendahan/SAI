@@ -15,4 +15,28 @@ class Personal extends Model
     	'per_direccion','per_fk_parroquia','per_fk_rol',
     	'per_fk_oficina'
     ];
+
+    public function Parroquia(){
+    	return $this->belongsTo('App\Parroquia','per_fk_parroquia','id');
+    }
+
+    public function Contacto_Correos(){
+        return $this->hasMany('App\Contacto_Correo','con_cor_fk_personal','id');
+    }
+
+    public function Contacto_Telefonos(){
+        return $this->hasMany('App\Contacto_Telefono','con_tel_fk_personal','id');
+    }
+
+    public function User(){
+        return $this->hasOne('App\User','fk_personal','id')
+    }
+
+    public function Oficina(){
+        return $this->belongsTo('App\Oficina','per_fk_oficina','id');
+    }
+
+    public function Rol(){
+        return $this->belongsTo('App\Rol','per_fk_rol','id');
+    }
 }
