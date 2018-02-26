@@ -14,7 +14,7 @@ class CreateTablePcSolicitud extends Migration
     public function up()
     {
         Schema::create('pc_solicitud', function (Blueprint $table) {
-            $table->increments('id');
+            //$table->increments('id');
             $table->integer('pc_sol_fk_solicitud')->unsigned()->nullable(false);
             $table->integer('pc_sol_fk_codigopc')->unsigned()->nullable(false);
             $table->timestamps();

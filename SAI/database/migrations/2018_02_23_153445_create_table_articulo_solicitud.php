@@ -14,7 +14,7 @@ class CreateTableArticuloSolicitud extends Migration
     public function up()
     {
         Schema::create('articulo_solicitud', function (Blueprint $table) {
-            $table->increments('id');
+            //$table->increments('id');
             $table->integer('art_sol_fk_solicitud')->unsigned()->nullable(false);
             $table->integer('art_sol_fk_codigoarticulo')->unsigned()->nullable(false);
             $table->timestamps();

@@ -14,7 +14,7 @@ class CreateTableArticuloVenta extends Migration
     public function up()
     {
         Schema::create('articulo_venta', function (Blueprint $table) {
-            $table->increments('id');
+            //$table->increments('id');
             $table->integer('art_ven_fk_codigoarticulo')->unsigned()->nullable(false);
             $table->integer('art_ven_fk_venta')->unsigned()->nullable(false);
             $table->timestamps();

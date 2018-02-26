@@ -15,16 +15,6 @@
 <minVolumes>0</minVolumes>
 <normalForm>Third</normalForm>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
-<Attribute name="id" id="EF8325B7-B271-0739-BF56-AD0B0A1B18B0">
-<createdBy>Carlos</createdBy>
-<createdTime>2018-02-21 23:55:27 UTC</createdTime>
-<ownerDesignName>ER-SAI</ownerDesignName>
-<engineerTo>
-<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
-</engineerTo>
-<use>0</use>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-</Attribute>
 <Attribute name="id2" id="13AB10F5-0271-C8B7-3D6E-256ED3D51326">
 <createdBy>Carlos</createdBy>
 <createdTime>2018-02-21 23:56:17 UTC</createdTime>
@@ -60,7 +50,6 @@
 </engineerTo>
 <pk>true</pk>
 <usedAttributes>
-<attributeRef>EF8325B7-B271-0739-BF56-AD0B0A1B18B0</attributeRef>
 <attributeRef>13AB10F5-0271-C8B7-3D6E-256ED3D51326</attributeRef>
 <attributeRef>D8151B82-E585-F690-1F6A-32EF5404BE12</attributeRef>
 </usedAttributes>

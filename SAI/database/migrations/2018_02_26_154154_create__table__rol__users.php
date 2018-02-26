@@ -13,8 +13,8 @@ class CreateTableRolUsers extends Migration
      */
     public function up()
     {
-        Schema::create('rol_users', function (Blueprint $table) {
-            $table->increments('id');
+        Schema::create('rol_user', function (Blueprint $table) {
+            //$table->increments('id');
             $table->integer('rol_use_fk_rol')->unsigned()->nullable(false);
             $table->integer('rol_use_fk_users')->unsigned()->nullable(false);
             $table->timestamps();

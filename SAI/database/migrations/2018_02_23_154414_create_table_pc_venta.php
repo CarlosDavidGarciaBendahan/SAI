@@ -14,7 +14,7 @@ class CreateTablePcVenta extends Migration
     public function up()
     {
         Schema::create('pc_venta', function (Blueprint $table) {
-            $table->increments('id');
+            //$table->increments('id');
             $table->integer('pc_ven_fk_codigopc')->unsigned()->nullable(false);
             $table->integer('pc_ven_fk_venta')->unsigned()->nullable(false);
             $table->timestamps();

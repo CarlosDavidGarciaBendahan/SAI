@@ -14,7 +14,7 @@ class CreateTableRolPermiso extends Migration
     public function up()
     {
         Schema::create('rol_permiso', function (Blueprint $table) {
-            $table->increments('id');
+            //$table->increments('id');
             $table->integer('rol_per_fk_rol')->unsigned()->nullable(false);
             $table->integer('rol_per_fk_permiso')->unsigned()->nullable(false);
             $table->timestamps();
