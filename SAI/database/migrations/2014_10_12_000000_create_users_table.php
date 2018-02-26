@@ -19,7 +19,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->integer('activa')->default(1);
             $table->integer('fk_personal')->unsigned()->nullable(false);
-            $table->integer('fk_rol')->unsigned()->nullable(false);
+            //$table->integer('fk_rol')->unsigned()->nullable(false);
             $table->rememberToken();
             $table->timestamps();
 
