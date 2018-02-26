@@ -16,7 +16,7 @@ class Rol extends Model
     }
 
     public function Permisos(){
-    	return $this->belongsToMany('App\Permiso','rol_permiso','rol_per_rol','rol_per_permiso');
+    	return $this->belongsToMany('App\Permiso','rol_permiso','rol_perm_fk_rol','rol_perm_fk_permiso');
     }
 
 	public function Users(){

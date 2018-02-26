@@ -15,11 +15,11 @@ class CreateTableRolPermiso extends Migration
     {
         Schema::create('rol_permiso', function (Blueprint $table) {
             //$table->increments('id');
-            $table->integer('rol_per_fk_rol')->unsigned()->nullable(false);
-            $table->integer('rol_per_fk_permiso')->unsigned()->nullable(false);
+            $table->integer('rol_perm_fk_rol')->unsigned()->nullable(false);
+            $table->integer('rol_perm_fk_permiso')->unsigned()->nullable(false);
             $table->timestamps();
 
-            $table->unique(['rol_per_fk_permiso','rol_per_fk_rol'],'ROL_PERMISO_UNIQUE_fk_rol_fk_permiso');
+            $table->unique(['rol_perm_fk_permiso','rol_perm_fk_rol'],'ROL_PERMISO_UNIQUE_fk_rol_fk_permiso');
         });
     }
 
