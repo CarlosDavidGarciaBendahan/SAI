@@ -16,7 +16,7 @@ class CreateTableRolUsers extends Migration
         Schema::create('rol_user', function (Blueprint $table) {
             //$table->increments('id');
             $table->integer('rol_use_fk_rol')->unsigned()->nullable(false);
-            $table->integer('rol_use_fk_users')->unsigned()->nullable(false);
+            $table->integer('rol_use_fk_user')->unsigned()->nullable(false);
             $table->timestamps();
 
             $table->foreign('rol_use_fk_user')->references('id')->on('users');
