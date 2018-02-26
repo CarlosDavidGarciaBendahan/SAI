@@ -1,0 +1,19 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Tiene residencia en" directorySegmentName="seg_0" id="5CCBB61A-C249-9A0E-37BB-AA981BFE2E79">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-02-21 23:48:13 UTC</createdTime>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<sourcePk>96F24200-8E1F-9C99-3456-AF3761BB1945</sourcePk>
+<identifying>false</identifying>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>4694AA3C-FA2A-141E-B056-D40D706A88FB</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>8A449CD2-279E-B7AD-511F-C05E3CD47902</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+</Relation>

@@ -1,0 +1,19 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="posee muchos" directorySegmentName="seg_0" id="E1249A78-6C38-3690-8BA3-F426AC7CAC72">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-02-22 13:23:13 UTC</createdTime>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<sourcePk>3B6C8A24-BF91-8C3D-1685-B63F50BFF68E</sourcePk>
+<identifying>true</identifying>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>42BBA3E4-323D-4C02-5668-20C378BA1CCA</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>99928BBD-1506-A755-EF51-5464197FCC92</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+</Relation>

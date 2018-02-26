@@ -1,0 +1,79 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="A047A19C-6A86-5CFD-A023-D833CF3AE7F5" name="Banco">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-02-22 13:58:02 UTC</createdTime>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="id" id="6948DD23-DD21-A46F-0764-099D49A21BAE">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-02-22 13:58:08 UTC</createdTime>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="BAN_nombre" id="E553FAFF-6BE8-6DF4-9CCF-4CA015E4DE57">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-02-22 13:58:13 UTC</createdTime>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="id1" id="5DF6086A-3475-1E9B-0368-0EC9C6987F4E">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-02-22 14:12:28 UTC</createdTime>
+<generatorID>2BA0ACFF-0D0E-3D00-4F46-F0D8FF235DB1</generatorID>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<referedAttribute>8A798A45-F894-83F8-385F-33D2D006D9B2</referedAttribute>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="id2" id="5ED6A3FC-8899-05CB-6280-DA1778B4183A">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-02-22 14:12:37 UTC</createdTime>
+<generatorID>EE02CE5F-1BBF-2E70-FBCD-F5F62C99B8FB</generatorID>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<referedAttribute>8A798A45-F894-83F8-385F-33D2D006D9B2</referedAttribute>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="9337EB21-862B-C2E2-7D72-6AF84D594C4B" name="Banco PK">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-02-22 13:58:11 UTC</createdTime>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>6948DD23-DD21-A46F-0764-099D49A21BAE</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

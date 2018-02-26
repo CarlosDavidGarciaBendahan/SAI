@@ -1,0 +1,66 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="831BDEA0-35FE-2209-D55A-120925D18F4C" name="Municipio">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-02-21 23:08:38 UTC</createdTime>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="id" id="D4E6E02B-B4C5-89A3-F6FE-74C6093FC84A">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-02-21 23:08:38 UTC</createdTime>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="MUN_nombre" id="34076ED8-37C1-9BE0-8DE9-3E26AEC183AB">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-02-21 23:08:38 UTC</createdTime>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="id1" id="4E9333CB-B9B2-58AE-9C64-1326C4254481">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-02-21 23:11:47 UTC</createdTime>
+<generatorID>578C8C27-716F-57DE-87C5-58B6D7D920E8</generatorID>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<referedAttribute>3CBF1759-6198-91B3-EC0E-035EDE9D8000</referedAttribute>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="C457209F-D4E3-6366-2885-C6C2E2FDA103" name="Estado PK">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-02-21 23:08:38 UTC</createdTime>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>D4E6E02B-B4C5-89A3-F6FE-74C6093FC84A</attributeRef>
+<attributeRef>4E9333CB-B9B2-58AE-9C64-1326C4254481</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

@@ -1,0 +1,68 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="7628A7C8-5C4B-DEAE-C0B1-82F120EF08C3" name="SECTOR">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-02-21 23:33:12 UTC</createdTime>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="id" id="1206648D-1122-A85F-7B87-315763AD40F1">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-02-21 23:33:12 UTC</createdTime>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<importedID>6E29AB1F-6A6F-FE64-B2CA-5F16101F32D8</importedID>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="SEC_sector" id="CE785DCA-3DF1-A3C1-B2F7-4F5A276F713B">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-02-21 23:33:12 UTC</createdTime>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<importedID>4211C719-6B95-64AB-92C2-FB8B169C3975</importedID>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="id1" id="7930F83E-B9D0-B4D7-CE14-C62716074517">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-02-21 23:33:41 UTC</createdTime>
+<generatorID>6869CFBD-1FE5-581A-CFCD-04D9C17CFD69</generatorID>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<referedAttribute>FAF58BF0-4630-9D28-7A3A-DC3F3722EE92</referedAttribute>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="9DB2CA0D-2135-EEBB-E494-415596470DD5" name="SECTOR PK">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-02-21 23:33:12 UTC</createdTime>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>1206648D-1122-A85F-7B87-315763AD40F1</attributeRef>
+<attributeRef>7930F83E-B9D0-B4D7-CE14-C62716074517</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

@@ -1,0 +1,141 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="57D8C4C4-FE4F-18E6-9835-EC2EF3EF7C88" name="RegistroPago">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-02-22 13:55:47 UTC</createdTime>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="id" id="8A798A45-F894-83F8-385F-33D2D006D9B2">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-02-22 13:55:54 UTC</createdTime>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="REG_fecha_pagado" id="FC01AC5C-D26B-A73C-7DE3-2A1C4CDFFC86">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-02-22 13:55:59 UTC</createdTime>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="REG_monto" id="0FBDB766-B8AA-ACAF-7D8B-90C2C92A1120">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-02-22 13:56:42 UTC</createdTime>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="REG_moneda" id="B20CCFEE-E08C-AAAE-8446-6E8781B6E977">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-02-22 15:31:36 UTC</createdTime>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="REG_concepto" id="0E401F28-DD05-0AEA-F474-1FE3C2F302F9">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-02-22 13:56:51 UTC</createdTime>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="REG_forma" id="0EF06467-8F89-EA4D-085B-AD6A1DFD6425">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-02-22 13:57:02 UTC</createdTime>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="REG_numero_referencia" id="18AA6985-830F-1646-9ED5-3A668CBEF9C9">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-02-22 14:01:08 UTC</createdTime>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="id1" id="44660496-7F1B-F962-EC9F-F746E8AE6145">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-02-22 14:00:33 UTC</createdTime>
+<generatorID>EE02CE5F-1BBF-2E70-FBCD-F5F62C99B8FB</generatorID>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<referedAttribute>6948DD23-DD21-A46F-0764-099D49A21BAE</referedAttribute>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="id2" id="1223C1FA-5F11-4C9E-2836-151E53701ED8">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-02-22 14:00:55 UTC</createdTime>
+<generatorID>2BA0ACFF-0D0E-3D00-4F46-F0D8FF235DB1</generatorID>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<referedAttribute>6948DD23-DD21-A46F-0764-099D49A21BAE</referedAttribute>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="id3" id="757F9155-3B9B-DBFB-F6F4-7008C98BE649">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-02-22 15:07:41 UTC</createdTime>
+<generatorID>15E6D092-07EE-7063-3281-8F721C277F65</generatorID>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<referedAttribute>CF7755B8-1F90-7CAC-93BF-4C7D5BC3CD98</referedAttribute>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="C6EC148C-D582-0763-E1D9-C5C2E4A360E6" name="RegistroPago PK">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-02-22 13:55:58 UTC</createdTime>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>8A798A45-F894-83F8-385F-33D2D006D9B2</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

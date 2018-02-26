@@ -1,0 +1,19 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Puede estar" directorySegmentName="seg_0" id="EF9FA82B-4868-445D-DB97-A49D6D6EDFE0">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-02-21 23:56:17 UTC</createdTime>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<sourcePk>D5B809C1-0FDA-DC9C-AF7C-73E5349CD0AE</sourcePk>
+<identifying>true</identifying>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>B4AA5C7E-7F9C-1FD6-7480-DCF1A0CFE1F7</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>60901AF6-5F1C-F904-0C34-89A1B2B42735</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+</Relation>

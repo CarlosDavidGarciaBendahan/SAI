@@ -1,0 +1,85 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="33ABC7C0-8641-AFE6-ECA4-7A13FD493050" name="Solicitud">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-02-22 14:28:12 UTC</createdTime>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="id" id="D5334080-3FAC-1E52-2236-16240204752C">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-02-22 14:28:17 UTC</createdTime>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="SOL_fecha" id="D2B295BB-96E1-835E-961F-58C4FFFD9DED">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-02-22 14:28:21 UTC</createdTime>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="SOL_tipo" id="FEFF207D-D0EF-48C8-7A69-70245D5EC473">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-02-22 14:28:46 UTC</createdTime>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="SOL_concepto" id="185D8769-F4D7-7870-6C4E-0BFA3675EFA9">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-02-22 14:29:08 UTC</createdTime>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="id1" id="0C8E889C-3149-529D-B344-A6079A6F6DD6">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-02-22 14:31:11 UTC</createdTime>
+<generatorID>3F06B71A-EA21-5814-9022-EBD3518E90E0</generatorID>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<referedAttribute>7B45A855-13B8-CCE4-F15A-9730F544295C</referedAttribute>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="A7620F86-05AF-9B88-08F4-23AEFFA1E602" name="Solicitud PK">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-02-22 14:28:20 UTC</createdTime>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>D5334080-3FAC-1E52-2236-16240204752C</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

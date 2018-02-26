@@ -1,0 +1,55 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="CBFE746F-4354-C6D0-7D15-1F15ECA1C84E" name="TIPO_PRODUCTO">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-02-21 23:59:20 UTC</createdTime>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="id" id="DEAD6C33-DE3C-CEDA-23F7-67347E2E3A0E">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-02-21 23:59:20 UTC</createdTime>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<importedID>54572C28-5D43-1F60-E1B4-62717858C43F</importedID>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="TIP_tipo" id="8A433087-EB11-6695-3C52-DEDA0CC39DD8">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-02-21 23:59:20 UTC</createdTime>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<importedID>5310E263-8168-D24A-C1F3-F0CD316A70D5</importedID>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="05FFA437-25DC-E23E-07D8-68984271D6EC" name="TIPO_PRODUCTO PK">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-02-21 23:59:20 UTC</createdTime>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>DEAD6C33-DE3C-CEDA-23F7-67347E2E3A0E</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

@@ -1,0 +1,88 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="99928BBD-1506-A755-EF51-5464197FCC92" name="CodigoPC">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-02-22 13:20:44 UTC</createdTime>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="id" id="BF3144F4-D2B0-8FB3-F6AE-0F63DF04AEFB">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-02-22 13:20:58 UTC</createdTime>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="COD_PC_codigo" id="9E355F37-5CAB-F513-AB1A-3087F360FC4E">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-02-22 13:21:03 UTC</createdTime>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="COD_PC_estado" id="988376EF-1DE9-F351-4ED5-2B20DD557AF0">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-02-22 13:21:17 UTC</createdTime>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="id1" id="18F23C67-C4EE-3CA4-C8A1-BC38B13E45AD">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-02-22 13:23:13 UTC</createdTime>
+<generatorID>E1249A78-6C38-3690-8BA3-F426AC7CAC72</generatorID>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<referedAttribute>580B56D3-075E-685E-C9EA-2B2CEDCA9D69</referedAttribute>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="id2" id="ECFE6DD0-B7F3-89B5-D40E-0846CCDBDF9C">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-02-22 13:29:48 UTC</createdTime>
+<generatorID>969855CB-EAC2-A21E-C784-940D4CF0C592</generatorID>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<referedAttribute>EA415FD7-1A2D-28D7-B009-CF661D65ECD4</referedAttribute>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="9065C893-346E-EE51-EC8B-44E5EF55CE14" name="CodigoPC PK">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-02-22 13:21:01 UTC</createdTime>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>BF3144F4-D2B0-8FB3-F6AE-0F63DF04AEFB</attributeRef>
+<attributeRef>18F23C67-C4EE-3CA4-C8A1-BC38B13E45AD</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

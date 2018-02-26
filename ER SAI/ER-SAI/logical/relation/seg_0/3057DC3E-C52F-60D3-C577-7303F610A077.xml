@@ -1,0 +1,19 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Se ubican" directorySegmentName="seg_0" id="3057DC3E-C52F-60D3-C577-7303F610A077">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-02-22 00:06:09 UTC</createdTime>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<sourcePk>96F24200-8E1F-9C99-3456-AF3761BB1945</sourcePk>
+<identifying>false</identifying>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>4694AA3C-FA2A-141E-B056-D40D706A88FB</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>83460BB9-5622-1960-05FB-15BC45CC88EB</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+</Relation>

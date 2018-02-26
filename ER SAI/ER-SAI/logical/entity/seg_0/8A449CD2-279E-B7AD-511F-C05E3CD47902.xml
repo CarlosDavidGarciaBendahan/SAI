@@ -1,0 +1,206 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="8A449CD2-279E-B7AD-511F-C05E3CD47902" name="PERSONAL">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-02-21 23:46:18 UTC</createdTime>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="id" id="77764938-4EBB-A1E1-2480-6BED9D722A88">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-02-21 23:46:18 UTC</createdTime>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<importedID>9B8262D7-89B4-2DAD-DD9B-02CD480A18B1</importedID>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="PER_nombre" id="CE6CDFA8-45BF-B005-1345-894DFF89E716">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-02-21 23:46:18 UTC</createdTime>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<importedID>D472E94C-BD3C-3F42-6CEB-0671D3DBD55E</importedID>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="PER_nombre2" id="924E8754-E150-E894-C33E-A898050FAFA1">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-02-21 23:46:18 UTC</createdTime>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<importedID>AA0D6624-E2C6-1DB1-2B35-FF14BAD41B4D</importedID>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="PER_apellido" id="FEBBC39F-EF85-775B-E8A1-92BDD3A0AD04">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-02-21 23:46:18 UTC</createdTime>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<importedID>9380FE40-7881-4F29-6276-C9577A143BA2</importedID>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="PER_apellido2" id="7AAD5BC9-2249-E1F5-910D-6E7EF8B8B12D">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-02-21 23:46:18 UTC</createdTime>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<importedID>389CDEFD-9178-6B77-E8F7-E4C1EB569859</importedID>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="PER_identificador" id="9DD036E8-0E86-7416-2437-3BD669CEDE6F">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-02-23 13:42:00 UTC</createdTime>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="PER_cedula" id="9124059A-D3B2-E4B6-7BCB-DEC13C944D29">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-02-21 23:46:18 UTC</createdTime>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<importedID>B298FF3F-4C1B-77DC-DFCE-A8FD51C9065B</importedID>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="PER_fecha_nacimiento " id="0B33CC8E-8B16-A353-7F9F-063A08C25394">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-02-21 23:46:18 UTC</createdTime>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<importedID>25A538D9-6516-59AC-8ADC-F505C5BEDE76</importedID>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="PER_sueldo" id="B638FA4A-652C-7E5E-35B2-509D5DA78866">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-02-21 23:46:18 UTC</createdTime>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<importedID>BC31E9E4-EABE-F2BF-95DC-7EF122F55941</importedID>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="PER_direccion" id="48B9486D-F832-4189-9F4C-6AAEF83281DA">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-02-21 23:46:18 UTC</createdTime>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<importedID>F5EE5B9B-B9C1-32D6-F3A4-D096938012D8</importedID>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="id1" id="E9CA71D7-6743-FA83-8F5B-A6C51E52DF31">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-02-21 23:48:13 UTC</createdTime>
+<generatorID>5CCBB61A-C249-9A0E-37BB-AA981BFE2E79</generatorID>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<referedAttribute>A03A2117-738D-B9FA-8A49-4F68C9E094DC</referedAttribute>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="id11" id="43CEBFB6-3D76-9854-2BAB-FB1E49EC0071">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-02-21 23:48:13 UTC</createdTime>
+<generatorID>5CCBB61A-C249-9A0E-37BB-AA981BFE2E79</generatorID>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<referedAttribute>607BCBA5-DBED-7230-4728-FA19A0FB47A8</referedAttribute>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="id111" id="6B5DB5C9-51BF-0190-7A34-4CD2FAE80A2E">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-02-21 23:48:13 UTC</createdTime>
+<generatorID>5CCBB61A-C249-9A0E-37BB-AA981BFE2E79</generatorID>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<referedAttribute>D223957B-51BF-2DE9-FD91-6D74FD261DB0</referedAttribute>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="id2" id="A4E55AA1-9F95-293A-C7F6-297607571F12">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-02-22 13:31:45 UTC</createdTime>
+<generatorID>C463A1A3-9269-D778-5D2C-781E082B24E2</generatorID>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<referedAttribute>FAF58BF0-4630-9D28-7A3A-DC3F3722EE92</referedAttribute>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="id3" id="B53283DE-4685-5194-3859-C275D780B7BE">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-02-23 16:02:14 UTC</createdTime>
+<generatorID>CFA7D982-5CE7-D603-BA7C-04B8B82A5095</generatorID>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<referedAttribute>6AACADF3-681E-875E-6C28-2CC3C542BA56</referedAttribute>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="A5E9B053-1AF9-3724-8636-0C58247CC294" name="PERSONAL PK">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-02-21 23:46:18 UTC</createdTime>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>77764938-4EBB-A1E1-2480-6BED9D722A88</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

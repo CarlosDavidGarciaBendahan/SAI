@@ -1,0 +1,8 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<OSDM_Design class="oracle.dbtools.crest.model.design.Design" name="ER-SAI" id="BB282E29-736D-A024-0CC6-F8A5FCD6A81F" version="3.5">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-02-21 23:06:52 UTC</createdTime>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<capitalNames>false</capitalNames>
+<designId>BB282E29-736D-A024-0CC6-F8A5FCD6A81F</designId>
+</OSDM_Design>

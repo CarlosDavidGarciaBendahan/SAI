@@ -1,0 +1,121 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="F844975E-7908-608B-A637-CF5DCA5FC0AB" name="Presupuesto">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-02-22 00:10:02 UTC</createdTime>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="id" id="1CE09014-1D61-C55F-C8CD-7FA108423940">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-02-22 00:10:10 UTC</createdTime>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="PRE_fecha_solicitado" id="A9707296-0DF6-187D-396A-3EDD92B6AF50">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-02-22 00:10:15 UTC</createdTime>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="PRE_fecha_aprobado" id="797B057E-BBBD-D6BB-E255-AD272B5F73FA">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-02-22 00:11:54 UTC</createdTime>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="PRE_subtotal" id="856D4EB3-FDBB-C318-A4C7-2E14A0110D1D">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-02-22 00:14:50 UTC</createdTime>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="PRE_total" id="E1FF3631-6BEE-726C-A106-9DE08E1E060D">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-02-22 00:15:27 UTC</createdTime>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="id2" id="16ECE733-8219-E50B-05BD-F805D541D1F9">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-02-22 00:16:38 UTC</createdTime>
+<generatorID>4E7A7759-306A-5373-FDFF-C3C5D867703A</generatorID>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<referedAttribute>F4954F31-31F5-10DA-AF8C-2FE58A2B4615</referedAttribute>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="id1" id="4A219886-111D-21CA-DD13-3B57CE24E59F">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-02-22 13:41:42 UTC</createdTime>
+<generatorID>867D09B0-173F-20E2-84E4-95316E406ABD</generatorID>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<referedAttribute>235B0D83-17BB-4537-A15A-10616BF28232</referedAttribute>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="PRE_eliminado" id="AE104264-1B8C-43A0-51E4-BBD8EAECF9AF">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-02-22 13:46:49 UTC</createdTime>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="71A400CA-55A2-F12A-C1B6-5FEBF0CD75B3" name="Presupuesto PK">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-02-22 00:10:13 UTC</createdTime>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>1CE09014-1D61-C55F-C8CD-7FA108423940</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

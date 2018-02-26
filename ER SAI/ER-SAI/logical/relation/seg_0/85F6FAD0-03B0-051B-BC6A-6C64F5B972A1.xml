@@ -1,0 +1,19 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="efectuar" directorySegmentName="seg_0" id="85F6FAD0-03B0-051B-BC6A-6C64F5B972A1">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-02-22 00:29:38 UTC</createdTime>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<sourcePk>DB813219-3747-9973-2DA6-7CD6B1152502</sourcePk>
+<identifying>false</identifying>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>53C3BD1D-3192-BF7A-D3B2-B552C0F18ECA</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>D9D44D92-0D9D-34DE-ED58-A00B6CFD31FA</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+</Relation>

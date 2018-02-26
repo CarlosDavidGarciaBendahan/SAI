@@ -1,0 +1,19 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="compuesto-por" directorySegmentName="seg_0" id="E1D8912F-0BF0-0D89-2B8C-984FF9F53344">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-02-21 23:12:19 UTC</createdTime>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<sourcePk>C457209F-D4E3-6366-2885-C6C2E2FDA103</sourcePk>
+<identifying>true</identifying>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>831BDEA0-35FE-2209-D55A-120925D18F4C</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>4694AA3C-FA2A-141E-B056-D40D706A88FB</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+</Relation>

@@ -1,0 +1,103 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="53C3BD1D-3192-BF7A-D3B2-B552C0F18ECA" name="CLIENTE">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-02-21 23:16:04 UTC</createdTime>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="id" id="235B0D83-17BB-4537-A15A-10616BF28232">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-02-21 23:16:04 UTC</createdTime>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<importedID>F9C660B1-4C2C-B38C-FAD4-669BDCB33CC1</importedID>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="CLI_nombre" id="6CB7B383-CB8C-C418-1A12-2CE9634135EC">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-02-21 23:16:04 UTC</createdTime>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<importedID>BFB8D07C-E69D-8CE8-D5F9-C186FD744063</importedID>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="CLI_direccion" id="191148E4-93D2-891B-D06B-EEDAA07DFB45">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-02-21 23:16:04 UTC</createdTime>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<importedID>8362D35F-78BA-656E-1AA3-F08BFD99A19C</importedID>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="id1" id="841A32EB-1B15-B566-7CE4-E1943589C06D">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-02-21 23:29:58 UTC</createdTime>
+<generatorID>8D3B68C4-3F0B-619A-0A6F-3BEC71EF0C01</generatorID>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<referedAttribute>A03A2117-738D-B9FA-8A49-4F68C9E094DC</referedAttribute>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="id11" id="8FF856EF-2BC9-8535-13D0-1B60D61D2044">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-02-21 23:29:58 UTC</createdTime>
+<generatorID>8D3B68C4-3F0B-619A-0A6F-3BEC71EF0C01</generatorID>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<referedAttribute>607BCBA5-DBED-7230-4728-FA19A0FB47A8</referedAttribute>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="id111" id="470A8EC4-2926-560F-8E96-916D27FD8968">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-02-21 23:29:58 UTC</createdTime>
+<generatorID>8D3B68C4-3F0B-619A-0A6F-3BEC71EF0C01</generatorID>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<referedAttribute>D223957B-51BF-2DE9-FD91-6D74FD261DB0</referedAttribute>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="DB813219-3747-9973-2DA6-7CD6B1152502" name="CLIENTE PK">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-02-21 23:16:04 UTC</createdTime>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>235B0D83-17BB-4537-A15A-10616BF28232</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

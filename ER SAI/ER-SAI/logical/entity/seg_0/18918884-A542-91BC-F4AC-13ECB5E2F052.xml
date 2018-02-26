@@ -1,0 +1,76 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="18918884-A542-91BC-F4AC-13ECB5E2F052" name="CLIENTE_NATURAL">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-02-21 23:16:04 UTC</createdTime>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<hierarchicalParent>53C3BD1D-3192-BF7A-D3B2-B552C0F18ECA</hierarchicalParent>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="CLI_NAT_identificador" id="5A684EEA-08C9-0A91-EA63-199DC57CC6FC">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-02-23 13:55:34 UTC</createdTime>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="CLI_NAT_cedula" id="4D807DF2-0ACF-F95C-CC8C-F73279BE9EDC">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-02-21 23:16:04 UTC</createdTime>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<importedID>40EF4B6D-5D30-0B19-D0B8-18B86AB3DBCD</importedID>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="CLI_NAT_nombre2" id="33C4E40E-2DBA-8E91-A7B1-8B20B1F79BD2">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-02-21 23:16:04 UTC</createdTime>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<importedID>04D6AC66-AA36-4C9B-D97F-7ADD8D68D66A</importedID>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="CLI_NAT_apellido" id="294D14EE-9EEE-B575-E41E-05AC11897D6E">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-02-21 23:16:04 UTC</createdTime>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<importedID>CEC6B647-B59E-C3ED-8E8C-164B25BDAED0</importedID>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="CLI_NAT_apellido2" id="4BD20EDA-09FF-12F9-8F93-8CA569FCEBD0">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-02-21 23:16:04 UTC</createdTime>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<importedID>70345039-4C92-7CD2-C823-45D5B3564C31</importedID>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+</Entity>

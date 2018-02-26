@@ -1,0 +1,119 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="83460BB9-5622-1960-05FB-15BC45CC88EB" name="Empresa">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-02-22 00:03:08 UTC</createdTime>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="id" id="F4954F31-31F5-10DA-AF8C-2FE58A2B4615">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-02-22 00:03:17 UTC</createdTime>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="EMP_nombre" id="3ECA07E0-CFF2-42D8-B9F2-CA0B029D7DAF">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-02-22 00:03:22 UTC</createdTime>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="EMP_direccion" id="1A30A45C-999D-9E5F-8ABA-306E76B21BC7">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-02-22 00:03:37 UTC</createdTime>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="EMP_identificador" id="A8DCF913-E0E9-2DCA-9CCE-D3DD93B951A3">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-02-22 00:03:50 UTC</createdTime>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="EMP_rif" id="C6925E31-3770-F47E-D423-338EBA5A62AF">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-02-22 00:04:03 UTC</createdTime>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="id1" id="A7C9BDF7-77FC-0749-43E0-F8C8BF43C99C">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-02-22 00:06:09 UTC</createdTime>
+<generatorID>3057DC3E-C52F-60D3-C577-7303F610A077</generatorID>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<referedAttribute>A03A2117-738D-B9FA-8A49-4F68C9E094DC</referedAttribute>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="id11" id="D4B7F1A6-087A-B0EB-6A5B-CA95D0D6B378">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-02-22 00:06:09 UTC</createdTime>
+<generatorID>3057DC3E-C52F-60D3-C577-7303F610A077</generatorID>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<referedAttribute>607BCBA5-DBED-7230-4728-FA19A0FB47A8</referedAttribute>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="id111" id="90505C10-B947-77B9-4CD0-254F3F01BB50">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-02-22 00:06:09 UTC</createdTime>
+<generatorID>3057DC3E-C52F-60D3-C577-7303F610A077</generatorID>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<referedAttribute>D223957B-51BF-2DE9-FD91-6D74FD261DB0</referedAttribute>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="3B4C15C6-DC2B-3453-7C73-AF19FB6B71E9" name="Empresa PK">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-02-22 00:03:20 UTC</createdTime>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>F4954F31-31F5-10DA-AF8C-2FE58A2B4615</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

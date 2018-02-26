@@ -1,0 +1,79 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="89AB69C3-B478-DE1A-4335-2224F3B729C7" name="PC_Solicitud">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-02-22 14:33:50 UTC</createdTime>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="id" id="29E4F1D7-22C6-EB99-E6DB-566EA2AF7A42">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-02-22 14:33:50 UTC</createdTime>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="id1" id="21BE5FA3-68E5-A9A0-CAB3-BAD2F8148AB7">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-02-22 14:34:43 UTC</createdTime>
+<generatorID>BB1B120D-1C3E-E0B5-394D-2EB19128BB0E</generatorID>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<referedAttribute>D5334080-3FAC-1E52-2236-16240204752C</referedAttribute>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="id2" id="456C6813-B125-3C81-5E89-AC2CD1FAEC28">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-02-22 14:34:58 UTC</createdTime>
+<generatorID>56FFCE22-581B-3A46-CB77-2F69406E183E</generatorID>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<referedAttribute>BF3144F4-D2B0-8FB3-F6AE-0F63DF04AEFB</referedAttribute>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="id11" id="D15E45C0-259C-82DF-3D2D-F2341BE2A94C">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-02-22 14:34:58 UTC</createdTime>
+<generatorID>56FFCE22-581B-3A46-CB77-2F69406E183E</generatorID>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<referedAttribute>18F23C67-C4EE-3CA4-C8A1-BC38B13E45AD</referedAttribute>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="800006B7-2740-CA58-53FC-4D64F9A3B9A7" name="PC_Venta PK">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-02-22 14:33:50 UTC</createdTime>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>29E4F1D7-22C6-EB99-E6DB-566EA2AF7A42</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

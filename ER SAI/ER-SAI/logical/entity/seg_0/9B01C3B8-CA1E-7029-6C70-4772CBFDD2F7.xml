@@ -1,0 +1,55 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="9B01C3B8-CA1E-7029-6C70-4772CBFDD2F7" name="MARCA">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-02-21 23:59:20 UTC</createdTime>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="id" id="8DD44558-99FC-683F-57E9-D1D07B53B86F">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-02-21 23:59:20 UTC</createdTime>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<importedID>F2902065-D8AF-1221-0069-C51CE8AFC6AC</importedID>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="MAR_marca" id="5726523B-EE96-DF08-FA0F-156AAAA62002">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-02-21 23:59:20 UTC</createdTime>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<importedID>178C5D87-04DE-D8A5-E804-6F84339D75FB</importedID>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="8260B22C-6999-DA43-69CE-2E2711A80974" name="MARCA PK">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-02-21 23:59:20 UTC</createdTime>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>8DD44558-99FC-683F-57E9-D1D07B53B86F</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

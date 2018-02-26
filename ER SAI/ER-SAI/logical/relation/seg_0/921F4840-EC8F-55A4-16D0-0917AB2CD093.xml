@@ -1,0 +1,19 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="poseev1" directorySegmentName="seg_0" id="921F4840-EC8F-55A4-16D0-0917AB2CD093">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-02-22 00:06:37 UTC</createdTime>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<sourcePk>3B4C15C6-DC2B-3453-7C73-AF19FB6B71E9</sourcePk>
+<identifying>true</identifying>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>83460BB9-5622-1960-05FB-15BC45CC88EB</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>F819E8EA-1E3F-42D5-18E8-3E655900B7F5</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+</Relation>

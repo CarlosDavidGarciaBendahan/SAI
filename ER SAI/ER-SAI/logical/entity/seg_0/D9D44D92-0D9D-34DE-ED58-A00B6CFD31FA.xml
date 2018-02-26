@@ -1,0 +1,101 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="D9D44D92-0D9D-34DE-ED58-A00B6CFD31FA" name="Venta">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-02-22 00:28:43 UTC</createdTime>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="id" id="CF7755B8-1F90-7CAC-93BF-4C7D5BC3CD98">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-02-22 00:28:43 UTC</createdTime>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<importedID>F1D79FD3-5322-7BC0-06B1-33FDCDF23931</importedID>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="VEN_fecha_compra" id="EFEBDB3B-9993-0A40-1219-0EDF52C51324">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-02-22 00:28:43 UTC</createdTime>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<importedID>A01E0FC2-637D-C36E-07A9-D4BE1F7CE749</importedID>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="VEN_monto_total" id="D26058A1-A45F-A7AC-4FD9-74DEA84BE006">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-02-22 00:28:43 UTC</createdTime>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<importedID>69B53D85-50BC-3C77-0B04-EF7E264E706D</importedID>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="VEN_moneda" id="993ADF56-AB2D-61DD-CA7C-D8AD66A64606">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-02-22 00:28:43 UTC</createdTime>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<importedID>0C1E1CA4-018D-6AB9-B8D0-E8AD95CF327B</importedID>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="VEN_eliminada" id="990B1004-05CC-249A-277C-572A448F9C62">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-02-22 00:28:43 UTC</createdTime>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<importedID>FBAF9B33-BFAE-BF69-FF66-55CB020FF8EE</importedID>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="id1" id="9C309252-74B5-AF17-0722-3B5597C4E08A">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-02-22 00:29:38 UTC</createdTime>
+<generatorID>85F6FAD0-03B0-051B-BC6A-6C64F5B972A1</generatorID>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<referedAttribute>235B0D83-17BB-4537-A15A-10616BF28232</referedAttribute>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="D75BEEAD-5E73-7909-889E-B80AC902D224" name="COMPRA PK">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-02-22 00:28:43 UTC</createdTime>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>CF7755B8-1F90-7CAC-93BF-4C7D5BC3CD98</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

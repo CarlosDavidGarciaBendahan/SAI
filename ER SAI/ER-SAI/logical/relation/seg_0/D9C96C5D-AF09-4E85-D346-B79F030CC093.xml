@@ -1,0 +1,19 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="puede_estar" directorySegmentName="seg_0" id="D9C96C5D-AF09-4E85-D346-B79F030CC093">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-02-22 14:17:53 UTC</createdTime>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<sourcePk>A2858C8F-6784-5BF0-59C2-D18DECC82772</sourcePk>
+<identifying>true</identifying>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>7FBE8B48-B6AE-01AE-968B-302B369F6579</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>38EB04EC-D7ED-3BBC-F604-C252FA916121</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+</Relation>

@@ -1,0 +1,19 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="puede_tener" directorySegmentName="seg_0" id="E88815C7-EB10-739D-F13A-79232BD7897D">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-02-22 14:18:04 UTC</createdTime>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<sourcePk>D75BEEAD-5E73-7909-889E-B80AC902D224</sourcePk>
+<identifying>true</identifying>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>D9D44D92-0D9D-34DE-ED58-A00B6CFD31FA</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>38EB04EC-D7ED-3BBC-F604-C252FA916121</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+</Relation>

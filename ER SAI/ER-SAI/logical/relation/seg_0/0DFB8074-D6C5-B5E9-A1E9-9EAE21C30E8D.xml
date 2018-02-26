@@ -1,0 +1,19 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="esta ubicado" directorySegmentName="seg_0" id="0DFB8074-D6C5-B5E9-A1E9-9EAE21C30E8D">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-02-22 13:33:07 UTC</createdTime>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<sourcePk>9DB2CA0D-2135-EEBB-E494-415596470DD5</sourcePk>
+<identifying>false</identifying>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>7628A7C8-5C4B-DEAE-C0B1-82F120EF08C3</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>34D1AFBE-6EA2-EBD9-5D91-84255FD9FBB2</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+</Relation>

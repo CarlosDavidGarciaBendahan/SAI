@@ -1,0 +1,19 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="viene en un" directorySegmentName="seg_0" id="969855CB-EAC2-A21E-C784-940D4CF0C592">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-02-22 13:29:48 UTC</createdTime>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<sourcePk>C8A8BCFB-D276-17DD-2A70-806412F8088C</sourcePk>
+<identifying>false</identifying>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>8FAE41D0-D0AD-14B6-FA82-3CF97EA5C147</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>99928BBD-1506-A755-EF51-5464197FCC92</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+</Relation>

@@ -1,0 +1,112 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="7FBE8B48-B6AE-01AE-968B-302B369F6579" name="CodigoArticulo">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-02-22 13:21:53 UTC</createdTime>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="id" id="663C67FC-B376-34CE-8A47-B4165E243F49">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-02-22 13:22:01 UTC</createdTime>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="COD_ART_codigo" id="7B35CF3C-5369-2672-F5DD-E929CB51F2A0">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-02-22 13:22:06 UTC</createdTime>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="COD_ART_estado" id="55785C8A-C336-9610-0554-C6626B048CF2">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-02-22 13:22:15 UTC</createdTime>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="id1" id="0F1CE333-7AE7-A9BB-43B0-B7D4D673397F">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-02-22 13:23:46 UTC</createdTime>
+<generatorID>3152BEB1-88D5-F7AD-F3EE-D6F45B851EC1</generatorID>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<referedAttribute>580B56D3-075E-685E-C9EA-2B2CEDCA9D69</referedAttribute>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="id2" id="EA3BA6CD-CB61-697B-BDC5-E270408F8FE4">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-02-22 13:30:00 UTC</createdTime>
+<generatorID>A18D21A2-2F97-98B1-0F59-875D1DF37374</generatorID>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<referedAttribute>EA415FD7-1A2D-28D7-B009-CF661D65ECD4</referedAttribute>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="id3" id="93ED0E5C-6D10-39C0-C6C6-33A726EC2B87">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-02-23 14:59:47 UTC</createdTime>
+<generatorID>5117A2EA-4E1F-9127-9D27-FE3BFF54157F</generatorID>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<referedAttribute>BF3144F4-D2B0-8FB3-F6AE-0F63DF04AEFB</referedAttribute>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="id11" id="5FCABE38-F91E-4D3B-E667-9EE0D15B6508">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-02-23 14:59:47 UTC</createdTime>
+<generatorID>5117A2EA-4E1F-9127-9D27-FE3BFF54157F</generatorID>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<referedAttribute>18F23C67-C4EE-3CA4-C8A1-BC38B13E45AD</referedAttribute>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="A2858C8F-6784-5BF0-59C2-D18DECC82772" name="CodigoArticulo PK">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-02-22 13:22:04 UTC</createdTime>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>663C67FC-B376-34CE-8A47-B4165E243F49</attributeRef>
+<attributeRef>0F1CE333-7AE7-A9BB-43B0-B7D4D673397F</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

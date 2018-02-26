@@ -1,0 +1,79 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="4694AA3C-FA2A-141E-B056-D40D706A88FB" name="Parroquia">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-02-21 23:09:13 UTC</createdTime>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="id" id="A03A2117-738D-B9FA-8A49-4F68C9E094DC">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-02-21 23:09:20 UTC</createdTime>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="PAR_nombre" id="F0E66956-EEE6-05A4-73AC-15B62916461D">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-02-21 23:09:25 UTC</createdTime>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="id1" id="607BCBA5-DBED-7230-4728-FA19A0FB47A8">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-02-21 23:12:19 UTC</createdTime>
+<generatorID>E1D8912F-0BF0-0D89-2B8C-984FF9F53344</generatorID>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<referedAttribute>D4E6E02B-B4C5-89A3-F6FE-74C6093FC84A</referedAttribute>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="id11" id="D223957B-51BF-2DE9-FD91-6D74FD261DB0">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-02-21 23:12:19 UTC</createdTime>
+<generatorID>E1D8912F-0BF0-0D89-2B8C-984FF9F53344</generatorID>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<referedAttribute>4E9333CB-B9B2-58AE-9C64-1326C4254481</referedAttribute>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="96F24200-8E1F-9C99-3456-AF3761BB1945" name="Parroquia PK">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-02-21 23:09:23 UTC</createdTime>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>A03A2117-738D-B9FA-8A49-4F68C9E094DC</attributeRef>
+<attributeRef>607BCBA5-DBED-7230-4728-FA19A0FB47A8</attributeRef>
+<attributeRef>D223957B-51BF-2DE9-FD91-6D74FD261DB0</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

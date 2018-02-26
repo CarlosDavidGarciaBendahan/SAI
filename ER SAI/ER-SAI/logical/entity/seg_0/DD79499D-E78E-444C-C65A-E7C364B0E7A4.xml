@@ -1,0 +1,97 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="DD79499D-E78E-444C-C65A-E7C364B0E7A4" name="NotaEntrega">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-02-22 14:22:01 UTC</createdTime>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="id" id="7B45A855-13B8-CCE4-F15A-9730F544295C">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-02-22 14:22:12 UTC</createdTime>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="NOT_fecha" id="6FFEDEE7-056B-DB4A-7F28-66B14FC33E64">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-02-22 14:22:16 UTC</createdTime>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="NOT_subtotal" id="7A0DB7A7-1371-E604-DB15-2FC26AA80B74">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-02-22 14:22:27 UTC</createdTime>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="NOT_observaciones" id="DE8E2174-8CF5-F6D0-107E-BE5FE0FA0089">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-02-22 14:22:56 UTC</createdTime>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="id1" id="4D3D6E4E-EF6D-51CA-8569-55C209BDE588">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-02-22 14:23:30 UTC</createdTime>
+<generatorID>36EFDF4C-857E-3DC0-1FD7-AD90AFF3826B</generatorID>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<referedAttribute>CF7755B8-1F90-7CAC-93BF-4C7D5BC3CD98</referedAttribute>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="id2" id="48414130-3641-8A74-ED39-0390963A681A">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-02-22 14:24:22 UTC</createdTime>
+<generatorID>7E38A3D8-4EA3-C18C-9A95-A4A116A09380</generatorID>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<referedAttribute>F4954F31-31F5-10DA-AF8C-2FE58A2B4615</referedAttribute>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="A65562C9-C60A-1B35-A414-C46AA0FFE908" name="NotaEntrega PK">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-02-22 14:22:14 UTC</createdTime>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>7B45A855-13B8-CCE4-F15A-9730F544295C</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

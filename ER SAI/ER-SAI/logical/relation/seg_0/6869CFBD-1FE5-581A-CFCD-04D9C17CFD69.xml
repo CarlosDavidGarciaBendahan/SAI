@@ -1,0 +1,19 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Esta constituido por" directorySegmentName="seg_0" id="6869CFBD-1FE5-581A-CFCD-04D9C17CFD69">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-02-21 23:33:41 UTC</createdTime>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<sourcePk>D0CF2033-F79B-BF9F-25EE-58E89734FAAF</sourcePk>
+<identifying>true</identifying>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>7F03FA98-E905-CA3D-1A89-68D3BA1F0118</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>7628A7C8-5C4B-DEAE-C0B1-82F120EF08C3</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+</Relation>

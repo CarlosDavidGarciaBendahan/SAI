@@ -1,0 +1,166 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="34D1AFBE-6EA2-EBD9-5D91-84255FD9FBB2" name="Producto">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-02-22 13:13:39 UTC</createdTime>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="id" id="580B56D3-075E-685E-C9EA-2B2CEDCA9D69">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-02-22 13:13:47 UTC</createdTime>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="PRO_codigo" id="8EC60D07-2356-DF14-CA1D-B9E3FD53896F">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-02-22 13:13:54 UTC</createdTime>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="PRO_descripcion" id="C163B788-CD8F-460B-FC80-0B48DECBD182">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-02-22 13:14:08 UTC</createdTime>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="PRO_cantidad" id="3BCAF629-2AFB-8E36-0145-3F69F50F48F1">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-02-22 13:14:21 UTC</createdTime>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="PRO_precio" id="C76E7C04-119B-E6F5-E655-E1A44A6D5A83">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-02-22 13:14:41 UTC</createdTime>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="PRO_moneda" id="2632CDB2-E8AB-C0EA-DF0C-EED335CEC5E0">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-02-22 13:14:53 UTC</createdTime>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="PRO_catalogo" id="302C5D86-CBF8-85A6-8AC6-60D2F896A706">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-02-22 15:00:56 UTC</createdTime>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="id1" id="A5301D7E-B63F-2AED-A28A-256B57BA9736">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-02-22 13:25:45 UTC</createdTime>
+<generatorID>F221397A-E742-C95C-2791-F7BDB43B9DB1</generatorID>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<referedAttribute>DEAD6C33-DE3C-CEDA-23F7-67347E2E3A0E</referedAttribute>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="id2" id="E4E5F5DA-1BFD-83EA-623A-9DA11BD3E43C">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-02-22 13:26:14 UTC</createdTime>
+<generatorID>E859B841-601B-6BA9-7C10-C63B90553BB5</generatorID>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<referedAttribute>87698EED-6B07-83C0-544A-9BA3782E0435</referedAttribute>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="id11" id="ABF8D5EA-F733-9938-EAF8-A9AF1E3FDA27">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-02-22 13:26:14 UTC</createdTime>
+<generatorID>E859B841-601B-6BA9-7C10-C63B90553BB5</generatorID>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<referedAttribute>B144EB98-0653-4A0F-4F5D-6870AA970E5B</referedAttribute>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="id3" id="607FCB5B-67E3-C45E-B865-C16B0A058358">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-02-22 13:33:07 UTC</createdTime>
+<generatorID>0DFB8074-D6C5-B5E9-A1E9-9EAE21C30E8D</generatorID>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<referedAttribute>1206648D-1122-A85F-7B87-315763AD40F1</referedAttribute>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="id12" id="C3D1A90A-0000-590C-D2B1-F178660917F8">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-02-22 13:33:07 UTC</createdTime>
+<generatorID>0DFB8074-D6C5-B5E9-A1E9-9EAE21C30E8D</generatorID>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<referedAttribute>7930F83E-B9D0-B4D7-CE14-C62716074517</referedAttribute>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="3B6C8A24-BF91-8C3D-1685-B63F50BFF68E" name="Producto PK">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-02-22 13:13:52 UTC</createdTime>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>580B56D3-075E-685E-C9EA-2B2CEDCA9D69</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>
