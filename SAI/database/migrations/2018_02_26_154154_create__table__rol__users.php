@@ -22,7 +22,7 @@ class CreateTableRolUsers extends Migration
             $table->foreign('rol_use_fk_user')->references('id')->on('users');
             $table->foreign('rol_use_fk_rol')->references('id')->on('rol');
 
-            $table->unique(['rol_use_fk_rol','rol_use_fk_users'],
+            $table->unique(['rol_use_fk_rol','rol_use_fk_user'],
                 'ROL_USERS_UNIQUE_rol_use_fk_users_rol_use_fk_rol');
         });
     }
