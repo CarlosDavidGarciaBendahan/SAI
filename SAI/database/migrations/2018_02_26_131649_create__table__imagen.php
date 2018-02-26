@@ -15,16 +15,16 @@ class CreateTableImagen extends Migration
     {
         Schema::create('Imagen', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('img_nombre')->nullable(false);
-            $table->integer('img_fk_producto_computador')->unsigned();
-            $table->integer('img_fk_producto_articulo')->unsigned();
+            $table->string('ima_nombre')->nullable(false);
+            $table->integer('ima_fk_producto_computador')->unsigned();
+            $table->integer('ima_fk_producto_articulo')->unsigned();
             $table->timestamps();
 
 
-            $table->unique('img_nombre','IMAGEN_UNIQUE_img_nombre');
+            $table->unique('ima_nombre','IMAGEN_UNIQUE_ima_nombre');
 
-            $table->foreign('img_fk_producto_articulo')->references('id')->on('producto_articulo');
-            $table->foreign('img_fk_producto_computador')->references('id')->on('producto_computador');
+            $table->foreign('ima_fk_producto_articulo')->references('id')->on('producto_articulo');
+            $table->foreign('ima_fk_producto_computador')->references('id')->on('producto_computador');
         });
     }
 

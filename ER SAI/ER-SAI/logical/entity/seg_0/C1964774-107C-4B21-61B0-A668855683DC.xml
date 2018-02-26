@@ -25,7 +25,7 @@
 <use>0</use>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
-<Attribute name="img_nombre" id="D1C5553B-2F57-83BB-4409-9437F1F51783">
+<Attribute name="ima_nombre" id="D1C5553B-2F57-83BB-4409-9437F1F51783">
 <createdBy>Carlos</createdBy>
 <createdTime>2018-02-26 13:13:31 UTC</createdTime>
 <ownerDesignName>ER-SAI</ownerDesignName>
