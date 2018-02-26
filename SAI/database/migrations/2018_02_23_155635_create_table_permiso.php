@@ -15,7 +15,7 @@ class CreateTablePermiso extends Migration
     {
         Schema::create('permiso', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('per_permiso')->nullable(false);
+            $table->string('perm_permiso')->nullable(false);
             $table->timestamps();
 
             $table->unique('per_permiso','PERMISO_UNIQUE_per_permiso');
