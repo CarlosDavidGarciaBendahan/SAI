@@ -1,0 +1,65 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="C1964774-107C-4B21-61B0-A668855683DC" name="Imagen">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-02-26 13:13:17 UTC</createdTime>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="id" id="58999B08-A6A3-7355-45B5-103CA10BCA0B">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-02-26 13:13:25 UTC</createdTime>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="img_nombre" id="D1C5553B-2F57-83BB-4409-9437F1F51783">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-02-26 13:13:31 UTC</createdTime>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="id1" id="AB208A16-2115-1076-87DB-4F5E33935493">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-02-26 13:14:06 UTC</createdTime>
+<generatorID>D2BC6658-D3F1-5902-9009-DBFB3DF95A62</generatorID>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<referedAttribute>580B56D3-075E-685E-C9EA-2B2CEDCA9D69</referedAttribute>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="25F6DABB-9FF7-1608-A1E1-19806D312730" name="Imagen PK">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-02-26 13:13:28 UTC</createdTime>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>58999B08-A6A3-7355-45B5-103CA10BCA0B</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>
