@@ -23,8 +23,8 @@ class EstadoController extends Controller
         });
 
 
-
-        dd($estado);
+        return view('admin.estado',['estado' => $estado]);
+        //dd($estado);
     }
 
     public function index()
