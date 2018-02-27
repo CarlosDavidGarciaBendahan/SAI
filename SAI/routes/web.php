@@ -15,11 +15,21 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::group(['prefix' => 'Lugar'], function(){
+/*Route::group(['prefix' => 'Lugar'], function(){
 
 	Route::get('Estado/{id}',[
 		'uses'	=>	'EstadoController@view',
 		'as'	=>	'EstadoView'
 	]);
 
+});*/
+
+/*Route::group(['prefix' => 'admin'], function(){
+
+	Route::resource('estado','EstadoController');//1er para: Nombre para el grupo que creara  2do para: el controlador que tomara
+
+});*/
+
+Route::prefix('admin')->group( function(){
+	Route::resource('estado','EstadoController');
 });

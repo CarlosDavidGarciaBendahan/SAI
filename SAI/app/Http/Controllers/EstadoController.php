@@ -14,7 +14,7 @@ class EstadoController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function view($id){
+    /*public function view($id){
         $estado = Estado::find($id);
         $estado->Municipios;
 
@@ -25,7 +25,7 @@ class EstadoController extends Controller
 
         return view('admin.estado',['estado' => $estado]);
         //dd($estado);
-    }
+    }*/
 
     public function index()
     {
@@ -39,7 +39,7 @@ class EstadoController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.estado.create');
     }
 
     /**
@@ -50,7 +50,11 @@ class EstadoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //dd($request);
+        $estado = new Estado($request->all()); //request valores recibidos del formulario
+        $estado->save();
+
+        
     }
 
     /**

@@ -14,7 +14,17 @@
 
 	</head>
 	<body>
-		@include('admin.template.partials.nav')
+
+		<section class="container-fluid">
+			<div class="row">
+				<div class="col-sm-8 offset-2">
+					@include('admin.template.partials.nav')
+				</div>
+			</div>
+		</section>
+		
+		
+		
 		<section>
 			@yield('body')
 		</section>	
