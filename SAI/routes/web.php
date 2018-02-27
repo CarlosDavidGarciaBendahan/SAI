@@ -14,3 +14,12 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::group(['prefix' => 'Lugar'], function(){
+
+	Route::get('Estado/{id}',[
+		'uses'	=>	'EstadoController@view',
+		'as'	=>	'EstadoView'
+	]);
+
+});
