@@ -18,7 +18,7 @@ class CreateTablePermiso extends Migration
             $table->string('perm_permiso')->nullable(false);
             $table->timestamps();
 
-            $table->unique('per_permiso','PERMISO_UNIQUE_per_permiso');
+            $table->unique('perm_permiso','PERMISO_UNIQUE_per_permiso');
         });
     }
 
