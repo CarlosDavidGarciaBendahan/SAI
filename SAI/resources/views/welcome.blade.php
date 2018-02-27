@@ -6,7 +6,7 @@
 
     <section class="container cabeza">
         <div class="row">
-            <div class="col-ms-8 offset-2 justify-content-center">            
+            <div class="col-sm-8 offset-2 justify-content-center">            
                 <h1>Hola bienvenido a la página de administrador</h1>
             </div>
         </div>
