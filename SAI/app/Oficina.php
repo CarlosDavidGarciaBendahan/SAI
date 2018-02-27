@@ -3,9 +3,25 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Cviebrock\EloquentSluggable\Sluggable;
 
 class Oficina extends Model
 {
+    use Sluggable;
+
+    /**
+     * Return the sluggable configuration array for this model.
+     *
+     * @return array
+     */
+    public function sluggable()
+    {
+        return [
+            'slug' => [
+                'source' => 'ofi_direccion'
+            ]
+        ];
+    }
     protected $table ="oficina";
 
     protected $fillable = ['id','ofi_tipo','ofi_direccion','ofi_fk_parroquia'];
