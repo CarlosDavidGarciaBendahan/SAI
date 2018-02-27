@@ -1,5 +1,5 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="52824B34-2F65-81FC-7775-FB6E817E0350" name="User">
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="52824B34-2F65-81FC-7775-FB6E817E0350" name="Users">
 <createdBy>Carlos</createdBy>
 <createdTime>2018-02-21 23:53:21 UTC</createdTime>
 <ownerDesignName>ER-SAI</ownerDesignName>
