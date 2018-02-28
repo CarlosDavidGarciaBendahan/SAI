@@ -25,9 +25,17 @@
 					      <th scope="row">{{ $estado->id }}</th>
 					      <td>{{ $estado->est_nombre }}</td>	
 					      <td>
-					      	<a href="" class="btn btn-warning"><span class="class glyphicon glyphicon-wrench"></span></a>
+					      	<a href="{{ route('estado.edit', $estado->id) }}" class="btn btn-warning">
+					      		<span class="class glyphicon glyphicon-wrench"></span>
+					      	</a>
 
-					      	<a href="{{ route('estado.destroy', $estado->id) }}" onclick="return confirm('Eliminar el estado?')" class="btn btn-danger"><span class="class glyphicon glyphicon-remove-circle"></a> 
+					      	<a href="{{ route('estado.destroy', $estado->id) }}" onclick="return confirm('Eliminar el estado?')" class="btn btn-danger">
+					      		<span class="class glyphicon glyphicon-remove-circle"></span>
+					      	</a> 
+
+					      	<a href="{{ route('estado.show', $estado->id) }}" class="btn btn-info">
+					      		<span class="glyphicon glyphicon-search"></span>
+					      	</a>
 					      </td>
 				    	</tr>
 				  	@endforeach

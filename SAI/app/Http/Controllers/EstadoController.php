@@ -83,7 +83,9 @@ class EstadoController extends Controller
      */
     public function show($id)
     {
-        //
+       $estado = Estado::find($id);
+
+        return view('admin.estado.show',['estado'=>$estado]);
     }
 
     /**
@@ -94,7 +96,9 @@ class EstadoController extends Controller
      */
     public function edit($id)
     {
-        //
+        $estado = Estado::find($id);
+
+        return view('admin.estado.edit',['estado'=>$estado]);
     }
 
     /**
@@ -106,7 +110,16 @@ class EstadoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $estado = Estado::find($id);
+
+        $estado->est_nombre = $request->est_nombre;
+        $estado->save();
+        //$estado->slug = $request->slug;
+        //dd($estado);
+
+        flash("Modificación del estado exitosamente a ".$estado->est_nombre )->success();
+        return redirect()->route('estado.index');
+
     }
 
     /**
