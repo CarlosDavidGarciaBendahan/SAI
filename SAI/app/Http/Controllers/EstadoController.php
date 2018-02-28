@@ -117,6 +117,11 @@ class EstadoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $estado = Estado::find($id);
+        $estado->delete();
+
+        flash("Eliminación del estado " .$estado->est_nombre . " exitosamente.")->success();
+        return redirect()->route('estado.index');
+
     }
 }

@@ -31,5 +31,12 @@ Route::get('/', function () {
 });*/
 
 Route::prefix('admin')->group( function(){
+
 	Route::resource('estado','EstadoController');
+
+	//con esta ruta nos ahorramos crear un formulario para poder eliminar y facilitar el diseno...
+	Route::get('estado/{id}/destroy',[
+		'uses'	=> 'EstadoController@destroy',
+		'as'	=> 'estado.destroy'
+	]);
 });
