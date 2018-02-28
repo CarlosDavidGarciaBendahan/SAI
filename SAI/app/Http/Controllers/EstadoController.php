@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 use App\Estado;
 use App\Municipio;
 
@@ -29,7 +31,15 @@ class EstadoController extends Controller
 
     public function index()
     {
-        //
+        //$estado = new Estado::orderBy('est_nombre','ASC')->paginate(1);
+        //$estado = new Estado::all();
+        $estado = DB::table('estado')->orderBy('est_nombre', 'asc')->paginate(5);//->select('*')->orderBy('est_nombre', 'asc');
+        //dd($estado);
+        
+        //$estado = new Estado();
+        //retornar la variable a una vista
+        return view('admin.estado.index',['estado'=>$estado]);
+
     }
 
     /**
@@ -54,7 +64,8 @@ class EstadoController extends Controller
         $estado = new Estado($request->all()); //request valores recibidos del formulario
         $estado->save();
 
-        
+        $estado = DB::table('estado')->orderBy('est_nombre', 'asc')->paginate(5);
+        return view ('admin.estado.index',['estado' => $estado]);
     }
 
     /**
