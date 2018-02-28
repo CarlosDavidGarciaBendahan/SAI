@@ -24,7 +24,10 @@
 				  		<tr>
 					      <th scope="row">{{ $estado->id }}</th>
 					      <td>{{ $estado->est_nombre }}</td>	
-					      <td><a href="" class="btn btn-danger"></a> <a href="" class="btn btn-warning"></a></td>
+					      <td>
+					      	<a href="" class="btn btn-warning"><span class="class glyphicon glyphicon-wrench"></span></a>
+					      	<a href="" class="btn btn-danger"><span class="class glyphicon glyphicon-remove-circle"></a> 
+					      </td>
 				    	</tr>
 				  	@endforeach
 
