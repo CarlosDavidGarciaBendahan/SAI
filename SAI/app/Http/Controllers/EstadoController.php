@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
+use Laracast\Flash\Flash;
 use App\Estado;
 use App\Municipio;
 
@@ -38,6 +39,7 @@ class EstadoController extends Controller
         
         //$estado = new Estado();
         //retornar la variable a una vista
+        
         return view('admin.estado.index',['estado'=>$estado]);
 
     }
@@ -64,8 +66,13 @@ class EstadoController extends Controller
         $estado = new Estado($request->all()); //request valores recibidos del formulario
         $estado->save();
 
-        $estado = DB::table('estado')->orderBy('est_nombre', 'asc')->get();
-        return view ('admin.estado.index',['estado' => $estado]);
+        //$estado = DB::table('estado')->orderBy('est_nombre', 'asc')->get();
+
+
+        //return view ('admin.estado.index',['estado' => $estado]);
+        
+        flash("Registro del estado " .$request->est_nombre . " exitosamente.")->success();
+        return redirect()->route('estado.index');
     }
 
     /**

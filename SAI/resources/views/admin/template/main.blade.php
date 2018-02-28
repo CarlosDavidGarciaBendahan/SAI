@@ -26,6 +26,15 @@
 		
 		
 		<section>
+			<section class="container-fluid">
+				<div class="row">
+				<div class="col-sm-8 offset-2">
+					@include('flash::message')
+				</div>
+			</div>
+			</section>
+			
+			
 			@yield('body')
 		</section>	
 
@@ -41,6 +50,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 	<script src="{{ asset('plugins/Bootstrap/js/bootstrap.min.js') }}"></script>
 	<script src="{{ asset('plugins/JQuery/js/jquery-3.3.1.js') }}"></script>
+
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 
 	</body>
 </html>

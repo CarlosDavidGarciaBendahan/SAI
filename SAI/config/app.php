@@ -164,6 +164,7 @@ return [
 
         //Creadas por mi
         Collective\Html\HtmlServiceProvider::class,
+        Laracasts\Flash\FlashServiceProvider::class,
 
     ],
 

@@ -6,9 +6,11 @@
 	{{-- {{ dd($estado) }} --}}
 
 	<section class="container-fluid">
+
 		<div class="row">
 			<div class="col-sm-8 offset-2">
-				<a href="{{ route('estado.create') }}" class="btn btn-info m-4">Registrar nuevo estado</a>
+
+				<a href="{{ route('estado.create') }}" class="btn btn-info">Registrar nuevo estado</a>
 				<table class="table table-inverse">
 				  <thead>
 				    <tr>
