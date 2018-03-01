@@ -34,10 +34,11 @@ class EstadoController extends Controller
     {
         //$estado = new Estado::orderBy('est_nombre','ASC')->paginate(1);
         //$estado = new Estado::all();
-        $estado = DB::table('estado')->orderBy('est_nombre', 'asc')->get();
+        //$estado = DB::table('estado')->orderBy('est_nombre', 'asc')->get();
+        $estado = Estado::orderBy('est_nombre')->paginate(10);
         //dd($estado);
         
-        //$estado = new Estado();
+        //$estado = new Estado();   
         //retornar la variable a una vista
         
         return view('admin.estado.index',['estado'=>$estado]);

@@ -20,20 +20,20 @@
 				  </thead>
 				  <tbody>
 
-				  	@foreach ($estado as $estado)
+				  	@foreach ($estado as $edo)
 				  		<tr>
-					      <th scope="row">{{ $estado->id }}</th>
-					      <td>{{ $estado->est_nombre }}</td>	
+					      <th scope="row">{{ $edo->id }}</th>
+					      <td>{{ $edo->est_nombre }}</td>	
 					      <td>
-					      	<a href="{{ route('estado.edit', $estado->id) }}" class="btn btn-warning">
+					      	<a href="{{ route('estado.edit', $edo->id) }}" class="btn btn-warning">
 					      		<span class="class glyphicon glyphicon-wrench"></span>
 					      	</a>
 
-					      	<a href="{{ route('estado.destroy', $estado->id) }}" onclick="return confirm('Eliminar el estado?')" class="btn btn-danger">
+					      	<a href="{{ route('estado.destroy', $edo->id) }}" onclick="return confirm('Eliminar el estado?')" class="btn btn-danger">
 					      		<span class="class glyphicon glyphicon-remove-circle"></span>
 					      	</a> 
 
-					      	<a href="{{ route('estado.show', $estado->id) }}" class="btn btn-info">
+					      	<a href="{{ route('estado.show', $edo->id) }}" class="btn btn-info">
 					      		<span class="glyphicon glyphicon-search"></span>
 					      	</a>
 					      </td>
@@ -43,6 +43,7 @@
 				  </tbody>
 
 				</table>
+				{{ $estado->links() }}
 			</div>
 			
 		</div>
