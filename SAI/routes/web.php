@@ -30,7 +30,7 @@ Route::get('/', function () {
 
 });*/
 
-Route::prefix('admin')->group( function(){
+Route::prefix('admin/lugar/')->group( function(){
 
 	Route::resource('estado','EstadoController');
 
@@ -39,4 +39,21 @@ Route::prefix('admin')->group( function(){
 		'uses'	=> 'EstadoController@destroy',
 		'as'	=> 'estado.destroy'
 	]);
+
+
+	Route::resource('municipio','MunicipioController');
+	Route::get('municipio/{id}/destroy',[
+		'uses'	=> 'MunicipioController@destroy',
+		'as'	=> 'municipio.destroy'
+	]);
+
+	Route::resource('parroquia','ParroquiaController');
+	Route::get('parroquia/{id}/destroy',[
+		'uses'	=> 'ParroquiaController@destroy',
+		'as'	=> 'parroquia.destroy'
+	]);
+
 });
+
+
+

@@ -1,24 +1,32 @@
 @extends('admin.template.main')
 
-@section('title', 'Mostrar el estado '. $estado->est_nombre)
+@section('title', 'Mostrar el estado '. $municipio->mun_nombre)
 
 @section('body')
 	{{-- expr --}}
 	<section class="container">
 		<div class="row">
 			<div class="col-sm-8 offset-2">
-				{!! Form::open(['route' => 'estado.store', 'method' => 'POST' ]) !!}
+				{!! Form::open(['route' => 'municipio.store', 'method' => 'POST' ]) !!}
+					
+					<div class="form-group"> 
+						
+						{!! Form::label('estado','Estado') !!}
+
+						{!! Form::text('estado',$municipio->estado->est_nombre,['class'=> 'form-control', 'placeholder'=>'Nombre del estado', 'required']) !!}
+					</div>
+
 					<div class="form-group"> 
 						
 						{!! Form::label('id','ID') !!}
 
-						{!! Form::text('id',$estado->id,['class'=> 'form-control', 'placeholder'=>'Nombre del estado', 'required']) !!}
+						{!! Form::text('id',$municipio->id,['class'=> 'form-control', 'placeholder'=>'Nombre del estado', 'required']) !!}
 					</div>
 					<div class="form-group"> 
 						
-						{!! Form::label('est_nombre','Nombre') !!}
+						{!! Form::label('mun_nombre','Nombre') !!}
 
-						{!! Form::text('est_nombre',$estado->est_nombre,['class'=> 'form-control', 'placeholder'=>'Nombre del estado', 'required']) !!}
+						{!! Form::text('mun_nombre',$municipio->mun_nombre,['class'=> 'form-control', 'placeholder'=>'Nombre del estado', 'required']) !!}
 					</div>
 					{{-- comment 
 						<div class="form-group"> 
@@ -41,31 +49,31 @@
 
 					<div class="form-group"> 
 						
-						{!! Form::label('municipios','Municipios') !!}
+						{!! Form::label('parroquias','Parroquias') !!}
 
 						<table class="table table-inverse">
 						  <thead>
 						    <tr>
 						      <th>ID</th>
-						      <th>Nombre del municipio</th>
+						      <th>Nombre de la parroquia</th>
 						    </tr>
 						  </thead>
 						  <tbody>
 
-						  	@foreach ($estado->Municipios as $municipio)
+						  	@foreach ($municipio->parroquias as $parroquia)
 						  		<tr>
-							      <th scope="row">{{ $municipio->id }}</th>
-							      <td>{{ $municipio->mun_nombre }}</td>	
+							      <th scope="row">{{ $parroquia->id }}</th>
+							      <td>{{ $parroquia->par_nombre }}</td>	
 							      <td>
-							      	<a href="{{ route('municipio.edit', $municipio->id) }}" class="btn btn-warning">
+							      	<a href="#" class="btn btn-warning">
 							      		<span class="class glyphicon glyphicon-wrench"></span>
 							      	</a>
 
-							      	<a href="{{ route('municipio.destroy', $municipio->id) }}" onclick="return confirm('Eliminar el estado?')" class="btn btn-danger">
+							      	<a href="#" onclick="return confirm('Eliminar el estado?')" class="btn btn-danger">
 							      		<span class="class glyphicon glyphicon-remove-circle"></span>
 							      	</a> 
 
-							      	<a href="{{ route('municipio.show', $municipio->id) }}" class="btn btn-info">
+							      	<a href="#" class="btn btn-info">
 							      		<span class="glyphicon glyphicon-search"></span>
 							      	</a>
 							      </td>

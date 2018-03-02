@@ -26,7 +26,6 @@ class Municipio extends Model
 
     protected $fillable = ['id','mun_nombre','mun_fk_estado'];
 
-
     public function Estado(){
     	return $this->belongsTo('App\Estado','mun_fk_estado','id');
     }

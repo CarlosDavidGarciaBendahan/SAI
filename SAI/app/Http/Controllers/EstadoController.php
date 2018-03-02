@@ -29,12 +29,12 @@ class EstadoController extends Controller
         return view('admin.estado',['estado' => $estado]);
         //dd($estado);
     }*/
-
-    public function index()
+    public function index(Request $request)
     {
         //$estado = new Estado::orderBy('est_nombre','ASC')->paginate(1);
         //$estado = new Estado::all();
         //$estado = DB::table('estado')->orderBy('est_nombre', 'asc')->get();
+
         $estado = Estado::orderBy('est_nombre')->paginate(10);
         //dd($estado);
         

@@ -26,6 +26,8 @@ class Estado extends Model
 
     protected $fillable = ['id','est_nombre'];
 
+   
+
 
     public function Municipios(){
     	return $this->hasMany('App\Municipio','mun_fk_estado','id');
