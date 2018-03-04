@@ -63,11 +63,13 @@ Route::get('/',function(){
 	return view('index',compact('categories'));
 });
 
-Route::get('/ajax-subcat',function(){
+Route::get('/ajax-subcat/{cat_id}',function($cat_id){
 
-	$cat_id = Input::get('cat_id');
+	//$cat_id = Input::get('cat_id');
 
-	$subcategories = App\Subcategory::where('category_id','=',$cat_id)->get();
+	//$subcategories = App\Subcategory::where('category_id','=',$cat_id)->get();
+
+	$subcategories = DB::table('subcategory')->select('*')->where('category_id','=',$cat_id)->get();
 
 	return Response::json($subcategories);
 });
