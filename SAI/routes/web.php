@@ -11,9 +11,9 @@
 |
 */
 
-Route::get('/', function () {
+/*Route::get('/', function () {
     return view('welcome');
-});
+});*/
 
 /*Route::group(['prefix' => 'Lugar'], function(){
 
@@ -30,7 +30,7 @@ Route::get('/', function () {
 
 });*/
 
-Route::prefix('admin/lugar/')->group( function(){
+/*Route::prefix('admin/lugar/')->group( function(){
 
 	Route::resource('estado','EstadoController');
 
@@ -53,7 +53,21 @@ Route::prefix('admin/lugar/')->group( function(){
 		'as'	=> 'parroquia.destroy'
 	]);
 
+});*/
+
+
+Route::get('/',function(){
+
+	$categories = App\Category::all();
+
+	return view('index',compact('categories'));
 });
 
+Route::get('/ajax-subcat',function(){
 
+	$cat_id = Input::get('cat_id');
 
+	$subcategories = App\Subcategory::where('category_id','=',$cat_id)->get();
+
+	return Response::json($subcategories);
+});
