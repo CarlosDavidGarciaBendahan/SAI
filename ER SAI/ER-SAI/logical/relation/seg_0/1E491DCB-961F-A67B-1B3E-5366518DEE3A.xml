@@ -1,0 +1,19 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="tiene varios componentes" directorySegmentName="seg_0" id="1E491DCB-961F-A67B-1B3E-5366518DEE3A">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-03-07 12:34:36 UTC</createdTime>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<sourcePk>3B6C8A24-BF91-8C3D-1685-B63F50BFF68E</sourcePk>
+<identifying>false</identifying>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>42BBA3E4-323D-4C02-5668-20C378BA1CCA</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>CF617E00-C15E-1FD0-33A8-3202CB50180A</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+</Relation>
