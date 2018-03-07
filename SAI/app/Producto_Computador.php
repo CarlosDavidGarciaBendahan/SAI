@@ -57,7 +57,7 @@ class Producto_Computador extends Model
     }
 
     public function Articulos(){
-        return $this->belongsToMany('App\Producto_Articulo','producto_computador_producto_articulo','pro_com_pro_art_fk_producto_computador','pro_com_pro_art_fk_producto_articulo');
+        return $this->belongsToMany('App\Producto_Articulo','computador_articulo','com_art_fk_producto_computador','com_art_fk_producto_articulo');
     }
 
 }
