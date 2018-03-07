@@ -63,6 +63,7 @@ Route::get('/',function(){
 	return view('index',compact('categories'));
 });
 
+
 Route::get('/ajax-subcat/{cat_id}',function($cat_id){
 
 	//$cat_id = Input::get('cat_id');
