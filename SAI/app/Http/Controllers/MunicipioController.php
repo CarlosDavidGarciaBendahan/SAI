@@ -19,7 +19,7 @@ class MunicipioController extends Controller
         $municipios = Municipio::orderby('mun_nombre','asc')->paginate(10);
         
         
-        return view ('admin.municipio.index',['municipios'=>$municipios]);
+        return view ('admin.lugar.municipio.index',['municipios'=>$municipios]);
     }
 
     /**
@@ -31,7 +31,7 @@ class MunicipioController extends Controller
     {
         $estados = Estado::select('est_nombre','id')->orderby('est_nombre','asc')->pluck('est_nombre','id');
 
-        return view('admin.municipio.create',['estados'=>$estados]);
+        return view('admin.lugar.municipio.create',['estados'=>$estados]);
     }
 
     /**
@@ -61,7 +61,7 @@ class MunicipioController extends Controller
     {
         $municipio = Municipio::find($id);
 
-        return view ('admin.municipio.show',['municipio'=>$municipio]);
+        return view ('admin.lugar.municipio.show',['municipio'=>$municipio]);
     }
 
     /**
@@ -76,7 +76,7 @@ class MunicipioController extends Controller
         $estados = Estado::select('est_nombre','id')->orderby('est_nombre','asc')->pluck('est_nombre','id');
         //dd($municipio);
 
-        return view('admin.municipio.edit',['municipio'=>$municipio, 'estados'=>$estados]);
+        return view('admin.lugar.municipio.edit',['municipio'=>$municipio, 'estados'=>$estados]);
     }
 
     /**

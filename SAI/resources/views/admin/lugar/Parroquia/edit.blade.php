@@ -9,9 +9,10 @@
 			<div class="col-sm-8 offset-2">
 				{!! Form::open(['route' => ['parroquia.update',$parroquia], 'method' => 'PUT' ]) !!}
 					
+
 					<div class="form-group">
 						<label>Estados </label>
-						<select class="form-control input-sm" name="estado" id="estado">
+						<select class="form-control input-sm " name="estado" id="estado" required="true">
 							<option value=""> Seleccionar un estado</option>
 							@foreach ($estados as $estado)
 								<option value="{{ $estado->id }}"> {{ $estado->est_nombre }}</option>
@@ -21,7 +22,7 @@
 
 					<div class="form-group">
 						<label>Municipios</label>
-						<select class="form-control input-sm" name="par_fk_municipio" id="municipio">
+						<select class="form-control input-sm" name="par_fk_municipio" id="municipio" required="true">
 							<option value=""> Seleccionar un municipio</option>
 						</select>
 					</div>

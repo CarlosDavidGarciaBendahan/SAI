@@ -22,7 +22,7 @@ class ParroquiaController extends Controller
         //dd("fffff");
         $parroquias = Parroquia::orderby('par_fk_municipio','asc')->paginate(5);
 
-        return view('admin.parroquia.index',['parroquias'=>$parroquias]);
+        return view('admin.lugar.parroquia.index',['parroquias'=>$parroquias]);
 
     }
 
@@ -35,7 +35,7 @@ class ParroquiaController extends Controller
     {
         $estados = Estado::select('est_nombre','id')->orderby('est_nombre','asc')->get();
 
-        return view ('admin.parroquia.create')->with(compact('estados'));
+        return view ('admin.lugar.parroquia.create')->with(compact('estados'));
     }
 
     /**
@@ -76,7 +76,7 @@ class ParroquiaController extends Controller
         $estados = Estado::select('est_nombre','id')->orderby('est_nombre','asc')->get();
         $parroquia = Parroquia::find($id);
 
-        return view ('admin.parroquia.edit')->with(compact(['parroquia','estados']));
+        return view ('admin.lugar.parroquia.edit')->with(compact(['parroquia','estados']));
     }
 
     /**
@@ -88,7 +88,15 @@ class ParroquiaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        dd($request->all());
+       // dd($request->all());
+        $parroquia = Parroquia::find($id);
+        $parroquia->par_nombre = $request->par_nombre;
+        $parroquia->par_fk_municipio = $request->par_fk_municipio;
+        $parroquia->save();
+        //dd($parroquia);
+
+        flash("Modificación de la Parroquia " .$parroquia->par_nombre . " exitosamente.")->success();
+        return redirect()->route('parroquia.index');
     }
 
     /**
@@ -102,7 +110,7 @@ class ParroquiaController extends Controller
         $Parroquia = Parroquia::find($id);
         $Parroquia->delete();
 
-        flash("Eliminación de la Parroquia " .$Parroquia->est_nombre . " exitosamente.")->success();
+        flash("Eliminación de la Parroquia " .$Parroquia->par_nombre . " exitosamente.")->success();
         return redirect()->route('parroquia.index');
     }
 }

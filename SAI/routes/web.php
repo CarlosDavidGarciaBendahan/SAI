@@ -55,7 +55,10 @@ Route::prefix('admin/lugar/')->group( function(){
 
 });
 
+Route::prefix('admin/producto/')->group( function(){
 
+	Route::resource('tipo_producto','Tipo_ProductoController');
+});
 
 //Esta ruta es llamda por el SCRIPT para pedir informacion de las sub clase
 Route::get('/ajax-ObtenerMunicipiosPorEstado/{estado_id}',function($estado_id){

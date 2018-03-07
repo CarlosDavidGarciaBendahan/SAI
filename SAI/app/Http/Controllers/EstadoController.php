@@ -26,7 +26,7 @@ class EstadoController extends Controller
         });
 
 
-        return view('admin.estado',['estado' => $estado]);
+        return view('admin.lugar.estado',['estado' => $estado]);
         //dd($estado);
     }*/
     public function index(Request $request)
@@ -41,7 +41,7 @@ class EstadoController extends Controller
         //$estado = new Estado();   
         //retornar la variable a una vista
         
-        return view('admin.estado.index',['estado'=>$estado]);
+        return view('admin.lugar.estado.index',['estado'=>$estado]);
 
     }
 
@@ -52,7 +52,7 @@ class EstadoController extends Controller
      */
     public function create()
     {
-        return view('admin.estado.create');
+        return view('admin.lugar.estado.create');
     }
 
     /**
@@ -70,7 +70,7 @@ class EstadoController extends Controller
         //$estado = DB::table('estado')->orderBy('est_nombre', 'asc')->get();
 
 
-        //return view ('admin.estado.index',['estado' => $estado]);
+        //return view ('admin.lugar.estado.index',['estado' => $estado]);
         
         flash("Registro del estado " .$request->est_nombre . " exitosamente.")->success();
         return redirect()->route('estado.index');
@@ -86,7 +86,7 @@ class EstadoController extends Controller
     {
        $estado = Estado::find($id);
 
-        return view('admin.estado.show',['estado'=>$estado]);
+        return view('admin.lugar.estado.show',['estado'=>$estado]);
     }
 
     /**
@@ -99,7 +99,7 @@ class EstadoController extends Controller
     {
         $estado = Estado::find($id);
 
-        return view('admin.estado.edit',['estado'=>$estado]);
+        return view('admin.lugar.estado.edit',['estado'=>$estado]);
     }
 
     /**
