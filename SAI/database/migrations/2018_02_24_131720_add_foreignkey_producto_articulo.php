@@ -18,6 +18,7 @@ class AddForeignkeyProductoArticulo extends Migration
             $table->foreign('pro_art_fk_sector')->references('id')->on('sector');
             $table->foreign('pro_art_fk_modelo')->references('id')->on('modelo');
             $table->foreign('pro_art_fk_tipo_producto')->references('id')->on('tipo_producto');
+
         });
         
     }

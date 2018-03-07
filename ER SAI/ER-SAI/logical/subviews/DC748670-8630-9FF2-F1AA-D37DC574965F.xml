@@ -38,6 +38,10 @@
 <hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
 <bounds x="288" y="294" width="132" height="59"/>
 </OView>
+<OView class="oracle.dbtools.crest.swingui.logical.TVEntity" oid="3FB50068-9075-DFB2-8024-584F816E97D8" otype="Entity" vid="27241F61-2F3C-0582-6D04-F4B0194284D3">
+<hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
+<bounds x="540" y="606" width="105" height="48"/>
+</OView>
 <OView class="oracle.dbtools.crest.swingui.logical.TVEntity" oid="42BBA3E4-323D-4C02-5668-20C378BA1CCA" otype="Entity" vid="17A9246C-CF06-0C9D-BE16-C2070C396A3F">
 <hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
 <bounds x="302" y="586" width="146" height="17"/>
@@ -216,12 +220,22 @@
 <point x="817" y="291"/>
 </points>
 </Connector>
-<Connector class="oracle.dbtools.crest.swingui.logical.TVRelation" oid="1E491DCB-961F-A67B-1B3E-5366518DEE3A" otype="Relation" vid_source="17A9246C-CF06-0C9D-BE16-C2070C396A3F" vid_target="FF7CB71C-FE85-86F7-039A-8E73ACC989BB">
+<Connector class="oracle.dbtools.crest.swingui.logical.TVRelation" oid="1B49E8AD-70D0-F301-D798-E333E912D4B2" otype="Relation" vid_source="17A9246C-CF06-0C9D-BE16-C2070C396A3F" vid_target="27241F61-2F3C-0582-6D04-F4B0194284D3">
 <hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
 <lineWidth>1</lineWidth>
 <points>
-<point x="374" y="603"/>
-<point x="374" y="646"/>
+<point x="368" y="603"/>
+<point x="368" y="618"/>
+<point x="540" y="618"/>
+</points>
+</Connector>
+<Connector class="oracle.dbtools.crest.swingui.logical.TVRelation" oid="29EFE43B-AA7E-A2E5-1251-89EE50B7DC6F" otype="Relation" vid_source="FF7CB71C-FE85-86F7-039A-8E73ACC989BB" vid_target="27241F61-2F3C-0582-6D04-F4B0194284D3">
+<hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
+<lineWidth>1</lineWidth>
+<points>
+<point x="372" y="646"/>
+<point x="372" y="633"/>
+<point x="540" y="633"/>
 </points>
 </Connector>
 <Connector class="oracle.dbtools.crest.swingui.logical.TVRelation" oid="2BA0ACFF-0D0E-3D00-4F46-F0D8FF235DB1" otype="Relation" vid_source="C3E53E29-0C8B-AFD9-7F27-9AF2CC025215" vid_target="B4D85FDF-D53E-8571-C2CA-BA70C3A0EEE3">

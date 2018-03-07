@@ -59,4 +59,8 @@ class Producto_Articulo extends Model
     public function Detalles(){
         return $this->hasMany('App\Detalle','det_fk_producto_articulo','id');
     }
+
+    public function Computadores(){
+        return $this->belongsToMany('App\Producto_Computador','producto_computador_producto_articulo','pro_com_pro_art_fk_producto_articulo','pro_com_pro_art_fk_producto_computador');
+    }
 }
