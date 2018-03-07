@@ -1,0 +1,58 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="3FB50068-9075-DFB2-8024-584F816E97D8" name="Producto_Computador_Producto_Articulo">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-03-07 12:48:15 UTC</createdTime>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="id" id="4C2EA468-BE6C-7AA4-A53B-44E86FF7D160">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-03-07 12:49:24 UTC</createdTime>
+<generatorID>1B49E8AD-70D0-F301-D798-E333E912D4B2</generatorID>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<referedAttribute>580B56D3-075E-685E-C9EA-2B2CEDCA9D69</referedAttribute>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="id1" id="632A0EA2-469E-CF6C-B5CA-1D097BFFBA3A">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-03-07 12:49:50 UTC</createdTime>
+<generatorID>29EFE43B-AA7E-A2E5-1251-89EE50B7DC6F</generatorID>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<referedAttribute>580B56D3-075E-685E-C9EA-2B2CEDCA9D69</referedAttribute>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="F1B65090-0B7F-6CEC-65E2-4FB264752B38" name="Producto_Computador_Producto_Articulo PK">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-03-07 12:49:24 UTC</createdTime>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>4C2EA468-BE6C-7AA4-A53B-44E86FF7D160</attributeRef>
+<attributeRef>632A0EA2-469E-CF6C-B5CA-1D097BFFBA3A</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>
