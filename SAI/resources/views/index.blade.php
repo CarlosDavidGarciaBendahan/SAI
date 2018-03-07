@@ -39,6 +39,7 @@
 
 	</div>	
 
+	<!--
 	<script>
 		$('#category').on('change',function(e){
 			console.log(e);
@@ -59,10 +60,9 @@
 				
 			});
 		});
-
-
 	</script>
-
+	-->
+	<script src="{{ asset('plugins/Script/SelectDinamico-prueba.js') }}"></script>
 
 </body>
 </html>
