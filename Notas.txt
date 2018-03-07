@@ -1,0 +1,4 @@
+INVESTIGAR
+
+	- Como hacer para cargar varios Selects dinamicos con información seleccionada según el objeto.
+	
