@@ -99,6 +99,10 @@ class ParroquiaController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $Parroquia = Parroquia::find($id);
+        $Parroquia->delete();
+
+        flash("Eliminación de la Parroquia " .$Parroquia->est_nombre . " exitosamente.")->success();
+        return redirect()->route('parroquia.index');
     }
 }
