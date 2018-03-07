@@ -57,3 +57,10 @@ Route::prefix('admin/lugar/')->group( function(){
 
 
 
+//Esta ruta es llamda por el SCRIPT para pedir informacion de las sub clase
+Route::get('/ajax-ObtenerMunicipiosPorEstado/{estado_id}',function($estado_id){
+	
+	$municipios = DB::table('municipio')->select('*')->where('mun_fk_estado','=',$estado_id)->get();
+	
+	return Response::json($municipios);
+});

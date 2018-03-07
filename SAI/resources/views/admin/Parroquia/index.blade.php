@@ -17,7 +17,8 @@
 				  <thead>
 				    <tr>
 				      <th>ID</th>
-				      <th>Nombre del municipio</th>
+				      <th>Nombre de la parroquia</th>
+				      <th>Parte del municipio</th>
 				      <th>Parte del estado</th>
 				    </tr>
 				  </thead>
@@ -28,6 +29,7 @@
 					      <th scope="row">{{ $parroquia->id }}</th>
 					      <td>{{ $parroquia->par_nombre }}</td>	
 					      <td>{{ $parroquia->municipio->mun_nombre }}</td>	
+					      <td>{{ $parroquia->municipio->estado->est_nombre}}</td>
 					      <td>
 					      	<a href="{{ route('parroquia.edit', $parroquia->id) }}" class="btn btn-warning">
 					      		<span class="class glyphicon glyphicon-wrench"></span>
@@ -37,9 +39,11 @@
 					      		<span class="class glyphicon glyphicon-remove-circle"></span>
 					      	</a> 
 
+					      	<!--
 					      	<a href="{{ route('parroquia.show', $parroquia->id) }}" class="btn btn-info">
 					      		<span class="glyphicon glyphicon-search"></span>
 					      	</a>
+					      	-->
 					      </td>
 				    	</tr>
 				  	@endforeach

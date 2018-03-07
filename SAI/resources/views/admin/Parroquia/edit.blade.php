@@ -1,13 +1,13 @@
 @extends('admin.template.main')
 
-@section('title', 'Crear parroquia')
+@section('title', 'Editar parroquia '. $parroquia->par_nombre)
 
 @section('body')
 	{{-- expr --}}
 	<section class="container">
 		<div class="row">
 			<div class="col-sm-8 offset-2">
-				{!! Form::open(['route' => 'parroquia.store', 'method' => 'POST' ]) !!}
+				{!! Form::open(['route' => ['parroquia.update',$parroquia], 'method' => 'PUT' ]) !!}
 					
 					<div class="form-group">
 						<label>Estados </label>
@@ -30,26 +30,28 @@
 						
 						{!! Form::label('par_nombre','Nombre') !!}
 
-						{!! Form::text('par_nombre',null,['class'=> 'form-control', 'placeholder'=>'Nombre de la parroquia', 'required']) !!}
+						{!! Form::text('par_nombre',$parroquia->par_nombre,['class'=> 'form-control', 'placeholder'=>'Nombre de la parroquia', 'required']) !!}
 					</div>
 					
 					<div class="form-group">
-						{!! Form::submit('Registrar',['class'=>'btn btn-primary']) !!}
+						{!! Form::submit('Editar',['class'=>'btn btn-primary']) !!}
 					</div>
 
 					
 
 				{!! Form::close() !!}
 			</div>
-
 			
 		</div>
 			
 	</section>
 	
+	
 
 @endsection
-
 @section('scripts')
+	
 	<script src="{{ asset('plugins/Script/ObtenerMunicipiosPorEstado.js') }}"></script>
+	<script src="{{ asset('plugins/Script/SeleccionarEstadoEnSelect.js') }}"></script>
+	
 @endsection

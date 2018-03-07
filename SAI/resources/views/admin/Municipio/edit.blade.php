@@ -1,6 +1,6 @@
 @extends('admin.template.main')
 
-@section('title', 'Editar estado '. $municipio->mun_nombre)
+@section('title', 'Editar municipio '. $municipio->mun_nombre)
 
 @section('body')
 	{{-- expr --}}

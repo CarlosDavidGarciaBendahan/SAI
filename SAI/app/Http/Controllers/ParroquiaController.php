@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Parroquia;
 use App\Estado;
 use App\Municipio;
+use Laracast\Flash\Flash;
 
 class ParroquiaController extends Controller
 {
@@ -32,13 +33,8 @@ class ParroquiaController extends Controller
      */
     public function create()
     {
-        $estados = Estado::select('est_nombre','id')->orderby('est_nombre','asc')->pluck('est_nombre','id');
+        $estados = Estado::select('est_nombre','id')->orderby('est_nombre','asc')->get();
 
-        //$municipios = Municipio::select('mun_nombre','id','mun_fk_estado')->orderby('mun_fk_estado','asc')->get();//->pluck('mun_nombre','id','mun_fk_estado');
-
-        //$estados = Estado::select('est_nombre','id')->orderby('est_nombre','asc')->get();
-        //dd($municipios);
-        //return view ('admin.parroquia.create',['estados'=>$estados,'municipios'=>$municipios]);
         return view ('admin.parroquia.create')->with(compact('estados'));
     }
 
@@ -50,7 +46,12 @@ class ParroquiaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //dd($request->all());
+
+        $parroquia = new Parroquia($request->all());
+        $parroquia->save();
+        flash("Registro de la parroquia " .$request->par_nombre . " exitosamente.")->success();
+        return redirect()->route('parroquia.index');
     }
 
     /**
@@ -72,7 +73,10 @@ class ParroquiaController extends Controller
      */
     public function edit($id)
     {
-        //
+        $estados = Estado::select('est_nombre','id')->orderby('est_nombre','asc')->get();
+        $parroquia = Parroquia::find($id);
+
+        return view ('admin.parroquia.edit')->with(compact(['parroquia','estados']));
     }
 
     /**
@@ -84,7 +88,7 @@ class ParroquiaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        dd($request->all());
     }
 
     /**
