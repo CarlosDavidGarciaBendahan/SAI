@@ -39,5 +39,17 @@
 <use>0</use>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
+<Attribute name="id1" id="1EB78A45-E306-1A00-3226-9F19DF8C1767">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-03-07 12:34:36 UTC</createdTime>
+<generatorID>1E491DCB-961F-A67B-1B3E-5366518DEE3A</generatorID>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<referedAttribute>580B56D3-075E-685E-C9EA-2B2CEDCA9D69</referedAttribute>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
 </attributes>
 </Entity>
