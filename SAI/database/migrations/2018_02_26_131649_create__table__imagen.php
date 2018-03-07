@@ -13,7 +13,7 @@ class CreateTableImagen extends Migration
      */
     public function up()
     {
-        Schema::create('Imagen', function (Blueprint $table) {
+        Schema::create('imagen', function (Blueprint $table) {
             $table->increments('id');
             $table->string('ima_nombre')->nullable(false);
             $table->integer('ima_fk_producto_computador')->unsigned();
