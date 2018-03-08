@@ -25,7 +25,7 @@
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="{{ route('tipo_producto.index') }}">Tipo producto</a>
           <a class="dropdown-item" href="{{ route('marca.index') }}">Marca</a>
-          <a class="dropdown-item" href="#">Parroquia</a>
+          <a class="dropdown-item" href="{{ route('modelo.index') }}">Modelo</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="#">Something else here</a>
         </div>

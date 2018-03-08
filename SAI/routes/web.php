@@ -69,9 +69,13 @@ Route::prefix('admin/producto/')->group( function(){
 		'as'	=> 'marca.destroy'
 	]);
 
+	Route::resource('modelo','ModeloController');
+	Route::get('modelo/{id}/destroy',[
+		'uses'	=> 'modeloController@destroy',
+		'as'	=> 'modelo.destroy'
+	]);
 
 
-	
 });
 
 //Esta ruta es llamda por el SCRIPT para pedir informacion de las sub clase
