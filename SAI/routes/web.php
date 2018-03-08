@@ -75,6 +75,12 @@ Route::prefix('admin/producto/')->group( function(){
 		'as'	=> 'modelo.destroy'
 	]);
 
+	Route::resource('unidadmedida','UnidadMedidaController');
+	Route::get('unidadmedida/{id}/destroy',[
+		'uses'	=> 'UnidadMedidaController@destroy',
+		'as'	=> 'unidadmedida.destroy'
+	]);
+
 
 });
 
