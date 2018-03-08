@@ -58,6 +58,10 @@ Route::prefix('admin/lugar/')->group( function(){
 Route::prefix('admin/producto/')->group( function(){
 
 	Route::resource('tipo_producto','Tipo_ProductoController');
+	Route::get('tipo_producto/{id}/destroy',[
+		'uses'	=> 'Tipo_ProductoController@destroy',
+		'as'	=> 'tipo_producto.destroy'
+	]);
 });
 
 //Esta ruta es llamda por el SCRIPT para pedir informacion de las sub clase
