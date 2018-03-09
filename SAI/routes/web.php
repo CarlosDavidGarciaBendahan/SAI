@@ -81,6 +81,12 @@ Route::prefix('admin/producto/')->group( function(){
 		'as'	=> 'unidadmedida.destroy'
 	]);
 
+	Route::resource('lote','LoteController');
+	Route::get('lote/{id}/destroy',[
+		'uses'	=> 'LoteController@destroy',
+		'as'	=> 'lote.destroy'
+	]);
+
 
 });
 

@@ -16,7 +16,7 @@ class CreateTableLote extends Migration
         Schema::create('lote', function (Blueprint $table) {
             $table->increments('id');
             $table->string('lot_nombre')->nullable(false);
-            $table->date('lot_fecha_recibido');
+            $table->date('lot_fecha_recibido')->nullable();
             
             $table->timestamps();
 

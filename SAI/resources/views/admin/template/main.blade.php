@@ -10,6 +10,8 @@
 		
 		<link rel="stylesheet" type="text/css" href="{{ asset('plugins/Bootstrap/css/bootstrap.min.css') }}">
 
+		@yield('link-head')
+
 		<title>@yield('title','default') | Admin</title>
 
 	</head>
