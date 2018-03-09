@@ -27,6 +27,21 @@
           <a class="dropdown-item" href="{{ route('marca.index') }}">Marca</a>
           <a class="dropdown-item" href="{{ route('modelo.index') }}">Modelo</a>
           <a class="dropdown-item" href="{{ route('unidadmedida.index') }}">Unidad de medida</a>
+          <a class="dropdown-item" href="{{ route('lote.index') }}">Lote</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Something else here</a>
+        </div>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Oficina
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="{{ route('oficina.index') }}">Oficina</a>
+          <a class="dropdown-item" href="#">Sector</a>
+          <a class="dropdown-item" href="#">Personal</a>
+          <a class="dropdown-item" href="#">Cliente natural</a>
+          <a class="dropdown-item" href="#">Cliente juridico</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="#">Something else here</a>
         </div>

@@ -1,6 +1,6 @@
 @extends('admin.template.main')
 
-@section('title', 'Crear Lote')
+@section('title', 'Información de Lote')
 
 @section('body')
 	{{-- expr --}}

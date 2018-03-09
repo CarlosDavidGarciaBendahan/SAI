@@ -90,10 +90,26 @@ Route::prefix('admin/producto/')->group( function(){
 
 });
 
+Route::prefix('admin/producto/')->group( function(){
+
+	Route::resource('oficina','OficinaController');
+	Route::get('oficina/{id}/destroy',[
+		'uses'	=> 'OficinaController@destroy',
+		'as'	=> 'oficina.destroy'
+	]);
+});
+
 //Esta ruta es llamda por el SCRIPT para pedir informacion de las sub clase
 Route::get('/ajax-ObtenerMunicipiosPorEstado/{estado_id}',function($estado_id){
 	
 	$municipios = DB::table('municipio')->select('*')->where('mun_fk_estado','=',$estado_id)->get();
 	
 	return Response::json($municipios);
+});
+
+Route::get('/ajax-ObtenerParroquiasPorMunicipio/{municipio_id}',function($municipio_id){
+	
+	$parroquias = DB::table('parroquia')->select('*')->where('par_fk_municipio','=',$municipio_id)->get();
+	
+	return Response::json($parroquias);
 });
