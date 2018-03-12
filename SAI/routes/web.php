@@ -90,7 +90,7 @@ Route::prefix('admin/producto/')->group( function(){
 
 });
 
-Route::prefix('admin/producto/')->group( function(){
+Route::prefix('admin/oficina/')->group( function(){
 
 	Route::resource('oficina','OficinaController');
 	Route::get('oficina/{id}/destroy',[
@@ -103,6 +103,19 @@ Route::prefix('admin/producto/')->group( function(){
 		'uses'	=> 'SectorController@destroy',
 		'as'	=> 'sector.destroy'
 	]);
+
+	Route::resource('cliente_natural','Cliente_NaturalController');
+	Route::get('cliente_natural/{id}/destroy',[
+		'uses'	=> 'Cliente_NaturalController@destroy',
+		'as'	=> 'cliente_natural.destroy'
+	]);
+
+	Route::resource('cliente_juridico','Cliente_JuridicoController');
+	Route::get('cliente_juridico/{id}/destroy',[
+		'uses'	=> 'Cliente_JuridicoController@destroy',
+		'as'	=> 'cliente_juridico.destroy'
+	]);
+
 });
 
 //Esta ruta es llamda por el SCRIPT para pedir informacion de las sub clase

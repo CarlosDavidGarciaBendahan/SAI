@@ -10,11 +10,13 @@ $('#estado').on('change',function(e){
 		console.log(data);
 					
 		$('#municipio').empty();
-		$('#municipio').append('<option value="">Seleccione un municipio</option>');
+		$('#municipio').append('<option value="">Seleccionar un municipio</option>');
 		$.each(data, function(index,subcatObj){
 
 			$('#municipio').append('<option value="'+subcatObj.id+'">'+subcatObj.mun_nombre+' </option>');
 		});
 					
+		$('#parroquia').empty();
+		$('#parroquia').append('<option value="">Seleccionar una parroquia</option>');
 	});
 });

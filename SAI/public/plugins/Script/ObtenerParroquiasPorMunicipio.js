@@ -10,7 +10,7 @@ $('#municipio').on('change',function(e){
 		console.log(data);
 					
 		$('#parroquia').empty();
-		$('#parroquia').append('<option value=""> Seleccione una parroquia</option>');
+		$('#parroquia').append('<option value=""> Seleccionar una parroquia</option>');
 		
 		$.each(data, function(index,subcatObj){
 

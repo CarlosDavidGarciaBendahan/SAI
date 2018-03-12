@@ -1,13 +1,13 @@
 @extends('admin.template.main')
 
-@section('title', 'Crear oficina')
+@section('title', 'Crear empresa cliente')
 
 @section('body')
 	{{-- expr --}}
 	<section class="container">
 		<div class="row">
 			<div class="col-sm-8 offset-2">
-				{!! Form::open(['route' => 'oficina.store', 'method' => 'POST' ]) !!}
+				{!! Form::open(['route' => 'cliente_juridico.store', 'method' => 'POST' ]) !!}
 					
 					<div class="form-group">
 						<label>Estados </label>
@@ -28,21 +28,31 @@
 
 					<div class="form-group">
 						<label>Parroquias</label>
-						<select class="form-control input-sm" name="ofi_fk_parroquia" id="parroquia">
+						<select class="form-control input-sm" name="cli_jur_fk_parroquia" id="parroquia">
 							<option value=""> Seleccionar una parroquia</option>
 						</select>
 					</div>
 
 					<div class="form-group">
-						{!! Form::label('ofi_tipo','Tipo de oficina') !!}
-						{!! Form::select('ofi_tipo',['local'=>'Local', 'almacen'=>'Almacen'], null, ['class'=>'form-control', 'placeholder'=>'Elegir un tipo', 'required'] ) !!}
+						{!! Form::label('cli_jur_direccion','Direccion') !!}
+						{!! Form::text('cli_jur_direccion',null,['class'=> 'form-control', 'placeholder'=>'dirección', 'required']) !!}
+					</div>
+
+					<div class="form-group">
+						{!! Form::label('cli_jur_nombre','Nombre') !!}
+						{!! Form::text('cli_jur_nombre',null,['class'=> 'form-control', 'placeholder'=>'Nombre', 'required']) !!}
+					</div>
+
+					<div class="form-group">
+						{!! Form::label('cli_jur_identificador','Identificador') !!}
+						{!! Form::select('cli_jur_identificador',['J'=>'J','G'=>'G','C'=>'C'], null, ['class'=>'form-control', 'placeholder'=>'Elegir un tipo', 'required'] ) !!}
 					</div>
 
 					<div class="form-group"> 
 						
-						{!! Form::label('ofi_direccion','Dirección') !!}
+						{!! Form::label('cli_jur_rif','RIF') !!}
 
-						{!! Form::text('ofi_direccion',null,['class'=> 'form-control', 'placeholder'=>'dirección', 'required']) !!}
+						{!! Form::text('cli_jur_rif',null,['class'=> 'form-control', 'placeholder'=>'dirección', 'required']) !!}
 					</div>
 
 					<div class="form-group">

@@ -40,11 +40,11 @@
           <a class="dropdown-item" href="{{ route('oficina.index') }}">Oficina</a>
           <a class="dropdown-item" href="{{ route('sector.index') }}">Sector</a>
           <a class="dropdown-item" href="#">Personal</a>
-          <a class="dropdown-item" href="#">Cliente natural</a>
-          <a class="dropdown-item" href="#">Cliente juridico</a>
+          <a class="dropdown-item" href="{{ route('cliente_natural.index') }}">Cliente natural</a>
+          <a class="dropdown-item" href="{{ route('cliente_juridico.index') }}">Cliente juridico</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="#">Something else here</a>
-        </div>
+        </div>  
       </li>
       <li class="nav-item active">
         <a class="nav-link" href="#"> Estado <span class="sr-only">(current)</span></a>
