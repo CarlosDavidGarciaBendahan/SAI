@@ -38,7 +38,7 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="{{ route('oficina.index') }}">Oficina</a>
-          <a class="dropdown-item" href="#">Sector</a>
+          <a class="dropdown-item" href="{{ route('sector.index') }}">Sector</a>
           <a class="dropdown-item" href="#">Personal</a>
           <a class="dropdown-item" href="#">Cliente natural</a>
           <a class="dropdown-item" href="#">Cliente juridico</a>

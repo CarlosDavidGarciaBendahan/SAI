@@ -97,6 +97,12 @@ Route::prefix('admin/producto/')->group( function(){
 		'uses'	=> 'OficinaController@destroy',
 		'as'	=> 'oficina.destroy'
 	]);
+
+	Route::resource('sector','SectorController');
+	Route::get('sector/{id}/destroy',[
+		'uses'	=> 'SectorController@destroy',
+		'as'	=> 'sector.destroy'
+	]);
 });
 
 //Esta ruta es llamda por el SCRIPT para pedir informacion de las sub clase
