@@ -37,6 +37,7 @@
           Oficina
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="{{ route('empresa.index') }}">Empresa</a>
           <a class="dropdown-item" href="{{ route('oficina.index') }}">Oficina</a>
           <a class="dropdown-item" href="{{ route('sector.index') }}">Sector</a>
           <a class="dropdown-item" href="#">Personal</a>

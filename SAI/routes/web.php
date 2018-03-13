@@ -116,6 +116,12 @@ Route::prefix('admin/oficina/')->group( function(){
 		'as'	=> 'cliente_juridico.destroy'
 	]);
 
+	Route::resource('empresa','EmpresaController');
+	Route::get('empresa/{id}/destroy',[
+		'uses'	=> 'EmpresaController@destroy',
+		'as'	=> 'empresa.destroy'
+	]);
+
 });
 
 //Esta ruta es llamda por el SCRIPT para pedir informacion de las sub clase
