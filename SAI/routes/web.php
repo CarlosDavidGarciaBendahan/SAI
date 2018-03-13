@@ -122,6 +122,12 @@ Route::prefix('admin/oficina/')->group( function(){
 		'as'	=> 'empresa.destroy'
 	]);
 
+	Route::resource('rol','RolController');
+	Route::get('rol/{id}/destroy',[
+		'uses'	=> 'RolController@destroy',
+		'as'	=> 'rol.destroy'
+	]);
+
 });
 
 //Esta ruta es llamda por el SCRIPT para pedir informacion de las sub clase
