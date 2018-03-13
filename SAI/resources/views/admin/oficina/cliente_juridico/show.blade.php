@@ -12,12 +12,10 @@
 					<div class="form-group">
 						<label>Estados </label>
 						<select class="form-control input-sm" name="estado" id="estado">
-							<option value=""> Seleccionar un estado</option>
+							
 							@foreach ($estados as $estado)
 								@if ($estado->est_nombre === $cliente_juridico->parroquia->municipio->estado->est_nombre)
 									<option value="{{ $estado->id }}" selected="true"> {{ $estado->est_nombre }}</option>
-								@else
-									<option value="{{ $estado->id }}"> {{ $estado->est_nombre }}</option>
 								@endif
 								
 							@endforeach
@@ -27,15 +25,13 @@
 					<div class="form-group">
 						<label>Municipios</label>
 						<select class="form-control input-sm" name="municipio" id="municipio">
-							<option value=""> Seleccionar un municipio</option>
+							
 							
 							@foreach ($municipios as $municipio)
 
 							@if ($municipio->estado->est_nombre === $cliente_juridico->parroquia->municipio->estado->est_nombre)
 								@if ( $municipio->mun_nombre=== $cliente_juridico->parroquia->municipio->mun_nombre)
 									<option value="{{ $municipio->id }}" selected="true"> {{ $municipio->mun_nombre }}</option>
-								@else
-									<option value="{{ $municipio->id }}"> {{ $municipio->mun_nombre }}</option>
 								@endif
 							@endif
 								
@@ -48,13 +44,11 @@
 					<div class="form-group">
 						<label>Parroquias</label>
 						<select class="form-control input-sm" name="cli_jur_fk_parroquia" id="parroquia">
-							<option value=""> Seleccionar una parroquia</option>
+							
 							@foreach ($parroquias as $parroquia)
 								@if ($parroquia->municipio->mun_nombre === $cliente_juridico->parroquia->municipio->mun_nombre)
 									@if ( $parroquia->par_nombre=== $cliente_juridico->parroquia->par_nombre)
 										<option value="{{ $parroquia->id }}" selected="true"> {{ $parroquia->par_nombre }}</option>
-									@else
-										<option value="{{ $parroquia->id }}"> {{ $parroquia->par_nombre }}</option>
 									@endif
 								@endif
 								
