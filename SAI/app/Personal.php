@@ -45,7 +45,7 @@ class Personal extends Model
     }
 
     public function User(){
-        return $this->hasOne('App\User','fk_personal','id')
+        return $this->hasOne('App\User','fk_personal','id');
     }
 
     public function Oficina(){

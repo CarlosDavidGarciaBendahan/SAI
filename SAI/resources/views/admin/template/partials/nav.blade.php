@@ -40,7 +40,7 @@
           <a class="dropdown-item" href="{{ route('empresa.index') }}">Empresa</a>
           <a class="dropdown-item" href="{{ route('oficina.index') }}">Oficina</a>
           <a class="dropdown-item" href="{{ route('sector.index') }}">Sector</a>
-          <a class="dropdown-item" href="#">Personal</a>
+          <a class="dropdown-item" href="{{ route('personal.index') }}">Personal</a>
           <a class="dropdown-item" href="{{ route('cliente_natural.index') }}">Cliente natural</a>
           <a class="dropdown-item" href="{{ route('cliente_juridico.index') }}">Cliente juridico</a>
           <a class="dropdown-item" href="{{ route('rol.index') }}">Roles</a>
