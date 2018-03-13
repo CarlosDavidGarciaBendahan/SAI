@@ -34,16 +34,10 @@
 							</select>
 						</div>
 					
-
-					
 						<div class="form-group">
 							{!! Form::label('cli_nat_direccion','Direccion') !!}
 							{!! Form::text('cli_nat_direccion',null,['class'=> 'form-control', 'placeholder'=>'dirección', 'required']) !!}
 						</div>
-					
-
-
-					
 					
 						<div class="form-group">
 							{!! Form::label('cli_nat_nombre','Nombre') !!}
@@ -65,15 +59,10 @@
 							{!! Form::text('cli_nat_apellido2',null,['class'=> 'form-control', 'placeholder'=>'Segundo apellido']) !!}
 						</div>
 					
-					
-
-					
 						<div class="form-group">
 							{!! Form::label('cli_nat_identificador','Identificador') !!}
 							{!! Form::select('cli_nat_identificador',['V'=>'V','E'=>'E','P'=>'P'], null, ['class'=>'form-control', 'placeholder'=>'Elegir un tipo', 'required'] ) !!}
 						</div>
-					
-					
 					
 						<div class="form-group"> 
 						
@@ -83,6 +72,14 @@
 						</div>
 					
 					
+						<div class="form-group"> 
+						
+							{!! Form::label('con_cor_correo','Correo') !!}
+
+							{!! Form::text('con_cor_correo',null,['class'=> 'form-control', 'placeholder'=>'correo@gmail.com', 'required']) !!}
+						</div>
+
+
 
 					<div class="form-group">
 						{!! Form::submit('Registrar',['class'=>'btn btn-primary']) !!}

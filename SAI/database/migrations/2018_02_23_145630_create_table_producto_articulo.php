@@ -16,13 +16,13 @@ class CreateTableProductoArticulo extends Migration
         Schema::create('producto_articulo', function (Blueprint $table) {
             $table->increments('id'); 
             $table->string('pro_art_codigo')->nullable(false);
-            $table->string('pro_art_descripcion');
-            $table->integer('pro_art_cantidad');
+            $table->string('pro_art_descripcion')->nullable(true);
+            $table->integer('pro_art_cantidad')->nullable(true);
             $table->float('pro_art_precio',9,2)->nullable(false);
             $table->enum('pro_art_moneda',['$','Bs'])->nullable(false);
             $table->integer('pro_art_catalogo')->default(0);
-            $table->float('pro_art_capacidad',4,2);
-            $table->integer('pro_art_fk_unidad_medida')->unsigned();
+            $table->float('pro_art_capacidad',4,2)->nullable(true);
+            $table->integer('pro_art_fk_unidad_medida')->unsigned()->nullable(true);
             $table->integer('pro_art_fk_sector')->unsigned();
             $table->integer('pro_art_fk_modelo')->unsigned();
             $table->integer('pro_art_fk_tipo_producto')->unsigned();

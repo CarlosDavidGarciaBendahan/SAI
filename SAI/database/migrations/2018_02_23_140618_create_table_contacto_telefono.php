@@ -18,10 +18,10 @@ class CreateTableContactoTelefono extends Migration
             $table->enum('con_tel_tipo',['movil','local','fax'])->nullable(false);
             $table->integer('con_tel_codigo')->nullable(false);
             $table->float('con_tel_numero',7)->nullable(false);
-            $table->integer('con_tel_fk_cliente_natural')->unsigned();
-            $table->integer('con_tel_fk_cliente_juridico')->unsigned();
-            $table->integer('con_tel_fk_empresa')->unsigned();
-            $table->integer('con_tel_fk_personal')->unsigned();
+            $table->integer('con_tel_fk_cliente_natural')->unsigned()->nullable(true);
+            $table->integer('con_tel_fk_cliente_juridico')->unsigned()->nullable(true);
+            $table->integer('con_tel_fk_empresa')->unsigned()->nullable(true);
+            $table->integer('con_tel_fk_personal')->unsigned()->nullable(true);
             $table->timestamps();
 
             $table->unique(['con_tel_codigo','con_tel_numero'],'CONTACTO_TELEFONO_UNIQUE_con_tel_codigo_con_tel_numero');

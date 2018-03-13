@@ -17,9 +17,9 @@ class CreateTableClienteNatural extends Migration
             $table->increments('id');
             $table->string('cli_nat_direccion',200)->nullable(false);
             $table->string('cli_nat_nombre',20)->nullable(false);
-            $table->string('cli_nat_nombre2',20);
+            $table->string('cli_nat_nombre2',20)->nullable(true);
             $table->string('cli_nat_apellido',20)->nullable(false);
-            $table->string('cli_nat_apellido2',20);
+            $table->string('cli_nat_apellido2',20)->nullable(true);
             $table->enum('cli_nat_identificador',['V','E','P'])->nullable(false);
             $table->float('cli_nat_cedula',9)->nullable(false);
             $table->integer('cli_nat_fk_parroquia')->unsigned()->nullable(false);

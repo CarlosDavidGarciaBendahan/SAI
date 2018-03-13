@@ -16,12 +16,12 @@ class CreateTablePresupuesto extends Migration
         Schema::create('presupuesto', function (Blueprint $table) {
             $table->increments('id');
             $table->date('pre_fecha_solicitado')->nullable(false);
-            $table->date('pre_fecha_aprobado');
+            $table->date('pre_fecha_aprobado')->nullable(true);
             $table->float('pre_subtotal',10,2)->nullable(false);
             $table->integer('pre_eliminado')->default(0);
             $table->integer('pre_fk_empresa')->unsigned()->nullable(false);
-            $table->integer('pre_fk_cliente_natural')->unsigned();
-            $table->integer('pre_fk_cliente_juridico')->unsigned();
+            $table->integer('pre_fk_cliente_natural')->unsigned()->nullable(true);
+            $table->integer('pre_fk_cliente_juridico')->unsigned()->nullable(true);
 
             $table->timestamps();
         });

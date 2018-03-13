@@ -19,6 +19,7 @@
 				      <th>RIF</th>
 				      <th>Nombre</th>
 				      <th>Apellido</th>
+				      <th>Correo</th>
 				      <th>Dirección</th>
 				    </tr>
 				  </thead>
@@ -29,6 +30,11 @@
 					      <th scope="row">{{ $cliente_natural->cli_nat_identificador ."-".$cliente_natural->cli_nat_cedula }}</th>
 					      <td>{{ $cliente_natural->cli_nat_nombre ." ".$cliente_natural->cli_nat_nombre2 }}</td>	
 					      <td>{{ $cliente_natural->cli_nat_apellido ." ".$cliente_natural->cli_nat_apellido2 }}</td>	
+					      <td>
+					      	@foreach( $cliente_natural->Contacto_correos as $correo )
+					      		{{ $correo->con_cor_correo }}
+					      	@endforeach
+					  	  </td>
 					      <td>{{ $cliente_natural->cli_nat_direccion .", ". $cliente_natural->parroquia->par_nombre.", Mun.".$cliente_natural->parroquia->municipio->mun_nombre.", Edo. ".$cliente_natural->parroquia->municipio->estado->est_nombre }}</td>
 					      <td>
 					      	<a href="{{ route('cliente_natural.edit', $cliente_natural->id) }}" class="btn btn-warning">

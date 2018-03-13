@@ -16,8 +16,8 @@ class CreateTableImagen extends Migration
         Schema::create('imagen', function (Blueprint $table) {
             $table->increments('id');
             $table->string('ima_nombre')->nullable(false);
-            $table->integer('ima_fk_producto_computador')->unsigned();
-            $table->integer('ima_fk_producto_articulo')->unsigned();
+            $table->integer('ima_fk_producto_computador')->unsigned()->nullable(true);
+            $table->integer('ima_fk_producto_articulo')->unsigned()->nullable(true);
             $table->timestamps();
 
 

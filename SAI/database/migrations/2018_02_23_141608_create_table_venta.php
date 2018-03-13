@@ -19,8 +19,8 @@ class CreateTableVenta extends Migration
             $table->decimal('ven_monto_total',10,2)->nullable(false);
             $table->enum('ven_moneda',['$','Bs'])->nullable(false);
             $table->integer('ven_eliminada')->default(0);
-            $table->integer('ven_fk_cliente_natural')->unsigned();
-            $table->integer('ven_fk_cliente_juridico')->unsigned();
+            $table->integer('ven_fk_cliente_natural')->unsigned()->nullable(true);
+            $table->integer('ven_fk_cliente_juridico')->unsigned()->nullable(true);
             $table->timestamps();
         });
     }

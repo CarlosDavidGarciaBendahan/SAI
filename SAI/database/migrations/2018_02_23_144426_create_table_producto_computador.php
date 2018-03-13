@@ -16,8 +16,8 @@ class CreateTableProductoComputador extends Migration
         Schema::create('producto_computador', function (Blueprint $table) {
             $table->increments('id');
             $table->string('pro_com_codigo')->nullable(false);
-            $table->string('pro_com_descripcion');
-            $table->integer('pro_com_cantidad');
+            $table->string('pro_com_descripcion')->nullable(true);
+            $table->integer('pro_com_cantidad')->nullable(true);
             $table->float('pro_com_precio',9,2)->nullable(false);
             $table->enum('pro_com_moneda',['$','Bs'])->nullable(false);
             $table->integer('pro_com_catalogo')->default(0);

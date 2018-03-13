@@ -8,6 +8,8 @@ use App\Cliente_Natural;
 use App\Estado;
 use App\Municipio;
 use App\Parroquia;
+use App\Contacto_Correo;
+use App\Contacto_Telefono;
 
 
 class Cliente_NaturalController extends Controller
@@ -47,6 +49,12 @@ class Cliente_NaturalController extends Controller
         //dd($request->all());
         $cliente_natural = new Cliente_Natural($request->all());
         $cliente_natural->save();
+
+        $contacto_correo = new Contacto_Correo($request->all());
+        //asocio el cliente con el contacto, es decir, deberia llenar la FK_cliente_natural
+        $contacto_correo->Cliente_Natural()->associate($cliente_natural);
+        $contacto_correo->save();
+        //dd($contacto_correo);
 
         flash("Registro del cliente '' ".$request->cli_nat_nombre." '' exitoso")->success();
         return redirect()->route('cliente_natural.index');

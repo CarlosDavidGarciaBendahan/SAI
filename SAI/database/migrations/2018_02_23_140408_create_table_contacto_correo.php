@@ -16,10 +16,10 @@ class CreateTableContactoCorreo extends Migration
         Schema::create('contacto_correo', function (Blueprint $table) {
             $table->increments('id');
             $table->string('con_cor_correo',50)->nullable(false);
-            $table->integer('con_cor_fk_cliente_natural')->unsigned();
-            $table->integer('con_cor_fk_cliente_juridico')->unsigned();
-            $table->integer('con_cor_fk_empresa')->unsigned();
-            $table->integer('con_cor_fk_personal')->unsigned();
+            $table->integer('con_cor_fk_cliente_natural')->unsigned()->nullable(true);
+            $table->integer('con_cor_fk_cliente_juridico')->unsigned()->nullable(true);
+            $table->integer('con_cor_fk_empresa')->unsigned()->nullable(true);
+            $table->integer('con_cor_fk_personal')->unsigned()->nullable(true);
 
             $table->timestamps();
 

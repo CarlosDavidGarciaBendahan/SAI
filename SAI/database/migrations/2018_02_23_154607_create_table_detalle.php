@@ -18,8 +18,8 @@ class CreateTableDetalle extends Migration
             $table->integer('det_cantidad')->nullable(false);
             $table->float('det_total',10,2)->nullable(false);
             $table->integer('det_fk_presupuesto')->unsigned()->nullable(false);
-            $table->integer('det_fk_producto_computador')->unsigned();
-            $table->integer('det_fk_producto_articulo')->unsigned();
+            $table->integer('det_fk_producto_computador')->unsigned()->nullable(true);
+            $table->integer('det_fk_producto_articulo')->unsigned()->nullable(true);
             $table->timestamps();
 
             $table->unique(['det_fk_presupuesto','det_fk_producto_computador'],'DETALLE_UNIQUE_fk_presupuesto_fk_producto_computador');
