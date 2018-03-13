@@ -43,7 +43,8 @@
           <a class="dropdown-item" href="#">Personal</a>
           <a class="dropdown-item" href="{{ route('cliente_natural.index') }}">Cliente natural</a>
           <a class="dropdown-item" href="{{ route('cliente_juridico.index') }}">Cliente juridico</a>
-          <a class="dropdown-item" href="{{ route('rol.index') }}">Rol</a>
+          <a class="dropdown-item" href="{{ route('rol.index') }}">Roles</a>
+          <a class="dropdown-item" href="{{ route('permiso.index') }}">Permisos</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="#">Something else here</a>
         </div>  

@@ -128,6 +128,12 @@ Route::prefix('admin/oficina/')->group( function(){
 		'as'	=> 'rol.destroy'
 	]);
 
+	Route::resource('permiso','PermisoController');
+	Route::get('permiso/{id}/destroy',[
+		'uses'	=> 'PermisoController@destroy',
+		'as'	=> 'permiso.destroy'
+	]);
+
 });
 
 //Esta ruta es llamda por el SCRIPT para pedir informacion de las sub clase
