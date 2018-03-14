@@ -87,6 +87,18 @@ Route::prefix('admin/producto/')->group( function(){
 		'as'	=> 'lote.destroy'
 	]);
 
+	Route::resource('producto_computador','Producto_ComputadorController');
+	Route::get('producto_computador/{id}/destroy',[
+		'uses'	=> 'Producto_ComputadorController@destroy',
+		'as'	=> 'producto_computador.destroy'
+	]);
+
+	Route::resource('producto_articulo','Producto_ArticuloController');
+	Route::get('producto_articulo/{id}/destroy',[
+		'uses'	=> 'Producto_ArticuloController@destroy',
+		'as'	=> 'producto_articulo.destroy'
+	]);
+
 
 });
 
@@ -155,6 +167,8 @@ Route::prefix('admin/')->group( function(){
 		'as'	=> 'banco.destroy'
 	]);
 });
+
+
 //Esta ruta es llamda por el SCRIPT para pedir informacion de las sub clase
 Route::get('/ajax-ObtenerMunicipiosPorEstado/{estado_id}',function($estado_id){
 	
@@ -168,4 +182,18 @@ Route::get('/ajax-ObtenerParroquiasPorMunicipio/{municipio_id}',function($munici
 	$parroquias = DB::table('parroquia')->select('*')->where('par_fk_municipio','=',$municipio_id)->get();
 	
 	return Response::json($parroquias);
+});
+
+Route::get('/ajax-ObtenerSectoresPorOficina/{oficina_id}',function($oficina_id){
+	
+	$sectores = DB::table('sector')->select('*')->where('sec_fk_oficina','=',$oficina_id)->get();
+
+	return Response::json($sectores);
+});
+
+Route::get('/ajax-ObtenerModelosPorMarca/{marca_id}',function($marca_id){
+	
+	$modelos = DB::table('modelo')->select('*')->where('mod_fk_marca','=',$marca_id)->get();
+
+	return Response::json($modelos);
 });

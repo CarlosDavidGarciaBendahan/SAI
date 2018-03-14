@@ -23,6 +23,8 @@
           Producto
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="{{ route('producto_computador.index') }}">Computadoras</a>
+          <a class="dropdown-item" href="{{ route('producto_articulo.index') }}">Artículos</a>
           <a class="dropdown-item" href="{{ route('tipo_producto.index') }}">Tipo producto</a>
           <a class="dropdown-item" href="{{ route('marca.index') }}">Marca</a>
           <a class="dropdown-item" href="{{ route('modelo.index') }}">Modelo</a>
