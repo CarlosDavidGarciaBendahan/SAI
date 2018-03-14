@@ -147,6 +147,14 @@ Route::prefix('admin/oficina/')->group( function(){
 	]);
 });
 
+Route::prefix('admin/')->group( function(){
+
+	Route::resource('banco','BancoController');
+	Route::get('banco/{id}/destroy',[
+		'uses'	=> 'BancoController@destroy',
+		'as'	=> 'banco.destroy'
+	]);
+});
 //Esta ruta es llamda por el SCRIPT para pedir informacion de las sub clase
 Route::get('/ajax-ObtenerMunicipiosPorEstado/{estado_id}',function($estado_id){
 	

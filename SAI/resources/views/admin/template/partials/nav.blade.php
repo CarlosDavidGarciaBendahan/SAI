@@ -51,7 +51,7 @@
         </div>  
       </li>
       <li class="nav-item active">
-        <a class="nav-link" href="#"> Estado <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="{{ route('banco.index') }}"> Banco <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="#">Link</a>
