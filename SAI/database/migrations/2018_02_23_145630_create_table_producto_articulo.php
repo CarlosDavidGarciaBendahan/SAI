@@ -22,7 +22,7 @@ class CreateTableProductoArticulo extends Migration
             $table->enum('pro_art_moneda',['$','Bs'])->nullable(false);
             $table->integer('pro_art_catalogo')->default(0);
             $table->float('pro_art_capacidad',4,2)->nullable(true);
-            $table->integer('pro_art_fk_unidad_medida')->unsigned()->nullable(true);
+            $table->integer('pro_art_fk_unidadmedida')->unsigned()->nullable(true);
             $table->integer('pro_art_fk_sector')->unsigned();
             $table->integer('pro_art_fk_modelo')->unsigned();
             $table->integer('pro_art_fk_tipo_producto')->unsigned();

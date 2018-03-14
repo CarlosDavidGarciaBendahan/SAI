@@ -67,7 +67,15 @@ class Producto_ComputadorController extends Controller
      */
     public function show($id)
     {
-        //
+        
+        $oficinas = Oficina::orderby('ofi_direccion')->get();
+        $sectores = Sector::orderby('sec_sector')->get();
+        $marcas = Marca::orderby('mar_marca')->get();
+        $modelos = Modelo::orderby('mod_modelo')->get();
+        $tipo_productos = Tipo_Producto::orderby('tip_tipo')->get();
+        $producto_computador = Producto_Computador::find($id);
+
+        return view('admin.producto.producto_computador.show')->with(compact('oficinas','marcas','tipo_productos','producto_computador','sectores','modelos'));
     }
 
     /**
