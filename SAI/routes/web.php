@@ -139,6 +139,12 @@ Route::prefix('admin/oficina/')->group( function(){
 		'uses'	=> 'PersonalController@destroy',
 		'as'	=> 'personal.destroy'
 	]);
+
+	Route::resource('users','UsersController');
+	Route::get('users/{id}/destroy',[
+		'uses'	=> 'UsersController@destroy',
+		'as'	=> 'users.destroy'
+	]);
 });
 
 //Esta ruta es llamda por el SCRIPT para pedir informacion de las sub clase
