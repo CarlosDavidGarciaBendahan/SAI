@@ -81,27 +81,8 @@
 @section('scripts')
 	<script src="{{ asset('plugins/Script/ObtenerMunicipiosPorEstado.js') }}"></script>
 	<script src="{{ asset('plugins/Script/ObtenerParroquiasPorMunicipio.js') }}"></script>
+	<script src="{{ asset('plugins/Script/FormDinamicoAgregarCorreo.js') }}"></script>
 
-	<script>
-		$(document).ready(function(){
-			var btn_correo = $('#addCorreo');
-			var correos = $('.correos');
-			var html = ""
-			
-			$(btn_correo).click(function(event){
-				event.preventDefault();
-				console.log('preciono button agregar correo');
 
-				$(correos).append("  <div> <label>Correo</label> <input class='form-control'  type='email' name='correos[]' placeholder='correo@gmail.com' required='true'> <a href='' class='remove btn btn-info'> <span class='glyphicon glyphicon-arrow-left'></span> quitar</a> </div>");
-			});
-
-			$(correos).on('click','.remove',function(event){
-				event.preventDefault();
-				console.log('preciono button Eliminar correo');
-
-				$(this).parent().remove();
-			});
-		});
-	</script>
 
 @endsection
