@@ -92,7 +92,7 @@
 				event.preventDefault();
 				console.log('preciono button agregar correo');
 
-				$(correos).append(" <div> <p> Test  <a href='' class='remove btn btn-info'> <span class='glyphicon glyphicon-arrow-left'></span> quitar</a> </p> </div>");
+				$(correos).append("  <div> <label>Correo</label> <input class='form-control'  type='email' name='correos[]' placeholder='correo@gmail.com' required='true'> <a href='' class='remove btn btn-info'> <span class='glyphicon glyphicon-arrow-left'></span> quitar</a> </div>");
 			});
 
 			$(correos).on('click','.remove',function(event){

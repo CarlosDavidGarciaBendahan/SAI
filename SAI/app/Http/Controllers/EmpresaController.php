@@ -8,6 +8,7 @@ use App\Empresa;
 use App\Estado;
 use App\Municipio;
 use App\Parroquia;
+use App\Contacto_Correo;
 
 class EmpresaController extends Controller
 {
@@ -43,10 +44,23 @@ class EmpresaController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->all());
+        //dd($request->correos[i]);
 
         $empresa = new Empresa($request->all());
         $empresa->save();
+        //dd($empresa);
+        foreach ($request->correos as $correo) {
+            $c = new Contacto_Correo();
+            $c->con_cor_correo = $correo;
+            $c->empresa()->associate($empresa); 
+            $c->con_cor_fk_cliente_natural = null;
+            $c->con_cor_fk_cliente_juridico = null;
+            $c->con_cor_fk_personal = null;
+
+            $c->save();
+            //dd($c);
+        }
+        
 
         flash("Registro de la empresa '' ".$request->emp_nombre." '' exitoso")->success();
         return redirect()->route('empresa.index');
