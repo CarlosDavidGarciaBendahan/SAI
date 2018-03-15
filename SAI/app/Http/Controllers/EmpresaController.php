@@ -43,7 +43,7 @@ class EmpresaController extends Controller
      */
     public function store(Request $request)
     {
-        //dd($request->all());
+        dd($request->all());
 
         $empresa = new Empresa($request->all());
         $empresa->save();
