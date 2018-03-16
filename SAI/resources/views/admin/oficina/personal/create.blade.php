@@ -72,12 +72,7 @@
 						</div>
 					
 					
-						<div class="form-group"> 
 						
-							{!! Form::label('con_cor_correo','Correo') !!}
-
-							{!! Form::text('con_cor_correo',null,['class'=> 'form-control', 'placeholder'=>'correo@gmail.com', 'required']) !!}
-						</div>
 
 						<div class="form-group"> 
 						
@@ -106,6 +101,23 @@
 						</div>
 
 
+						<div class="form-group">
+						{!! Form::submit('Agregar Correo',['class'=>'btn btn-primary', 'id' => 'addCorreo']) !!}
+					</div>
+
+					<div class="correos">
+						
+					</div>
+
+					<div class="form-group">
+						{!! Form::submit('Agregar Telefono',['class'=>'btn btn-primary', 'id' => 'addTelefono']) !!}
+					</div>
+
+					
+					<div class="telefonos">
+						
+					</div>
+
 					<div class="form-group">
 						{!! Form::submit('Registrar',['class'=>'btn btn-primary']) !!}
 					</div>
@@ -127,6 +139,8 @@
 	<script src="//code.jquery.com/jquery-1.10.2.js"></script>
   	<script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
   	<script src="{{ asset('plugins/Script/datepicker.js') }}"></script>
+	<script src="{{ asset('plugins/Script/FormDinamicoAgregarCorreo.js') }}"></script>
+	<script src="{{ asset('plugins/Script/FormDinamicoAgregarTelefono.js') }}"></script>
 @endsection
 
 @section('link-head')

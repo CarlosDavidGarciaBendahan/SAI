@@ -72,14 +72,23 @@
 						</div>
 					
 					
-						<div class="form-group"> 
+
+						<div class="form-group">
+						{!! Form::submit('Agregar Correo',['class'=>'btn btn-primary', 'id' => 'addCorreo']) !!}
+					</div>
+
+					<div class="correos">
 						
-							{!! Form::label('con_cor_correo','Correo') !!}
+					</div>
 
-							{!! Form::text('con_cor_correo',null,['class'=> 'form-control', 'placeholder'=>'correo@gmail.com', 'required']) !!}
-						</div>
+					<div class="form-group">
+						{!! Form::submit('Agregar Telefono',['class'=>'btn btn-primary', 'id' => 'addTelefono']) !!}
+					</div>
 
-
+					
+					<div class="telefonos">
+						
+					</div>
 
 					<div class="form-group">
 						{!! Form::submit('Registrar',['class'=>'btn btn-primary']) !!}
@@ -99,4 +108,6 @@
 @section('scripts')
 	<script src="{{ asset('plugins/Script/ObtenerMunicipiosPorEstado.js') }}"></script>
 	<script src="{{ asset('plugins/Script/ObtenerParroquiasPorMunicipio.js') }}"></script>
+	<script src="{{ asset('plugins/Script/FormDinamicoAgregarCorreo.js') }}"></script>
+	<script src="{{ asset('plugins/Script/FormDinamicoAgregarTelefono.js') }}"></script>
 @endsection

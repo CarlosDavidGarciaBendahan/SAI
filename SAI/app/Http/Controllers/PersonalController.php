@@ -53,6 +53,35 @@ class PersonalController extends Controller
         $personal = new Personal($request->all());
         $personal->save();
 
+        foreach ($request->correos as $correo) {
+            $c = new Contacto_Correo();
+            $c->con_cor_correo = $correo;
+            $c->personal()->associate($personal); 
+            $c->con_cor_fk_cliente_natural = null;
+            $c->con_cor_fk_cliente_juridico = null;
+            $c->con_cor_fk_empresa = null;
+
+            $c->save();
+            //dd($c);
+        }
+
+        $cantidadTelefonos = sizeof($request->numeros);
+
+        for ($i=0; $i < $cantidadTelefonos; $i++) { 
+
+            $tlf = new Contacto_Telefono();
+
+            $tlf->con_tel_codigo = $request->codigos[$i];
+            $tlf->con_tel_numero = $request->numeros[$i];
+            $tlf->con_tel_tipo = $request->tipos[$i];
+            $tlf->personal()->associate($personal); 
+            $tlf->con_tel_fk_cliente_natural = null;
+            $tlf->con_tel_fk_cliente_juridico = null;
+            $tlf->con_tel_fk_empresa = null;
+
+            $tlf->save();
+        }
+
         flash("Registro del personal '' ".$request->per_identificador."-".$request->per_cedula." '' exitoso")->success();
         return redirect()->route('personal.index');
     }

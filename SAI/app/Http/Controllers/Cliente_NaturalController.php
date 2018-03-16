@@ -50,11 +50,42 @@ class Cliente_NaturalController extends Controller
         $cliente_natural = new Cliente_Natural($request->all());
         $cliente_natural->save();
 
-        $contacto_correo = new Contacto_Correo($request->all());
+        //$contacto_correo = new Contacto_Correo($request->all());
         //asocio el cliente con el contacto, es decir, deberia llenar la FK_cliente_natural
-        $contacto_correo->Cliente_Natural()->associate($cliente_natural);
-        $contacto_correo->save();
+        //$contacto_correo->Cliente_Natural()->associate($cliente_natural);
+        //$contacto_correo->save();
         //dd($contacto_correo);
+
+        foreach ($request->correos as $correo) {
+            $c = new Contacto_Correo();
+            $c->con_cor_correo = $correo;
+            $c->cliente_natural()->associate($cliente_natural); 
+            $c->con_cor_fk_empresa = null;
+            $c->con_cor_fk_cliente_juridico = null;
+            $c->con_cor_fk_personal = null;
+
+            $c->save();
+            //dd($c);
+        }
+
+        $cantidadTelefonos = sizeof($request->numeros);
+
+        for ($i=0; $i < $cantidadTelefonos; $i++) { 
+
+            $tlf = new Contacto_Telefono();
+
+            $tlf->con_tel_codigo = $request->codigos[$i];
+            $tlf->con_tel_numero = $request->numeros[$i];
+            $tlf->con_tel_tipo = $request->tipos[$i];
+            $tlf->cliente_natural()->associate($cliente_natural); 
+            $tlf->con_tel_fk_empresa = null;
+            $tlf->con_tel_fk_cliente_juridico = null;
+            $tlf->con_tel_fk_personal = null;
+
+            $tlf->save();
+        }
+
+
 
         flash("Registro del cliente '' ".$request->cli_nat_nombre." '' exitoso")->success();
         return redirect()->route('cliente_natural.index');
