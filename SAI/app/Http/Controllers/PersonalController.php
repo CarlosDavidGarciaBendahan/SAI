@@ -101,7 +101,11 @@ class PersonalController extends Controller
         $oficinas = Oficina::orderby('ofi_direccion')->pluck('ofi_direccion','id');
         $personal = Personal::find($id);
 
-        return view('admin.oficina.personal.show')->with(compact('estados','municipios','parroquias','roles','oficinas','personal'));
+
+        $contacto_correos = Contacto_Correo::where('con_cor_fk_personal','=',$personal->id)->orderby('con_cor_correo')->get();
+        $contacto_telefonos = Contacto_Telefono::where('con_tel_fk_personal','=',$personal->id)->orderby('con_tel_codigo','con_tel_numero')->get();
+
+        return view('admin.oficina.personal.show')->with(compact('estados','municipios','parroquias','roles','oficinas','personal','contacto_correos','contacto_telefonos'));
     }
 
     /**
@@ -119,7 +123,10 @@ class PersonalController extends Controller
         $oficinas = Oficina::orderby('ofi_direccion')->pluck('ofi_direccion','id');
         $personal = Personal::find($id);
 
-        return view('admin.oficina.personal.edit')->with(compact('estados','municipios','parroquias','roles','oficinas','personal'));
+        $contacto_correos = Contacto_Correo::where('con_cor_fk_personal','=',$personal->id)->orderby('con_cor_correo')->get();
+        $contacto_telefonos = Contacto_Telefono::where('con_tel_fk_personal','=',$personal->id)->orderby('con_tel_codigo','con_tel_numero')->get();
+
+        return view('admin.oficina.personal.edit')->with(compact('estados','municipios','parroquias','roles','oficinas','personal','contacto_correos','contacto_telefonos'));
     }
 
     /**

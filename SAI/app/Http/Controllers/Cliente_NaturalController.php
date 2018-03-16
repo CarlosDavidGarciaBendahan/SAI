@@ -120,7 +120,10 @@ class Cliente_NaturalController extends Controller
         $municipios = Municipio::orderby('mun_nombre','asc')->get();
         $parroquias = Parroquia::orderby('par_nombre','asc')->get();
 
-        return view('admin.oficina.cliente_natural.edit')->with(compact('cliente_natural','estados','municipios','parroquias'));
+        $contacto_correos = Contacto_Correo::where('con_cor_fk_cliente_natural','=',$cliente_natural->id)->orderby('con_cor_correo')->get();
+        $contacto_telefonos = Contacto_Telefono::where('con_tel_fk_cliente_natural','=',$cliente_natural->id)->orderby('con_tel_codigo','con_tel_numero')->get();
+
+        return view('admin.oficina.cliente_natural.edit')->with(compact('cliente_natural','estados','municipios','parroquias','contacto_correos','contacto_telefonos'));
     }
 
     /**

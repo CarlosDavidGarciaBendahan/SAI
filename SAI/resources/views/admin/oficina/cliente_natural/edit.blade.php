@@ -105,6 +105,93 @@
 							{!! Form::text('cli_nat_cedula',$cliente_natural->cli_nat_cedula,['class'=> 'form-control', 'placeholder'=>'dirección', 'required','readonly'=>'true']) !!}
 						</div>
 
+
+
+						@if (sizeof($contacto_correos) < 3)
+					<a href="{{ route('contacto_correo_cliente_natural.create', $cliente_natural) }}" class="btn btn-info">
+						Registrar nuevo correo
+					</a>
+					@endif
+
+					<table class="table table-inverse">
+				  <thead>
+				    <tr>
+				      <th>ID</th>
+				      <th>Correo</th>
+				    </tr>
+				  </thead>
+				  <tbody>
+
+				  	@foreach ($contacto_correos as $contacto_correo)
+				  		<tr>
+					      <th scope="row">{{ $contacto_correo->id }}</th>
+					      <td>{{ $contacto_correo->con_cor_correo }}</td>
+					      <td>						      
+					      	<a href="{{ route('contacto_correo_cliente_natural.edit', [$contacto_correo->id,$cliente_natural]) }}" class="btn btn-warning">
+					      		<span class="class glyphicon glyphicon-wrench"></span>
+					      	</a>
+
+					      	<a href="{{ route('contacto_correo.destroy', $contacto_correo->id) }}" onclick="return confirm('Eliminar el contacto_correo?')" class="btn btn-danger">
+					      		<span class="class glyphicon glyphicon-remove-circle"></span>
+					      	</a> 
+					      	<!--
+					      	<a href="{{ route('contacto_correo.show', $contacto_correo->id) }}" class="btn btn-info">
+					      		<span class="glyphicon glyphicon-search"></span>
+					      	</a>
+					      	-->
+					      </td>
+				    	</tr>
+				  	@endforeach
+
+				  </tbody>
+
+				</table>
+				
+					
+				
+				@if (sizeof($contacto_telefonos) < 3)
+					<a href="{{ route('contacto_telefono_cliente_natural.create', $cliente_natural) }}" class="btn btn-info">
+						Registrar nuevo telefono
+					</a>
+				@endif
+				
+
+				<table class="table table-inverse">
+				  <thead>
+				    <tr>
+				      <th>ID</th>
+				      <th>tipo</th>
+				      <th>Telefono</th>
+				    </tr>
+				  </thead>
+				  <tbody>
+
+				  	@foreach ($contacto_telefonos as $contacto_telefono)
+				  		<tr>
+					      <th scope="row">{{ $contacto_telefono->id }}</th>
+					      <td>{{ $contacto_telefono->con_tel_tipo }}</td>
+					      <td>{{ $contacto_telefono->con_tel_codigo . "-" . $contacto_telefono->con_tel_numero }}</td>
+					      <td>						      
+					      	<a href="{{ route('contacto_telefono_cliente_natural.edit', [$contacto_telefono->id,$cliente_natural]) }}" class="btn btn-warning">
+					      		<span class="class glyphicon glyphicon-wrench"></span>
+					      	</a>
+
+					      	<a href="{{ route('contacto_telefono.destroy', $contacto_telefono->id) }}" onclick="return confirm('Eliminar el contacto_telefono?')" class="btn btn-danger">
+					      		<span class="class glyphicon glyphicon-remove-circle"></span>
+					      	</a> 
+					      	<!--
+					      	<a href="{{ route('contacto_telefono.show', $contacto_telefono->id) }}" class="btn btn-info">
+					      		<span class="glyphicon glyphicon-search"></span>
+					      	</a>
+					      	-->
+					      </td>
+				    	</tr>
+				  	@endforeach
+
+				  </tbody>
+
+				</table>
+
 					<div class="form-group">
 						{!! Form::submit('Editar',['class'=>'btn btn-primary']) !!}
 					</div>
