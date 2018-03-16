@@ -99,7 +99,10 @@ class EmpresaController extends Controller
         $parroquias = Parroquia::orderby('par_nombre','asc')->get();
         $empresa = Empresa::find($id);
 
-        return view('admin.oficina.empresa.show')->with(compact('empresa','estados','municipios','parroquias'));
+        $contacto_correos = Contacto_Correo::where('con_cor_fk_empresa','=',$empresa->id)->orderby('con_cor_correo')->get();
+        $contacto_telefonos = Contacto_Telefono::where('con_tel_fk_empresa','=',$empresa->id)->orderby('con_tel_codigo','con_tel_numero')->get();
+
+        return view('admin.oficina.empresa.show')->with(compact('empresa','estados','municipios','parroquias','contacto_telefonos','contacto_correos'));
     }
 
     /**

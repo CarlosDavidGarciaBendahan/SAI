@@ -163,6 +163,14 @@ Route::prefix('admin/oficina/')->group( function(){
 		'uses'	=> 'Contacto_CorreoController@destroy',
 		'as'	=> 'contacto_correo.destroy'
 	]);
+	Route::get('contacto_correo/{id}/empresa/{empresa_id}',[
+		'uses'	=> 'Contacto_CorreoController@editEmpresa',
+		'as'	=> 'contacto_correo_empresa.edit'
+	]);
+	Route::get('contacto_correo/empresa/{empresa_id}',[
+		'uses'	=> 'Contacto_CorreoController@createEmpresa',
+		'as'	=> 'contacto_correo_empresa.create'
+	]);
 
 	Route::resource('contacto_telefono','Contacto_TelefonoController');
 	Route::get('contacto_telefono/{id}/destroy',[

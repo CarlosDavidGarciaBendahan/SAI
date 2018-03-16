@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Laracast\Flash\Flash;
+use App\Contacto_Correo;
+use App\Empresa;
+
 
 class Contacto_CorreoController extends Controller
 {
@@ -12,9 +16,7 @@ class Contacto_CorreoController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function retornarVistaAnterio(){
-        return back();
-    }
+
 
     public function index()
     {
@@ -26,9 +28,12 @@ class Contacto_CorreoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function createEmpresa($empresa_id)
     {
-        //
+        
+        $empresa = Empresa::find($empresa_id);
+
+        return view('admin.oficina.contacto_correo.createEmpresa')->with(compact('empresa'));
     }
 
     /**
@@ -39,7 +44,27 @@ class Contacto_CorreoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $correo = new Contacto_Correo($request->all());
+        $correo->save();
+
+        flash("Registrado el Correo '' ".$correo->con_cor_correo." '' exitosa")->success();
+
+        if ($correo->con_cor_fk_empresa !== null) {
+            return redirect()->route('empresa.edit', $correo->con_cor_fk_empresa);
+        } else {
+            if ($correo->con_cor_fk_cliente_natural !== null) {
+                return redirect()->route();
+            } else{
+                if ($correo->con_cor_fk_cliente_juridico !== null) {
+                    return redirect()->route();
+                }else{
+                    if ($correo->con_cor_fk_personal !== null) {
+                        return redirect()->route();
+                    } 
+                }
+
+            }
+        }
     }
 
     /**
@@ -59,9 +84,14 @@ class Contacto_CorreoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function editEmpresa($id,$empresa_id)
     {
-        //
+        $correo = Contacto_Correo::find($id);
+        $empresa = Empresa::find($empresa_id);
+
+        //dd($empresa);
+
+        return view('admin.oficina.contacto_correo.editEmpresa')->with(compact('correo','empresa'));
     }
 
     /**
@@ -73,7 +103,29 @@ class Contacto_CorreoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $correo = Contacto_Correo::find($id);
+
+        $correo->con_cor_correo = $request->con_cor_correo;
+        $correo->save();
+
+        flash("Modificación del Correo '' ".$correo->con_cor_correo." '' exitosa")->success();
+
+        if ($correo->con_cor_fk_empresa !== null) {
+            return redirect()->route('empresa.edit', $correo->con_cor_fk_empresa);
+        } else {
+            if ($correo->con_cor_fk_cliente_natural !== null) {
+                return redirect()->route();
+            } else{
+                if ($correo->con_cor_fk_cliente_juridico !== null) {
+                    return redirect()->route();
+                }else{
+                    if ($correo->con_cor_fk_personal !== null) {
+                        return redirect()->route();
+                    } 
+                }
+
+            }
+        }
     }
 
     /**
@@ -84,6 +136,27 @@ class Contacto_CorreoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $correo = Contacto_Correo::find($id);
+        $correo->delete();
+
+
+        flash("Eliminación del Correo '' ".$correo->con_cor_correo." '' exitosa")->success();
+
+        if ($correo->con_cor_fk_empresa !== null) {
+            return redirect()->route('empresa.edit', $correo->con_cor_fk_empresa);
+        } else {
+            if ($correo->con_cor_fk_cliente_natural !== null) {
+                return redirect()->route();
+            } else{
+                if ($correo->con_cor_fk_cliente_juridico !== null) {
+                    return redirect()->route();
+                }else{
+                    if ($correo->con_cor_fk_personal !== null) {
+                        return redirect()->route();
+                    } 
+                }
+
+            }
+        }
     }
 }

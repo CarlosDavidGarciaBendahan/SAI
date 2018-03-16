@@ -4,9 +4,12 @@ $(document).ready(function(){
 			var btn_telefono = $('#addTelefono');
 			var telefonos = $('.telefonos');
 			var html = "<div class='form-group'> " +
-						" <label>Telefono</label>"+ 
+						" <label>Telefono</label> <br>"+ 
+						" <label>código</label>"+
 						" <input class='form-control'  type='text' name='codigos[]' placeholder='414' required='true'>"+
+						" <label>número</label>"+
 						" <input class='form-control'  type='text' name='numeros[]' placeholder='1234567' required='true'>"+
+						" <label>tipo</label>"+
 						" <select class='form-control input-sm' name='tipos[]' id='tipos[]' required='true'> "+
 							" <option value='movil' select='true'> Movil </option>" +
 							" <option value='local'> Local </option>" +

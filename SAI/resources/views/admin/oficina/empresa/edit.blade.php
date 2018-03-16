@@ -85,6 +85,13 @@
 						{!! Form::text('emp_rif',$empresa->emp_rif,['class'=> 'form-control', 'placeholder'=>'dirección', 'required','readonly'=>'true']) !!}
 					</div>
 
+
+					@if (sizeof($contacto_correos) < 3)
+					<a href="{{ route('contacto_correo_empresa.create', $empresa) }}" class="btn btn-info">
+						Registrar nuevo correo
+					</a>
+					@endif
+
 					<table class="table table-inverse">
 				  <thead>
 				    <tr>
@@ -99,7 +106,7 @@
 					      <th scope="row">{{ $contacto_correo->id }}</th>
 					      <td>{{ $contacto_correo->con_cor_correo }}</td>
 					      <td>						      
-					      	<a href="{{ route('contacto_correo.edit', $contacto_correo->id) }}" class="btn btn-warning">
+					      	<a href="{{ route('contacto_correo_empresa.edit', [$contacto_correo->id,$empresa]) }}" class="btn btn-warning">
 					      		<span class="class glyphicon glyphicon-wrench"></span>
 					      	</a>
 
