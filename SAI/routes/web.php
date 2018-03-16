@@ -157,6 +157,26 @@ Route::prefix('admin/oficina/')->group( function(){
 		'uses'	=> 'UsersController@destroy',
 		'as'	=> 'users.destroy'
 	]);
+
+	Route::resource('contacto_correo','Contacto_CorreoController');
+	Route::get('contacto_correo/{id}/destroy',[
+		'uses'	=> 'Contacto_CorreoController@destroy',
+		'as'	=> 'contacto_correo.destroy'
+	]);
+
+	Route::resource('contacto_telefono','Contacto_TelefonoController');
+	Route::get('contacto_telefono/{id}/destroy',[
+		'uses'	=> 'Contacto_TelefonoController@destroy',
+		'as'	=> 'contacto_telefono.destroy'
+	]);
+	Route::get('contacto_telefono/{id}/empresa/{empresa_id}',[
+		'uses'	=> 'Contacto_TelefonoController@editEmpresa',
+		'as'	=> 'contacto_telefono_empresa.edit'
+	]);
+	Route::get('contacto_telefono/empresa/{empresa_id}',[
+		'uses'	=> 'Contacto_TelefonoController@createEmpresa',
+		'as'	=> 'contacto_telefono_empresa.create'
+	]);
 });
 
 Route::prefix('admin/')->group( function(){

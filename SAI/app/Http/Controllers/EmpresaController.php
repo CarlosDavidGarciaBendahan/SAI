@@ -9,6 +9,7 @@ use App\Estado;
 use App\Municipio;
 use App\Parroquia;
 use App\Contacto_Correo;
+use App\Contacto_Telefono;
 
 class EmpresaController extends Controller
 {
@@ -44,7 +45,7 @@ class EmpresaController extends Controller
      */
     public function store(Request $request)
     {
-        //dd($request->correos[i]);
+        //dd(sizeof($request->numeros));
 
         $empresa = new Empresa($request->all());
         $empresa->save();
@@ -60,6 +61,25 @@ class EmpresaController extends Controller
             $c->save();
             //dd($c);
         }
+
+        $cantidadTelefonos = sizeof($request->numeros);
+
+        for ($i=0; $i < $cantidadTelefonos; $i++) { 
+
+            $tlf = new Contacto_Telefono();
+
+            $tlf->con_tel_codigo = $request->codigos[$i];
+            $tlf->con_tel_numero = $request->numeros[$i];
+            $tlf->con_tel_tipo = $request->tipos[$i];
+            $tlf->empresa()->associate($empresa); 
+            $tlf->con_tel_fk_cliente_natural = null;
+            $tlf->con_tel_fk_cliente_juridico = null;
+            $tlf->con_tel_fk_personal = null;
+
+            $tlf->save();
+        }
+
+        
         
 
         flash("Registro de la empresa '' ".$request->emp_nombre." '' exitoso")->success();
@@ -95,7 +115,11 @@ class EmpresaController extends Controller
         $parroquias = Parroquia::orderby('par_nombre','asc')->get();
         $empresa = Empresa::find($id);
 
-        return view('admin.oficina.empresa.edit')->with(compact('empresa','estados','municipios','parroquias'));
+        $contacto_correos = Contacto_Correo::where('con_cor_fk_empresa','=',$empresa->id)->orderby('con_cor_correo')->get();
+        $contacto_telefonos = Contacto_Telefono::where('con_tel_fk_empresa','=',$empresa->id)->orderby('con_tel_codigo','con_tel_numero')->get();
+        //dd($contacto_correos);
+
+        return view('admin.oficina.empresa.edit')->with(compact('empresa','estados','municipios','parroquias','contacto_correos','contacto_telefonos'));
     }
 
     /**

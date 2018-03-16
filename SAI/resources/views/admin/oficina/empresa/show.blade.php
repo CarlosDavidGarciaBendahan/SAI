@@ -79,7 +79,7 @@
 						{!! Form::text('emp_rif',$empresa->emp_rif,['class'=> 'form-control', 'placeholder'=>'dirección', 'required','readonly'=>'true']) !!}
 					</div>
 					<div>
-						<a href="{{ route('empresa.index') }}" class="btn btn-info">
+						<a href="{{  route('empresa.index') }}" class="btn btn-info">
 					      		<span class="glyphicon glyphicon-arrow-left"></span> Regresar al listado
 					     </a>
 					</div>
