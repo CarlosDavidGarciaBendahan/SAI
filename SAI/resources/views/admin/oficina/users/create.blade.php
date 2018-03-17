@@ -40,6 +40,13 @@
 						{!! Form::select('activa',[0=>'NO',1=>'SI'], '1', ['class'=>'form-control', 'required'] ) !!}
 					</div>
 
+					<div class="form-group"> 
+						
+						{!! Form::label('roles','Roles') !!}
+
+						{!! Form::select('roles[]',$roles,null,['class'=> 'form-control select-roles', 'placeholder'=>'seleccionar roles', 'multiple','required']) !!}
+					</div>
+
 					<div class="form-group">
 						{!! Form::submit('Registrar',['class'=>'btn btn-primary']) !!}
 					</div>
@@ -54,4 +61,7 @@
 	</section>
 	
 
+@endsection
+@section('scripts')
+	<script src = "{{ asset('plugins/Script/ChosenMultipleSelectorRoles.js') }}"></script>
 @endsection

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\User;
 use Laracasts\Flash\Flash;
 use App\Personal;
+use App\Rol;
 
 class UsersController extends Controller
 {
@@ -30,7 +31,9 @@ class UsersController extends Controller
     {
         $personal = Personal::orderby('per_apellido','per_nombre')->get();
 
-        return view('admin.oficina.users.create')->with(compact('personal'));
+        $roles = Rol::orderby('rol_rol')->pluck('rol_rol','id');
+
+        return view('admin.oficina.users.create')->with(compact('personal','roles'));
     }
 
     /**
@@ -47,6 +50,8 @@ class UsersController extends Controller
         $user = new User($request->all());
         $user->password = bcrypt($request->password); 
         $user->save();
+
+        $user->roles()->sync($request->roles);
         
         flash("Registro del usuario '' ".$request->name." '' exitoso")->success();
         return redirect()->route('users.index');
@@ -74,8 +79,9 @@ class UsersController extends Controller
     {
         $user = User::find($id);
         $personal = Personal::orderby('per_apellido','per_nombre')->get();
+        $roles = Rol::orderby('rol_rol')->pluck('rol_rol','id');
 
-        return view('admin.oficina.users.edit')->with(compact('user','personal'));
+        return view('admin.oficina.users.edit')->with(compact('user','personal','roles'));
     }
 
     /**
@@ -91,6 +97,10 @@ class UsersController extends Controller
         $user->password = $request->password;
         $user->activa = $request->activa;
         $user->save();
+
+
+        $user->roles()->detach();
+        $user->roles()->sync($request->roles);
 
         flash("Modificación del usuario". $user->name." '' exitosa")->success();
         return redirect()->route('users.index');

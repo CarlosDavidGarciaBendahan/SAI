@@ -44,6 +44,13 @@
 						{!! Form::select('activa',[0=>'NO',1=>'SI'], $user->activa, ['class'=>'form-control', 'required'] ) !!}
 					</div>
 
+					<div class="form-group"> 
+						
+						{!! Form::label('roles','Roles') !!}
+
+						{!! Form::select('roles[]',$roles,$user->roles->pluck('id'),['class'=> 'form-control select-roles', 'placeholder'=>'seleccionar roles', 'multiple','required']) !!}
+					</div>
+
 					<div class="form-group">
 						{!! Form::submit('Editar',['class'=>'btn btn-primary']) !!}
 					</div>
@@ -59,4 +66,7 @@
 	</section>
 	
 
+@endsection
+@section('scripts')
+	<script src = "{{ asset('plugins/Script/ChosenMultipleSelectorRoles.js') }}"></script>
 @endsection
