@@ -16,6 +16,13 @@
 						{!! Form::text('rol_rol',$rol->rol_rol,['class'=> 'form-control', 'placeholder'=>'Tipo de producto', 'required']) !!}
 					</div>
 
+					<div class="form-group"> 
+						
+						{!! Form::label('permisos','Permisos') !!}
+
+						{!! Form::select('permisos[]',$permisos,null,['class'=> 'form-control select-permisos', 'placeholder'=>'seleccionar permisos', 'multiple','required']) !!}
+					</div>
+
 					<div class="form-group">
 						{!! Form::submit('Editar',['class'=>'btn btn-primary']) !!}
 					</div>
@@ -28,4 +35,7 @@
 			
 	</section>
 	
+@endsection
+@section('scripts')
+	<script src = "{{ asset('plugins/Script/ChosenMultipleSelector.js') }}"></script>
 @endsection

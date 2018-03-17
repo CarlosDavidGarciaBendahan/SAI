@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Laracasts\Flash\Flash;
 use App\Rol;
+use App\Permiso;
 
 
 class RolController extends Controller
@@ -28,7 +29,9 @@ class RolController extends Controller
      */
     public function create()
     {
-        return view('admin.oficina.rol.create');
+        $permisos = Permiso::orderby('perm_permiso')->pluck('perm_permiso','id');
+
+        return view('admin.oficina.rol.create')->with(compact('permisos'));
     }
 
     /**
@@ -39,9 +42,12 @@ class RolController extends Controller
      */
     public function store(Request $request)
     {
+        //dd($request->permisos);
         $rol = new Rol($request->all());
 
         $rol->save();
+
+        $rol->permisos()->sync($request->permisos);
 
         flash("Registro del rol '' ".$request->rol_rol." '' exitoso")->success();
         return redirect()->route('rol.index');
@@ -69,8 +75,9 @@ class RolController extends Controller
     public function edit($id)
     {
         $rol = Rol::find($id);
+        $permisos = Permiso::orderby('perm_permiso')->pluck('perm_permiso','id');
 
-        return view('admin.oficina.rol.edit')->with(compact('rol'));
+        return view('admin.oficina.rol.edit')->with(compact('rol','permisos'));
     }
 
     /**

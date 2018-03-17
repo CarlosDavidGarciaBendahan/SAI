@@ -9,7 +9,7 @@
 
 		
 		<link rel="stylesheet" type="text/css" href="{{ asset('plugins/Bootstrap/css/bootstrap.min.css') }}">
-
+		<link rel="stylesheet" type="text/css" href="{{ asset('plugins/chosen_v1.8.3/chosen.css') }}">
 		@yield('link-head')
 
 		<title>@yield('title','default') | Admin</title>
@@ -53,6 +53,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 	<script src="{{ asset('plugins/Bootstrap/js/bootstrap.min.js') }}"></script>
 	<script src="{{ asset('plugins/JQuery/js/jquery-3.3.1.min.js') }}"></script>
+	<script src="{{ asset('plugins/chosen_v1.8.3/chosen.jquery.js') }}"></script>
 
 	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 
