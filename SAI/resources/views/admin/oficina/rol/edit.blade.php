@@ -20,7 +20,7 @@
 						
 						{!! Form::label('permisos','Permisos') !!}
 
-						{!! Form::select('permisos[]',$permisos,null,['class'=> 'form-control select-permisos', 'placeholder'=>'seleccionar permisos', 'multiple','required']) !!}
+						{!! Form::select('permisos[]',$permisos,$rol->permisos->pluck('id'),['class'=> 'form-control select-permisos', 'placeholder'=>'seleccionar permisos', 'multiple','required']) !!}
 					</div>
 
 					<div class="form-group">
