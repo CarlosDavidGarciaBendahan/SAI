@@ -92,6 +92,13 @@
 						{!! Form::select('componentes[]',$producto_articulos,null,['class'=> 'form-control select-componentes', 'placeholder'=>'seleccionar componentes', 'multiple','required']) !!}
 						</div>
 
+						<div class="form-group"> 
+						
+						{!! Form::label('ima','Imagenes') !!}
+
+						{!! Form::file('imagen')!!}
+						</div>
+
 
 					<div class="form-group">
 						{!! Form::submit('Registrar',['class'=>'btn btn-primary']) !!}

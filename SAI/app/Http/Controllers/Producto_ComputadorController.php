@@ -51,12 +51,26 @@ class Producto_ComputadorController extends Controller
      */
     public function store(Request $request)
     {
-        //dd($request->all());
+        
+        //dd($file);
+        
 
         $producto_computador = new Producto_Computador($request->all());
         $producto_computador->save();
 
         $producto_computador->articulos()->sync($request->componentes);
+
+
+        $file = $request->file('imagen');        
+        $name = 'indatechC.A._' . time() . '.' . $request->file('imagen')->getClientOriginalExtension();
+        $path = public_path() . '/imagenes/computador/';
+        $file->move($path,$name);
+
+        $imagen = new Imagen();
+        $imagen->ima_nombre = $name;
+        $imagen->producto_computador()->associate($producto_computador);
+        $imagen->save();
+
 
 
         flash("Registro del computador '' ".$request->pro_com_codigo." '' exitoso")->success();
