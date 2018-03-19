@@ -52,7 +52,7 @@ class Producto_ComputadorController extends Controller
     public function store(Request $request)
     {
         
-        //dd($file);
+        //dd($request->file('imagen'));
         
 
         $producto_computador = new Producto_Computador($request->all());

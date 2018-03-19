@@ -94,7 +94,7 @@
 
 						<div class="form-group"> 
 						
-						{!! Form::label('ima','Imagenes') !!}
+						{!! Form::label('ima','Imagen') !!}
 
 						{!! Form::file('imagen')!!}
 						</div>
