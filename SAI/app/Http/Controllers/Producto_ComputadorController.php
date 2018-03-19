@@ -38,8 +38,9 @@ class Producto_ComputadorController extends Controller
         $oficinas = Oficina::orderby('ofi_direccion')->get();
         $marcas = Marca::orderby('mar_marca')->get();
         $tipo_productos = Tipo_Producto::orderby('tip_tipo')->get();
+        $producto_articulos = Producto_Articulo::orderby('pro_art_codigo')->pluck('pro_art_codigo','id');
 
-        return view('admin.producto.producto_computador.create')->with(compact('oficinas','marcas','tipo_productos'));
+        return view('admin.producto.producto_computador.create')->with(compact('oficinas','marcas','tipo_productos','producto_articulos'));
     }
 
     /**
@@ -54,6 +55,9 @@ class Producto_ComputadorController extends Controller
 
         $producto_computador = new Producto_Computador($request->all());
         $producto_computador->save();
+
+        $producto_computador->articulos()->sync($request->componentes);
+
 
         flash("Registro del computador '' ".$request->pro_com_codigo." '' exitoso")->success();
         return redirect()->route('producto_computador.index');
@@ -74,8 +78,9 @@ class Producto_ComputadorController extends Controller
         $modelos = Modelo::orderby('mod_modelo')->get();
         $tipo_productos = Tipo_Producto::orderby('tip_tipo')->get();
         $producto_computador = Producto_Computador::find($id);
+        $producto_articulos = Producto_Articulo::orderby('pro_art_codigo')->pluck('pro_art_codigo','id');
 
-        return view('admin.producto.producto_computador.show')->with(compact('oficinas','marcas','tipo_productos','producto_computador','sectores','modelos'));
+        return view('admin.producto.producto_computador.show')->with(compact('oficinas','marcas','tipo_productos','producto_computador','sectores','modelos','producto_articulos'));
     }
 
     /**
@@ -93,7 +98,9 @@ class Producto_ComputadorController extends Controller
         $tipo_productos = Tipo_Producto::orderby('tip_tipo')->get();
         $producto_computador = Producto_Computador::find($id);
 
-        return view('admin.producto.producto_computador.edit')->with(compact('oficinas','marcas','tipo_productos','producto_computador','sectores','modelos'));
+        $producto_articulos = Producto_Articulo::orderby('pro_art_codigo')->pluck('pro_art_codigo','id');
+
+        return view('admin.producto.producto_computador.edit')->with(compact('oficinas','marcas','tipo_productos','producto_computador','sectores','modelos','producto_articulos'));
     }
 
     /**
@@ -118,6 +125,9 @@ class Producto_ComputadorController extends Controller
         $producto_computador->pro_com_fk_tipo_producto = $request->pro_com_fk_tipo_producto;
 
         $producto_computador->save();
+
+        $producto_computador->articulos()->detach();
+        $producto_computador->articulos()->sync($request->componentes);
 
         flash("Modificación del computador '' ".$producto_computador->pro_com_codigo." '' exitoso")->success();
         return redirect()->route('producto_computador.index');

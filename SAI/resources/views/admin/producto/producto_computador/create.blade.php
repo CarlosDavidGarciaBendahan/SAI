@@ -7,7 +7,7 @@
 	<section class="container">
 		<div class="row">
 			<div class="col-sm-8 offset-2">
-				{!! Form::open(['route' => 'producto_computador.store', 'method' => 'POST' ]) !!}
+				{!! Form::open(['route' => 'producto_computador.store', 'method' => 'POST', 'files' => 'true' ]) !!}
 					
 					
 						<div class="form-group ">
@@ -85,7 +85,12 @@
 							{!! Form::select('pro_com_catalogo',[0=>'NO',1=>'SI'], 1, ['class'=>'form-control', 'placeholder'=>'SI', 'required'] ) !!}
 						</div>
 					
+						<div class="form-group"> 
+						
+						{!! Form::label('Componentes','Componentes') !!}
 
+						{!! Form::select('componentes[]',$producto_articulos,null,['class'=> 'form-control select-componentes', 'placeholder'=>'seleccionar componentes', 'multiple','required']) !!}
+						</div>
 
 
 					<div class="form-group">
@@ -106,4 +111,5 @@
 @section('scripts')
 	<script src="{{ asset('plugins/Script/ObtenerSectoresPorOficina.js') }}"></script>
 	<script src="{{ asset('plugins/Script/ObtenerModelosPorMarca.js') }}"></script>
+	<script src = "{{ asset('plugins/Script/ChosenMultipleSelectorComponentes.js') }}"></script>
 @endsection

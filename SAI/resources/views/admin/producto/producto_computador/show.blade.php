@@ -128,7 +128,13 @@
 							{!! Form::label('pro_com_catalogo','Publicado') !!}
 							{!! Form::select('pro_com_catalogo',[0=>'NO',1=>'SI'], $producto_computador->pro_com_catalogo, ['class'=>'form-control', 'placeholder'=>'', 'required'] ) !!}
 						</div>
-					
+						
+						<div class="form-group"> 
+						
+						{!! Form::label('Componentes','Componentes') !!}
+
+						{!! Form::select('componentes[]',$producto_articulos,$producto_computador->articulos->pluck('id'),['class'=> 'form-control select-componentes', 'placeholder'=>'seleccionar componentes', 'multiple','required','disabled']) !!}
+						</div>
 
 						<div>
 							<a href="{{ route('producto_computador.index') }}" class="btn btn-info">
@@ -152,4 +158,5 @@
 @section('scripts')
 	<script src="{{ asset('plugins/Script/ObtenerSectoresPorOficina.js') }}"></script>
 	<script src="{{ asset('plugins/Script/ObtenerModelosPorMarca.js') }}"></script>
+	<script src = "{{ asset('plugins/Script/ChosenMultipleSelectorComponentes.js') }}"></script>
 @endsection
