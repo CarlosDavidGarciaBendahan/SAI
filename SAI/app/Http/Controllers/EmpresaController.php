@@ -160,4 +160,15 @@ class EmpresaController extends Controller
         flash("Eliminación de la empresa '' ".$empresa->emp_nombre." '' exitosa")->success();
         return redirect()->route('empresa.index');
     }
+
+    public function BuscarEmpresa($id){
+
+        $empresa = Empresa::Find($id);
+
+        $empresa->parroquia;
+        $empresa->parroquia->municipio;
+        $empresa->parroquia->municipio->estado;
+
+        return ($empresa);
+    }
 }

@@ -9,44 +9,22 @@ $(document).ready(function(){
 
 		//ajax
 		//ruta que que retornará los datos de la empresa seleccionada.
-		$.get('/ajax-ObtenerDatosEmpresa/' + empresa_id, function(data){
+		$.get('/ajax-ObtenerDatosEmpresa2/' + empresa_id, function(data){
 
-			//succes data
-			//var emp = new App\Empresa();
-			
 			console.log(data);
-
-			html =  ""+
-						"<label  >Nombre Empresa </label>"+
-						"<input  class='form-control' type='text' id='' name='emp_nombre'  value='"+data.id+"'>"+
-					"" 
 			
 			empresa.empty();
-
-			$.each(data, function(index,emp){
-
-				//$('#municipio').append('<option value="'+subcatObj.id+'">'+subcatObj.mun_nombre+' </option>');
 				html =  ""+
-					//"<label  class='col-sm'>$empresa->emp_nombre</label>"+
 					"<label  class='col-sm'>RIF</label>"+
-					"<input  class='form-control col-sm-1' type='text' name='emp_identificador'  value='"+emp.emp_identificador+"'>"+
-					"<input  class='form-control col-sm-11' type='text' name='emp_rif'  value='"+emp.emp_rif+"'>"+
+					"<input  class='form-control col-sm-1' type='text' name='emp_identificador'  value='"+data.emp_identificador+"'>"+
+					"<input  class='form-control col-sm-11' type='text' name='emp_rif'  value='"+data.emp_rif+"'>"+
 
 					"<label  class='col-sm'>Dirección</label>"+
-					"<input  class='form-control' type='text' name='emp_direccion'  value='"+emp.emp_direccion+"'>"+
+					"<input  class='form-control' type='text' name='emp_direccion'  value='"+data.emp_direccion+
+					", Par. "+data.parroquia.par_nombre+", Mun. "+data.parroquia.municipio.mun_nombre+
+					", Edo. "+data.parroquia.municipio.estado.est_nombre+"'>"+
 					"" 
 				empresa.append(html);
-			});
-			//empresa.append(html);
-			/*$('#municipio').empty();
-			$('#municipio').append('<option value="">Seleccionar un municipio</option>');
-			$.each(data, function(index,subcatObj){
-
-				$('#municipio').append('<option value="'+subcatObj.id+'">'+subcatObj.mun_nombre+' </option>');
-			});
-						
-			$('#parroquia').empty();
-			$('#parroquia').append('<option value="">Seleccionar una parroquia</option>');*/
 		});
 	});
 });

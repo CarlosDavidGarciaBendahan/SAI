@@ -32,9 +32,11 @@ class PresupuestoController extends Controller
     public function create()
     {
         $empresas = Empresa::orderby('emp_nombre','ASC')->get();
-        $empresa_id = null;
+        $clientes_naturales = Cliente_Natural::orderby('cli_nat_apellido','cli_nat_nombre','ASC')->get();
+        $clientes_juridicos= Cliente_Juridico::orderby('cli_jur_nombre','ASC')->get();
+       
 
-        return view('admin.oficina.presupuesto.create')->with(compact('empresas','empresa_id'));
+        return view('admin.oficina.presupuesto.create')->with(compact('empresas','clientes_naturales','clientes_juridicos'));
     }
 
     /**
@@ -93,13 +95,5 @@ class PresupuestoController extends Controller
         //
     }
 
-    public function ObtenerEmpresa($id){
-        $empresa = Empresa::find($id);
-        $emresa->parroquia;
-
-        dd($empresa);
-
-        return Response::json($empresa);
-    }
-
+    
 }

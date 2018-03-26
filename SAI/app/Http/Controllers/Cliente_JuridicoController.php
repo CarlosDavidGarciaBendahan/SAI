@@ -152,4 +152,17 @@ class Cliente_JuridicoController extends Controller
         flash("Eliminación del cliente juridico '' ".$cliente_juridico->cli_jur_identificador."-".$cliente_juridico->cli_jur_rif." '' exitosa")->success();
         return redirect()->route('cliente_juridico.index');
     }
+
+
+
+    public function BuscarCliente($id){
+
+        $cliente_juridico = cliente_juridico::Find($id);
+
+        $cliente_juridico->parroquia;
+        $cliente_juridico->parroquia->municipio;
+        $cliente_juridico->parroquia->municipio->estado;
+
+        return ($cliente_juridico);
+    }
 }

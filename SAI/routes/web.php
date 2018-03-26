@@ -351,11 +351,9 @@ Route::get('/ajax-ObtenerModelosPorMarca/{marca_id}',function($marca_id){
 	return Response::json($modelos);
 });
 
-Route::get('/ajax-ObtenerDatosEmpresa/{empresa_id}',function($empresa_id){
-	
-	//$empresa = new App\Empresa();
-	$empresa = DB::table('empresa')->select('*')->where('id','=',$empresa_id)->get();
-	//$empresa = App\Empresa::find($empresa_id)->get();
 
-	return Response::json($empresa);
-});
+Route::get('/ajax-ObtenerDatosEmpresa2/{empresa_id}','EmpresaController@BuscarEmpresa');
+
+Route::get('/ajax-ObtenerDatosclientes_naturales/{cliente_natural_id}','Cliente_NaturalController@BuscarCliente');
+
+Route::get('/ajax-ObtenerDatosclientes_juridicos/{cliente_juridico_id}','Cliente_JuridicoController@BuscarCliente');

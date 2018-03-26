@@ -162,4 +162,18 @@ class Cliente_NaturalController extends Controller
         flash("Eliminación del cliente natural '' ".$cliente_natural->cli_nat_identificador."-".$cliente_natural->cli_nat_cedula." '' exitosa")->success();
         return redirect()->route('cliente_natural.index');
     }
+
+
+    public function BuscarCliente($id){
+
+        $cliente_natural = cliente_natural::Find($id);
+
+        $cliente_natural->parroquia;
+        $cliente_natural->parroquia->municipio;
+        $cliente_natural->parroquia->municipio->estado;
+
+        return ($cliente_natural);
+    }
+
+
 }
