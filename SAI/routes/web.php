@@ -300,6 +300,14 @@ Route::prefix('admin/oficina/')->group( function(){
 				'uses'	=> 'Contacto_TelefonoController@createCliente_Natural',
 				'as'	=> 'contacto_telefono_cliente_natural.create'
 			]);
+	///////////////////////////////////////////////////
+	////// 		PRESUPUESTO
+	///////////////////////////////////////////////////
+	Route::resource('presupuesto','PresupuestoController');
+	Route::get('presupuesto/{id}/destroy',[
+		'uses'	=> 'PresupuestoController@destroy',
+		'as'	=> 'presupuesto.destroy'
+	]);
 });
 
 Route::prefix('admin/')->group( function(){
@@ -341,4 +349,13 @@ Route::get('/ajax-ObtenerModelosPorMarca/{marca_id}',function($marca_id){
 	$modelos = DB::table('modelo')->select('*')->where('mod_fk_marca','=',$marca_id)->get();
 
 	return Response::json($modelos);
+});
+
+Route::get('/ajax-ObtenerDatosEmpresa/{empresa_id}',function($empresa_id){
+	
+	//$empresa = new App\Empresa();
+	$empresa = DB::table('empresa')->select('*')->where('id','=',$empresa_id)->get();
+	//$empresa = App\Empresa::find($empresa_id)->get();
+
+	return Response::json($empresa);
 });

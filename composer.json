@@ -1,2 +1,5 @@
 {
+    "require": {
+        "laracasts/utilities": "^3.0"
+    }
 }
