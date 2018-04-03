@@ -1,5 +1,6 @@
 {
     "require": {
-        "laracasts/utilities": "^3.0"
+        "laracasts/utilities": "^3.0",
+        "barryvdh/laravel-dompdf": "^0.8.2"
     }
 }
