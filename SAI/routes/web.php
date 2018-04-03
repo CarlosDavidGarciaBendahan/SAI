@@ -357,3 +357,7 @@ Route::get('/ajax-ObtenerDatosEmpresa2/{empresa_id}','EmpresaController@BuscarEm
 Route::get('/ajax-ObtenerDatosclientes_naturales/{cliente_natural_id}','Cliente_NaturalController@BuscarCliente');
 
 Route::get('/ajax-ObtenerDatosclientes_juridicos/{cliente_juridico_id}','Cliente_JuridicoController@BuscarCliente');
+
+Route::get('/ajax-ObtenerDatosProducto_Computador/{computador_id}','Producto_ComputadorController@BuscarComputador');
+
+Route::get('/ajax-ObtenerDatosProducto_Articulo/{Articulo_id}','Producto_ArticuloController@BuscarArticulo');

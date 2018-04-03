@@ -168,6 +168,9 @@ class EmpresaController extends Controller
         $empresa->parroquia;
         $empresa->parroquia->municipio;
         $empresa->parroquia->municipio->estado;
+        $empresa->Contacto_Telefonos;
+        $empresa->Contacto_Correos;
+
 
         return ($empresa);
     }

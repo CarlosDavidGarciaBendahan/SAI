@@ -163,4 +163,14 @@ class Producto_ComputadorController extends Controller
         flash("Eliminación del computador '' ".$producto_computador->pro_com_codigo." '' exitoso")->success();
         return redirect()->route('producto_computador.index');
     }
+
+    public function BuscarComputador($id){
+
+        $producto_computador = producto_computador::Find($id);
+        $producto_computador->tipo_producto;
+        
+
+
+        return ($producto_computador);
+    }
 }

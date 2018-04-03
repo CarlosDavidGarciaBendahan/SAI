@@ -15,7 +15,7 @@ class CreateTablePresupuesto extends Migration
     {
         Schema::create('presupuesto', function (Blueprint $table) {
             $table->increments('id');
-            $table->date('pre_fecha_solicitado')->nullable(false);
+            $table->date('pre_fecha_solicitud')->nullable(false);
             $table->date('pre_fecha_aprobado')->nullable(true);
             $table->float('pre_subtotal',10,2)->nullable(false);
             $table->integer('pre_eliminado')->default(0);

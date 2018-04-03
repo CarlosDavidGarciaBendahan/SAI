@@ -20,10 +20,10 @@ $(document).ready(function(){
 					"<input  class='form-control col-sm-11' type='text' name='cli_nat_cedula'  value='"+data.cli_nat_cedula+"'>"+
 
 					"<label  class='col-sm'>Dirección</label>"+
-					"<input  class='form-control' type='text' name='emp_direccion'  value='"+data.cli_nat_direccion+
+					"<input  class='form-control' type='text' name='cli_nat_direccion'  value='"+data.cli_nat_direccion+
 					", Par. "+data.parroquia.par_nombre+", Mun. "+data.parroquia.municipio.mun_nombre+
 					", Edo. "+data.parroquia.municipio.estado.est_nombre+"'>"+
-					"" 
+					"" ;
 				cliente_natural.append(html);
 		});
 	});

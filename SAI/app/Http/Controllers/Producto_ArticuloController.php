@@ -143,4 +143,14 @@ class Producto_ArticuloController extends Controller
         flash("Eliminación del articulo '' ".$producto_articulo->pro_art_codigo." '' exitoso")->success();
         return redirect()->route('producto_articulo.index');
     }
+
+    public function BuscarArticulo($id){
+
+        $producto_articulo = producto_articulo::Find($id);
+        $producto_articulo->tipo_producto;
+        
+
+
+        return ($producto_articulo);
+    }
 }
