@@ -371,6 +371,6 @@ Route::get('/ajax-ObtenerDatosProducto_Articulo/{Articulo_id}','Producto_Articul
 ///////////////////////////////////////////////////
 
 Route::get('PDF-ejemplo/{presupuesto_id}',function($presupuesto_id){
-	$pdf = PDF::loarView('vistaPDF');
+	$pdf = PDF::loadView('vistaPDF',['id'=> $presupuesto_id]);
 	return $pdf->download('presupuesto'.'#'.$presupuesto_id.'.pdf');
 });
