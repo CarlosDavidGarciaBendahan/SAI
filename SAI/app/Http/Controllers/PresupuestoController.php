@@ -22,7 +22,9 @@ class PresupuestoController extends Controller
      */
     public function index()
     {
-        return view('admin.oficina.presupuesto.index');
+        $presupuestos = Presupuesto::orderby('id','ASC')->paginate(5);
+
+        return view('admin.oficina.presupuesto.index')->with(compact('presupuestos'));
     }
 
     /**
