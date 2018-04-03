@@ -24,6 +24,7 @@
 				  <tbody>
 
 				  	@foreach ($presupuestos as $presupuesto)
+				  	@if ($presupuesto->pre_eliminado === 0) <!--NO ESTA ELIMINADO-->
 				  		<tr>
 					      <th scope="row">{{ $presupuesto->id }}</th>
 					      <td>{{ $presupuesto->pre_fecha_solicitud }}</td>
@@ -36,10 +37,11 @@
 					      @endif
 
 					      <td>
+					      	<!--
 					      	<a href="{{ route('presupuesto.edit', $presupuesto->id) }}" class="btn btn-warning">
 					      		<span class="class glyphicon glyphicon-wrench"></span>
 					      	</a>
-
+							-->	
 					      	<a href="{{ route('presupuesto.destroy', $presupuesto->id) }}" onclick="return confirm('Eliminar el presupuesto?')" class="btn btn-danger">
 					      		<span class="class glyphicon glyphicon-remove-circle"></span>
 					      	</a> 
@@ -49,6 +51,8 @@
 					      	</a>
 					      </td>
 				    	</tr>
+				  	@endif
+				  		
 				  	@endforeach
 
 				  </tbody>

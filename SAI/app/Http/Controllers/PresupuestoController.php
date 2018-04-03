@@ -156,7 +156,17 @@ class PresupuestoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $presupuesto = Presupuesto::find($id);
+
+        if($presupuesto->pre_eliminado === 0){
+            $presupuesto->pre_eliminado = -1;
+            //dd($presupuesto);
+        }
+
+        $presupuesto->save();
+
+        flash("Eliminación del presupuesto '' ".$presupuesto->id." '' exitoso")->success();
+        return redirect()->route('presupuesto.index');
     }
 
     
