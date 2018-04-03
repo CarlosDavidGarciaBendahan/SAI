@@ -165,6 +165,7 @@ return [
         //Creadas por mi
         Collective\Html\HtmlServiceProvider::class,
         Laracasts\Flash\FlashServiceProvider::class,
+        Barryvdh\DomPDF\ServiceProvider::class,
         //Laracasts\Utilities\JavaScript\JavaScriptServiceProvider::class,
         
 
@@ -221,6 +222,7 @@ return [
         //Creado por mi
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
+        'PDF' => Barryvdh\DomPDF\Facade::class,
     ],
 
 ];
