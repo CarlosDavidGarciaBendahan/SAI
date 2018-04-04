@@ -1,0 +1,20 @@
+#section-empresa{
+	border: 1px solid #333;
+	width: 50%;
+}
+#section-cliente{
+	border: 1px solid #333;
+	width: 50%;
+}
+#section-presupuesto{
+	border: 1px solid #333;
+	width: 100%;
+}
+#section-productos{
+	border: 1px solid #333;
+	width: 100%;
+}
+footer{
+	border: 1px solid #333;
+	width: 100%;
+}

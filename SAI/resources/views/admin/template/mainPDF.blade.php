@@ -7,6 +7,8 @@
 		<!-- Permite que se vea en todos los dispositivos	-->
     	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">	
 
+    	<link rel="stylesheet" type="text/css" href="plugins/css/stylePDF.css">
+
 		<title>@yield('title','default') | PDF</title>
 
 	</head>
