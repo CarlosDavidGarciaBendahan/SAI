@@ -95,7 +95,11 @@
             Solicitado :{{ date("d/m/Y", strtotime($presupuesto->pre_fecha_solicitud)) }}
         </div>
         <div class="div-texto">
-            Aprobado  :{{ date("d/m/Y", strtotime($presupuesto->pre_fecha_aprobado)) }}
+
+            Aprobado  :
+            @if ($presupuesto->pre_fecha_aprobado !== null)
+                {{ date("d/m/Y", strtotime($presupuesto->pre_fecha_aprobado)) }}
+            @endif
         </div>
     
     </div>

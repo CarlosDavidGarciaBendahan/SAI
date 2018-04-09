@@ -58,7 +58,7 @@ class PresupuestoController extends Controller
     {
         //dd($request->articulo_id);
         //dd($request->computador_id);
-        //dd($request->all());
+        // dd($request->all());
 
         $presupuesto = new Presupuesto($request->all());
 
@@ -75,8 +75,12 @@ class PresupuestoController extends Controller
         }
 
         //dd($presupuesto);
-
-        $presupuesto->save();
+        if($presupuesto->pre_fk_cliente_natural !== null or $presupuesto->pre_fk_cliente_juridico !== null)
+            $presupuesto->save();
+        else{
+            flash("Debe seleccionar un cliente")->error();
+            return back();
+        }
 
         //Registro de los detalles - COMPUTADOR
         $cantidadPC = sizeof($request->computador_id);
@@ -109,9 +113,14 @@ class PresupuestoController extends Controller
             $detalle->save();
         }
 
-
+        //show($presupuesto->id);
         flash("Registro del presupuesto '' ".$presupuesto->id." '' exitoso")->success();
         return redirect()->route('presupuesto.index');
+
+
+        //return redirect()->route('presupuesto.show',$presupuesto->id);
+
+        //return redirect()->action('PresupuestoController@show',[$presupuesto->id]);
     }
 
     /**
@@ -127,7 +136,7 @@ class PresupuestoController extends Controller
         //dd($presupuesto->cliente_natural);
         $pdf = \PDF::loadView('vistaPDF',['presupuesto'=> $presupuesto]);
         //return $pdf->download('presupuesto'.'#'.$presupuesto_id.'.pdf');
-        return $pdf->stream('presupuesto'.'#'.$presupuesto->id.'.pdf');
+        return $pdf->stream('presupuesto'.'#'.$presupuesto->id.'.pdf',array("Attachment" => 0));
     }
 
     /**
@@ -176,8 +185,28 @@ class PresupuestoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $presupuesto = Presupuesto::find($id);
+
+        if ($presupuesto->pre_eliminado === 0) {
+           
+
+            $presupuesto->pre_eliminado = -1;
+            $presupuesto->save();
+            flash("Se ha eliminado el presupuesto #".$presupuesto->id." '' exitosamente")->success();
+        }else
+            flash("NO se ha eliminado el presupuesto #".$presupuesto->id." ''")->error();
+
+        
+        return redirect()->route('presupuesto.index');
     }
 
+    public function download($id){
+        $presupuesto = Presupuesto::find($id);
+        //dd($presupuesto->cliente_juridico);
+        //dd($presupuesto->cliente_natural);
+        $pdf = \PDF::loadView('vistaPDF',['presupuesto'=> $presupuesto]);
+        //return $pdf->download('presupuesto'.'#'.$presupuesto_id.'.pdf');
+        return $pdf->download('presupuesto'.'#'.$presupuesto->id.'.pdf');
+    }
     
 }

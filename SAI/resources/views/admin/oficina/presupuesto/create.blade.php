@@ -39,7 +39,7 @@
 						
 						{!! Form::label('cliente','Cliente') !!}
 
-						<select class="form-control col-sm input-sm select-empresas" name="pre_fk_cliente_natural" id="clientes_naturales" required="true">
+						<select class="form-control col-sm input-sm select-empresas" name="pre_fk_cliente_natural" id="clientes_naturales" >
 								<option value="" > Seleccionar empresa</option>
 								@foreach ($clientes_naturales as $cliente_natural)
 									<option value="{{ $cliente_natural->id }}"> {{ $cliente_natural->cli_nat_nombre." ".$cliente_natural->cli_nat_nombre2." ".$cliente_natural->cli_nat_apellido." ".$cliente_natural->cli_nat_apellido2 }}</option>

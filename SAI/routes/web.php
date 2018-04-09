@@ -308,6 +308,10 @@ Route::prefix('admin/oficina/')->group( function(){
 		'uses'	=> 'PresupuestoController@destroy',
 		'as'	=> 'presupuesto.destroy'
 	]);
+	Route::get('presupuesto/{id}/download',[
+		'uses'	=> 'PresupuestoController@download',
+		'as'	=> 'presupuesto.download'
+	]);
 });
 
 Route::prefix('admin/')->group( function(){

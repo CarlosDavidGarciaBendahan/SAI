@@ -43,15 +43,24 @@
           <a class="dropdown-item" href="{{ route('oficina.index') }}">Oficina</a>
           <a class="dropdown-item" href="{{ route('sector.index') }}">Sector</a>
           <a class="dropdown-item" href="{{ route('personal.index') }}">Personal</a>
-          <a class="dropdown-item" href="{{ route('presupuesto.index') }}">Presupuesto</a>
-          <a class="dropdown-item" href="{{ route('cliente_natural.index') }}">Cliente natural</a>
-          <a class="dropdown-item" href="{{ route('cliente_juridico.index') }}">Cliente juridico</a>
           <a class="dropdown-item" href="{{ route('rol.index') }}">Roles</a>
           <a class="dropdown-item" href="{{ route('permiso.index') }}">Permisos</a>
           <a class="dropdown-item" href="{{ route('users.index') }}">Users</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="#">Something else here</a>
         </div>  
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Cliente
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="{{ route('presupuesto.index') }}">Presupuesto</a>
+          <a class="dropdown-item" href="{{ route('cliente_natural.index') }}">Cliente natural</a>
+          <a class="dropdown-item" href="{{ route('cliente_juridico.index') }}">Cliente juridico</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Something else here</a>
+        </div>
       </li>
       <li class="nav-item active">
         <a class="nav-link" href="{{ route('banco.index') }}"> Banco <span class="sr-only">(current)</span></a>

@@ -50,8 +50,12 @@
 					      		<span class="class glyphicon glyphicon-remove-circle"></span>
 					      	</a> 
 
-					      	<a href="{{ route('presupuesto.show', $presupuesto->id) }}" class="btn btn-info">
+					      	<a href="{{ route('presupuesto.show', $presupuesto->id) }}" class="btn btn-info" target="_blank">
 					      		<span class="glyphicon glyphicon-search"></span>
+					      	</a>
+
+					      	<a href="{{ route('presupuesto.download', $presupuesto->id) }}" class="btn btn-primary" title="Descargar">
+					      		<span class="glyphicon glyphicon-floppy-save"></span>
 					      	</a>
 					      </td>
 				    	</tr>
