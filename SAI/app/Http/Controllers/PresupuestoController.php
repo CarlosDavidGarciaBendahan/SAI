@@ -22,7 +22,7 @@ class PresupuestoController extends Controller
      */
     public function index()
     {
-        $presupuestos = Presupuesto::orderby('id','ASC')->paginate(5);
+        $presupuestos = Presupuesto::where('pre_eliminado','=','0')->orderby('id','ASC')->paginate(5);
 
         return view('admin.oficina.presupuesto.index')->with(compact('presupuestos'));
     }
@@ -138,7 +138,22 @@ class PresupuestoController extends Controller
      */
     public function edit($id)
     {
-        //
+        $presupuesto = Presupuesto::find($id);
+
+        if ($presupuesto->pre_fecha_aprobado === null) {
+            $fecha = Carbon::now();
+            $fecha = $fecha->format('d-m-Y');
+
+            $presupuesto->pre_fecha_aprobado = $fecha;
+
+            $presupuesto->save();
+
+            flash("Se ha aprobado el presupuesto #".$presupuesto->id." '' exitosamente")->success();
+        }else
+            flash("El presupuesto #".$presupuesto->id." ya ha sido aprobado anteriormente en la fecha ".date("d/m/Y", strtotime($presupuesto->pre_fecha_aprobado)))->error();
+
+        
+        return redirect()->route('presupuesto.index');
     }
 
     /**

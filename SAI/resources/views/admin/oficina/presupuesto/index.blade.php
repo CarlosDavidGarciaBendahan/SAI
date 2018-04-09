@@ -19,6 +19,7 @@
 				      <th>Fecha solicitud</th>
 				      <th>Total</th>
 				      <th>Cliente</th>
+				      <th>Fecha de aprobación</th>
 				    </tr>
 				  </thead>
 				  <tbody>
@@ -35,9 +36,14 @@
 					      	<td>{{ $presupuesto->cliente_juridico->cli_jur_identificador ."-". $presupuesto->cliente_juridico->cli_jur_rif ." ".$presupuesto->cliente_juridico->cli_jur_nombre }}</td>	
 					      @endif
 
+					      @if ($presupuesto->pre_fecha_aprobado !== null)
+					      	<td>{{ date("d/m/Y", strtotime($presupuesto->pre_fecha_aprobado)) }}</td>
+					      @else
+					      	<td></td>		    
+					      @endif
 					      <td>
-					      	<a href="{{ route('presupuesto.edit', $presupuesto->id) }}" class="btn btn-warning">
-					      		<span class="class glyphicon glyphicon-wrench"></span>
+					      	<a href="{{ route('presupuesto.edit', $presupuesto->id) }}" class="btn btn-success" onclick="return confirm('Desea aprobar el presupuesto #'+{{$presupuesto->id }}+'?')">
+					      		<span class="class glyphicon glyphicon-ok"></span>
 					      	</a>
 
 					      	<a href="{{ route('presupuesto.destroy', $presupuesto->id) }}" onclick="return confirm('Eliminar el presupuesto?')" class="btn btn-danger">

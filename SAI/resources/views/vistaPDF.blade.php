@@ -92,10 +92,10 @@
             presupuesto #{{ $presupuesto->id }}
         </div>
         <div class="div-texto">
-            Solicitado :{{ $presupuesto->pre_fecha_solicitud }}
+            Solicitado :{{ date("d/m/Y", strtotime($presupuesto->pre_fecha_solicitud)) }}
         </div>
         <div class="div-texto">
-            Aprobado  :{{ $presupuesto->pre_fecha_aprobado }}
+            Aprobado  :{{ date("d/m/Y", strtotime($presupuesto->pre_fecha_aprobado)) }}
         </div>
     
     </div>
