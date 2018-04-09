@@ -122,7 +122,12 @@ class PresupuestoController extends Controller
      */
     public function show($id)
     {
-        //
+        $presupuesto = Presupuesto::find($id);
+        //dd($presupuesto->cliente_juridico);
+        //dd($presupuesto->cliente_natural);
+        $pdf = \PDF::loadView('vistaPDF',['presupuesto'=> $presupuesto]);
+        //return $pdf->download('presupuesto'.'#'.$presupuesto_id.'.pdf');
+        return $pdf->stream('presupuesto'.'#'.$presupuesto->id.'.pdf');
     }
 
     /**

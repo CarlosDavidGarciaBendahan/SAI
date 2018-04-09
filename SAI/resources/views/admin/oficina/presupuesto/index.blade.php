@@ -26,7 +26,7 @@
 				  	@foreach ($presupuestos as $presupuesto)
 				  		<tr>
 					      <th scope="row">{{ $presupuesto->id }}</th>
-					      <td>{{ $presupuesto->pre_fecha_solicitud }}</td>
+					      <td>{{ date("d/m/Y", strtotime($presupuesto->pre_fecha_solicitud)) }}</td>
 					      <td>{{ $presupuesto->pre_subtotal }}</td>	
 
 					      @if ($presupuesto->pre_fk_cliente_natural !== null)

@@ -1,20 +1,71 @@
 #section-empresa{
 	border: 1px solid #333;
-	width: 50%;
-}
-#section-cliente{
-	border: 1px solid #333;
-	width: 50%;
+
+	position: fixed;
+	left: 0%;
+	/*right: 0%*/
+	top: 0%;
+	/*bottom: 0%;*/
+	height: 15%;
+	width: 59%;
 }
 #section-presupuesto{
 	border: 1px solid #333;
+	position: fixed;
+	left: 59%;
+	/*right: 0%;*/
+	top: 0%;
+	height: 15%;
+	width: 30%;
+}
+
+#section-cliente{
+	border: 1px solid #333;
+	position: fixed;
+	top: 14%;
+	height: 15%;
 	width: 100%;
 }
+
 #section-productos{
 	border: 1px solid #333;
+	position: relative;
+	top: 31%;
+	/*height: 15%;*/
 	width: 100%;
 }
+table {
+   width: 100%;
+}
+th, td {
+   /*width: 25%;*/
+   text-align: left;
+   /*border-bottom: 1px solid #999;*/
+}
+.th_descripcion{
+   width: 40%;
+}
+.th_codigo{
+   width: 15%;
+}
+.th_precio{
+   width: 15%;
+}
+.th_cantidad{
+   width: 15%;
+}
+.th_total{
+   width: 15%;
+}
+.div-texto{
+	margin: 1px 0px 1px;	
+}
+.div-marco{
+	margin: 0px 10px 0px;
+}
+/*
 footer{
 	border: 1px solid #333;
 	width: 100%;
 }
+*/

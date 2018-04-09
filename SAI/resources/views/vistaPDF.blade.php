@@ -4,237 +4,151 @@
 @section('title', 'Presupuesto')
 
 @section('empresa')
-    <div>
-       <p>
-            nombre de la empresa    <br>
-            rif de la empresa       <br>
-            dirección de la empresa <br>
-            correos de la empresa   <br>
-            telefonos de la empresa
-        </p> 
+    
+    
+    <div class="div-marco">       
+        <div class="div-texto">
+           {{ $presupuesto->empresa->emp_nombre }} 
+        </div>
+        <div class="div-texto">
+            {{ $presupuesto->empresa->emp_identificador ."-".$presupuesto->empresa->emp_rif }} 
+        </div>
+        <div class="div-texto">
+            {{ $presupuesto->empresa->emp_direccion.". Par. ".$presupuesto->empresa->parroquia->par_nombre.". Mun. ".$presupuesto->empresa->parroquia->municipio->mun_nombre.". Edo. ".$presupuesto->empresa->parroquia->municipio->estado->est_nombre }}
+        </div>
+        <div class="div-texto">
+            @foreach ($presupuesto->empresa->Contacto_Correos as $correo)
+                   {{ $correo->con_cor_correo ." / "}}
+            @endforeach 
+        </div>
+        <div class="div-texto">
+            @foreach ($presupuesto->empresa->Contacto_telefonos as $tlf)
+                   {{ $tlf->con_tel_codigo ."-".$tlf->con_tel_numero." / "}}
+            @endforeach
+        </div>
+       
     </div>
+
     
 @endsection
 
 @section('cliente')
-    <div>
-        <p>
-            nombre del cliente    <br>
-            identificador       <br>
-            dirección del cliente <br>
-            correos del cliente   <br>
-            telefonos del cliente
-        </p>
+
+    <div class="div-marco">
+        @if ($presupuesto->cliente_natural !== null)
+           <div class="div-texto">
+               {{ $presupuesto->cliente_natural->cli_nat_nombre ." ".$presupuesto->cliente_natural->cli_nat_nombre2 ." ".$presupuesto->cliente_natural->cli_nat_apellido ." ".$presupuesto->cliente_natural->cli_nat_apellido2 }}
+           </div>
+           <div class="div-texto">
+               {{ $presupuesto->cliente_natural->cli_nat_identificador."-".$presupuesto->cliente_natural->cli_nat_cedula }}
+           </div>
+           <div class="div-texto">
+               {{ $presupuesto->cliente_natural->cli_nat_direccion.". Par. ".$presupuesto->cliente_natural->parroquia->par_nombre.". Mun. ".$presupuesto->cliente_natural->parroquia->municipio->mun_nombre.". Edo. ".$presupuesto->cliente_natural->parroquia->municipio->estado->est_nombre }}
+           </div>
+           <div class="div-texto">
+               @foreach ($presupuesto->cliente_natural->Contacto_Correos as $correo)
+                   {{ $correo->con_cor_correo ." / "}}
+                @endforeach   
+           </div>
+           <div class="div-texto">
+               @foreach ($presupuesto->cliente_natural->Contacto_telefonos as $tlf)
+                   {{ $tlf->con_tel_codigo ."-".$tlf->con_tel_numero." / "}}
+                @endforeach 
+           </div>
+            
+        @else
+            @if ($presupuesto->cliente_juridico !== null)
+                <div class="div-texto">
+                   {{ $presupuesto->cliente_juridico->cli_jur_nombre }}
+               </div>
+               <div class="div-texto">
+                   {{ $presupuesto->cliente_juridico->cli_jur_identificador."-".$presupuesto->cliente_juridico->cli_jur_rif }}
+               </div>
+               <div class="div-texto">
+                   {{ $presupuesto->cliente_juridico->cli_jur_direccion.". Par. ".$presupuesto->cliente_juridico->parroquia->par_nombre.". Mun. ".$presupuesto->cliente_juridico->parroquia->municipio->mun_nombre.". Edo. ".$presupuesto->cliente_juridico->parroquia->municipio->estado->est_nombre }}
+               </div>
+               <div class="div-texto">
+                   @foreach ($presupuesto->cliente_juridico->Contacto_Correos as $correo)
+                       {{ $correo->con_cor_correo ." / "}}
+                    @endforeach   
+               </div>
+               <div class="div-texto">
+                   @foreach ($presupuesto->cliente_juridico->Contacto_telefonos as $tlf)
+                       {{ $tlf->con_tel_codigo ."-".$tlf->con_tel_numero." / "}}
+                    @endforeach 
+               </div>
+            @endif
+            
+        @endif
+        
     </div>
+
     
 @endsection
 
 @section('presupuesto')
+    <div class="div-marco">
+        <div class="div-texto">
+            presupuesto #{{ $presupuesto->id }}
+        </div>
+        <div class="div-texto">
+            Solicitado :{{ $presupuesto->pre_fecha_solicitud }}
+        </div>
+        <div class="div-texto">
+            Aprobado  :{{ $presupuesto->pre_fecha_aprobado }}
+        </div>
     
-    <div>
-        <p>
-            número de presupuesto:  1 <br>
-            fecha de solicitud:     04/04/2018 <br>
-            fecha de aprobado: 
-
-
-        </p>
     </div>
-
-    
-
 @endsection
 
 @section('productos')
+
     <table class="table table-inverse">
         <thead>
+            
             <tr>
-                <th>Descripción</th>
-                <th>Código</th>
-                <th>Precio unitario</th>
-                <th>Cantidad</th>
-                <th>Total</th>
+                <th class="th_descripcion">Descripción</th>
+                <th class="th_codigo">Código</th>
+                <th class="th_precio">Precio unitario</th>
+                <th class="th_cantidad">Cantidad</th>
+                <th class="th_total">Total</th>
             </tr>
+        
         </thead>
             <tbody>
-                <tr>
-                    <td>Computador de escritorio, tipo torre.</td>
-                    <td>B201030</td>
-                    <td>16.800.000,00</td>
-                    <td>5</td>
-                    <td>84.000.000,00</td>
-                </tr>
-                <tr>
-                    <td>Computador de escritorio, tipo torre 22. Esto es relleno para ver que pasa.</td>
-                    <td>B201111</td>
-                    <td>16.800.000,00</td>
-                    <td>5</td>
-                    <td>84.000.000,00</td>
-                </tr>
-                <tr>
-                    <td>Computador de escritorio, tipo torre 33.</td>
-                    <td>B203635</td>
-                    <td>16.800.000,00</td>
-                    <td>5</td>
-                    <td>84.000.000,00</td>
-                </tr>
-                <tr>
-                    <td>Computador de escritorio, tipo torre.</td>
-                    <td>B201030</td>
-                    <td>16.800.000,00</td>
-                    <td>5</td>
-                    <td>84.000.000,00</td>
-                </tr>
-                <tr>
-                    <td>Computador de escritorio, tipo torre 22. Esto es relleno para ver que pasa.</td>
-                    <td>B201111</td>
-                    <td>16.800.000,00</td>
-                    <td>5</td>
-                    <td>84.000.000,00</td>
-                </tr>
-                <tr>
-                    <td>Computador de escritorio, tipo torre 33.</td>
-                    <td>B203635</td>
-                    <td>16.800.000,00</td>
-                    <td>5</td>
-                    <td>84.000.000,00</td>
-                </tr>
-                <tr>
-                    <td>Computador de escritorio, tipo torre.</td>
-                    <td>B201030</td>
-                    <td>16.800.000,00</td>
-                    <td>5</td>
-                    <td>84.000.000,00</td>
-                </tr>
-                <tr>
-                    <td>Computador de escritorio, tipo torre 22. Esto es relleno para ver que pasa.</td>
-                    <td>B201111</td>
-                    <td>16.800.000,00</td>
-                    <td>5</td>
-                    <td>84.000.000,00</td>
-                </tr>
-                <tr>
-                    <td>Computador de escritorio, tipo torre 33.</td>
-                    <td>B203635</td>
-                    <td>16.800.000,00</td>
-                    <td>5</td>
-                    <td>84.000.000,00</td>
-                </tr>
-                <tr>
-                    <td>Computador de escritorio, tipo torre.</td>
-                    <td>B201030</td>
-                    <td>16.800.000,00</td>
-                    <td>5</td>
-                    <td>84.000.000,00</td>
-                </tr>
-                <tr>
-                    <td>Computador de escritorio, tipo torre 22. Esto es relleno para ver que pasa.</td>
-                    <td>B201111</td>
-                    <td>16.800.000,00</td>
-                    <td>5</td>
-                    <td>84.000.000,00</td>
-                </tr>
-                <tr>
-                    <td>Computador de escritorio, tipo torre 33.</td>
-                    <td>B203635</td>
-                    <td>16.800.000,00</td>
-                    <td>5</td>
-                    <td>84.000.000,00</td>
-                </tr>
-                <tr>
-                    <td>Computador de escritorio, tipo torre.</td>
-                    <td>B201030</td>
-                    <td>16.800.000,00</td>
-                    <td>5</td>
-                    <td>84.000.000,00</td>
-                </tr>
-                <tr>
-                    <td>Computador de escritorio, tipo torre 22. Esto es relleno para ver que pasa.</td>
-                    <td>B201111</td>
-                    <td>16.800.000,00</td>
-                    <td>5</td>
-                    <td>84.000.000,00</td>
-                </tr>
-                <tr>
-                    <td>Computador de escritorio, tipo torre 33.</td>
-                    <td>B203635</td>
-                    <td>16.800.000,00</td>
-                    <td>5</td>
-                    <td>84.000.000,00</td>
-                </tr>
-                <tr>
-                    <td>Computador de escritorio, tipo torre.</td>
-                    <td>B201030</td>
-                    <td>16.800.000,00</td>
-                    <td>5</td>
-                    <td>84.000.000,00</td>
-                </tr>
-                <tr>
-                    <td>Computador de escritorio, tipo torre 22. Esto es relleno para ver que pasa.</td>
-                    <td>B201111</td>
-                    <td>16.800.000,00</td>
-                    <td>5</td>
-                    <td>84.000.000,00</td>
-                </tr>
-                <tr>
-                    <td>Computador de escritorio, tipo torre 33.</td>
-                    <td>B203635</td>
-                    <td>16.800.000,00</td>
-                    <td>5</td>
-                    <td>84.000.000,00</td>
-                </tr>
-                <tr>
-                    <td>Computador de escritorio, tipo torre.</td>
-                    <td>B201030</td>
-                    <td>16.800.000,00</td>
-                    <td>5</td>
-                    <td>84.000.000,00</td>
-                </tr>
-                <tr>
-                    <td>Computador de escritorio, tipo torre 22. Esto es relleno para ver que pasa.</td>
-                    <td>B201111</td>
-                    <td>16.800.000,00</td>
-                    <td>5</td>
-                    <td>84.000.000,00</td>
-                </tr>
-                <tr>
-                    <td>Computador de escritorio, tipo torre 33.</td>
-                    <td>B203635</td>
-                    <td>16.800.000,00</td>
-                    <td>5</td>
-                    <td>84.000.000,00</td>
-                </tr>
-                <tr>
-                    <td>Computador de escritorio, tipo torre.</td>
-                    <td>B201030</td>
-                    <td>16.800.000,00</td>
-                    <td>5</td>
-                    <td>84.000.000,00</td>
-                </tr>
-                <tr>
-                    <td>Computador de escritorio, tipo torre 22. Esto es relleno para ver que pasa.</td>
-                    <td>B201111</td>
-                    <td>16.800.000,00</td>
-                    <td>5</td>
-                    <td>84.000.000,00</td>
-                </tr>
-                <tr>
-                    <td>Computador de escritorio, tipo torre 33.</td>
-                    <td>B203635</td>
-                    <td>16.800.000,00</td>
-                    <td>5</td>
-                    <td>84.000.000,00</td>
-                </tr>
+                @foreach ($presupuesto->detalles as $detalle)
+                    @if ($detalle->producto_computador !== null)
+                        <tr>
+                            <td class="th_descripcion">{{ $detalle->producto_computador->pro_com_descripcion }}</td>
+                            <td class="th_codigo">{{ $detalle->producto_computador->pro_com_codigo }}</td>
+                            <td class="th_precio">{{ $detalle->producto_computador->pro_com_precio }}</td>
+                            <td class="th_cantidad">{{ $detalle->det_cantidad}}</td>
+                            <td class="th_total">{{ $detalle->det_total}}</td>
+                        </tr>
+                    @else
+                        <tr>
+                            <td class="th_descripcion">{{ $detalle->producto_articulo->pro_art_descripcion }}</td>
+                            <td class="th_codigo">{{ $detalle->producto_articulo->pro_art_codigo }}</td>
+                            <td class="th_precio">{{ $detalle->producto_articulo->pro_art_precio }}</td>
+                            <td class="th_cantidad">{{ $detalle->det_cantidad}}</td>
+                            <td class="th_total">{{ $detalle->det_total}}</td>
+                        </tr>
+                    @endif
+                @endforeach
+                
             </tbody>
     </table>
     <div>
+        
         <p>
-            SubTotal: 252.000.000,00 Bs. <br>
-            Total:    252.000.000,00 Bs.
+            SubTotal: {{ $presupuesto->pre_subtotal }} Bs.<br>
+            Total:    {{ $presupuesto->pre_subtotal }} Bs.
         </p>
+    
     </div>
+    
 @endsection
 
 @section('footer')
-    <p>Indatech C.A. - Venta de productos de computación</p>
+     <!-- <p>Indatech C.A. - Venta de productos de computación</p> -->
 @endsection
