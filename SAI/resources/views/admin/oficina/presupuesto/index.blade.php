@@ -42,7 +42,7 @@
 					      	<td></td>		    
 					      @endif
 					      <td>
-					      	<a href="{{ route('presupuesto.edit', $presupuesto->id) }}" class="btn btn-success" onclick="return confirm('Desea aprobar el presupuesto #'+{{$presupuesto->id }}+'?')">
+					      	<a href="{{ route('presupuesto.edit', $presupuesto->id) }}" class="btn btn-success" onclick="return confirm('Desea aprobar el presupuesto #'+{{$presupuesto->id }}+'?') " title="Aprobar">
 					      		<span class="class glyphicon glyphicon-ok"></span>
 					      	</a>
 
