@@ -308,6 +308,10 @@ Route::prefix('admin/oficina/')->group( function(){
 		'uses'	=> 'PresupuestoController@destroy',
 		'as'	=> 'presupuesto.destroy'
 	]);
+	Route::get('presupuesto/{id}/download',[
+		'uses'	=> 'PresupuestoController@download',
+		'as'	=> 'presupuesto.download'
+	]);
 });
 
 Route::prefix('admin/')->group( function(){
@@ -321,8 +325,22 @@ Route::prefix('admin/')->group( function(){
 	]);
 });
 
+Route::prefix('admin/cliente/')->group( function(){
+	///////////////////////////////////////////////////
+	////// 		VENTA
+	///////////////////////////////////////////////////
+	Route::resource('venta','VentaController');
+	Route::get('venta/{id}/destroy',[
+		'uses'	=> 'ventaController@destroy',
+		'as'	=> 'venta.destroy'
+	]);
+});
+
 
 //Esta ruta es llamda por el SCRIPT para pedir informacion de las sub clase
+///////////////////////////////////////////////////
+////// 		Rutas para el uso de los scrips para busqueda de información de los objetos
+///////////////////////////////////////////////////
 Route::get('/ajax-ObtenerMunicipiosPorEstado/{estado_id}',function($estado_id){
 	
 	$municipios = DB::table('municipio')->select('*')->where('mun_fk_estado','=',$estado_id)->get();
@@ -361,3 +379,14 @@ Route::get('/ajax-ObtenerDatosclientes_juridicos/{cliente_juridico_id}','Cliente
 Route::get('/ajax-ObtenerDatosProducto_Computador/{computador_id}','Producto_ComputadorController@BuscarComputador');
 
 Route::get('/ajax-ObtenerDatosProducto_Articulo/{Articulo_id}','Producto_ArticuloController@BuscarArticulo');
+
+
+///////////////////////////////////////////////////
+////// 		Rutas para el manejo de los PDF
+///////////////////////////////////////////////////
+
+Route::get('PDF-ejemplo/{presupuesto_id}',function($presupuesto_id){
+	$pdf = PDF::loadView('vistaPDF',['id'=> $presupuesto_id]);
+	//return $pdf->download('presupuesto'.'#'.$presupuesto_id.'.pdf');
+	return $pdf->stream('presupuesto'.'#'.$presupuesto_id.'.pdf');
+});

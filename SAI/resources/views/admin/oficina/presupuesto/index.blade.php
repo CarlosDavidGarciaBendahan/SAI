@@ -19,6 +19,7 @@
 				      <th>Fecha solicitud</th>
 				      <th>Total</th>
 				      <th>Cliente</th>
+				      <th>Fecha de aprobación</th>
 				    </tr>
 				  </thead>
 				  <tbody>
@@ -27,7 +28,7 @@
 				  	@if ($presupuesto->pre_eliminado === 0) <!--NO ESTA ELIMINADO-->
 				  		<tr>
 					      <th scope="row">{{ $presupuesto->id }}</th>
-					      <td>{{ $presupuesto->pre_fecha_solicitud }}</td>
+					      <td>{{ date("d/m/Y", strtotime($presupuesto->pre_fecha_solicitud)) }}</td>
 					      <td>{{ $presupuesto->pre_subtotal }}</td>	
 
 					      @if ($presupuesto->pre_fk_cliente_natural !== null)
@@ -36,18 +37,28 @@
 					      	<td>{{ $presupuesto->cliente_juridico->cli_jur_identificador ."-". $presupuesto->cliente_juridico->cli_jur_rif ." ".$presupuesto->cliente_juridico->cli_jur_nombre }}</td>	
 					      @endif
 
+					      @if ($presupuesto->pre_fecha_aprobado !== null)
+					      	<td>{{ date("d/m/Y", strtotime($presupuesto->pre_fecha_aprobado)) }}</td>
+					      @else
+					      	<td></td>		    
+					      @endif
 					      <td>
-					      	<!--
-					      	<a href="{{ route('presupuesto.edit', $presupuesto->id) }}" class="btn btn-warning">
-					      		<span class="class glyphicon glyphicon-wrench"></span>
+
+					      	<a href="{{ route('presupuesto.edit', $presupuesto->id) }}" class="btn btn-success" onclick="return confirm('Desea aprobar el presupuesto #'+{{$presupuesto->id }}+'?') " title="Aprobar">
+					      		<span class="class glyphicon glyphicon-ok"></span>
+
 					      	</a>
-							-->	
+					      	
 					      	<a href="{{ route('presupuesto.destroy', $presupuesto->id) }}" onclick="return confirm('Eliminar el presupuesto?')" class="btn btn-danger">
 					      		<span class="class glyphicon glyphicon-remove-circle"></span>
 					      	</a> 
 
-					      	<a href="{{ route('presupuesto.show', $presupuesto->id) }}" class="btn btn-info">
+					      	<a href="{{ route('presupuesto.show', $presupuesto->id) }}" class="btn btn-info" target="_blank">
 					      		<span class="glyphicon glyphicon-search"></span>
+					      	</a>
+
+					      	<a href="{{ route('presupuesto.download', $presupuesto->id) }}" class="btn btn-primary" title="Descargar">
+					      		<span class="glyphicon glyphicon-floppy-save"></span>
 					      	</a>
 					      </td>
 				    	</tr>

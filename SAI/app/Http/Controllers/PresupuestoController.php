@@ -22,7 +22,7 @@ class PresupuestoController extends Controller
      */
     public function index()
     {
-        $presupuestos = Presupuesto::orderby('id','ASC')->paginate(5);
+        $presupuestos = Presupuesto::where('pre_eliminado','=','0')->orderby('id','ASC')->paginate(5);
 
         return view('admin.oficina.presupuesto.index')->with(compact('presupuestos'));
     }
@@ -58,7 +58,7 @@ class PresupuestoController extends Controller
     {
         //dd($request->articulo_id);
         //dd($request->computador_id);
-        //dd($request->all());
+        // dd($request->all());
 
         $presupuesto = new Presupuesto($request->all());
 
@@ -75,8 +75,12 @@ class PresupuestoController extends Controller
         }
 
         //dd($presupuesto);
-
-        $presupuesto->save();
+        if($presupuesto->pre_fk_cliente_natural !== null or $presupuesto->pre_fk_cliente_juridico !== null)
+            $presupuesto->save();
+        else{
+            flash("Debe seleccionar un cliente")->error();
+            return back();
+        }
 
         //Registro de los detalles - COMPUTADOR
         $cantidadPC = sizeof($request->computador_id);
@@ -109,9 +113,14 @@ class PresupuestoController extends Controller
             $detalle->save();
         }
 
-
+        //show($presupuesto->id);
         flash("Registro del presupuesto '' ".$presupuesto->id." '' exitoso")->success();
         return redirect()->route('presupuesto.index');
+
+
+        //return redirect()->route('presupuesto.show',$presupuesto->id);
+
+        //return redirect()->action('PresupuestoController@show',[$presupuesto->id]);
     }
 
     /**
@@ -122,7 +131,12 @@ class PresupuestoController extends Controller
      */
     public function show($id)
     {
-        //
+        $presupuesto = Presupuesto::find($id);
+        //dd($presupuesto->cliente_juridico);
+        //dd($presupuesto->cliente_natural);
+        $pdf = \PDF::loadView('vistaPDF',['presupuesto'=> $presupuesto]);
+        //return $pdf->download('presupuesto'.'#'.$presupuesto_id.'.pdf');
+        return $pdf->stream('presupuesto'.'#'.$presupuesto->id.'.pdf',array("Attachment" => 0));
     }
 
     /**
@@ -133,7 +147,22 @@ class PresupuestoController extends Controller
      */
     public function edit($id)
     {
-        //
+        $presupuesto = Presupuesto::find($id);
+
+        if ($presupuesto->pre_fecha_aprobado === null) {
+            $fecha = Carbon::now();
+            $fecha = $fecha->format('d-m-Y');
+
+            $presupuesto->pre_fecha_aprobado = $fecha;
+
+            $presupuesto->save();
+
+            flash("Se ha aprobado el presupuesto #".$presupuesto->id." '' exitosamente")->success();
+        }else
+            flash("El presupuesto #".$presupuesto->id." ya ha sido aprobado anteriormente en la fecha ".date("d/m/Y", strtotime($presupuesto->pre_fecha_aprobado)))->error();
+
+        
+        return redirect()->route('presupuesto.index');
     }
 
     /**
@@ -158,16 +187,26 @@ class PresupuestoController extends Controller
     {
         $presupuesto = Presupuesto::find($id);
 
-        if($presupuesto->pre_eliminado === 0){
+
+        if ($presupuesto->pre_eliminado === 0) {
+
             $presupuesto->pre_eliminado = -1;
-            //dd($presupuesto);
-        }
+            $presupuesto->save();
+            flash("Se ha eliminado el presupuesto #".$presupuesto->id." '' exitosamente")->success();
+            
+        }else
+            flash("NO se ha eliminado el presupuesto #".$presupuesto->id." ''")->error();
 
-        $presupuesto->save();
-
-        flash("Eliminación del presupuesto '' ".$presupuesto->id." '' exitoso")->success();
         return redirect()->route('presupuesto.index');
     }
 
+    public function download($id){
+        $presupuesto = Presupuesto::find($id);
+        //dd($presupuesto->cliente_juridico);
+        //dd($presupuesto->cliente_natural);
+        $pdf = \PDF::loadView('vistaPDF',['presupuesto'=> $presupuesto]);
+        //return $pdf->download('presupuesto'.'#'.$presupuesto_id.'.pdf');
+        return $pdf->download('presupuesto'.'#'.$presupuesto->id.'.pdf');
+    }
     
 }
