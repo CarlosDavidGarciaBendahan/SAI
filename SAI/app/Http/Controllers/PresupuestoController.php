@@ -118,6 +118,7 @@ class PresupuestoController extends Controller
         //show($presupuesto->id);
 
         
+        $this->downloadServer($presupuesto->id);
 
         flash("Registro del presupuesto '' ".$presupuesto->id." '' exitoso")->success();
         return redirect()->route('presupuesto.index');
@@ -170,7 +171,17 @@ class PresupuestoController extends Controller
         }else
             flash("El presupuesto #".$presupuesto->id." ya ha sido aprobado anteriormente en la fecha ".date("d/m/Y", strtotime($presupuesto->pre_fecha_aprobado)))->error();
 
-        \Mail::to("carlosdavidgarciab@gmail.com")->send(new EnvioDePresupuesto("mensaje enviado al momento de aprobar el presupuesto."));
+        if ($presupuesto->cliente_natural !== null) {
+            foreach ($presupuesto->cliente_natural->contacto_correos as $correo) {
+                \Mail::to($correo->con_cor_correo)->send(new EnvioDePresupuesto("mensaje enviado al momento de aprobar el presupuesto."));
+            }
+        } else {
+            foreach ($presupuesto->cliente_juridico->contacto_correos as $correo) {
+                \Mail::to($correo->con_cor_correo)->send(new EnvioDePresupuesto("mensaje enviado al momento de aprobar el presupuesto."));
+            }
+        }
+        
+        //\Mail::to($presupuesto->)->send(new EnvioDePresupuesto("mensaje enviado al momento de aprobar el presupuesto."));
         return redirect()->route('presupuesto.index');
     }
 
@@ -209,13 +220,26 @@ class PresupuestoController extends Controller
         return redirect()->route('presupuesto.index');
     }
 
-    public function download($id){
+    public function download($id){//descarga para el usuario!!!
+
+        //$name = 'Presupuesto#' . $presupuesto->id  . '.pdf';
+        //$path = public_path() . '/presupuesto/';
+        //$file->move($path,$name);
+
         $presupuesto = Presupuesto::find($id);
         //dd($presupuesto->cliente_juridico);
         //dd($presupuesto->cliente_natural);
         $pdf = \PDF::loadView('vistaPDF',['presupuesto'=> $presupuesto]);
         //return $pdf->download('presupuesto'.'#'.$presupuesto_id.'.pdf');
         return $pdf->download('presupuesto'.'#'.$presupuesto->id.'.pdf');
+    }
+
+
+    public function downloadServer($id){
+        $presupuesto2 = Presupuesto::find($id);     
+        $name = 'Presupuesto#' . $presupuesto2->id  . '.pdf';
+        $path = public_path() . '/presupuesto/';   
+        $pdf = \PDF::loadView('vistaPDF',['presupuesto'=> $presupuesto2])->save( $path . $name );
     }
     
 }

@@ -12,6 +12,7 @@ class EnvioDePresupuesto extends Mailable
     use Queueable, SerializesModels;
 
     public $mensaje;
+    public $subject;
     /**
      * Create a new message instance.
      *
@@ -20,6 +21,7 @@ class EnvioDePresupuesto extends Mailable
     public function __construct($mensaje)
     {
         $this->mensaje = $mensaje;
+        $this->subject = "Envio del presupuesto solicitado.";
     }
 
     /**
@@ -29,7 +31,8 @@ class EnvioDePresupuesto extends Mailable
      */
     public function build()
     {
-        return $this->view('correo.ejemplo1');
+        return $this->view('correo.ejemplo1')
+                    ->subject($this->subject);
 
     }
 }
