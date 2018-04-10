@@ -12,6 +12,7 @@ use App\Detalle;
 use App\Producto_Computador;
 use App\Producto_Articulo;
 use Carbon\Carbon;
+use App\Mail\EnvioDePresupuesto;
 
 class PresupuestoController extends Controller
 {
@@ -113,7 +114,11 @@ class PresupuestoController extends Controller
             $detalle->save();
         }
 
+
         //show($presupuesto->id);
+
+        
+
         flash("Registro del presupuesto '' ".$presupuesto->id." '' exitoso")->success();
         return redirect()->route('presupuesto.index');
 
@@ -158,10 +163,12 @@ class PresupuestoController extends Controller
             $presupuesto->save();
 
             flash("Se ha aprobado el presupuesto #".$presupuesto->id." '' exitosamente")->success();
+            //EJEMPLO PARA ENVIO DE CORREO ELECTRONICO
+            
         }else
             flash("El presupuesto #".$presupuesto->id." ya ha sido aprobado anteriormente en la fecha ".date("d/m/Y", strtotime($presupuesto->pre_fecha_aprobado)))->error();
 
-        
+        \Mail::to("carlosdavidgarciab@gmail.com")->send(new EnvioDePresupuesto("mensaje enviado al momento de aprobar el presupuesto."));
         return redirect()->route('presupuesto.index');
     }
 
