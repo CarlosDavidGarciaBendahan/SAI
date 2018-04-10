@@ -30,5 +30,6 @@ class EnvioDePresupuesto extends Mailable
     public function build()
     {
         return $this->view('correo.ejemplo1');
+
     }
 }

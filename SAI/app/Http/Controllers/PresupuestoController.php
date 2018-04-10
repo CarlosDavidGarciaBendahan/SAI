@@ -141,6 +141,8 @@ class PresupuestoController extends Controller
         //dd($presupuesto->cliente_natural);
         $pdf = \PDF::loadView('vistaPDF',['presupuesto'=> $presupuesto]);
         //return $pdf->download('presupuesto'.'#'.$presupuesto_id.'.pdf');
+
+
         return $pdf->stream('presupuesto'.'#'.$presupuesto->id.'.pdf',array("Attachment" => 0));
     }
 
