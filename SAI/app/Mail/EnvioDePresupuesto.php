@@ -13,15 +13,19 @@ class EnvioDePresupuesto extends Mailable
 
     public $mensaje;
     public $subject;
+    public $path;  
+    public $name;
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($mensaje)
+    public function __construct($mensaje,$id,$subject)
     {
         $this->mensaje = $mensaje;
-        $this->subject = "Envio del presupuesto solicitado.";
+        $this->subject = $subject;
+        $this->name = 'Presupuesto#' . $id  . '.pdf';
+        $this->path = public_path() . '/presupuesto/'; 
     }
 
     /**
@@ -32,7 +36,8 @@ class EnvioDePresupuesto extends Mailable
     public function build()
     {
         return $this->view('correo.ejemplo1')
-                    ->subject($this->subject);
+                    ->subject($this->subject)
+                    ->attach($this->path . $this->name);
 
     }
 }

@@ -312,6 +312,14 @@ Route::prefix('admin/oficina/')->group( function(){
 		'uses'	=> 'PresupuestoController@download',
 		'as'	=> 'presupuesto.download'
 	]);
+	Route::get('presupuesto/{id}/enviarPresupuesto',[
+		'uses'	=> 'PresupuestoController@enviarPresupuesto',
+		'as'	=> 'presupuesto.enviarPresupuesto'
+	]);
+	Route::get('presupuesto/{id}/CancelarPresupuesto',[
+		'uses'	=> 'PresupuestoController@CancelarPresupuesto',
+		'as'	=> 'presupuesto.CancelarPresupuesto'
+	]);
 });
 
 Route::prefix('admin/')->group( function(){

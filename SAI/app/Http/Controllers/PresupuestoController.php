@@ -23,7 +23,7 @@ class PresupuestoController extends Controller
      */
     public function index()
     {
-        $presupuestos = Presupuesto::where('pre_eliminado','=','0')->orderby('id','ASC')->paginate(5);
+        $presupuestos = Presupuesto::where('pre_eliminado','=','0')->orderby('id','ASC')->paginate(10);
 
         return view('admin.oficina.presupuesto.index')->with(compact('presupuestos'));
     }
@@ -119,14 +119,12 @@ class PresupuestoController extends Controller
 
         
         $this->downloadServer($presupuesto->id);
+        return redirect()->action('PresupuestoController@enviarPresupuesto', [$presupuesto->id]);
+        //$this->enviarPresupuesto($presupuesto->id);
+        //flash("Registro del presupuesto '' ".$presupuesto->id." '' exitoso")->success();
+        //return redirect()->route('presupuesto.index');
 
-        flash("Registro del presupuesto '' ".$presupuesto->id." '' exitoso")->success();
-        return redirect()->route('presupuesto.index');
 
-
-        //return redirect()->route('presupuesto.show',$presupuesto->id);
-
-        //return redirect()->action('PresupuestoController@show',[$presupuesto->id]);
     }
 
     /**
@@ -164,22 +162,24 @@ class PresupuestoController extends Controller
             $presupuesto->pre_fecha_aprobado = $fecha;
 
             $presupuesto->save();
-
+            $this->downloadServer($presupuesto->id);
+            $this->enviarPresupuestoCliente($presupuesto,"El presupuesto #".$presupuesto->id."  ha sido aprobado en la fecha ".date("d/m/Y", strtotime($presupuesto->pre_fecha_aprobado)));
+            /*if ($presupuesto->cliente_natural !== null) {
+            foreach ($presupuesto->cliente_natural->contacto_correos as $correo) {
+                \Mail::to($correo->con_cor_correo)->send(new EnvioDePresupuesto("El presupuesto #".$presupuesto->id."  ha sido aprobado en la fecha ".date("d/m/Y", strtotime($presupuesto->pre_fecha_aprobado)),$presupuesto->id,"Aprobación del presupuesto#".$presupuesto->id));
+            }
+            } else {
+                foreach ($presupuesto->cliente_juridico->contacto_correos as $correo) {
+                    \Mail::to($correo->con_cor_correo)->send(new EnvioDePresupuesto("El presupuesto #".$presupuesto->id." ya ha sido aprobado anteriormente en la fecha ".date("d/m/Y", strtotime($presupuesto->pre_fecha_aprobado)),$presupuesto->id,"Aprobación del presupuesto#".$presupuesto->id));
+                }
+            }*/
             flash("Se ha aprobado el presupuesto #".$presupuesto->id." '' exitosamente")->success();
             //EJEMPLO PARA ENVIO DE CORREO ELECTRONICO
             
         }else
             flash("El presupuesto #".$presupuesto->id." ya ha sido aprobado anteriormente en la fecha ".date("d/m/Y", strtotime($presupuesto->pre_fecha_aprobado)))->error();
 
-        if ($presupuesto->cliente_natural !== null) {
-            foreach ($presupuesto->cliente_natural->contacto_correos as $correo) {
-                \Mail::to($correo->con_cor_correo)->send(new EnvioDePresupuesto("mensaje enviado al momento de aprobar el presupuesto."));
-            }
-        } else {
-            foreach ($presupuesto->cliente_juridico->contacto_correos as $correo) {
-                \Mail::to($correo->con_cor_correo)->send(new EnvioDePresupuesto("mensaje enviado al momento de aprobar el presupuesto."));
-            }
-        }
+        
         
         //\Mail::to($presupuesto->)->send(new EnvioDePresupuesto("mensaje enviado al momento de aprobar el presupuesto."));
         return redirect()->route('presupuesto.index');
@@ -240,6 +240,64 @@ class PresupuestoController extends Controller
         $name = 'Presupuesto#' . $presupuesto2->id  . '.pdf';
         $path = public_path() . '/presupuesto/';   
         $pdf = \PDF::loadView('vistaPDF',['presupuesto'=> $presupuesto2])->save( $path . $name );
+    }
+
+    public function enviarPresupuesto($id){
+
+        $presupuesto = Presupuesto::find($id);
+        $this->enviarPresupuestoCliente($presupuesto,"Adjunto se encuentra el presupuesto#".$presupuesto->id." .Cualquier duda comunicarse con nosotros.");
+        /*if ($presupuesto->cliente_natural !== null) {
+            foreach ($presupuesto->cliente_natural->contacto_correos as $correo) {
+                \Mail::to($correo->con_cor_correo)->send(new EnvioDePresupuesto("El presupuesto #".$presupuesto->id." ya ha sido aprobado anteriormente en la fecha ".date("d/m/Y", strtotime($presupuesto->pre_fecha_aprobado)),$presupuesto->id," presupuesto#".$presupuesto->id));
+            }
+            flash("Se ha realizado el envio del presupuesto#". $presupuesto->id." al cliente " . $presupuesto->cliente_natural->cli_nat_nombre ." ".$presupuesto->cliente_natural->cli_nat_nombre2." ".$presupuesto->cliente_natural->cli_nat_apellido." ".$presupuesto->cliente_natural->cli_nat_apellido2)->success();
+        } else {
+            foreach ($presupuesto->cliente_juridico->contacto_correos as $correo) {
+                \Mail::to($correo->con_cor_correo)->send(new EnvioDePresupuesto("El presupuesto #".$presupuesto->id." ya ha sido aprobado anteriormente en la fecha ".date("d/m/Y", strtotime($presupuesto->pre_fecha_aprobado)),$presupuesto->id," presupuesto#".$presupuesto->id));
+            }
+            flash("Se ha realizado el envio del presupuesto#". $presupuesto->id." al cliente ". $presupuesto->cliente_juridico->cli_jur_nombre)->success();
+        }*/
+
+        return redirect()->route('presupuesto.index');
+    }
+
+    public function enviarPresupuestoCliente($presupuesto,$mensaje){
+        if ($presupuesto->cliente_natural !== null) {
+            foreach ($presupuesto->cliente_natural->contacto_correos as $correo) {
+                \Mail::to($correo->con_cor_correo)->send(new EnvioDePresupuesto($mensaje,$presupuesto->id," presupuesto#".$presupuesto->id));
+            }
+            flash("Se ha realizado el envio del presupuesto#". $presupuesto->id." al cliente " . $presupuesto->cliente_natural->cli_nat_nombre ." ".$presupuesto->cliente_natural->cli_nat_nombre2." ".$presupuesto->cliente_natural->cli_nat_apellido." ".$presupuesto->cliente_natural->cli_nat_apellido2)->success();
+        } else {
+            foreach ($presupuesto->cliente_juridico->contacto_correos as $correo) {
+                \Mail::to($correo->con_cor_correo)->send(new EnvioDePresupuesto($mensaje,$presupuesto->id," presupuesto#".$presupuesto->id));
+            }
+            flash("Se ha realizado el envio del presupuesto#". $presupuesto->id." al cliente ". $presupuesto->cliente_juridico->cli_jur_nombre)->success();
+        }
+    }
+
+    public function CancelarPresupuesto($id)
+    {
+        $presupuesto = Presupuesto::find($id);
+
+        if ($presupuesto->pre_fecha_aprobado !== null) {
+
+            $presupuesto->pre_fecha_aprobado = null;
+            $presupuesto->save();
+
+            $this->downloadServer($presupuesto->id);
+
+            $this->enviarPresupuestoCliente($presupuesto,"El presupuesto #".$presupuesto->id." fue cancelado");
+            
+            flash("Se ha cancelado el presupuesto #".$presupuesto->id." '' exitosamente")->success();
+            //EJEMPLO PARA ENVIO DE CORREO ELECTRONICO
+            
+        }else
+            flash("El presupuesto #".$presupuesto->id." no ha sido aprobado anteriormente ")->error();
+
+        
+        
+        //\Mail::to($presupuesto->)->send(new EnvioDePresupuesto("mensaje enviado al momento de aprobar el presupuesto."));
+        return redirect()->route('presupuesto.index');
     }
     
 }

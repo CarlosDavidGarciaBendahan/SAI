@@ -44,11 +44,20 @@
 					      @endif
 					      <td>
 
-					      	<a href="{{ route('presupuesto.edit', $presupuesto->id) }}" class="btn btn-success" onclick="return confirm('Desea aprobar el presupuesto #'+{{$presupuesto->id }}+'?') " title="Aprobar">
+					      	@if ($presupuesto->pre_fecha_aprobado === null)
+					      		<a href="{{ route('presupuesto.edit', $presupuesto->id) }}" class="btn btn-success" onclick="return confirm('Desea aprobar el presupuesto #'+{{$presupuesto->id }}+'?') " title="Aprobar">
 					      		<span class="class glyphicon glyphicon-ok"></span>
 
 					      	</a>
+					      	@else
+					      		<a href="{{ route('presupuesto.CancelarPresupuesto', $presupuesto->id) }}" class="btn " onclick="return confirm('Desea cancelar el presupuesto #'+{{$presupuesto->id }}+'?') " title="Cancelar">
+					      		<span class="class glyphicon glyphicon-ok"></span>
+
+					      		</a>
+					      	@endif
 					      	
+					      	
+
 					      	<a href="{{ route('presupuesto.destroy', $presupuesto->id) }}" onclick="return confirm('Eliminar el presupuesto?')" class="btn btn-danger">
 					      		<span class="class glyphicon glyphicon-remove-circle"></span>
 					      	</a> 
@@ -59,6 +68,10 @@
 
 					      	<a href="{{ route('presupuesto.download', $presupuesto->id) }}" class="btn btn-primary" title="Descargar">
 					      		<span class="glyphicon glyphicon-floppy-save"></span>
+					      	</a>
+
+					      	<a href="{{ route('presupuesto.enviarPresupuesto', $presupuesto->id) }}" class="btn btn-warning" title="Enviar presupuesto al cliente">
+					      		<span class="glyphicon glyphicon-send"></span>
 					      	</a>
 					      </td>
 				    	</tr>
