@@ -325,6 +325,17 @@ Route::prefix('admin/')->group( function(){
 	]);
 });
 
+Route::prefix('admin/cliente/')->group( function(){
+	///////////////////////////////////////////////////
+	////// 		VENTA
+	///////////////////////////////////////////////////
+	Route::resource('venta','VentaController');
+	Route::get('venta/{id}/destroy',[
+		'uses'	=> 'ventaController@destroy',
+		'as'	=> 'venta.destroy'
+	]);
+});
+
 
 //Esta ruta es llamda por el SCRIPT para pedir informacion de las sub clase
 ///////////////////////////////////////////////////
