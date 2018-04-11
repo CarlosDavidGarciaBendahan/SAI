@@ -21,6 +21,10 @@ class PresupuestoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+
+    //public $stock;
+
     public function index()
     {
         $presupuestos = Presupuesto::where('pre_eliminado','=','0')->orderby('id','ASC')->paginate(10);
@@ -60,7 +64,7 @@ class PresupuestoController extends Controller
         //dd($request->articulo_id);
         //dd($request->computador_id);
         // dd($request->all());
-
+        $validar_stock = null; //donde guardo el mensaje que se envía si no hay suficiente stock
         $presupuesto = new Presupuesto($request->all());
 
 
@@ -97,6 +101,8 @@ class PresupuestoController extends Controller
             $detalle->det_fk_producto_articulo = null;
 
             $detalle->save();
+
+            //$validar_stock = $validar_stock . $this->ValidarStockDelProducto($request->computador_id[$i],"PC",$request->cantidad_computador[$i]);
         }
         //Registro de los detalles - ARTICULO
         $cantidadArticulo = sizeof($request->articulo_id);
@@ -105,13 +111,15 @@ class PresupuestoController extends Controller
 
             $detalle = new Detalle();
 
-            $detalle->det_cantidad = $request->cantidad_articulo[$i];
-            $detalle->det_total = $request->total_articulo[$i];
-            $detalle->Presupuesto()->associate($presupuesto); 
-            $detalle->Producto_Articulo()->associate($request->articulo_id[$i]); 
-            $detalle->det_fk_producto_computador = null;
+            $detalle->det_cantidad = $request->cantidad_articulo[$i];   //cantidad solicitado del articulo
+            $detalle->det_total = $request->total_articulo[$i];         //costo total cantidad*precio
+            $detalle->Presupuesto()->associate($presupuesto);           //vinculo la fk presupuesto
+            $detalle->Producto_Articulo()->associate($request->articulo_id[$i]); //vinculo la fk del articulo
+            $detalle->det_fk_producto_computador = null;                //detalle de articulo -> fk_PC = null
 
             $detalle->save();
+
+            //$validar_stock = $validar_stock . $this->ValidarStockDelProducto($request->computador_id[$i],"PC",$request->cantidad_computador[$i]);
         }
 
 
@@ -119,6 +127,13 @@ class PresupuestoController extends Controller
 
         
         $this->downloadServer($presupuesto->id);
+
+        /*if ($validar_stock !== null) {
+            $this->stock = $validar_stock;
+            //flash($validar_stock)->success();
+        } */
+        
+
         return redirect()->action('PresupuestoController@enviarPresupuesto', [$presupuesto->id]);
         //$this->enviarPresupuesto($presupuesto->id);
         //flash("Registro del presupuesto '' ".$presupuesto->id." '' exitoso")->success();
@@ -153,6 +168,7 @@ class PresupuestoController extends Controller
      */
     public function edit($id)
     {
+        //$this->stock = null;
         $presupuesto = Presupuesto::find($id);
 
         if ($presupuesto->pre_fecha_aprobado === null) {
@@ -258,6 +274,9 @@ class PresupuestoController extends Controller
             flash("Se ha realizado el envio del presupuesto#". $presupuesto->id." al cliente ". $presupuesto->cliente_juridico->cli_jur_nombre)->success();
         }*/
 
+        /*if($this->stock !== null){
+            flash($this->stock)->error();
+        }*/
         return redirect()->route('presupuesto.index');
     }
 
@@ -299,5 +318,28 @@ class PresupuestoController extends Controller
         //\Mail::to($presupuesto->)->send(new EnvioDePresupuesto("mensaje enviado al momento de aprobar el presupuesto."));
         return redirect()->route('presupuesto.index');
     }
+
+    /*public function ValidarStockDelProducto($producto_id,$tipo,$cantidad_solicitada){
+        if ($tipo === "PC") {
+            $producto = Producto_Computador::find($producto_id); //Busco producto solicitado
+
+            if ($producto->pro_com_cantidad < $cantidad_solicitada) {//verifico si la cantidad solicitada es mayor que la existente.
+                $cantidad_faltante = $cantidad_solicitada - $producto->pro_com_cantidad;
+                return "La cantidad del producto ". $producto->pro_com_codigo ."(".$producto->pro_com_cantidad.")". " no es suficiente para cumplir con este presupuesto. Falta la cantidad de ".$cantidad_faltante." para completarlo \n" ;
+                
+            }
+
+        } else { 
+            $producto = Producto_Articulo::find($producto_id); //Busco producto solicitado
+
+            if ($producto->pro_art_cantidad < $cantidad_solicitada) {//verifico si la cantidad solicitada es mayor que la existente.
+                $cantidad_faltante = $cantidad_solicitada - $producto->pro_art_cantidad;
+                return "La cantidad del producto ". $producto->pro_art_codigo ."(".$producto->pro_art_cantidad.")". " no es suficiente para cumplir con este presupuesto. Falta la cantidad de ".$cantidad_faltante." para completarlo \n" ;
+                
+            } 
+        }
+        
+    }*/
     
 }
+
