@@ -12,6 +12,7 @@ use App\Sector;
 use App\Marca;
 use App\Modelo;
 use App\Imagen;
+use App\CodigoPC;
 
 
 class Producto_ComputadorController extends Controller
@@ -53,6 +54,7 @@ class Producto_ComputadorController extends Controller
     {
         
         //dd($request->file('imagen'));
+        //dd($request->codigosPC);
         
 
         $producto_computador = new Producto_Computador($request->all());
@@ -94,7 +96,9 @@ class Producto_ComputadorController extends Controller
         $producto_computador = Producto_Computador::find($id);
         $producto_articulos = Producto_Articulo::orderby('pro_art_codigo')->pluck('pro_art_codigo','id');
 
-        return view('admin.producto.producto_computador.show')->with(compact('oficinas','marcas','tipo_productos','producto_computador','sectores','modelos','producto_articulos'));
+        $codigosPC = CodigoPC::where('cod_pc_fk_producto_computador','=',$id)->orderby('cod_pc_codigo','ASC')->paginate(5);
+
+        return view('admin.producto.producto_computador.show')->with(compact('oficinas','marcas','tipo_productos','producto_computador','sectores','modelos','producto_articulos','codigosPC'));
     }
 
     /**
@@ -113,8 +117,9 @@ class Producto_ComputadorController extends Controller
         $producto_computador = Producto_Computador::find($id);
 
         $producto_articulos = Producto_Articulo::orderby('pro_art_codigo')->pluck('pro_art_codigo','id');
+        $codigosPC = CodigoPC::where('cod_pc_fk_producto_computador','=',$id)->orderby('cod_pc_codigo','ASC')->paginate(5);
 
-        return view('admin.producto.producto_computador.edit')->with(compact('oficinas','marcas','tipo_productos','producto_computador','sectores','modelos','producto_articulos'));
+        return view('admin.producto.producto_computador.edit')->with(compact('oficinas','marcas','tipo_productos','producto_computador','sectores','modelos','producto_articulos','codigosPC'));
     }
 
     /**

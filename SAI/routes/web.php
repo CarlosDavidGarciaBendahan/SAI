@@ -111,6 +111,18 @@ Route::prefix('admin/producto/')->group( function(){
 		'uses'	=> 'Producto_ComputadorController@destroy',
 		'as'	=> 'producto_computador.destroy'
 	]);
+		///////////////////////////////////////////////////
+		//////		CODIGOPC	
+		///////////////////////////////////////////////////
+		Route::resource('codigoPC','codigoPCController');
+		Route::get('codigoPC/{id}/destroy',[
+			'uses'	=> 'codigoPCController@destroy',
+			'as'	=> 'codigoPC.destroy'
+		]);
+		Route::get('codigoPC/{id}/create',[
+			'uses'	=> 'codigoPCController@create',
+			'as'	=> 'codigoPC.create'
+		]);
 	///////////////////////////////////////////////////
 	//////		PRODUCTO ARTICULO 	
 	///////////////////////////////////////////////////
@@ -119,6 +131,18 @@ Route::prefix('admin/producto/')->group( function(){
 		'uses'	=> 'Producto_ArticuloController@destroy',
 		'as'	=> 'producto_articulo.destroy'
 	]);
+		///////////////////////////////////////////////////
+		//////		CODIGO ARTOCILO	
+		///////////////////////////////////////////////////
+		Route::resource('codigoArticulo','codigoArticuloController');
+		Route::get('codigoArticulo/{id}/destroy',[
+			'uses'	=> 'codigoArticuloController@destroy',
+			'as'	=> 'codigoArticulo.destroy'
+		]);
+		Route::get('codigoArticulo/{id}/create',[
+			'uses'	=> 'codigoArticuloController@create',
+			'as'	=> 'codigoArticulo.create'
+		]);
 
 
 });

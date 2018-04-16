@@ -149,6 +149,54 @@
 							</select>
 						</div>
 
+						<table class="table table-inverse">
+						<thead>
+						    <tr>
+						      <th>Código</th>
+						      <th>Estado</th>
+						    </tr>
+						</thead>
+						<tbody>
+
+					  	@foreach ($codigosArticulo as $codigoArticulo)
+					  		<tr>
+						      <th scope="row">{{ $codigoArticulo->cod_art_codigo }}</th>
+						      <td>
+						      	@if ($codigoArticulo->cod_art_estado === 'B')
+						      		Bueno
+						      	@else
+						      		Malo
+						      	@endif
+
+						      </td>		
+						     
+					     
+					      <!--
+					      	
+					      <td>
+					      	<a href="{{ route('codigoArticulo.edit', $codigoArticulo->id) }}" class="btn btn-warning">
+					      		<span class="class glyphicon glyphicon-wrench"></span>
+					      	</a>
+
+					      	<a href="{{ route('codigoArticulo.destroy', $codigoArticulo->id) }}" onclick="return confirm('Eliminar el codigoArticulo?')" class="btn btn-danger">
+					      		<span class="class glyphicon glyphicon-remove-circle"></span>
+					      	</a> 
+					      	<a href="{{ route('codigoArticulo.show', $codigoArticulo->id) }}" class="btn btn-info">
+					      		<span class="glyphicon glyphicon-search"></span>
+					      	</a>
+
+					      	<a href="{{ route('codigoArticulo.create', $codigoArticulo->id) }}" class="btn btn-success" title="Agregar PCs">
+					      		<span class="glyphicon glyphicon-plus-sign"></span>
+					      	</a>
+					      </td>
+					 		 -->
+				    	</tr>
+					  	@endforeach
+
+					  	</tbody>
+
+					</table>
+					{{ $codigosArticulo->links() }}
 
 					<div class="form-group">
 						{!! Form::submit('Editar',['class'=>'btn btn-primary']) !!}

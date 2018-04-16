@@ -13,6 +13,7 @@ use App\Marca;
 use App\Modelo;
 use App\Imagen;
 use App\UnidadMedida;
+use App\CodigoArticulo;
 
 
 class Producto_ArticuloController extends Controller
@@ -77,7 +78,10 @@ class Producto_ArticuloController extends Controller
         $producto_articulo = Producto_Articulo::find($id);
         $unidadmedidas = UnidadMedida::orderby('uni_medida')->get();
 
-        return view('admin.producto.producto_articulo.show')->with(compact('oficinas','marcas','tipo_productos','producto_articulo','sectores','modelos','unidadmedidas'));
+
+        $codigosArticulo = CodigoArticulo::where('cod_art_fk_producto_articulo','=',$id)->orderby('cod_art_codigo','ASC')->paginate(5);
+
+        return view('admin.producto.producto_articulo.show')->with(compact('oficinas','marcas','tipo_productos','producto_articulo','sectores','modelos','unidadmedidas','codigosArticulo'));
     }
 
     /**
@@ -96,7 +100,9 @@ class Producto_ArticuloController extends Controller
         $producto_articulo = Producto_Articulo::find($id);
         $unidadmedidas = UnidadMedida::orderby('uni_medida')->get();
 
-        return view('admin.producto.producto_articulo.edit')->with(compact('oficinas','marcas','tipo_productos','producto_articulo','sectores','modelos','unidadmedidas'));
+        $codigosArticulo = CodigoArticulo::where('cod_art_fk_producto_articulo','=',$id)->orderby('cod_art_codigo','ASC')->paginate(5);
+
+        return view('admin.producto.producto_articulo.edit')->with(compact('oficinas','marcas','tipo_productos','producto_articulo','sectores','modelos','unidadmedidas','codigosArticulo'));
     }
 
     /**

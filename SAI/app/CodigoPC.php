@@ -49,5 +49,5 @@ class CodigoPC extends Model
     public function Ventas(){
         return $this->belongsToMany('App\Venta','pc_venta','pc_ven_fk_codigopc','pc_ven_fk_venta');
     }
-}
+
 }

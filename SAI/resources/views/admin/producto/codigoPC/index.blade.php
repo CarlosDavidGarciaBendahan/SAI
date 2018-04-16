@@ -1,6 +1,6 @@
 @extends('admin.template.main')
 
-@section('title', 'Listar articulos')
+@section('title', 'Listar computadoras detalladas')
 
 @section('body')
 	{{-- {{ dd($estado) }} --}}
@@ -10,8 +10,9 @@
 		<div class="row">
 			<div class="col-sm-8 offset-2">
 
+				<!--
 				<a href="{{ route('producto_articulo.create') }}" class="btn btn-info">Registrar nuevo articulo</a>
-				
+				-->
 
 				<table class="table table-inverse">
 				  <thead>
@@ -28,7 +29,7 @@
 				  </thead>
 				  <tbody>
 
-				  	@foreach ($producto_articulos as $producto_articulo)
+				  	@foreach ($codigosPC as $producto_articulo)
 				  		<tr>
 					      <th scope="row">{{ $producto_articulo->pro_art_codigo }}</th>
 					      <td>{{ $producto_articulo->pro_art_descripcion }}</td>	
@@ -62,7 +63,7 @@
 				  </tbody>
 
 				</table>
-				{{ $producto_articulos->links() }}
+				{{ $codigosPC->links() }}
 			</div>
 			
 		</div>

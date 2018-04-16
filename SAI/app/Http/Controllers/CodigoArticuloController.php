@@ -4,17 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Laracasts\Flash\Flash;
-use App\Producto_Computador;
-use App\Producto_Articulo;
-use Carbon\Carbon;
-use App\Cliente_Natural;
-use App\Cliente_Juridico;
-use App\Venta;
-use App\Codigo_PC;
-use App\Codigo_Articulo;
-use Illuminate\Support\Facades\DB;
+use App\Lote;
+use App\producto_articulo;
+USE App\CodigoArticulo;
 
-class VentaController extends Controller
+class CodigoArticuloController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -23,7 +17,7 @@ class VentaController extends Controller
      */
     public function index()
     {
-        //
+        
     }
 
     /**
@@ -31,23 +25,13 @@ class VentaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($articulo_id)
     {
-        //dd("crear venta");
-        $clientes_naturales = Cliente_Natural::orderby('cli_nat_apellido','cli_nat_nombre','ASC')->get();
-        $clientes_juridicos= Cliente_Juridico::orderby('cli_jur_nombre','ASC')->get();
-        //$productos_computadores = Producto_Computador::orderby('pro_com_codigo','ASC')->pluck('pro_com_codigo','id');
-        //$productos_articulos = Producto_Articulo::orderby('pro_art_codigo','ASC')->pluck('pro_art_codigo','id');
-        $codigosPC = DB::select('
-                                select pc.id, pc.cod_pc_codigo
-                                from codigoPC as pc
-                                where   
-                                ');
-        $codigosArticulo = 
+        $producto_articulo = Producto_articulo::find($articulo_id);
 
-        $fecha = Carbon::now();
-        $fecha = $fecha->format('d-m-Y');
-        return view('admin.cliente.venta.create')->with(compact('clientes_naturales','clientes_juridicos','fecha'));;
+        $lote = Lote::orderBy('id','ASC')->pluck('lot_nombre','id');
+
+        return view("admin.producto.codigoArticulo.create")->with(compact('producto_articulo','lote'));
     }
 
     /**
@@ -58,7 +42,26 @@ class VentaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //dd($request->all());
+
+        $cantidad = sizeof($request->codigosArticulo);
+
+        for ($i=0; $i < $cantidad; $i++) { 
+
+            $codigoArticulo = new codigoArticulo($request->all());
+
+            $codigoArticulo->cod_art_codigo = $request->codigosArticulo[$i];
+            $codigoArticulo->cod_art_estado = $request->estado[$i];
+            $codigoArticulo->cod_art_fk_pc  = null;
+            //$codigoArticulo->cod_pc_fk_producto_computador = $request->cod_pc_fk_producto_computador;
+
+            $codigoArticulo->save();
+
+        }
+
+        flash("Registro de los artículos exitosamente")->success();
+        //return redirect()->route('producto_computador.show')->with(['id' => $request->cod_pc_fk_producto_computador]);
+        return redirect()->route('producto_articulo.show',['id' => $request->cod_art_fk_producto_articulo]);
     }
 
     /**

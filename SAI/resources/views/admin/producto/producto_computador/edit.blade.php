@@ -136,7 +136,56 @@
 						{!! Form::select('componentes[]',$producto_articulos,$producto_computador->articulos->pluck('id'),['class'=> 'form-control select-componentes', 'placeholder'=>'seleccionar componentes', 'multiple','required']) !!}
 						</div>
 
+						<table class="table table-inverse">
+						<thead>
+						    <tr>
+						      <th>Código</th>
+						      <th>Estado</th>
+						    </tr>
+						</thead>
+						<tbody>
 
+					  	@foreach ($codigosPC as $codigoPC)
+					  		<tr>
+						      <th scope="row">{{ $codigoPC->cod_pc_codigo }}</th>
+						      <td>
+						      	@if ($codigoPC->cod_pc_estado === 'B')
+						      		Bueno
+						      	@else
+						      		Malo
+						      	@endif
+
+						      </td>	
+						     
+					     
+					      
+					      	
+					      <td>
+					      	
+					      	<a href="{{ route('codigoPC.edit', $codigoPC->id) }}" class="btn btn-warning">
+					      		<span class="class glyphicon glyphicon-wrench"></span>
+					      	</a>
+					      	<!--
+					      	<a href="{{ route('codigoPC.destroy', $codigoPC->id) }}" onclick="return confirm('Eliminar el codigoPC?')" class="btn btn-danger">
+					      		<span class="class glyphicon glyphicon-remove-circle"></span>
+					      	</a> 
+					      	<a href="{{ route('codigoPC.show', $codigoPC->id) }}" class="btn btn-info">
+					      		<span class="glyphicon glyphicon-search"></span>
+					      	</a>
+
+					      	<a href="{{ route('codigoPC.create', $codigoPC->id) }}" class="btn btn-success" title="Agregar PCs">
+					      		<span class="glyphicon glyphicon-plus-sign"></span>
+					      	</a>
+					      	-->
+					      </td>
+					 		 
+				    	</tr>
+					  	@endforeach
+
+					  	</tbody>
+
+					</table>
+					{{ $codigosPC->links() }}		
 					<div class="form-group">
 						{!! Form::submit('Editar',['class'=>'btn btn-primary']) !!}
 					</div>

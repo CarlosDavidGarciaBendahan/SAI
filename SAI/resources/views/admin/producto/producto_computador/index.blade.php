@@ -52,6 +52,10 @@
 					      	<a href="{{ route('producto_computador.show', $producto_computador->id) }}" class="btn btn-info">
 					      		<span class="glyphicon glyphicon-search"></span>
 					      	</a>
+
+					      	<a href="{{ route('codigoPC.create', $producto_computador->id) }}" class="btn btn-success" title="Agregar PCs">
+					      		<span class="glyphicon glyphicon-plus-sign"></span>
+					      	</a>
 					      </td>
 				    	</tr>
 				  	@endforeach

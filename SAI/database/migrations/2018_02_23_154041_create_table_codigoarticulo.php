@@ -17,7 +17,7 @@ class CreateTableCodigoarticulo extends Migration
             $table->increments('id');
             $table->string('cod_art_codigo')->nullable(false);
             $table->enum('cod_art_estado',['B','M'])->default('B');
-            $table->integer('cod_art_fk_producto_articulo')->unsigned()->nullable(false);
+            $table->integer('cod_art_fk_producto_articulo')->unsigned()->nullable(true);
             $table->integer('cod_art_fk_lote')->unsigned()->nullable(false);
             $table->integer('cod_art_fk_pc')->unsigned();
             $table->timestamps();

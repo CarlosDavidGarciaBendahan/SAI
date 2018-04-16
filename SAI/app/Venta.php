@@ -48,7 +48,7 @@ class Venta extends Model
     }
 
     public function VentaPCs(){
-        return $this->('App\CodigoPC','pc_venta','pc_sol_fk_venta','pc_sol_fk_codigopc');
+        return $this->('App\CodigoPC','pc_venta','pc_ven_fk_venta','pc_ven_fk_codigopc');
     }
 
     public function VentaArticulos(){

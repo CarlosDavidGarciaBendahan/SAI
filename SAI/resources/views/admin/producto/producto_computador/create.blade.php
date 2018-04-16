@@ -99,6 +99,16 @@
 							{!! Form::file('imagen')!!}
 						</div>
 
+						<!--
+						<div class="form-group">
+							{!! Form::submit('Agregar código',['class'=>'btn btn-primary', 'id' => 'add']) !!}
+						</div>
+
+						<div class="codigoPC">
+							
+						</div>
+						-->
+	
 					<div class="form-group">
 						{!! Form::submit('Registrar',['class'=>'btn btn-primary']) !!}
 					</div>
@@ -118,4 +128,5 @@
 	<script src="{{ asset('plugins/Script/ObtenerSectoresPorOficina.js') }}"></script>
 	<script src="{{ asset('plugins/Script/ObtenerModelosPorMarca.js') }}"></script>
 	<script src = "{{ asset('plugins/Script/ChosenMultipleSelectorComponentes.js') }}"></script>
+	<!--<script src = "{{ asset('plugins/Script/FormDinamicoAgregarCodigoPC.js') }}"></script>-->
 @endsection
