@@ -35,7 +35,7 @@ class CodigoPC extends Model
     }
 
     public function CodigoArticulos(){
-    	return $this->hasMany('App\CodigoArticulo','cod_art_fk_codigopc','id');
+    	return $this->hasMany('App\CodigoArticulo','cod_art_fk_pc','id');
     }
 
     public function Lote(){
