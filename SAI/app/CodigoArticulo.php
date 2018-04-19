@@ -35,7 +35,7 @@ class CodigoArticulo extends Model
     }
 
     public function CodigoPC(){
-    	return $this->belongsTo('App\CodigoPC','cod_art_fk_codigopc','id');
+    	return $this->belongsTo('App\CodigoPC','cod_art_fk_pc','id');
     }
 
     public function Lote(){
