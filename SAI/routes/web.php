@@ -143,6 +143,15 @@ Route::prefix('admin/producto/')->group( function(){
 			'uses'	=> 'codigoArticuloController@create',
 			'as'	=> 'codigoArticulo.create'
 		]);
+		Route::get('codigoArticulo/{articulo_id}/asignarPC/{pc_id}',[
+			'uses'	=> 'codigoArticuloController@asignarPC',
+			'as'	=> 'codigoArticulo.asignarPC'
+		]);
+
+		Route::get('codigoArticulo/{articulo_id}/quitarPC/{pc_id?}',[
+			'uses'	=> 'codigoArticuloController@quitarPC',
+			'as'	=> 'codigoArticulo.quitarPC'
+		]);
 
 
 });

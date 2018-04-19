@@ -7,6 +7,7 @@ use Laracasts\Flash\Flash;
 use App\Producto_Computador;
 use App\Lote;
 use App\CodigoPC;
+use App\CodigoArticulo;
 
 class CodigoPCController extends Controller
 {
@@ -87,8 +88,10 @@ class CodigoPCController extends Controller
         $codigoPC = CodigoPC::find($id);
         $lote = Lote::orderBy('id','ASC')->pluck('lot_nombre','id');
 
+        $codigosArticulo = CodigoArticulo::orderBy('cod_art_codigo','ASC')->paginate(5);
 
-        return view("admin.producto.codigoPC.edit")->with(compact('codigoPC','lote'));
+
+        return view("admin.producto.codigoPC.edit")->with(compact('codigoPC','lote','codigosArticulo'));
     }
 
     /**

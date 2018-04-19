@@ -108,4 +108,28 @@ class CodigoArticuloController extends Controller
     {
         //
     }
+
+    public function asignarPC($articulo_id,$pc_id){
+
+        $codigoArticulo = CodigoArticulo::find($articulo_id);
+        
+        $codigoArticulo->cod_art_fk_pc = $pc_id;
+        $codigoArticulo->save();
+
+        flash("Se ha asignado el articulo exitosamente")->success();
+        return redirect()->route('codigoPC.edit',['id' => $pc_id]);
+        
+    }
+
+    public function quitarPC($articulo_id,$pc_id){
+
+        $codigoArticulo = CodigoArticulo::find($articulo_id);
+        
+        $codigoArticulo->cod_art_fk_pc = null;
+        $codigoArticulo->save();
+
+        flash("Se ha DESVINCULADO el articulo exitosamente")->success();
+        return redirect()->route('codigoPC.edit',['id' => $pc_id]);
+        
+    }
 }
