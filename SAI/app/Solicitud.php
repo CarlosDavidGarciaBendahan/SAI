@@ -26,7 +26,7 @@ class Solicitud extends Model
 
     protected $fillable = [
     	'id','sol_fecha','sol_tipo',
-    	'sol_concepto','sol_fk_notaentrega'
+    	'sol_concepto','sol_fk_notaentrega','sol_aprobado'
     ];
 
     public function NotaEntrega(){

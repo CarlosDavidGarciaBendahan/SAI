@@ -18,6 +18,7 @@ class CreateTableSolicitud extends Migration
             $table->date('sol_fecha')->nullable(false);
             $table->enum('sol_tipo',['cambio','devolucion'])->nullable(false);
             $table->string('sol_concepto')->nullable(false);
+            $table->enum('sol_aprobado',['S','N'])->nullable(false);
             $table->integer('sol_fk_notaentrega')->unsigned()->nullable(false);
             $table->timestamps();
         });
