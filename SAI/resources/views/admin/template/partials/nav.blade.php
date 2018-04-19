@@ -24,6 +24,7 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="{{ route('producto_computador.index') }}">Computadoras</a>
+          <a class="dropdown-item" href="{{ route('codigoPC.index') }}">Codigo PC</a>
           <a class="dropdown-item" href="{{ route('producto_articulo.index') }}">Artículos</a>
           <a class="dropdown-item" href="{{ route('tipo_producto.index') }}">Tipo producto</a>
           <a class="dropdown-item" href="{{ route('marca.index') }}">Marca</a>
@@ -84,6 +85,7 @@
       <li class="nav-item">
         <a class="nav-link disabled" href="#">Disabled</a>
       </li>
+
     </ul>
     <form class="form-inline my-2 my-lg-0">
       <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
