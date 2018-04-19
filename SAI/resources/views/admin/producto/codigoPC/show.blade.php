@@ -83,7 +83,6 @@
 				      <th>Tipo</th>
 				      <th>Capacidad</th>
 				      <th>Sector</th>
-				      <th>Compone A</th>
 
 				    </tr>
 				  </thead>
@@ -98,20 +97,7 @@
 						      <td>{{ $codigoArticulo->producto_articulo->pro_art_capacidad." ".$codigoArticulo->producto_articulo->unidadMedida->uni_medida }}</td>
 						      <td>{{ $codigoArticulo->producto_articulo->sector->sec_sector ." Ofi: ".$codigoArticulo->producto_articulo->sector->oficina->ofi_direccion }}</td>	
 						      
-						  	  @if ($codigoArticulo->cod_art_fk_pc !== null)
-						  	  	
-						  	  	<td>
-						  	  		<a class="btn btn-danger" title="Asignado">
-						      		{{$codigoArticulo->codigopc->cod_pc_codigo }}<span class="class glyphicon glyphicon-ban-circle"></span>
-						      		</a>
-						  	  	</td>
-						  	  @else
-						  	  	<td>
-						  	  		<a  class="btn btn-success" title="No esta asignado a ninguna PC">
-						      		<span class="class glyphicon glyphicon-ok"></span>
-						      		</a>
-						  	  	</td>
-						  	  @endif
+						  	
 						  	  
 						      
 					    	</tr>
