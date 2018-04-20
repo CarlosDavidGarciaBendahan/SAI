@@ -17,7 +17,9 @@ class CodigoArticuloController extends Controller
      */
     public function index()
     {
-        
+        $codigosArticulo = CodigoArticulo::orderBy('cod_art_codigo','ASC')->paginate(10);
+
+        return view('admin.producto.CodigoArticulo.index')->with(compact('codigosArticulo'));
     }
 
     /**
@@ -83,7 +85,10 @@ class CodigoArticuloController extends Controller
      */
     public function edit($id)
     {
-        //
+        $codigoArticulo = codigoArticulo::find($id);
+        $lote = Lote::orderBy('id','ASC')->pluck('lot_nombre','id');
+
+        return view("admin.producto.codigoArticulo.edit")->with(compact('codigoArticulo','lote'));
     }
 
     /**
@@ -95,7 +100,20 @@ class CodigoArticuloController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        
+        $codigoArticulo = codigoArticulo::find($id);
+
+        //dd($codigoArticulo->codigoPC === null);
+
+        $codigoArticulo->cod_art_fk_lote = $request->cod_art_fk_lote;
+        $codigoArticulo->cod_art_estado = $request->cod_art_estado;
+
+        $codigoArticulo->save();
+
+        //dd($request->all());
+
+        flash("Modificación del artículo'' ".$codigoArticulo->cod_art_codigo." '' exitosa")->success();
+        return redirect()->route('codigoArticulo.index');
     }
 
     /**
@@ -121,7 +139,7 @@ class CodigoArticuloController extends Controller
         
     }
 
-    public function quitarPC($articulo_id,$pc_id){
+    public function quitarPC($articulo_id,$pc_id = null){
 
         $codigoArticulo = CodigoArticulo::find($articulo_id);
         
@@ -129,7 +147,14 @@ class CodigoArticuloController extends Controller
         $codigoArticulo->save();
 
         flash("Se ha DESVINCULADO el articulo exitosamente")->success();
-        return redirect()->route('codigoPC.edit',['id' => $pc_id]);
+        if ($pc_id === null) {
+            
+        return redirect()->route('codigoArticulo.edit',['id' => $articulo_id]);
+        } else {
+            
+         return redirect()->route('codigoPC.edit',['id' => $pc_id]);
+        }
+        
         
     }
 }
