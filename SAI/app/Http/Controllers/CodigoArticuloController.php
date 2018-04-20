@@ -74,7 +74,11 @@ class CodigoArticuloController extends Controller
      */
     public function show($id)
     {
-        //
+        
+        $codigoArticulo = codigoArticulo::find($id);
+        $lote = Lote::orderBy('id','ASC')->pluck('lot_nombre','id');
+
+        return view("admin.producto.codigoArticulo.show")->with(compact('codigoArticulo','lote'));
     }
 
     /**
@@ -124,7 +128,15 @@ class CodigoArticuloController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $codigoArticulo = codigoArticulo::find($id);
+
+        
+        $codigoArticulo->delete();
+
+        //dd($request->all());
+
+        flash("Eliminación del artículo '' ".$codigoArticulo->cod_art_codigo." '' exitosa")->success();
+        return redirect()->route('codigoArticulo.index');
     }
 
     public function asignarPC($articulo_id,$pc_id){
