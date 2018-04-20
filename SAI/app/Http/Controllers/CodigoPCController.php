@@ -118,7 +118,7 @@ class CodigoPCController extends Controller
 
         //dd($request->all());
 
-        flash("Modificación de la PC '' ".$codigoPC->cod_pc_codigo." '' ")->success();
+        flash("Modificación de la PC '' ".$codigoPC->cod_pc_codigo." '' exitosa")->success();
         return redirect()->route('codigoPC.index');
     }
 
@@ -130,6 +130,14 @@ class CodigoPCController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $codigoPC = CodigoPC::find($id);
+
+        
+        $codigoPC->delete();
+
+        //dd($request->all());
+
+        flash("Eliminación de la PC '' ".$codigoPC->cod_pc_codigo." '' exitosa")->success();
+        return redirect()->route('codigoPC.index');
     }
 }
