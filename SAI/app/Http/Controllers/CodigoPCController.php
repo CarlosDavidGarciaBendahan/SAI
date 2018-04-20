@@ -109,7 +109,17 @@ class CodigoPCController extends Controller
      */
     public function update(Request $request, $id)
     {
-        dd($request->all());
+        $codigoPC = CodigoPC::find($id);
+
+        $codigoPC->cod_pc_fk_lote = $request->cod_pc_fk_lote;
+        $codigoPC->cod_pc_estado = $request->cod_pc_estado;
+
+        $codigoPC->save();
+
+        //dd($request->all());
+
+        flash("Modificación de la PC '' ".$codigoPC->cod_pc_codigo." '' ")->success();
+        return redirect()->route('codigoPC.index');
     }
 
     /**

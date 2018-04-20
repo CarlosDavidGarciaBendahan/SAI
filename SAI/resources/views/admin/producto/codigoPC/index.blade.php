@@ -19,7 +19,7 @@
 				      <th>Marca/Modelo</th>
 				      <th>Tipo</th>
 				      <th>Ubicación</th>
-				      <th>Publicado?</th>
+				      <th>Componentes</th>
 				      <th>Disponible</th>
 
 				    </tr>
@@ -34,11 +34,9 @@
 					      
 					      <td>{{ $codigoPC->producto_computador->sector->sec_sector ." Ofi: ".$codigoPC->producto_computador->sector->oficina->ofi_direccion }}</td>	
 					      <td>
-					      	@if ($codigoPC->producto_computador->pro_com_catalogo !== 0)
-					      		SI
-						    @else
-						      	NO
-						    @endif
+					      	@foreach ($codigoPC->CodigoArticulos as $componente)
+					      		{{ $componente->producto_articulo->pro_art_capacidad." ".$componente->producto_articulo->unidadMedida->uni_medida." / " }}
+					      	@endforeach
 					  	  </td>	
 					  	  <td>
 					  	  	@if (count($codigoPC->Solicitudes) === 0 && count($codigoPC->Ventas) === 0  )
