@@ -60,9 +60,6 @@
 					      	<a href="{{ route('codigoPC.show', $codigoPC->id) }}" class="btn btn-info">
 					      		<span class="glyphicon glyphicon-search"></span>
 					      	</a>
-					      	<a href="{{ route('codigoArticulo.create', $codigoPC->id) }}" class="btn btn-success" title="Agregar Articulos">
-					      		<span class="glyphicon glyphicon-plus-sign"></span>
-					      	</a>
 					      </td>
 				    	</tr>
 				  	@endforeach
