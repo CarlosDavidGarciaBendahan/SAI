@@ -24,7 +24,7 @@
 						
 						{!! Form::label('cliente','Cliente') !!}
 
-						<select class="form-control col-sm input-sm select-empresas" name="pre_fk_cliente_natural" id="clientes_naturales" >
+						<select class="form-control col-sm input-sm select-empresas" name="ven_fk_cliente_natural" id="clientes_naturales" >
 								<option value="" > Seleccionar empresa</option>
 								@foreach ($clientes_naturales as $cliente_natural)
 									<option value="{{ $cliente_natural->id }}"> {{ $cliente_natural->cli_nat_nombre." ".$cliente_natural->cli_nat_nombre2." ".$cliente_natural->cli_nat_apellido." ".$cliente_natural->cli_nat_apellido2 }}</option>
@@ -40,7 +40,7 @@
 						
 						{!! Form::label('cliente','Cliente ') !!}
 
-						<select class="form-control col-sm input-sm select-empresas" name="pre_fk_cliente_juridico" id="clientes_juridicos">
+						<select class="form-control col-sm input-sm select-empresas" name="ven_fk_cliente_juridico" id="clientes_juridicos">
 								<option value="" > Seleccionar empresa</option>
 								@foreach ($clientes_juridicos as $cliente_juridico)
 									<option value="{{ $cliente_juridico->id }}"> {{ $cliente_juridico->cli_jur_nombre }}</option>
@@ -52,20 +52,20 @@
 						
 					</div>
 
-
+					
 					<div class="form-group"> 
 						
 						{!! Form::label('codigoPC','Códigos de computadoras') !!}
 
-						{!! Form::select('codigoPC[]',null,null,['class'=> 'form-control select-permisos', 'placeholder'=>'seleccionar código', 'multiple','required']) !!}
+						{!! Form::select('codigoPC[]',$codigosPC,null,['class'=> 'form-control select-permisos ', 'multiple','required' , 'id'=>'select-codigosPC']) !!}
 					</div>
 					<div class="form-group"> 
 						
 						{!! Form::label('codigoArticulo','Códigos de artículos') !!}
 
-						{!! Form::select('codigoArticulo[]',null,null,['class'=> 'form-control select-permisos', 'placeholder'=>'seleccionar código', 'multiple','required']) !!}
+						{!! Form::select('codigoArticulo[]',$codigosArticulo,null,['class'=> 'form-control select-permisos ', 'multiple','required', 'id'=>'select-codigosArticulo']) !!}
 					</div>
-
+					
 
 					<div class="form-group col-sm-12">
 						{!! Form::submit('Registrar',['class'=>'btn btn-primary']) !!}
@@ -90,4 +90,5 @@
 	<!--<script src = "{{ asset('plugins/Script/ObtenerDatosProductoComputador.js') }}"></script>-->
 	<!--<script src = "{{ asset('plugins/Script/ObtenerDatosProductoArticulo.js') }}"></script>-->
 	<script src = "{{ asset('plugins/Script/ChosenMultipleSelector.js') }}"></script>
+	<!--<script src = "{{ asset('plugins/Script/FormDinamicoAgregarTablaCodigoPC.js') }}"></script>-->
 @endsection

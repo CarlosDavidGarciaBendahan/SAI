@@ -10,8 +10,8 @@ use Carbon\Carbon;
 use App\Cliente_Natural;
 use App\Cliente_Juridico;
 use App\Venta;
-use App\Codigo_PC;
-use App\Codigo_Articulo;
+use App\CodigoPC;
+use App\CodigoArticulo;
 use Illuminate\Support\Facades\DB;
 
 class VentaController extends Controller
@@ -24,6 +24,9 @@ class VentaController extends Controller
     public function index()
     {
         //
+        $ventas = Venta::where('ven_eliminada','=',0)->orderby('id','ASC')->paginate(10);
+
+        return view('admin.cliente.venta.index')->with(compact('ventas'));
     }
 
     /**
@@ -40,14 +43,24 @@ class VentaController extends Controller
         //$productos_articulos = Producto_Articulo::orderby('pro_art_codigo','ASC')->pluck('pro_art_codigo','id');
         $codigosPC = DB::select('
                                 select pc.id, pc.cod_pc_codigo
-                                from codigoPC as pc
-                                where   
+                                from codigoPC as pc  
                                 ');
-        $codigosArticulo = 
+        $codigosPC = collect($codigosPC)->pluck('cod_pc_codigo','id');
+
+        $codigosArticulo = DB::select('
+                                select art.id, art.cod_art_codigo
+                                from codigoArticulo as art  
+                                ');
+        $codigosArticulo = collect($codigosArticulo)->pluck('cod_art_codigo','id');
 
         $fecha = Carbon::now();
         $fecha = $fecha->format('d-m-Y');
-        return view('admin.cliente.venta.create')->with(compact('clientes_naturales','clientes_juridicos','fecha'));;
+
+        //dd($codigosPC);
+        //dd($clientes_naturales);
+        //dd($clientes_juridicos);
+
+        return view('admin.cliente.venta.create')->with(compact('clientes_naturales','clientes_juridicos','fecha','codigosPC','codigosArticulo'));;
     }
 
     /**
@@ -58,7 +71,39 @@ class VentaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //dd($request->all());
+
+        $venta = new Venta($request->all());
+        $venta->ven_monto_total = 0;
+        if ($request->tipo_cliente !== null) {
+            $venta->ven_fk_cliente_juridico = null;
+        } else {
+            $venta->ven_fk_cliente_natural = null;
+        }
+
+        foreach ($request->codigoPC as $id ) {
+            $codigoPC = CodigoPC::find($id);
+
+            $venta->ven_monto_total = $venta->ven_monto_total + $codigoPC->Producto_Computador->pro_com_precio;
+        }
+        foreach ($request->codigoArticulo as $id ) {
+            $codigoArticulo = codigoArticulo::find($id);
+
+            $venta->ven_monto_total = $venta->ven_monto_total + $codigoArticulo->Producto_Articulo->pro_art_precio;
+        }
+
+        $venta->ven_moneda = "Bs";
+
+        $venta->save();
+
+
+        $venta->VentaPCs()->sync($request->codigoPC);
+        $venta->VentaArticulos()->sync($request->codigoArticulo);
+
+        flash("Se ha creado exitosamente la venta #".$venta->id)->success();
+        return redirect()->route('venta.index');
+    
+        //dd($venta);
     }
 
     /**
@@ -103,6 +148,12 @@ class VentaController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $venta = Venta::find($id);
+
+        $venta->ven_eliminada = -1;
+        $venta->save();
+
+        flash("Se ha eliminado exitosamente la venta #".$venta->id)->success();
+        return redirect()->route('venta.index');
     }
 }
