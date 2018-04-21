@@ -76,7 +76,7 @@
 
 						<div class="form-group"> 
 						
-							{!! Form::label('per_fecha_nacimiento','Fecha recibido') !!}
+							{!! Form::label('per_fecha_nacimiento','Fecha de nacimiento') !!}
 
 							{!! Form::text('per_fecha_nacimiento', '', array('id' => 'datepicker', 'placeholder'=>'DD-MM-YYYY', 'class'=> 'form-control')) !!}
 						</div>

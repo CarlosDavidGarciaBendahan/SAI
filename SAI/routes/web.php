@@ -375,6 +375,14 @@ Route::prefix('admin/cliente/')->group( function(){
 		'uses'	=> 'ventaController@destroy',
 		'as'	=> 'venta.destroy'
 	]);
+	///////////////////////////////////////////////////
+	////// 		RegistroPago
+	///////////////////////////////////////////////////
+	Route::resource('registroPago','registroPagoController');
+	Route::get('registroPago/{id}/destroy',[
+		'uses'	=> 'registroPagoController@destroy',
+		'as'	=> 'registroPago.destroy'
+	]);
 });
 
 
