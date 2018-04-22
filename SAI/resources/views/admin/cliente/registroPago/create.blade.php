@@ -9,6 +9,12 @@
 			<div class="col-sm-8 offset-2">
 				{!! Form::open(['route' => 'registroPago.store', 'method' => 'POST' ]) !!}
 					
+					<div class="form-group">
+						{!! Form::label('venta','Venta a que se le abona',['class'=> ' col-sm']) !!}
+						{!! Form::text('venta',"Venta #".$venta->id." efectuada en la fecha: ".date("d/m/Y", strtotime($venta->ven_fecha_compra)),['class'=> 'form-control', 'placeholder'=>'PAGO DE LA VENTA 0', 'required']) !!}	
+						{!! Form::text('reg_fk_venta',$venta->id,['class'=> 'form-control', 'hidden'=>'true', 'required']) !!}	
+					</div>
+
 					<div class="form-group"> 
 						
 							{!! Form::label('per_fecha_nacimiento','Fecha recibido') !!}
@@ -38,8 +44,15 @@
 						{!! Form::text('reg_numero_referencia',null,['class'=> 'form-control', 'placeholder'=>'152468579', 'required']) !!}	
 					</div>
 
+					<div class="form-group">
+						{!! Form::label('fecha','Banco origen',['class'=> ' col-sm'] ) !!}	
+						{!! Form::select('reg_fk_banco_origen',$bancos,null,['class'=> 'form-control ','required']) !!}
+					</div>
 					
-					
+					<div class="form-group">
+						{!! Form::label('fecha','Banco destino',['class'=> ' col-sm'] ) !!}	
+						{!! Form::select('reg_fk_banco_destino',$bancos,null,['class'=> 'form-control ','required']) !!}
+					</div>
 
 					<div class="form-group col-sm-12">
 						{!! Form::submit('Registrar',['class'=>'btn btn-primary']) !!}

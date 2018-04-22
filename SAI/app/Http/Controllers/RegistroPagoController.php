@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Laracast\flash\flash;
+use App\Banco;
+use App\Venta;
 
 class RegistroPagoController extends Controller
 {
@@ -21,9 +24,12 @@ class RegistroPagoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($venta_id)
     {
-        return view('admin.cliente.registroPago.create');
+        $bancos = Banco::orderby('ban_nombre','ASC')->pluck('ban_nombre','id');
+        $venta = Venta::find($venta_id);
+
+        return view('admin.cliente.registroPago.create')->with(compact('bancos','venta'));
     }
 
     /**
@@ -35,6 +41,8 @@ class RegistroPagoController extends Controller
     public function store(Request $request)
     {
         dd($request->all());
+
+
     }
 
     /**

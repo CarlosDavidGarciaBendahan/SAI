@@ -383,6 +383,10 @@ Route::prefix('admin/cliente/')->group( function(){
 		'uses'	=> 'registroPagoController@destroy',
 		'as'	=> 'registroPago.destroy'
 	]);
+	Route::get('registroPago/{id}/create',[
+		'uses'	=> 'registroPagoController@create',
+		'as'	=> 'registroPago.create'
+	]);
 });
 
 

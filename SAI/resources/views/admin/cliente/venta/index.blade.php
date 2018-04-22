@@ -40,6 +40,9 @@
 					      	<a href="{{ route('venta.show', $venta->id) }}" class="btn btn-info">
 					      		<span class="glyphicon glyphicon-search"></span>
 					      	</a>
+					      	<a href="{{ route('registroPago.create', $venta->id) }}"  class="btn btn-success" title="Registrar pagos a esta venta">
+					      		<span class="class glyphicon glyphicon-usd"></span>
+					      	</a> 
 					      </td>
 				    	</tr>
 				  		
