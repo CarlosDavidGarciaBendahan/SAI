@@ -33,7 +33,9 @@
 					      
 					      <td>
 					      	
-
+					      	<a href="{{ route('venta.edit', $venta->id) }}" class="btn btn-warning">
+					      		<span class="class glyphicon glyphicon-wrench"></span>
+					      	</a>
 					      	<a href="{{ route('venta.destroy', $venta->id) }}" onclick="return confirm('Eliminar el venta?')" class="btn btn-danger">
 					      		<span class="class glyphicon glyphicon-remove-circle"></span>
 					      	</a> 

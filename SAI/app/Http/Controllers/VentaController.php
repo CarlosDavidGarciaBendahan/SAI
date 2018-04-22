@@ -39,8 +39,7 @@ class VentaController extends Controller
         //dd("crear venta");
         $clientes_naturales = Cliente_Natural::orderby('cli_nat_apellido','cli_nat_nombre','ASC')->get();
         $clientes_juridicos= Cliente_Juridico::orderby('cli_jur_nombre','ASC')->get();
-        //$productos_computadores = Producto_Computador::orderby('pro_com_codigo','ASC')->pluck('pro_com_codigo','id');
-        //$productos_articulos = Producto_Articulo::orderby('pro_art_codigo','ASC')->pluck('pro_art_codigo','id');
+
         $codigosPC = DB::select('
                                 select pc.id, pc.cod_pc_codigo
                                 from codigoPC as pc  
@@ -115,6 +114,8 @@ class VentaController extends Controller
     public function show($id)
     {
         $venta = Venta::find($id);
+
+
         
        return view('admin.cliente.venta.show')->with(compact('venta'));
 
@@ -129,7 +130,21 @@ class VentaController extends Controller
      */
     public function edit($id)
     {
-        //
+        $venta = Venta::find($id);
+
+        $codigosPC = DB::select('
+                                select pc.id, pc.cod_pc_codigo
+                                from codigoPC as pc  
+                                ');
+        $codigosPC = collect($codigosPC)->pluck('cod_pc_codigo','id');
+
+        $codigosArticulo = DB::select('
+                                select art.id, art.cod_art_codigo
+                                from codigoArticulo as art  
+                                ');
+        $codigosArticulo = collect($codigosArticulo)->pluck('cod_art_codigo','id');
+        
+        return view('admin.cliente.venta.edit')->with(compact('venta','codigosPC','codigosArticulo'));
     }
 
     /**
@@ -141,7 +156,17 @@ class VentaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        //dd($request->all());
+
+        $venta = Venta::find($id);
+
+        $venta->VentaPCs()->attach($request->codigoPC);
+        $venta->VentaArticulos()->attach($request->codigoArticulo);
+
+        flash("Se ha modificado exitosamente la venta #".$venta->id)->success();
+        //return redirect()->route('venta.show',['id'=>$venta->id]);
+
+        return redirect()->route('venta.edit',['id'=>$venta->id]);
     }
 
     /**
@@ -159,5 +184,27 @@ class VentaController extends Controller
 
         flash("Se ha eliminado exitosamente la venta #".$venta->id)->success();
         return redirect()->route('venta.index');
+    }
+
+    public function eliminarProducto($venta_id,$producto_id,$tipo_producto){
+
+        $venta = Venta::find($venta_id);
+
+        if ($tipo_producto === "pc") {
+            $venta->VentaPCs()->detach($producto_id);
+            $producto = codigoPC::find($producto_id);
+            flash("Se ha eliminado exitosamente el producto ''".$producto->cod_pc_codigo."'' de la venta #".$venta->id)->success();
+            return redirect()->route('venta.edit',['id'=>$venta->id]);
+        } else {
+            if ($tipo_producto === "articulo") {
+                
+                $venta->VentaArticulos()->detach($producto_id);
+                $producto = codigoArticulo::find($producto_id);
+                flash("Se ha eliminado exitosamente el producto ''".$producto->cod_art_codigo."'' de la venta #".$venta->id)->success();
+                return redirect()->route('venta.edit',['id'=>$venta->id]);
+            } 
+            
+        }
+        
     }
 }

@@ -375,6 +375,10 @@ Route::prefix('admin/cliente/')->group( function(){
 		'uses'	=> 'ventaController@destroy',
 		'as'	=> 'venta.destroy'
 	]);
+	Route::get('venta/{id}/eliminarProducto/{producto_id}/{tipo_producto}',[
+		'uses'	=> 'ventaController@eliminarProducto',
+		'as'	=> 'venta.eliminarProducto'
+	]);
 	///////////////////////////////////////////////////
 	////// 		RegistroPago
 	///////////////////////////////////////////////////
