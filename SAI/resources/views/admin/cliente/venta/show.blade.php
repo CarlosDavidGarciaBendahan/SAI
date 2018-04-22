@@ -50,6 +50,7 @@
 				      <th>Marca/Modelo</th>
 				      <th>Tipo</th>
 				      <th>Componentes</th>
+				      <th>Precio</th>
 				    </tr>
 				  </thead>
 				  <tbody>
@@ -66,6 +67,9 @@
 					      		{{ $componente->producto_articulo->pro_art_capacidad." ".$componente->producto_articulo->unidadMedida->uni_medida." / " }}
 					      	@endforeach
 					  	  </td>	
+					  	  <td>
+					  	  	{{ $codigoPC->producto_computador->pro_com_precio }}
+					  	  </td>
 					  	  
 				    	</tr>
 				  	@endforeach
@@ -87,6 +91,7 @@
 				      <th>Marca/Modelo</th>
 				      <th>Tipo</th>
 				      <th>Capacidad</th>
+				      <th>precio</th>
 
 				    </tr>
 				  </thead>
@@ -98,6 +103,9 @@
 						      <td>{{ "Marca: ".$codigoArticulo->producto_articulo->modelo->marca->mar_marca ." Modelo: ".$codigoArticulo->producto_articulo->modelo->mod_modelo }}</td>	
 						      <td>{{ $codigoArticulo->producto_articulo->Tipo_Producto->tip_tipo }}</td>
 						      <td>{{ $codigoArticulo->producto_articulo->pro_art_capacidad." ".$codigoArticulo->producto_articulo->unidadMedida->uni_medida }}</td>
+						      <td>
+						  	  	{{ $codigoArticulo->producto_articulo->pro_art_precio }}
+						  	  </td>
 					    	</tr>
 					@endforeach
 					  </tbody>

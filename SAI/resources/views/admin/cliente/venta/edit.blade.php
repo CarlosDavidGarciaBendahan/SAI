@@ -49,6 +49,7 @@
 				      <th>Marca/Modelo</th>
 				      <th>Tipo</th>
 				      <th>Componentes</th>
+				      <th>Precio</th>
 				    </tr>
 				  </thead>
 				  <tbody>
@@ -65,6 +66,10 @@
 					      		{{ $componente->producto_articulo->pro_art_capacidad." ".$componente->producto_articulo->unidadMedida->uni_medida." / " }}
 					      	@endforeach
 					  	  </td>	
+					  	  <td>
+					  	  	{{ $codigoPC->producto_computador->pro_com_precio }}
+					  	  </td>
+					  	  
 						  	<td>
 						  	    <a href="{{ route('venta.eliminarProducto', [$venta->id,$codigoPC->id,'pc']) }}" onclick="return confirm('Seguro que desea eliminar este artículo de la venta?')" class="btn btn-danger" title="Eliminar producto de esta venta">
 						      		<span class="class glyphicon glyphicon-remove-circle"></span>
@@ -90,6 +95,7 @@
 				      <th>Marca/Modelo</th>
 				      <th>Tipo</th>
 				      <th>Capacidad</th>
+				      <th>Precio</th>
 
 				    </tr>
 				  </thead>
@@ -102,6 +108,10 @@
 						      <td>{{ $codigoArticulo->producto_articulo->Tipo_Producto->tip_tipo }}</td>
 						      <td>{{ $codigoArticulo->producto_articulo->pro_art_capacidad." ".$codigoArticulo->producto_articulo->unidadMedida->uni_medida }}</td>
 						      <td>
+						  	  	{{ $codigoArticulo->producto_articulo->pro_art_precio }}
+						  	</td>
+						      <td>
+						      	
 						      	<a href="{{ route('venta.eliminarProducto', [$venta->id,$codigoArticulo->id,'articulo']) }}" onclick="return confirm('Seguro que desea eliminar este artículo de la venta?')" class="btn btn-danger" title="Eliminar producto de esta venta">
 						      		<span class="class glyphicon glyphicon-remove-circle"></span>
 					      		</a>

@@ -157,11 +157,27 @@ class VentaController extends Controller
     public function update(Request $request, $id)
     {
         //dd($request->all());
-
         $venta = Venta::find($id);
+
+        //dd($venta->VentaPCs);
 
         $venta->VentaPCs()->attach($request->codigoPC);
         $venta->VentaArticulos()->attach($request->codigoArticulo);
+
+        $venta->ven_monto_total = 0;
+
+        foreach ($venta->VentaPCs as $codigoPC ) {
+            //$codigoPC = CodigoPC::find($id);
+
+            $venta->ven_monto_total = $venta->ven_monto_total + $codigoPC->Producto_Computador->pro_com_precio;
+        }
+        foreach ($venta->VentaArticulos as $codigoArticulo ) {
+            //$codigoArticulo = codigoArticulo::find($id);
+
+            $venta->ven_monto_total = $venta->ven_monto_total + $codigoArticulo->Producto_Articulo->pro_art_precio;
+        }
+
+        $venta->save();
 
         flash("Se ha modificado exitosamente la venta #".$venta->id)->success();
         //return redirect()->route('venta.show',['id'=>$venta->id]);
@@ -193,6 +209,14 @@ class VentaController extends Controller
         if ($tipo_producto === "pc") {
             $venta->VentaPCs()->detach($producto_id);
             $producto = codigoPC::find($producto_id);
+
+            $venta->ven_monto_total = $venta->ven_monto_total - $producto->producto_computador->pro_com_precio;
+            if ($venta->ven_monto_total <= 0) {
+                $venta->ven_monto_total = 0;
+            }
+            
+            $venta->save(); 
+
             flash("Se ha eliminado exitosamente el producto ''".$producto->cod_pc_codigo."'' de la venta #".$venta->id)->success();
             return redirect()->route('venta.edit',['id'=>$venta->id]);
         } else {
@@ -200,6 +224,13 @@ class VentaController extends Controller
                 
                 $venta->VentaArticulos()->detach($producto_id);
                 $producto = codigoArticulo::find($producto_id);
+
+                $venta->ven_monto_total = $venta->ven_monto_total - $producto->producto_articulo->pro_art_precio;
+                if ($venta->ven_monto_total <= 0) {
+                $venta->ven_monto_total = 0;
+                }
+                $venta->save(); 
+
                 flash("Se ha eliminado exitosamente el producto ''".$producto->cod_art_codigo."'' de la venta #".$venta->id)->success();
                 return redirect()->route('venta.edit',['id'=>$venta->id]);
             } 
