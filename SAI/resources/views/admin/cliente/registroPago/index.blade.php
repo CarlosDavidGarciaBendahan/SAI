@@ -56,12 +56,7 @@
 					      	<a href="{{ route('registroPago.destroy', $registroPago->id) }}" onclick="return confirm('Eliminar el registroPago?')" class="btn btn-danger">
 					      		<span class="class glyphicon glyphicon-remove-circle"></span>
 					      	</a> 
-					      	<a href="{{ route('registroPago.show', $registroPago->id) }}" class="btn btn-info">
-					      		<span class="glyphicon glyphicon-search"></span>
-					      	</a>
-					      	<a href="{{ route('registroPago.create', $registroPago->id) }}"  class="btn btn-success" title="Registrar pagos a esta registroPago">
-					      		<span class="class glyphicon glyphicon-usd"></span>
-					      	</a> 
+					      	
 					      </td>
 				    	</tr>
 				  		
@@ -72,7 +67,16 @@
 
 				</table>
 				{{ $registroPagos->links() }}
+
+
+				<div>
+					<a href="{{ route('venta.index') }}" class="btn btn-info">
+						<span class="glyphicon glyphicon-arrow-left"></span> Regresar al listado de ventas
+					</a>
+				</div>
 			</div>
+
+			
 			
 		</div>
 			

@@ -11,8 +11,8 @@
 					
 					<div class="form-group">
 						{!! Form::label('venta','Venta a que se le abona',['class'=> ' col-sm']) !!}
-						{!! Form::text('venta',"Venta #".$venta->id." efectuada en la fecha: ".date("d/m/Y", strtotime($venta->ven_fecha_compra)),['class'=> 'form-control', 'placeholder'=>'PAGO DE LA VENTA 0', 'required']) !!}	
-						{!! Form::text('reg_fk_venta',$venta->id,['class'=> 'form-control', 'hidden'=>'true', 'required']) !!}	
+						{!! Form::text('venta',"Venta #".$venta->id." efectuada en la fecha: ".date("d/m/Y", strtotime($venta->ven_fecha_compra)),['class'=> 'form-control', 'placeholder'=>'PAGO DE LA VENTA 0', 'required', 'readonly'=>'true']) !!}	
+						{!! Form::text('reg_fk_venta',$venta->id,['class'=> 'form-control', 'hidden'=>'true', 'required', 'readonly'=>'true']) !!}	
 					</div>
 
 					<div class="form-group"> 

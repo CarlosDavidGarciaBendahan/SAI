@@ -50,8 +50,8 @@ class RegistroPagoController extends Controller
         foreach ($venta->RegistroPagos as $pago) {
             $monto_pagado = $monto_pagado + $pago->reg_monto;
         }
-
-        if ($venta->monto_total <= $monto_pagado) {
+       
+        if ($monto_pagado >= $venta->ven_monto_total) {
             flash("La venta #".$venta->id." ha sido pagada en su totalidad. NO puede registrar más pagos.")->error();
             return redirect()->route('venta.index');
         } else {
@@ -98,7 +98,10 @@ class RegistroPagoController extends Controller
      */
     public function edit($id)
     {
-        //
+        $registroPago = RegistroPago::find($id);
+        $bancos = Banco::orderby('ban_nombre','ASC')->pluck('ban_nombre','id');
+
+        return view('admin.cliente.registropago.edit')->with(compact('registroPago','bancos'));
     }
 
     /**
@@ -110,7 +113,21 @@ class RegistroPagoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        //dd($request->all());
+        $registroPago = RegistroPago::find($id);
+
+        $registroPago->reg_fecha_pagado = $request->reg_fecha_pagado ;
+        $registroPago->reg_monto = $request->reg_monto ;
+        $registroPago->reg_moneda = $request->reg_moneda ;
+        $registroPago->reg_concepto = $request->reg_concepto ;
+        $registroPago->reg_forma = $request->reg_forma ;
+        $registroPago->reg_fk_banco_origen = $request->reg_fk_banco_origen ;
+        $registroPago->reg_fk_banco_destino = $request->reg_fk_banco_destino ;
+
+        $registroPago->save();
+
+        flash("La modificación del registro #". $registroPago->id." fue exitosa")->success();
+        return redirect()->route('registroPago.index',['id'=>$registroPago->reg_fk_venta]);
     }
 
     /**
@@ -121,6 +138,9 @@ class RegistroPagoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $registroPago = RegistroPago::find($id);
+        $registroPago->delete();
+        flash("La eliminación del registro #". $registroPago->id." fue exitosa")->success();
+        return redirect()->route('registroPago.index',['id'=>$registroPago->reg_fk_venta]);
     }
 }
