@@ -19,6 +19,7 @@
 				      <th>Código de la venta</th>
 				      <th>Fecha efectuada</th>
 				      <th>Monto total</th>
+				      <th>Monto cancelado</th>
 
 				    </tr>
 				  </thead>
@@ -30,7 +31,20 @@
 					      <th scope="row">{{ $venta->id }}</th>
 					      <td>{{  date("d/m/Y", strtotime($venta->ven_fecha_compra))}}</td>	
 					      <td>{{ $venta->ven_monto_total . " " . $venta->ven_moneda }}</td>
-					      
+					      <td>
+					      	@if ( count($venta->RegistroPagos) !== 0)
+					      		
+					      		<?php $monto_pagado = 0; ?> 
+					      		@foreach ($venta->RegistroPagos as $pago)
+					      			<?php $monto_pagado = $monto_pagado + $pago->reg_monto; ?>
+					      		@endforeach
+					      		{{ $monto_pagado." Bs" }}
+					      	@else
+					      		
+					      	@endif
+					      </td>
+
+
 					      <td>
 					      	
 					      	<a href="{{ route('venta.edit', $venta->id) }}" class="btn btn-warning">

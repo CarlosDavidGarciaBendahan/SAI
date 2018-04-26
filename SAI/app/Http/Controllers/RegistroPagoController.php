@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Laracast\flash\flash;
+use App\RegistroPago;
 use App\Banco;
 use App\Venta;
 
@@ -40,7 +41,13 @@ class RegistroPagoController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->all());
+        //dd($request->all());
+
+        $registroPago = new RegistroPago($request->all());
+        $registroPago->save();
+
+        flash("Se ha registrado el pago exitosamente por un monto de: ".$request->reg_monto." ".$request->reg_moneda)->success();
+        return redirect()->route('venta.index');
 
 
     }

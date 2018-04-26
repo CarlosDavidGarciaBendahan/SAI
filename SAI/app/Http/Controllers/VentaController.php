@@ -23,9 +23,13 @@ class VentaController extends Controller
      */
     public function index()
     {
-        //
+        
+
         $ventas = Venta::where('ven_eliminada','=',0)->orderby('id','ASC')->paginate(10);
 
+        /*foreach ($ventas as $venta) {
+            dd(count($venta->RegistroPagos));
+        }*/
         return view('admin.cliente.venta.index')->with(compact('ventas'));
     }
 
