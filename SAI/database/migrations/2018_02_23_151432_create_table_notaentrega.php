@@ -21,6 +21,8 @@ class CreateTableNotaentrega extends Migration
             $table->integer('not_fk_empresa')->unsigned();
             $table->integer('not_fk_venta')->unsigned()->nullable(false);
             $table->timestamps();
+
+            $table->unique('not_fk_venta','NOTAENTREGA_UNIQUE_not_fk_venta');
         });
     }
 
