@@ -30,7 +30,19 @@ class RegistroPagoController extends Controller
         $bancos = Banco::orderby('ban_nombre','ASC')->pluck('ban_nombre','id');
         $venta = Venta::find($venta_id);
 
-        return view('admin.cliente.registroPago.create')->with(compact('bancos','venta'));
+        $monto_pagado = 0;
+
+        foreach ($venta->RegistroPagos as $pago) {
+            $monto_pagado = $monto_pagado + $pago->reg_monto;
+        }
+
+        if ($venta->monto_total <= $monto_pagado) {
+            flash("La venta #".$venta->id." ha sido pagada en su totalidad. NO puede registrar más pagos.")->error();
+            return redirect()->route('venta.index');
+        } else {
+            return view('admin.cliente.registroPago.create')->with(compact('bancos','venta'));
+        }
+
     }
 
     /**
