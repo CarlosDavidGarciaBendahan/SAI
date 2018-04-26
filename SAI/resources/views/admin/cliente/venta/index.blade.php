@@ -39,7 +39,7 @@
 					      			<?php $monto_pagado = $monto_pagado + $pago->reg_monto; ?>
 					      		@endforeach
 					      		{{ $monto_pagado." Bs" }}
-					      	@else
+					      	
 					      		
 					      	@endif
 					      </td>
@@ -59,6 +59,12 @@
 					      	<a href="{{ route('registroPago.create', $venta->id) }}"  class="btn btn-success" title="Registrar pagos a esta venta">
 					      		<span class="class glyphicon glyphicon-usd"></span>
 					      	</a> 
+					      	 
+					      	@if ( count($venta->RegistroPagos) !== 0)
+					      		<a href="{{ route('registroPago.index', $venta->id) }}"  class="btn  btn-link" title="Listar los registro de pago">
+					      		<span class="glyphicon glyphicon-th-list"></span>
+					      		</a>
+					      	@endif
 					      </td>
 				    	</tr>
 				  		

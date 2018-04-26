@@ -15,9 +15,24 @@ class RegistroPagoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    /*public function index()
     {
         //
+    }*/
+
+    public function index($venta_id)
+    {
+        $registroPagos = RegistroPago::where('reg_fk_venta','=',$venta_id)->orderby('id','ASC')->paginate(10);
+
+        //dd(count($registroPagos));
+        if (count($registroPagos) !== 0) {
+            return view('admin.cliente.registroPago.index')->with(compact('registroPagos'));
+        } else {
+            flash("La venta #".$venta_id." no tiene registrado ningún pago.")->error();
+            return redirect()->route('venta.index');
+        }
+        
+        
     }
 
     /**

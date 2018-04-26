@@ -391,6 +391,10 @@ Route::prefix('admin/cliente/')->group( function(){
 		'uses'	=> 'registroPagoController@create',
 		'as'	=> 'registroPago.create'
 	]);
+	Route::get('registroPago/{id}/index',[
+		'uses'	=> 'registroPagoController@index',
+		'as'	=> 'registroPago.index'
+	]);
 });
 
 
