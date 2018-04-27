@@ -44,7 +44,7 @@ class Venta extends Model
     }
 
     public function NotaEntrega(){
-        return $this->hasOne('App\NotaEntrega','reg_fk_notaentrega','id');
+        return $this->hasOne('App\NotaEntrega','not_fk_venta','id');
     }
 
     public function VentaPCs(){
