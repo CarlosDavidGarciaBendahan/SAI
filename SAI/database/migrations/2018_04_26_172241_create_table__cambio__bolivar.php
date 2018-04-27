@@ -13,7 +13,7 @@ class CreateTableCambioBolivar extends Migration
      */
     public function up()
     {
-        Schema::create('Cambio_Bolivar', function (Blueprint $table) {
+        Schema::create('cambio_bolivar', function (Blueprint $table) {
             $table->increments('id');
             $table->decimal('cam_cantidad',9,2)->nullable(false);
             $table->date('cam_fecha')->nullable(false);

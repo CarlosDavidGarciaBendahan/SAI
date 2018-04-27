@@ -37,7 +37,15 @@
 							{!! Form::text('ven_fecha_compra', $venta->cliente_natural->cli_nat_direccion.", ".$venta->cliente_natural->parroquia->par_nombre.", ".$venta->cliente_natural->parroquia->municipio->mun_nombre.", ".$venta->cliente_natural->parroquia->municipio->estado->est_nombre,['class'=> 'form-control', 'placeholder'=>'B208802', 'required', 'readonly'=>'true']) !!}
 						</div>
 					@else
-						{{-- false expr --}}
+						<div class="form-group ">
+							{!! Form::label('cliente','Datos del cliente',['class'=>'col-sm']) !!}
+							{!! Form::label('cliente','Nombre') !!}
+							{!! Form::text('ven_fecha_compra', $venta->cliente_juridico->cli_jur_nombre,['class'=> 'form-control', 'placeholder'=>'B208802', 'required', 'readonly'=>'true']) !!}
+							{!! Form::label('cliente','C.I.') !!}
+							{!! Form::text('ven_fecha_compra', $venta->cliente_juridico->cli_jur_identificador."-".$venta->cliente_juridico->cli_jur_rif,['class'=> 'form-control', 'placeholder'=>'B208802', 'required', 'readonly'=>'true']) !!}
+							{!! Form::label('cliente','Dirección') !!}
+							{!! Form::text('ven_fecha_compra', $venta->cliente_juridico->cli_jur_direccion.", ".$venta->cliente_juridico->parroquia->par_nombre.", ".$venta->cliente_juridico->parroquia->municipio->mun_nombre.", ".$venta->cliente_juridico->parroquia->municipio->estado->est_nombre,['class'=> 'form-control', 'placeholder'=>'B208802', 'required', 'readonly'=>'true']) !!}
+						</div>
 					@endif
 							
 					<div class="form-group ">

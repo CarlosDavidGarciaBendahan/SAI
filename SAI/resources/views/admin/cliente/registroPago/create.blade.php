@@ -17,7 +17,7 @@
 
 					<div class="form-group"> 
 						
-							{!! Form::label('per_fecha_nacimiento','Fecha recibido') !!}
+							{!! Form::label('per_fecha_nacimiento','Fecha de pago') !!}
 
 							{!! Form::text('reg_fecha_pagado', '', array('id' => 'datepicker', 'placeholder'=>'DD-MM-YYYY', 'class'=> 'form-control')) !!}
 					</div>

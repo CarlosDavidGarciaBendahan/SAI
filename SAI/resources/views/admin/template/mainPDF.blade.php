@@ -35,6 +35,10 @@
 			@yield('productos')
 		</section>
 
+		<section id="section-observaciones">
+			@yield('observaciones')
+		</section>
+
 
 		<footer>
 			@yield('footer')

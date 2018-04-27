@@ -380,7 +380,7 @@ Route::prefix('admin/cliente/')->group( function(){
 		'as'	=> 'venta.eliminarProducto'
 	]);
 	///////////////////////////////////////////////////
-	////// 		RegistroPago
+	////// 		REGISTRO DE PAGO
 	///////////////////////////////////////////////////
 	Route::resource('registroPago','registroPagoController');
 	Route::get('registroPago/{id}/destroy',[
@@ -394,6 +394,30 @@ Route::prefix('admin/cliente/')->group( function(){
 	Route::get('registroPago/{id}/index',[
 		'uses'	=> 'registroPagoController@index',
 		'as'	=> 'registroPago.index'
+	]);
+	///////////////////////////////////////////////////
+	////// 		NOTA DE ENTREGA
+	///////////////////////////////////////////////////
+	Route::resource('notaEntrega','notaEntregaController');
+	Route::get('notaEntrega/{id}/destroy',[
+		'uses'	=> 'notaEntregaController@destroy',
+		'as'	=> 'notaEntrega.destroy'
+	]);
+	Route::get('notaEntrega/{id}/create',[
+		'uses'	=> 'notaEntregaController@create',
+		'as'	=> 'notaEntrega.create'
+	]);
+	Route::get('notaEntrega/{id}/download',[
+		'uses'	=> 'notaEntregaController@download',
+		'as'	=> 'notaEntrega.download'
+	]);
+	Route::get('notaEntrega/{id}/enviarNotaEntrega',[
+		'uses'	=> 'notaEntregaController@enviarNotaEntrega',
+		'as'	=> 'notaEntrega.enviarNotaEntrega'
+	]);
+	Route::get('notaEntrega/{id}/CancelarnotaEntrega',[
+		'uses'	=> 'notaEntregaController@CancelarnotaEntrega',
+		'as'	=> 'notaEntrega.CancelarnotaEntrega'
 	]);
 });
 
