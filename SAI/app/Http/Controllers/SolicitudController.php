@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Laracasts\Flash\Flash;
+use Carbon\Carbon;
+use App\NotaEntrega;
+use App\Solicitud;
 
 class SolicitudController extends Controller
 {
@@ -21,9 +25,11 @@ class SolicitudController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($notaEntrega_id)
     {
-        //
+        $notaEntrega = notaEntrega::find($notaEntrega_id);
+
+        return view('admin.cliente.solicitud.create')->with(compact('notaEntrega'));
     }
 
     /**
@@ -34,7 +40,17 @@ class SolicitudController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //dd($request->all());
+
+        $solicitud = new Solicitud($request->all());
+        $solicitud->save();
+
+        $notaEntrega = $solicitud->NotaEntrega;
+
+        //dd($solicitud->NotaEntrega)
+
+        flash("Se ha creado la solicitud exitosamente.")->success();
+        return view('admin.cliente.solicitud.create-productos')->with(compact('solicitud','notaEntrega'));
     }
 
     /**

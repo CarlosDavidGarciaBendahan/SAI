@@ -419,6 +419,22 @@ Route::prefix('admin/cliente/')->group( function(){
 		'uses'	=> 'notaEntregaController@CancelarnotaEntrega',
 		'as'	=> 'notaEntrega.CancelarnotaEntrega'
 	]);
+	///////////////////////////////////////////////////
+	////// 		SOLICITUD
+	///////////////////////////////////////////////////
+	Route::resource('solicitud','solicitudController');
+	Route::get('solicitud/{id}/destroy',[
+		'uses'	=> 'solicitudController@destroy',
+		'as'	=> 'solicitud.destroy'
+	]);
+	Route::get('solicitud/{id}/create',[
+		'uses'	=> 'solicitudController@create',
+		'as'	=> 'solicitud.create'
+	]);
+	Route::get('solicitud/{id}/index',[
+		'uses'	=> 'solicitudController@index',
+		'as'	=> 'solicitud.index'
+	]);
 });
 
 

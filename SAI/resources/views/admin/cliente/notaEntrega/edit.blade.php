@@ -9,7 +9,7 @@
 			<div class="col-sm-8 offset-2">
 				{!! Form::open(['route' => ['notaEntrega.update',$notaEntrega], 'method' => 'PUT']) !!}
 					
-						<?php $subtotal = 0; ?>
+				    <?php $subtotal = 0; ?>
 					<div class="form-group">
 						{!! Form::label('venta','Venta a que se le abona',['class'=> ' col-sm']) !!}
 						{!! Form::text('venta',"Venta #".$notaEntrega->venta->id." efectuada en la fecha: ".date("d/m/Y", strtotime($notaEntrega->venta->ven_fecha_compra)),['class'=> 'form-control', 'placeholder'=>'PAGO DE LA VENTA 0', 'required', 'readonly'=>'true']) !!}	
