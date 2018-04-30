@@ -92,7 +92,11 @@ class NotaEntregaController extends Controller
      */
     public function edit($id)
     {
-        //
+        $notaEntrega = NotaEntrega::find($id);
+        //$empresas = Empresa::orderby('emp_nombre','ASC')->get();
+        $empresas = Empresa::orderby('emp_nombre','ASC')->pluck('emp_nombre','id');
+
+        return view('admin.cliente.notaEntrega.edit')->with(compact('notaEntrega','empresas'));
     }
 
     /**
@@ -104,7 +108,19 @@ class NotaEntregaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        //dd($request->all());
+
+        $notaEntrega =  NotaEntrega::find($id);
+
+        $notaEntrega->not_fk_empresa = $request->not_fk_empresa ;
+        $notaEntrega->not_fecha = $request->not_fecha ;
+        $notaEntrega->not_observaciones = $request->not_observaciones ;
+
+
+        $notaEntrega->save();
+
+        flash("Se ha modificado la nota de entrega #".$notaEntrega->id." exitosamente")->success();
+        return redirect()->route('notaEntrega.index');
     }
 
     /**
@@ -115,7 +131,11 @@ class NotaEntregaController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $notaEntrega = NotaEntrega::find($id);
+        $notaEntrega->delete();
+
+        flash("Se ha eliminado la nota de entrega #".$notaEntrega->id." exitosamente")->success();
+        return redirect()->route('notaEntrega.index');
     }
 
     public function downloadServer($id){

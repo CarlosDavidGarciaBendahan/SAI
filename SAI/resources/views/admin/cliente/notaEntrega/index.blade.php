@@ -35,13 +35,16 @@
 					     
 
 					      <td>
-					      	
+					      	<a href="{{ route('notaEntrega.show', $notaEntrega->id) }}"  class="btn btn-info" title="Ver nota de entrega" target="_blank">
+					      		<span class="class glyphicon glyphicon-file"></span>
+						    </a> 
+						    <a href="{{ route('notaEntrega.download', $notaEntrega->id) }}"  class="btn btn-default" title="Descargar nota de entrega" target="_blank">
+						      		<span class="class glyphicon glyphicon-floppy-save"></span>
+						    </a>
 					      	<a href="{{ route('notaEntrega.edit', $notaEntrega->id) }}" class="btn btn-warning">
 					      		<span class="class glyphicon glyphicon-wrench"></span>
 					      	</a>
-					      	<a href="{{ route('notaEntrega.show', $notaEntrega->id) }}" class="btn btn-info" target="_blank">
-					      		<span class="glyphicon glyphicon-search"></span>
-					      	</a>
+					      	
 					      	<a href="{{ route('notaEntrega.destroy', $notaEntrega->id) }}" onclick="return confirm('Eliminar el registroPago?')" class="btn btn-danger">
 					      		<span class="class glyphicon glyphicon-remove-circle"></span>
 					      	</a> 
