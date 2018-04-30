@@ -20,6 +20,7 @@ class CreateTableSolicitud extends Migration
             $table->string('sol_concepto')->nullable(false);
             $table->enum('sol_aprobado',['S','N'])->nullable(false)->default('N');
             $table->integer('sol_fk_notaentrega')->unsigned()->nullable(false);
+            $table->string('sol_observaciones',200)->nullable(false);
             $table->timestamps();
         });
     }
