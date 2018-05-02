@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTableArticuloSolicitud extends Migration
+class CreateTablePcSolicitudEntregado extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,13 @@ class CreateTableArticuloSolicitud extends Migration
      */
     public function up()
     {
-        Schema::create('articulo_solicitud', function (Blueprint $table) {
+        Schema::create('pc_solicitudEntregado', function (Blueprint $table) {
             //$table->increments('id');
-            $table->integer('art_sol_fk_solicitud')->unsigned()->nullable(false);
-            $table->integer('art_sol_fk_codigoarticulo')->unsigned()->nullable(false);
+            $table->integer('pc_sol_fk_solicitud')->unsigned()->nullable(false);
+            $table->integer('pc_sol_fk_codigopc')->unsigned()->nullable(false);
             $table->timestamps();
 
-            $table->unique(['art_sol_fk_codigoarticulo','art_sol_fk_solicitud'],'ARTICULO_SOLICITUD_UNIQUE_articulo_solicitud');
+            $table->unique(['pc_sol_fk_codigopc','pc_sol_fk_solicitud'],'PC_SOLICITUDENTREGADO_UNIQUE_pc_solicitud');
         });
     }
 
@@ -31,6 +31,6 @@ class CreateTableArticuloSolicitud extends Migration
     public function down()
     {
         Schema::disableForeignKeyConstraints();
-        Schema::dropIfExists('articulo_solicitud');
+        Schema::dropIfExists('pc_solicitudEntregado');
     }
 }
