@@ -140,4 +140,61 @@ class CodigoPCController extends Controller
         flash("Eliminación de la PC '' ".$codigoPC->cod_pc_codigo." '' exitosa")->success();
         return redirect()->route('codigoPC.index');
     }
+
+    public function disponibilidadPC($codigoPC){
+        $disponible = true; //supongo que  está disponible el producto. 
+
+        $ultimaVenta = null;
+        $ultimaSolicitudAprobada = null;
+
+        foreach ($codigoPC->ventas as  $venta) {
+            if ($venta->ven_eliminada === 0) {//Verifico que la venta NO ha sido eliminada.
+                if($ultimaVenta === null){//Guardo la primera venta no eliminada que consiga.
+                    $ultimaVenta = $venta;
+                }else{//en caso de haber conseguido más de una venta NO eliminada 
+                //verifico cual es la más reciente entre las dos
+                    
+                    if ($venta->ven_fecha_compra >= $ultimaVenta->ven_fecha_compra ) {
+                        $ultimaVenta = $venta;
+                    }
+                    
+                }
+            } else {
+                        # code...
+            } 
+        }
+        //dd($ultimaVenta);
+        foreach ($codigoPC->solicitudes as  $solicitud) {
+            if($solicitud->sol_aprobado === 'S'){ //si la solicitud esta aprobada, se toma en cuenta.
+                if ($ultimaSolicitudAprobada === null) {//guardo la primare solicitud aprobada.
+                    $ultimaSolicitudAprobada = $solicitud;
+                } else {
+                    if ($solicitud->sol_fecha >= $ultimaSolicitudAprobada) {
+                        $ultimaSolicitudAprobada = $solicitud;
+                    } 
+                    
+                }
+            }
+        }
+
+        if ($ultimaVenta !== null && $ultimaSolicitudAprobada !== null) {//Se verifica si existe alguna venta y solicitud para esa PC
+            //Verifico que la ultima venta realizada y no eliminada, sea más reciente que la ultima solicitud aprobada.
+            if ($ultimaVenta->ven_fecha_compra > $ultimaSolicitudAprobada->sol_fecha) {
+                $disponible = false;
+            }
+        } else {//en caso de no existir solicitud, se verifica que exista la venta. 
+            if ($ultimaVenta !== null && $ultimaSolicitudAprobada === null) {//si existe la venta, la PC no esta disponible
+                $disponible = false;
+            } else {
+                # code...
+            }
+            
+        }
+        
+        
+        
+        //dd($disponible);
+        
+        return $disponible;
+    }
 }

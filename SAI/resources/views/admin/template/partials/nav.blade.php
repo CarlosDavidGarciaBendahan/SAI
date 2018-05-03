@@ -62,6 +62,7 @@
           <a class="dropdown-item" href="{{ route('venta.index') }}">Venta</a>
           <a class="dropdown-item" href="{{ route('presupuesto.index') }}">Presupuesto</a>
           <a class="dropdown-item" href="{{ route('notaEntrega.index') }}">Nota de entrega</a>
+          <a class="dropdown-item" href="{{ route('solicitud.index') }}">Solicitud (Cambio-Devolución)</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="#">Something else here</a>
         </div>

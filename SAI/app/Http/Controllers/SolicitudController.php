@@ -7,6 +7,7 @@ use Laracasts\Flash\Flash;
 use Carbon\Carbon;
 use App\NotaEntrega;
 use App\Solicitud;
+use App\http\Controllers\CodigoPCController;
 
 class SolicitudController extends Controller
 {
@@ -17,7 +18,9 @@ class SolicitudController extends Controller
      */
     public function index()
     {
-        //
+        $solicitudes = Solicitud::orderBy('id','ASC')->paginate(10);
+
+        return view('admin.cliente.solicitud.index')->with(compact('solicitudes'));
     }
 
     /**
@@ -49,8 +52,8 @@ class SolicitudController extends Controller
 
         //dd($solicitud->NotaEntrega)
 
-        flash("Se ha creado la solicitud exitosamente.")->success();
-        return view('admin.cliente.solicitud.create-productos')->with(compact('solicitud','notaEntrega'));
+        flash("Se ha creado la solicitud #".$solicitud->id." exitosamente.")->success();
+        return redirect()->route('solicitud.seleccionarProductos',['id'=>$solicitud->id]);
     }
 
     /**
@@ -95,6 +98,86 @@ class SolicitudController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $solicitud = Solicitud::find($id);
+            $solicitud->CodigoPCs()->detach($solicitud->CodigoPCs);
+                $solicitud->CodigoArticulos()->detach($solicitud->CodigoArticulos);
+        $solicitud->delete();
+
+        flash("La eliminación de la solicitud #".$solicitud->id." fue exitosa.")->success();
+        return redirect()->route('solicitud.index');
     }
+
+    public function seleccionarProductos($id){
+        $solicitud =  Solicitud::find($id);
+        //dd($solicitud);
+        $notaEntrega = $solicitud->NotaEntrega;
+
+        $PC = new CodigoPCController();
+        $CodigoPCs = collect() ;
+
+        foreach ($notaEntrega->venta->ventaPCs as $key => $CodigoPC) {
+            
+            if ($PC->disponibilidadPC($CodigoPC)) {//solo voy a guardar las PCs que NO puedo elegir
+                //es decir, PC que está disponible, significa que está en inventario.
+                $CodigoPCs->push($CodigoPC);
+                /*if ($notaEntrega->venta->ventaPCs->offsetExists($key)) {
+                    dd("se");
+                }*/
+
+            } else {
+                # code...
+            }
+                //$CodigoPCs->forget($key);
+        }
+
+        //dd($CodigoPCs);
+        
+        return view('admin.cliente.solicitud.create-productos')->with(compact('solicitud','notaEntrega','CodigoPCs'));
+    }
+
+
+    public function eliminarProducto($solicitud_id,$producto_id,$tipo_producto){
+
+        $solicitud = solicitud::find($solicitud_id);
+
+        if ($tipo_producto === "pc") {
+            $solicitud->CodigoPCs()->detach($producto_id);
+
+            flash("Se ha eliminado exitosamente el producto de la solicitud #".$solicitud->id)->success();
+        } else {
+            if ($tipo_producto === "articulo") {
+                $solicitud->CodigoArticulos()->detach($producto_id);
+
+                flash("Se ha eliminado exitosamente el producto de la solicitud #".$solicitud->id)->success();
+            } 
+            
+        }
+
+
+        return redirect()->route('solicitud.seleccionarProductos',['id'=>$solicitud->id]);
+        
+    }
+    public function agregarProducto($solicitud_id,$producto_id,$tipo_producto){
+
+        $solicitud = solicitud::find($solicitud_id);
+
+        if ($tipo_producto === "pc") {
+            $solicitud->CodigoPCs()->attach($producto_id);
+
+            flash("Se ha agregado exitosamente el producto a la solicitud #".$solicitud->id)->success();
+        } else {
+            if ($tipo_producto === "articulo") {
+                $solicitud->CodigoArticulos()->attach($producto_id);
+
+                flash("Se ha agregado exitosamente el producto a la solicitud #".$solicitud->id)->success();
+            } 
+            
+        }
+        return redirect()->route('solicitud.seleccionarProductos',['id'=>$solicitud->id]);
+
+        
+    }
+
+
+
 }

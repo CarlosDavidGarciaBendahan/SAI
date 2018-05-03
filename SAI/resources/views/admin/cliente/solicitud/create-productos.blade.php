@@ -41,12 +41,13 @@
 				      <th>Tipo</th>
 				      <th>Componentes</th>
 				      <th>Costo</th>
-
+				      <th>Agregar/Quitar</th>
 				    </tr>
 				  </thead>
 				  <tbody>
 
-				  	@foreach ($notaEntrega->venta->ventaPCs as $codigoPC)
+				  	@foreach ($notaEntrega->venta->ventaPCs as $key => $codigoPC)
+				  	@if (!$CodigoPCs->offsetExists($key)) 
 				  		<tr>
 					      <th scope="row">{{ $codigoPC->cod_pc_codigo }}</th>
 					      <td>{{ "Marca: ".$codigoPC->producto_computador->modelo->marca->mar_marca ." Modelo: ".$codigoPC->producto_computador->modelo->mod_modelo }}</td>	
@@ -60,8 +61,20 @@
 					  	  <td>
 					  	  	{{ $codigoPC->producto_computador->pro_com_precio." ".$codigoPC->producto_computador->pro_com_moneda }}
 					  	  </td>
+					  	  <td>
+					  	  		{{ $codigoPC->solicitudes }}
+					  	  		<a href="{{ route('solicitud.agregarProducto', [$solicitud->id,$codigoPC->id,'pc']) }}" onclick="return confirm('Seguro que desea agregar este artículo de la solicitud?')" class="btn btn-success" title="Agregar producto de esta solicitud">
+						      		<span class="class glyphicon glyphicon-ok"></span>
+					      		</a> 
+					  	  		<a href="{{ route('solicitud.eliminarProducto', [$solicitud->id,$codigoPC->id,'pc']) }}" onclick="return confirm('Seguro que desea quitar este artículo de la solicitud?')" class="btn btn-danger" title="Quitar producto de esta solicitud">
+						      		<span class="class glyphicon glyphicon-remove-circle"></span>
+					      		</a> 
+					  	  	
+					  	  </td>
 					  	  
 				    	</tr>
+				  	@endif
+				  		
 				  	@endforeach
 
 				  </tbody>
@@ -77,6 +90,7 @@
 				      <th>Tipo</th>
 				      <th>Capacidad</th>
 				      <th>Costo</th>
+				      <th>Agregar/Quitar</th>
 
 				    </tr>
 				  </thead>
@@ -92,6 +106,15 @@
 					  	  </td>
 					      <td>
 					  	  	{{ $codigoArticulo->producto_articulo->pro_art_precio." ".$codigoArticulo->producto_articulo->pro_art_moneda }}
+					  	  </td>
+					  	  <td>
+					  	  		<a href="{{ route('solicitud.agregarProducto', [$solicitud->id,$codigoArticulo->id,'articulo']) }}" onclick="return confirm('Seguro que desea agregar este artículo de la solicitud?')" class="btn btn-success" title="Agregar producto de esta solicitud">
+						      		<span class="class glyphicon glyphicon-ok"></span>
+					      		</a> 
+					  	  		<a href="{{ route('solicitud.eliminarProducto', [$solicitud->id,$codigoArticulo->id,'articulo']) }}" onclick="return confirm('Seguro que desea quitar este artículo de la solicitud?')" class="btn btn-danger" title="Quitar producto de esta solicitud">
+						      		<span class="class glyphicon glyphicon-remove-circle"></span>
+					      		</a> 
+					  	  	
 					  	  </td>
 					        
 				    	</tr>

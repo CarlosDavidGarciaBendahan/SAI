@@ -38,6 +38,6 @@ class Solicitud extends Model
     }
 
     public function CodigoArticulos(){
-        return $this->belongsToMany('App\CodigoArticulo','articulo_solicitud','art_sol_fk_solicitud','art_sol_fk_codigopc');
+        return $this->belongsToMany('App\CodigoArticulo','articulo_solicitud','art_sol_fk_solicitud','art_sol_fk_codigoarticulo');
     }
 }
