@@ -7,13 +7,17 @@
 	<section class="container-fluid">
 		<div class="row">
 			<div class="col-sm-8 offset-2">
-				{!! Form::open(['route' => 'solicitud.store', 'method' => 'POST' ]) !!}
+				{!! Form::open(['route' => 'solicitud.storeAgregarProductos', 'method' => 'POST' ]) !!}
 					
 
 					<div class="form-group col-sm-12"> 
 						
 						{!! Form::label('empresa','Tipo de solicitud') !!}
 						{!! Form::select('sol_tipo',['cambio'=>'Cambio de producto','devolucion' => 'Devolución del producto'], $solicitud->sol_tipo, ['class'=>'form-control col-sm input-sm ', 'placeholder'=>'', 'required','enable'=>'false'] ) !!}
+					</div>
+					<div class="form-group col-sm-12"> 
+						
+						{!! Form::text('id',$solicitud->id,['class'=> 'form-control', 'placeholder'=>'', 'required', 'readonly'=>'true','hidden'=>'true']) !!}
 					</div>
 					<div class="form-group"> 
 						
@@ -47,7 +51,7 @@
 				  <tbody>
 
 				  	@foreach ($notaEntrega->venta->ventaPCs as $key => $codigoPC)
-				  	@if (!$CodigoPCs->offsetExists($key)) 
+				  	
 				  		<tr>
 					      <th scope="row">{{ $codigoPC->cod_pc_codigo }}</th>
 					      <td>{{ "Marca: ".$codigoPC->producto_computador->modelo->marca->mar_marca ." Modelo: ".$codigoPC->producto_computador->modelo->mod_modelo }}</td>	
@@ -62,7 +66,7 @@
 					  	  	{{ $codigoPC->producto_computador->pro_com_precio." ".$codigoPC->producto_computador->pro_com_moneda }}
 					  	  </td>
 					  	  <td>
-					  	  		{{ $codigoPC->solicitudes }}
+					  	  	@if (!$CodigoPCs->offsetExists($key)) 
 					  	  		<a href="{{ route('solicitud.agregarProducto', [$solicitud->id,$codigoPC->id,'pc']) }}" onclick="return confirm('Seguro que desea agregar este artículo de la solicitud?')" class="btn btn-success" title="Agregar producto de esta solicitud">
 						      		<span class="class glyphicon glyphicon-ok"></span>
 					      		</a> 
@@ -70,10 +74,13 @@
 						      		<span class="class glyphicon glyphicon-remove-circle"></span>
 					      		</a> 
 					  	  	
+					  	  	@else
+					  	  		NO DISPONIBLE
+					  	  	@endif
 					  	  </td>
 					  	  
 				    	</tr>
-				  	@endif
+				  	
 				  		
 				  	@endforeach
 
@@ -96,7 +103,8 @@
 				  </thead>
 				  <tbody>
 
-				  	@foreach ($notaEntrega->venta->ventaArticulos as $codigoArticulo)
+				  	@foreach ($notaEntrega->venta->ventaArticulos as $key => $codigoArticulo)
+				  	
 				  		<tr>
 					      <th scope="row">{{ $codigoArticulo->cod_art_codigo }}</th>
 					      <td>{{ "Marca: ".$codigoArticulo->producto_articulo->modelo->marca->mar_marca ." Modelo: ".$codigoArticulo->producto_articulo->modelo->mod_modelo }}</td>	
@@ -108,16 +116,21 @@
 					  	  	{{ $codigoArticulo->producto_articulo->pro_art_precio." ".$codigoArticulo->producto_articulo->pro_art_moneda }}
 					  	  </td>
 					  	  <td>
+					  	  	@if (!$CodigoArticulos->offsetExists($key)) 
 					  	  		<a href="{{ route('solicitud.agregarProducto', [$solicitud->id,$codigoArticulo->id,'articulo']) }}" onclick="return confirm('Seguro que desea agregar este artículo de la solicitud?')" class="btn btn-success" title="Agregar producto de esta solicitud">
 						      		<span class="class glyphicon glyphicon-ok"></span>
 					      		</a> 
 					  	  		<a href="{{ route('solicitud.eliminarProducto', [$solicitud->id,$codigoArticulo->id,'articulo']) }}" onclick="return confirm('Seguro que desea quitar este artículo de la solicitud?')" class="btn btn-danger" title="Quitar producto de esta solicitud">
 						      		<span class="class glyphicon glyphicon-remove-circle"></span>
 					      		</a> 
-					  	  	
+					  	  		
+					  	  	@else
+					  	  		NO DISPONIBLE
+					  	  	@endif
 					  	  </td>
 					        
 				    	</tr>
+				  	
 				  	@endforeach
 
 				  </tbody>
@@ -127,7 +140,7 @@
 
 				<div class="form-group">
 						{!! Form::label('venta','Observaciones',['class'=> '']) !!}
-						{!! Form::textarea('not_observaciones',null,['class'=> 'form-control', 'placeholder'=>'Observaciones', 'required']) !!}	
+						{!! Form::textarea('sol_observaciones',null,['class'=> 'form-control', 'placeholder'=>'Observaciones', 'required']) !!}	
 				</div>
 
 					<div class="form-group col-sm-12">

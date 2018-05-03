@@ -18,6 +18,7 @@ class SolicitudController extends Controller
      */
     public function index()
     {
+
         $solicitudes = Solicitud::orderBy('id','ASC')->paginate(10);
 
         return view('admin.cliente.solicitud.index')->with(compact('solicitudes'));
@@ -28,6 +29,12 @@ class SolicitudController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function listarNotas($s)
+    {
+        $notaEntregas = NotaEntrega::orderby('id','ASC')->paginate(10);
+        return view('admin.cliente.solicitud.listarNotas')->with(compact('notaEntregas'));
+    }
+
     public function create($notaEntrega_id)
     {
         $notaEntrega = notaEntrega::find($notaEntrega_id);
@@ -35,6 +42,21 @@ class SolicitudController extends Controller
         return view('admin.cliente.solicitud.create')->with(compact('notaEntrega'));
     }
 
+    /*public function createSolicitud($solicitud_id)
+    {
+        $solicitud = Solicitud::find($solicitud_id);
+
+        if($solicitud->sol_tipo === "cambio"){
+
+            $notaEntrega = $solicitud->notaEntrega;
+
+            return view('admin.cliente.solicitud.create')->with(compact('notaEntrega','solicitud'));
+        }else{
+
+            flash("Disculpe, esta opción solo esta disponible para las solicitudes de cambio de producto.")->error();
+            return redirect()->back();
+        }
+    }*/
     /**
      * Store a newly created resource in storage.
      *
@@ -56,6 +78,20 @@ class SolicitudController extends Controller
         return redirect()->route('solicitud.seleccionarProductos',['id'=>$solicitud->id]);
     }
 
+    public function storeAgregarProductos(Request $request)
+    {
+        //dd($request->all());
+        
+        $solicitud = solicitud::find($request->id);
+
+        $solicitud->sol_observaciones = $request->sol_observaciones;
+        $solicitud->save(); 
+
+
+        flash("Se ha agregado los productos a la solicitud #".$solicitud->id." exitosamente.")->success();
+        return redirect()->route('solicitud.index');
+
+    }
     /**
      * Display the specified resource.
      *
@@ -114,6 +150,7 @@ class SolicitudController extends Controller
 
         $PC = new CodigoPCController();
         $CodigoPCs = collect() ;
+        $CodigoArticulos = collect() ;
 
         foreach ($notaEntrega->venta->ventaPCs as $key => $CodigoPC) {
             
@@ -124,15 +161,17 @@ class SolicitudController extends Controller
                     dd("se");
                 }*/
 
-            } else {
-                # code...
-            }
+            } 
                 //$CodigoPCs->forget($key);
         }
+        foreach ($notaEntrega->venta->VentaArticulos as $key => $CodigoArticulo) {
+            
+            if ($PC->disponibilidadPC($CodigoArticulo)) {
+                $CodigoArticulos->push($CodigoArticulo);
+            } 
+        }
 
-        //dd($CodigoPCs);
-        
-        return view('admin.cliente.solicitud.create-productos')->with(compact('solicitud','notaEntrega','CodigoPCs'));
+        return view('admin.cliente.solicitud.create-productos')->with(compact('solicitud','notaEntrega','CodigoPCs','CodigoArticulos'));
     }
 
 

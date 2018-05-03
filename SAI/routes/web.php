@@ -446,6 +446,10 @@ Route::prefix('admin/cliente/')->group( function(){
 		'uses'	=> 'solicitudController@create',
 		'as'	=> 'solicitud.create'
 	]);
+	/*Route::get('solicitud/{id}/createSolicitud',[
+		'uses'	=> 'solicitudController@createSolicitud',
+		'as'	=> 'solicitud.createSolicitud'
+	]);*/
 	Route::get('solicitud/{id}/seleccionarProductos',[
 		'uses'	=> 'solicitudController@seleccionarProductos',
 		'as'	=> 'solicitud.seleccionarProductos'
@@ -457,6 +461,14 @@ Route::prefix('admin/cliente/')->group( function(){
 	Route::get('solicitud/{id}/agregarProducto/{producto_id}/{tipo_producto}',[
 		'uses'	=> 'solicitudController@agregarProducto',
 		'as'	=> 'solicitud.agregarProducto'
+	]);
+	Route::post('solicitud/storeAgregarProductos',[
+		'uses'	=> 'solicitudController@storeAgregarProductos',
+		'as'	=> 'solicitud.storeAgregarProductos'
+	]);
+	Route::get('solicitud/listarNotas/{id}',[
+		'uses'	=> 'solicitudController@listarNotas',
+		'as'	=> 'solicitud.listarNotas'
 	]);
 });
 

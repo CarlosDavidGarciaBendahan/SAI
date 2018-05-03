@@ -10,7 +10,7 @@
 		<div class="row">
 			<div class="col-sm-8 offset-2">
 				 
-
+				<a href="{{ route('solicitud.listarNotas',0) }}" class="btn btn-info">Registrar nueva solicitud</a>
 				<table class="table table-inverse">
 				  <thead>
 				    <tr>
@@ -19,6 +19,7 @@
 				      <th>Tipo</th>
 				      <th>Concepto</th>
 				      <th>Observaciones</th>
+				      <th>Nota Entrega</th>
 				      <th>Aprobado</th>
 
 				    </tr>
@@ -32,6 +33,7 @@
 					      <td>{{ $solicitud->sol_tipo}}</td>
 					      <td>{{ $solicitud->sol_concepto}}</td>
 					      <td>{{ $solicitud->sol_observaciones}}</td>
+					      <td>{{ '#'.$solicitud->notaEntrega->id }}</td>
 					      <td>
 					      	@if ($solicitud->sol_aprobado === 'S')
 					      		<a class="btn btn-success" title="Aprobado">
