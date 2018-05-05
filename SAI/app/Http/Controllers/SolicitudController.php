@@ -38,8 +38,9 @@ class SolicitudController extends Controller
     public function create($notaEntrega_id)
     {
         $notaEntrega = notaEntrega::find($notaEntrega_id);
+        $solicitudes = solicitud::where('sol_fk_notaentrega','=',$notaEntrega_id)->where('sol_tipo','=','cambio')->orderby('id','ASC')->pluck('id','id');
 
-        return view('admin.cliente.solicitud.create')->with(compact('notaEntrega'));
+        return view('admin.cliente.solicitud.create')->with(compact('notaEntrega','solicitudes'));
     }
 
     /*public function createSolicitud($solicitud_id)
@@ -145,7 +146,7 @@ class SolicitudController extends Controller
 
     public function seleccionarProductos($id){
         $solicitud =  Solicitud::find($id);
-        //dd($solicitud);
+        //dd($id_solicitudElegida);
         $notaEntrega = $solicitud->NotaEntrega;
 
         $PC = new CodigoPCController();
@@ -154,16 +155,20 @@ class SolicitudController extends Controller
 
         foreach ($notaEntrega->venta->ventaPCs as $key => $CodigoPC) {
             
-            if ($PC->disponibilidadPC($CodigoPC)) {//solo voy a guardar las PCs que NO puedo elegir
+            if($PC->disponibilidadPCParaSolicitud($CodigoPC,$notaEntrega->venta->ven_fecha_compra)){
+                $CodigoPCs->push($CodigoPC);//agrego los disponibles!!!
+            }
+            /*if ($PC->disponibilidadPC($CodigoPC)) {//solo voy a guardar las PCs que NO puedo elegir
                 //es decir, PC que está disponible, significa que está en inventario.
                 $CodigoPCs->push($CodigoPC);
                 /*if ($notaEntrega->venta->ventaPCs->offsetExists($key)) {
                     dd("se");
-                }*/
+                }
 
             } 
-                //$CodigoPCs->forget($key);
+                //$CodigoPCs->forget($key);*/
         }
+        //dd($CodigoPCs);
         foreach ($notaEntrega->venta->VentaArticulos as $key => $CodigoArticulo) {
             
             if ($PC->disponibilidadPC($CodigoArticulo)) {

@@ -66,7 +66,8 @@
 					  	  	{{ $codigoPC->producto_computador->pro_com_precio." ".$codigoPC->producto_computador->pro_com_moneda }}
 					  	  </td>
 					  	  <td>
-					  	  	@if (!$CodigoPCs->offsetExists($key)) 
+					  	  	@if ($CodigoPCs->contains($codigoPC)) 
+					  	  		{{ $key }}
 					  	  		<a href="{{ route('solicitud.agregarProducto', [$solicitud->id,$codigoPC->id,'pc']) }}" onclick="return confirm('Seguro que desea agregar este artículo de la solicitud?')" class="btn btn-success" title="Agregar producto de esta solicitud">
 						      		<span class="class glyphicon glyphicon-ok"></span>
 					      		</a> 
@@ -75,7 +76,10 @@
 					      		</a> 
 					  	  	
 					  	  	@else
-					  	  		NO DISPONIBLE
+					  	  		NO DISPONIBLE<a href="{{ route('solicitud.eliminarProducto', [$solicitud->id,$codigoPC->id,'pc']) }}" onclick="return confirm('Seguro que desea quitar este artículo de la solicitud?')" class="btn btn-danger" title="Quitar producto de esta solicitud">
+						      		<span class="class glyphicon glyphicon-remove-circle"></span>
+					      		</a> 
+					      		{{ $key }}
 					  	  	@endif
 					  	  </td>
 					  	  

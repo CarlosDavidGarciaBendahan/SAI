@@ -141,21 +141,20 @@ class CodigoPCController extends Controller
         return redirect()->route('codigoPC.index');
     }
 
-    public function disponibilidadPC($codigoPC){
-        $disponible = true; //supongo que  está disponible el producto. 
-
+    public function disponibilidadPC($codigoPC){ 
         $ultimaVenta = null;
         $ultimaSolicitudAprobada = null;
+        $ultimaSolicitudEntragadoAprobada = null;
 
         foreach ($codigoPC->ventas as  $venta) {
             if ($venta->ven_eliminada === 0) {//Verifico que la venta NO ha sido eliminada.
                 if($ultimaVenta === null){//Guardo la primera venta no eliminada que consiga.
-                    $ultimaVenta = $venta;
+                    $ultimaVenta = $venta->ven_fecha_compra;
                 }else{//en caso de haber conseguido más de una venta NO eliminada 
                 //verifico cual es la más reciente entre las dos
                     
-                    if ($venta->ven_fecha_compra >= $ultimaVenta->ven_fecha_compra ) {
-                        $ultimaVenta = $venta;
+                    if ($venta->ven_fecha_compra >= $ultimaVenta ) {
+                        $ultimaVenta = $venta->ven_fecha_compra;
                     }
                     
                 }
@@ -167,34 +166,107 @@ class CodigoPCController extends Controller
         foreach ($codigoPC->solicitudes as  $solicitud) {
             if($solicitud->sol_aprobado === 'S'){ //si la solicitud esta aprobada, se toma en cuenta.
                 if ($ultimaSolicitudAprobada === null) {//guardo la primare solicitud aprobada.
-                    $ultimaSolicitudAprobada = $solicitud;
+                    $ultimaSolicitudAprobada = $solicitud->sol_fecha;
                 } else {
                     if ($solicitud->sol_fecha >= $ultimaSolicitudAprobada) {
-                        $ultimaSolicitudAprobada = $solicitud;
+                        $ultimaSolicitudAprobada = $solicitud->sol_fecha;
                     } 
                     
                 }
             }
         }
 
-        if ($ultimaVenta !== null && $ultimaSolicitudAprobada !== null) {//Se verifica si existe alguna venta y solicitud para esa PC
-            //Verifico que la ultima venta realizada y no eliminada, sea más reciente que la ultima solicitud aprobada.
-            if ($ultimaVenta->ven_fecha_compra > $ultimaSolicitudAprobada->sol_fecha) {
-                $disponible = false;
+        foreach ($codigoPC->SolicitudesEntregadas as  $solicitud) {
+            if($solicitud->sol_aprobado === 'S'){ //si la solicitud esta aprobada, se toma en cuenta.
+                if ($ultimaSolicitudEntragadoAprobada === null) {//guardo la primare solicitud aprobada.
+                    $ultimaSolicitudEntragadoAprobada = $solicitud->sol_fecha;
+                } else {
+                    if ($solicitud->sol_fecha >= $ultimaSolicitudEntragadoAprobada) {
+                        $ultimaSolicitudEntragadoAprobada = $solicitud->sol_fecha;
+                    } 
+                    
+                }
             }
-        } else {//en caso de no existir solicitud, se verifica que exista la venta. 
-            if ($ultimaVenta !== null && $ultimaSolicitudAprobada === null) {//si existe la venta, la PC no esta disponible
-                $disponible = false;
-            } else {
-                # code...
-            }
-            
         }
         
-        
-        
-        //dd($disponible);
-        
+        //dd($this->VerificarFechas($ultimaVenta,$ultimaSolicitudAprobada,$ultimaSolicitudEntragadoAprobada));
+        return ($this->VerificarFechas($ultimaVenta,$ultimaSolicitudAprobada,$ultimaSolicitudEntragadoAprobada));
+    }
+
+    //este metodo recibe puras fechas!!!
+    public function VerificarFechas($ultimaVenta, $ultimaSolicitud, $ultimaSolicitudCambio){
+        $disponible = true;
+        //Valido por la existencia de las fechas.
+        if ($ultimaVenta === null && $ultimaSolicitud === null && $ultimaSolicitudCambio === null) {
+            $disponible = true; //NO se ha vendido, no se ha devuelto y no se ha dado en cambio.
+        } else {
+            if ($ultimaVenta === null && $ultimaSolicitud === null && $ultimaSolicitudCambio !== null) {
+                $disponible = false; //Se entrego por cambio el producto. NO DISPONIBLE
+            } else {
+                if ($ultimaVenta !== null && $ultimaSolicitud === null && $ultimaSolicitudCambio === null) {
+                    $disponible = false;
+                } 
+                else{
+                    if ($ultimaVenta !== null && $ultimaSolicitud !== null && $ultimaSolicitudCambio === null) {
+                        //Existe la venta y la devolucion. Debo verificar cual es mas reciente.
+                        if ($ultimaVenta > $ultimaSolicitud) {
+                            $disponible = false;//se vendió más recientemente que la solicitud de devolucion.
+                        } else {
+                            $disponible = true;
+                        }
+                        
+                    } else {
+                        if ($ultimaVenta !== null && $ultimaSolicitud !== null && $ultimaSolicitudCambio !== null) {
+                            if ($ultimaVenta > $ultimaSolicitud  &&  $ultimaVenta > $ultimaSolicitudCambio) {
+                                $disponible = false;
+                            } else {
+                                if ($ultimaSolicitud > $ultimaVenta  &&  $ultimaSolicitud > $ultimaSolicitudCambio) {
+                                    $disponible = true;
+                                } else {
+                                    if ($ultimaSolicitudCambio > $ultimaSolicitud  &&  $ultimaSolicitudCambio> $ultimaVenta) {
+                                        $disponible = false;
+                                    } 
+                                }
+                            }
+                            
+                        } 
+                        
+                    }
+                    
+                }
+            }
+        }
         return $disponible;
+    }
+
+    public function disponibilidadPCParaSolicitud($codigoPC,$fecha_venta){ 
+        foreach ($codigoPC->ventas as  $venta) {
+            if ($venta->ven_eliminada === 0) {//Verifico que la venta NO ha sido eliminada.
+                //la ultima venta debe tener la misma fecha que $fecha_venta
+                if ($fecha_venta < $venta->ven_fecha_compra) {
+                    //si se consigue una venta NO eliminada, pero, dicha venta tiene fecha más reciente que la a verificar entonces el producto no está disponible.
+                    return false;
+                }
+                
+            }
+        }
+        //dd($ultimaVenta);
+        foreach ($codigoPC->solicitudes as  $solicitud) {
+            if($solicitud->sol_aprobado === 'S'){//si existe una slicitud con fecha más reciente que la venta, no esta disponible para otra solicitud.
+                if ($fecha_venta < $solicitud->sol_fecha) {
+                    return false;
+                }
+            }
+        }
+
+        foreach ($codigoPC->SolicitudesEntregadas as  $solicitud) {
+            if($solicitud->sol_aprobado === 'S'){//si existe una slicitud con fecha más reciente que la venta, no esta disponible para otra solicitud.
+                if ($fecha_venta < $solicitud->sol_fecha) {
+                        return false;
+                }
+            }
+        }
+        
+        return (true);
     }
 }

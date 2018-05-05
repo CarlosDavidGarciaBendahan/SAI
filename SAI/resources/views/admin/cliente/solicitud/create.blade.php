@@ -14,6 +14,57 @@
 						{!! Form::text('venta',"Nota de entraga #".$notaEntrega->id." efectuada en la fecha: ".date("d/m/Y", strtotime($notaEntrega->not_fecha)),['class'=> 'form-control', 'placeholder'=>'PAGO DE LA VENTA 0', 'required', 'readonly'=>'true']) !!}	
 						{!! Form::text('sol_fk_notaentrega',$notaEntrega->id,['class'=> 'form-control', 'hidden'=>'true', 'required', 'readonly'=>'true']) !!}	
 					</div>
+					@if (count($notaEntrega->solicitudes) !== 0)
+						<div>
+					    {!! Form::label('venta','Solicitudes de cambio relacionadas',['class'=> ' col-sm']) !!}
+						 <table class="table table-inverse">
+						  <thead>
+						    <tr>
+						      <th>id</th>
+						      <th>Fecha</th>
+						      <th>Tipo</th>
+						      <th>Concepto</th>
+						      <th>Observaciones</th>
+						      <th>Nota Entrega</th>
+						      <th>Aprobado</th>
+
+						    </tr>
+						  </thead>
+						  <tbody>
+
+						  	@foreach ($notaEntrega->solicitudes as $solicitud)
+						  		@if ($solicitud->sol_tipo === 'cambio')
+						  		<tr>
+							      <th scope="row">{{ $solicitud->id }}</th>
+							      <td>{{  date("d/m/Y", strtotime($solicitud->sol_fecha))}}</td>		
+							      <td>{{ $solicitud->sol_tipo}}</td>
+							      <td>{{ $solicitud->sol_concepto}}</td>
+							      <td>{{ $solicitud->sol_observaciones}}</td>
+							      <td>{{ '#'.$solicitud->notaEntrega->id }}</td>
+							      <td>
+							      	@if ($solicitud->sol_aprobado === 'S')
+							      		<a class="btn btn-success" title="Aprobado">
+							      		<span class="class glyphicon glyphicon-ok"></span>
+								    	</a>
+								    @else
+								    	<a class="btn btn-danger" title="Rechazado">
+							      		<span class="class glyphicon glyphicon-remove"></span>
+								    	</a>
+							      	@endif
+							      </td>
+						    	</tr>
+						  		@endif
+						  	@endforeach
+
+						  </tbody>
+
+						</table>
+						{!! Form::label('empresa','Elegir una solicitud en caso de que la solicitud sea para otra solicitud') !!}
+						{!! Form::select('solicitud_id',$solicitudes, null, ['class'=>'form-control col-sm input-sm ', 'placeholder'=>''] ) !!}
+
+						</div>
+					@endif
+					
 
 					@if ($notaEntrega->venta->cliente_natural !== null)
 						<div class="form-group ">
