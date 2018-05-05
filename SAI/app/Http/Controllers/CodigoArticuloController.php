@@ -266,7 +266,8 @@ class CodigoArticuloController extends Controller
         }
         return $disponible;
     }
-     public function disponibilidadArticuloParaSolicitud($codigoArticulo,$fecha_venta){ 
+
+    public function disponibilidadArticuloParaSolicitud($codigoArticulo,$fecha_venta){ 
         foreach ($codigoArticulo->ventas as  $venta) {
             if ($venta->ven_eliminada === 0) {//Verifico que la venta NO ha sido eliminada.
                 //la ultima venta debe tener la misma fecha que $fecha_venta

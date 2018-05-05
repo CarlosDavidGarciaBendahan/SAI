@@ -76,7 +76,9 @@
 					      		</a> 
 					  	  	
 					  	  	@else
-					  	  		NO DISPONIBLE
+					  	  		NO DISPONIBLE<a href="{{ route('solicitud.eliminarProducto', [$solicitud->id,$codigoPC->id,'pc']) }}" onclick="return confirm('Seguro que desea quitar este artículo de la solicitud?')" class="btn btn-danger" title="Quitar producto de esta solicitud">
+						      		<span class="class glyphicon glyphicon-remove-circle"></span>
+					      		</a> 
 					  	  	@endif
 					  	  </td>
 					  	  
@@ -84,26 +86,6 @@
 				  	
 				  		
 				  	@endforeach
-
-				  </tbody>
-
-				</table>
-				</div>
-				<div>
-					<table class="table table-inverse">
-				  <thead>
-				    <tr>
-				      <th>Código</th>
-				      <th>Marca/Modelo</th>
-				      <th>Tipo</th>
-				      <th>Capacidad</th>
-				      <th>Costo</th>
-				      <th>Agregar/Quitar</th>
-
-				    </tr>
-				  </thead>
-				  <tbody>
-
 				  	@foreach ($notaEntrega->venta->ventaArticulos as  $codigoArticulo)
 				  	
 				  		<tr>
@@ -127,17 +109,20 @@
 					  	  		
 					  	  	@else
 					  	  		NO DISPONIBLE
+					  	  		<a href="{{ route('solicitud.eliminarProducto', [$solicitud->id,$codigoArticulo->id,'articulo']) }}" onclick="return confirm('Seguro que desea quitar este artículo de la solicitud?')" class="btn btn-danger" title="Quitar producto de esta solicitud">
+						      		<span class="class glyphicon glyphicon-remove-circle"></span>
+					      		</a> 
 					  	  	@endif
 					  	  </td>
 					        
 				    	</tr>
 				  	
 				  	@endforeach
-
 				  </tbody>
 
 				</table>
 				</div>
+				
 
 				<div class="form-group">
 						{!! Form::label('venta','Observaciones',['class'=> '']) !!}

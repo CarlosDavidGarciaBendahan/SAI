@@ -152,6 +152,7 @@ class SolicitudController extends Controller
 
         $PC = new CodigoPCController();
         $Articulo = new CodigoArticuloController();
+
         $CodigoPCs = collect() ;
         $CodigoArticulos = collect() ;
 
@@ -160,25 +161,12 @@ class SolicitudController extends Controller
             if($PC->disponibilidadPCParaSolicitud($CodigoPC,$notaEntrega->venta->ven_fecha_compra)){
                 $CodigoPCs->push($CodigoPC);//agrego los disponibles!!!
             }
-            /*if ($PC->disponibilidadPC($CodigoPC)) {//solo voy a guardar las PCs que NO puedo elegir
-                //es decir, PC que está disponible, significa que está en inventario.
-                $CodigoPCs->push($CodigoPC);
-                /*if ($notaEntrega->venta->ventaPCs->offsetExists($key)) {
-                    dd("se");
-                }
-
-            } 
-                //$CodigoPCs->forget($key);*/
         }
-        //dd($CodigoPCs);
-        foreach ($notaEntrega->venta->VentaArticulos as  $CodigoArticulo) {
+        foreach ($notaEntrega->venta->ventaArticulos as $CodigoArticulo) {
+            
             if($Articulo->disponibilidadArticuloParaSolicitud($CodigoArticulo,$notaEntrega->venta->ven_fecha_compra)){
                 $CodigoArticulos->push($CodigoArticulo);//agrego los disponibles!!!
             }
-            /*if ($PC->disponibilidadPC($CodigoArticulo)) {
-                $CodigoArticulos->push($CodigoArticulo);
-            } */
-            //dd($CodigoArticulos->contains($CodigoArticulo));
         }
         
         return view('admin.cliente.solicitud.create-productos')->with(compact('solicitud','notaEntrega','CodigoPCs','CodigoArticulos'));
