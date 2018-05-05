@@ -50,7 +50,7 @@
 				  </thead>
 				  <tbody>
 
-				  	@foreach ($notaEntrega->venta->ventaPCs as $key => $codigoPC)
+				  	@foreach ($notaEntrega->venta->ventaPCs as $codigoPC)
 				  	
 				  		<tr>
 					      <th scope="row">{{ $codigoPC->cod_pc_codigo }}</th>
@@ -67,7 +67,7 @@
 					  	  </td>
 					  	  <td>
 					  	  	@if ($CodigoPCs->contains($codigoPC)) 
-					  	  		{{ $key }}
+					  	  		
 					  	  		<a href="{{ route('solicitud.agregarProducto', [$solicitud->id,$codigoPC->id,'pc']) }}" onclick="return confirm('Seguro que desea agregar este artículo de la solicitud?')" class="btn btn-success" title="Agregar producto de esta solicitud">
 						      		<span class="class glyphicon glyphicon-ok"></span>
 					      		</a> 
@@ -76,10 +76,7 @@
 					      		</a> 
 					  	  	
 					  	  	@else
-					  	  		NO DISPONIBLE<a href="{{ route('solicitud.eliminarProducto', [$solicitud->id,$codigoPC->id,'pc']) }}" onclick="return confirm('Seguro que desea quitar este artículo de la solicitud?')" class="btn btn-danger" title="Quitar producto de esta solicitud">
-						      		<span class="class glyphicon glyphicon-remove-circle"></span>
-					      		</a> 
-					      		{{ $key }}
+					  	  		NO DISPONIBLE
 					  	  	@endif
 					  	  </td>
 					  	  
@@ -107,7 +104,7 @@
 				  </thead>
 				  <tbody>
 
-				  	@foreach ($notaEntrega->venta->ventaArticulos as $key => $codigoArticulo)
+				  	@foreach ($notaEntrega->venta->ventaArticulos as  $codigoArticulo)
 				  	
 				  		<tr>
 					      <th scope="row">{{ $codigoArticulo->cod_art_codigo }}</th>
@@ -120,7 +117,7 @@
 					  	  	{{ $codigoArticulo->producto_articulo->pro_art_precio." ".$codigoArticulo->producto_articulo->pro_art_moneda }}
 					  	  </td>
 					  	  <td>
-					  	  	@if (!$CodigoArticulos->offsetExists($key)) 
+					  	  	@if ($CodigoArticulos->contains($codigoArticulo)) 
 					  	  		<a href="{{ route('solicitud.agregarProducto', [$solicitud->id,$codigoArticulo->id,'articulo']) }}" onclick="return confirm('Seguro que desea agregar este artículo de la solicitud?')" class="btn btn-success" title="Agregar producto de esta solicitud">
 						      		<span class="class glyphicon glyphicon-ok"></span>
 					      		</a> 

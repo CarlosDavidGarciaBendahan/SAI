@@ -8,6 +8,7 @@ use Carbon\Carbon;
 use App\NotaEntrega;
 use App\Solicitud;
 use App\http\Controllers\CodigoPCController;
+use App\http\Controllers\CodigoArticuloController;
 
 class SolicitudController extends Controller
 {
@@ -150,10 +151,11 @@ class SolicitudController extends Controller
         $notaEntrega = $solicitud->NotaEntrega;
 
         $PC = new CodigoPCController();
+        $Articulo = new CodigoArticuloController();
         $CodigoPCs = collect() ;
         $CodigoArticulos = collect() ;
 
-        foreach ($notaEntrega->venta->ventaPCs as $key => $CodigoPC) {
+        foreach ($notaEntrega->venta->ventaPCs as $CodigoPC) {
             
             if($PC->disponibilidadPCParaSolicitud($CodigoPC,$notaEntrega->venta->ven_fecha_compra)){
                 $CodigoPCs->push($CodigoPC);//agrego los disponibles!!!
@@ -169,13 +171,16 @@ class SolicitudController extends Controller
                 //$CodigoPCs->forget($key);*/
         }
         //dd($CodigoPCs);
-        foreach ($notaEntrega->venta->VentaArticulos as $key => $CodigoArticulo) {
-            
-            if ($PC->disponibilidadPC($CodigoArticulo)) {
+        foreach ($notaEntrega->venta->VentaArticulos as  $CodigoArticulo) {
+            if($Articulo->disponibilidadArticuloParaSolicitud($CodigoArticulo,$notaEntrega->venta->ven_fecha_compra)){
+                $CodigoArticulos->push($CodigoArticulo);//agrego los disponibles!!!
+            }
+            /*if ($PC->disponibilidadPC($CodigoArticulo)) {
                 $CodigoArticulos->push($CodigoArticulo);
-            } 
+            } */
+            //dd($CodigoArticulos->contains($CodigoArticulo));
         }
-
+        
         return view('admin.cliente.solicitud.create-productos')->with(compact('solicitud','notaEntrega','CodigoPCs','CodigoArticulos'));
     }
 

@@ -266,4 +266,34 @@ class CodigoArticuloController extends Controller
         }
         return $disponible;
     }
+     public function disponibilidadArticuloParaSolicitud($codigoArticulo,$fecha_venta){ 
+        foreach ($codigoArticulo->ventas as  $venta) {
+            if ($venta->ven_eliminada === 0) {//Verifico que la venta NO ha sido eliminada.
+                //la ultima venta debe tener la misma fecha que $fecha_venta
+                if ($fecha_venta < $venta->ven_fecha_compra) {
+                    //si se consigue una venta NO eliminada, pero, dicha venta tiene fecha más reciente que la a verificar entonces el producto no está disponible.
+                    return false;
+                }
+                
+            }
+        }
+        //dd($ultimaVenta);
+        foreach ($codigoArticulo->solicitudes as  $solicitud) {
+            if($solicitud->sol_aprobado === 'S'){//si existe una slicitud con fecha más reciente que la venta, no esta disponible para otra solicitud.
+                if ($fecha_venta < $solicitud->sol_fecha) {
+                    return false;
+                }
+            }
+        }
+
+        foreach ($codigoArticulo->SolicitudesEntregadas as  $solicitud) {
+            if($solicitud->sol_aprobado === 'S'){//si existe una slicitud con fecha más reciente que la venta, no esta disponible para otra solicitud.
+                if ($fecha_venta < $solicitud->sol_fecha) {
+                        return false;
+                }
+            }
+        }
+        
+        return (true);
+    }
 }
