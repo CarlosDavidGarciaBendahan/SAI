@@ -71,14 +71,22 @@
 					  	  		<a href="{{ route('solicitud.agregarProducto', [$solicitud->id,$codigoPC->id,'pc']) }}" onclick="return confirm('Seguro que desea agregar este artículo de la solicitud?')" class="btn btn-success" title="Agregar producto de esta solicitud">
 						      		<span class="class glyphicon glyphicon-ok"></span>
 					      		</a> 
-					  	  		<a href="{{ route('solicitud.eliminarProducto', [$solicitud->id,$codigoPC->id,'pc']) }}" onclick="return confirm('Seguro que desea quitar este artículo de la solicitud?')" class="btn btn-danger" title="Quitar producto de esta solicitud">
-						      		<span class="class glyphicon glyphicon-remove-circle"></span>
-					      		</a> 
 					  	  	
 					  	  	@else
-					  	  		NO DISPONIBLE<a href="{{ route('solicitud.eliminarProducto', [$solicitud->id,$codigoPC->id,'pc']) }}" onclick="return confirm('Seguro que desea quitar este artículo de la solicitud?')" class="btn btn-danger" title="Quitar producto de esta solicitud">
-						      		<span class="class glyphicon glyphicon-remove-circle"></span>
-					      		</a> 
+					  	  		@foreach ($codigoPC->solicitudes as $sol)
+					  	  			@if ($sol->sol_aprobado === 'S'  && $solicitud->sol_fecha >= $sol->sol_fecha )					  	  		
+						  	  			@if ($solicitud->id <= $sol->id)
+						  	  				<a href="{{ route('solicitud.eliminarProducto', [$solicitud->id,$codigoPC->id,'articulo']) }}" onclick="return confirm('Seguro que desea quitar este artículo de la solicitud?')" class="btn btn-danger" title="Quitar producto de esta solicitud">
+									      		<span class="class glyphicon glyphicon-remove-circle"></span>
+								      		</a> 
+								      	@else
+								      		<a  class="btn btn-default" title="Producto NO disponible para esta solicitud. Ya ha sido ingresado en una solicitud anterior.">
+									      		<span class="class glyphicon glyphicon-thumbs-down"></span>
+								      		</a> 
+						  	  			@endif
+					  	  			@endif
+
+					  	  		@endforeach
 					  	  	@endif
 					  	  </td>
 					  	  
@@ -103,15 +111,23 @@
 					  	  		<a href="{{ route('solicitud.agregarProducto', [$solicitud->id,$codigoArticulo->id,'articulo']) }}" onclick="return confirm('Seguro que desea agregar este artículo de la solicitud?')" class="btn btn-success" title="Agregar producto de esta solicitud">
 						      		<span class="class glyphicon glyphicon-ok"></span>
 					      		</a> 
-					  	  		<a href="{{ route('solicitud.eliminarProducto', [$solicitud->id,$codigoArticulo->id,'articulo']) }}" onclick="return confirm('Seguro que desea quitar este artículo de la solicitud?')" class="btn btn-danger" title="Quitar producto de esta solicitud">
-						      		<span class="class glyphicon glyphicon-remove-circle"></span>
-					      		</a> 
 					  	  		
 					  	  	@else
-					  	  		NO DISPONIBLE
-					  	  		<a href="{{ route('solicitud.eliminarProducto', [$solicitud->id,$codigoArticulo->id,'articulo']) }}" onclick="return confirm('Seguro que desea quitar este artículo de la solicitud?')" class="btn btn-danger" title="Quitar producto de esta solicitud">
-						      		<span class="class glyphicon glyphicon-remove-circle"></span>
-					      		</a> 
+					  	  		@foreach ($codigoArticulo->solicitudes as $sol)
+					  	  			@if ($sol->sol_aprobado === 'S'  && $solicitud->sol_fecha >= $sol->sol_fecha )					  	  		
+						  	  			@if ($solicitud->id <= $sol->id)
+						  	  				<a href="{{ route('solicitud.eliminarProducto', [$solicitud->id,$codigoArticulo->id,'articulo']) }}" onclick="return confirm('Seguro que desea quitar este artículo de la solicitud?')" class="btn btn-danger" title="Quitar producto de esta solicitud">
+									      		<span class="class glyphicon glyphicon-remove-circle"></span>
+								      		</a> 
+								      	@else
+								      		<a  class="btn btn-default" title="Producto NO disponible para esta solicitud. Ya ha sido ingresado en una solicitud anterior.">
+									      		<span class="class glyphicon glyphicon-thumbs-down"></span>
+								      		</a> 
+						  	  			@endif
+					  	  			@endif
+
+					  	  		@endforeach
+					  	  		
 					  	  	@endif
 					  	  </td>
 					        
