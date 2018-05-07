@@ -13,7 +13,7 @@ class CreateTableArticuloSolicitudEntregado extends Migration
      */
     public function up()
     {
-        Schema::create('articulo_solicitudEntregado', function (Blueprint $table) {
+        Schema::create('articulo_solicitudentregado', function (Blueprint $table) {
             //$table->increments('id');
             $table->integer('art_sol_fk_solicitud')->unsigned()->nullable(false);
             $table->integer('art_sol_fk_codigoarticulo')->unsigned()->nullable(false);

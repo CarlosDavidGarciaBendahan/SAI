@@ -13,7 +13,7 @@ class CreateTablePcSolicitudEntregado extends Migration
      */
     public function up()
     {
-        Schema::create('pc_solicitudEntregado', function (Blueprint $table) {
+        Schema::create('pc_solicitudentregado', function (Blueprint $table) {
             //$table->increments('id');
             $table->integer('pc_sol_fk_solicitud')->unsigned()->nullable(false);
             $table->integer('pc_sol_fk_codigopc')->unsigned()->nullable(false);
