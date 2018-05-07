@@ -40,4 +40,12 @@ class Solicitud extends Model
     public function CodigoArticulos(){
         return $this->belongsToMany('App\CodigoArticulo','articulo_solicitud','art_sol_fk_solicitud','art_sol_fk_codigoarticulo');
     }
+
+    public function CodigoPCsEntregado(){
+        return $this->belongsToMany('App\CodigoPC','pc_solicitudentregado','pc_sol_fk_solicitud','pc_sol_fk_codigopc');
+    }
+
+    public function CodigoArticulosEntregado(){
+        return $this->belongsToMany('App\CodigoArticulo','articulo_solicitudentregado','art_sol_fk_solicitud','art_sol_fk_codigoarticulo');
+    }
 }
