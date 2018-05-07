@@ -7,6 +7,8 @@ use Laracasts\Flash\Flash;
 use Carbon\Carbon;
 use App\NotaEntrega;
 use App\Solicitud;
+use App\CodigoPC;
+use App\CodigoArticulo;
 use App\http\Controllers\CodigoPCController;
 use App\http\Controllers\CodigoArticuloController;
 
@@ -19,6 +21,18 @@ class SolicitudController extends Controller
      */
     public function index()
     {
+        /*$codigoPCs = CodigoPC::orderby('cod_pc_codigo','ASC')->get();
+        $PC = new CodigoPCController();
+        $Articulo = new CodigoArticuloController();
+
+            foreach ($codigoPCs as $key => $codigoPC) {
+               
+               if(!$PC->disponibilidadPC($codigoPC)){ //SI NO esta disponible lo quito
+                    $codigoPCs->forget($key);//agrego los disponibles!!!
+                }
+            } 
+
+        dd($codigoPCs);*/
 
         $solicitudes = Solicitud::orderBy('id','ASC')->paginate(10);
 
@@ -89,9 +103,17 @@ class SolicitudController extends Controller
         $solicitud->sol_observaciones = $request->sol_observaciones;
         $solicitud->save(); 
 
+        if ($solicitud->sol_tipo === 'cambio') {
 
-        flash("Se ha agregado los productos a la solicitud #".$solicitud->id." exitosamente.")->success();
-        return redirect()->route('solicitud.index');
+            flash("Se ha agregado los productos a cambiar en la solicitud #".$solicitud->id." exitosamente. Por favor elegir los productos a entregar")->success();
+            return redirect()->route('solicitud.elegirProductosACambiar',['id'=>$solicitud->id]);
+            //$this->elegirProductosACambiar($solicitud->id);
+        } else {
+            flash("Se ha agregado los productos a la solicitud #".$solicitud->id." exitosamente.")->success();
+            return redirect()->route('solicitud.index');
+        }
+        
+        
 
     }
     /**
@@ -138,7 +160,10 @@ class SolicitudController extends Controller
     {
         $solicitud = Solicitud::find($id);
             $solicitud->CodigoPCs()->detach($solicitud->CodigoPCs);
-                $solicitud->CodigoArticulos()->detach($solicitud->CodigoArticulos);
+            $solicitud->CodigoArticulos()->detach($solicitud->CodigoArticulos);
+
+            $solicitud->CodigoPCsEntregado()->detach($solicitud->CodigoPCsEntregado);
+            $solicitud->CodigoArticulosEntregado()->detach($solicitud->CodigoArticulosEntregado);
         $solicitud->delete();
 
         flash("La eliminación de la solicitud #".$solicitud->id." fue exitosa.")->success();
@@ -214,6 +239,99 @@ class SolicitudController extends Controller
 
         
     }
+
+    public function eliminarProductoCambio($solicitud_id,$producto_id,$tipo_producto){
+
+        $solicitud = solicitud::find($solicitud_id);
+
+        if ($tipo_producto === "pc") {
+            $solicitud->CodigoPCsEntregado()->detach($producto_id);
+
+            flash("Se ha eliminado exitosamente el producto de la solicitud #".$solicitud->id)->success();
+        } else {
+            if ($tipo_producto === "articulo") {
+                $solicitud->CodigoArticulosEntregado()->detach($producto_id);
+
+                flash("Se ha eliminado exitosamente el producto de la solicitud #".$solicitud->id)->success();
+            } 
+            
+        }
+
+
+        //return redirect()->action('SolicitudController@storeAgregarProductos');
+            return redirect()->route('solicitud.elegirProductosACambiar',['id'=>$solicitud->id]);
+        
+    }
+    public function agregarProductoCambio($solicitud_id,$producto_id,$tipo_producto){
+
+        $solicitud = solicitud::find($solicitud_id);
+
+        if ($tipo_producto === "pc") {
+            $solicitud->CodigoPCsEntregado()->attach($producto_id);
+
+            flash("Se ha agregado exitosamente el producto a la solicitud #".$solicitud->id)->success();
+        } else {
+            if ($tipo_producto === "articulo") {
+                $solicitud->CodigoArticulosEntregado()->attach($producto_id);
+
+                flash("Se ha agregado exitosamente el producto a la solicitud #".$solicitud->id)->success();
+            } 
+            
+        }
+
+        //return redirect()->action('SolicitudController@storeAgregarProductos');
+        
+            return redirect()->route('solicitud.elegirProductosACambiar',['id'=>$solicitud->id]);
+
+        
+    }
+
+    public function elegirProductosACambiar($solicitud_id){
+            $solicitud = solicitud::find($solicitud_id);
+
+            $codigoPCs = CodigoPC::orderby('cod_pc_codigo','ASC')->get();
+            $codigoArticulos = CodigoArticulo::orderby('cod_art_codigo','ASC')->get();
+            //BUSCAR UNA MANERA DE MOSTRAR LOS PRODUCTOS DISPONIBLES PARA CAMBIO. 
+            //EN LA LISTA TENDRE EL BTN PARA AGREGAR LOS PRODUCTOS
+            //DEBO VERIFICAR UNA MANERA DE QUE NO INGRESE MAS PRODUCTOS DE LO QUE SON
+            //TENGO QUE VER CUANTAS PCs SON Y CUANTOS ARTICULOS SON
+            //
+            
+            $PC = new CodigoPCController();
+            $Articulo = new CodigoArticuloController();
+
+            foreach ($codigoPCs as $key => $codigoPC) {
+               
+               if(!$PC->disponibilidadPC($codigoPC)){//verifico si NO esta disponible
+                    $codigoPCs->forget($key);//quito los NO disponibles!!!
+                }else{
+                    foreach ($solicitud->CodigoPCs as $pc) {
+                        
+                        if($codigoPC->id === $pc->id){
+                            $codigoPCs->forget($key);//quito los NO disponibles!!!
+                        }
+                    }
+                }
+            } 
+            foreach ($codigoArticulos as $key => $codigoArticulo) {
+               
+               if(!$PC->disponibilidadPC($codigoArticulo)){//verifico si NO esta disponible
+                    $codigoArticulos->forget($key);//quito los NO disponibles!!!
+                }else{
+                    foreach ($solicitud->CodigoArticulos as $articulo) {
+                        
+                        if($codigoArticulo->id === $articulo->id){
+                            $codigoArticulos->forget($key);//quito los NO disponibles!!!
+                        }
+                    }
+                }
+            } 
+
+
+            //flash("Se ha agregado los productos a cambiar a la solicitud #".$solicitud->id." exitosamente.")->success();
+            return view('admin.cliente.solicitud.ProductosACambiar')->with(compact('solicitud','codigoPCs','codigoArticulos'));
+    }
+
 
 
 

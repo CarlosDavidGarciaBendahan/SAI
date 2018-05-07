@@ -46,7 +46,7 @@ class CodigoPC extends Model
         return $this->belongsToMany('App\Solicitud','pc_solicitud','pc_sol_fk_codigopc','pc_sol_fk_solicitud');
     }
     public function SolicitudesEntregadas(){
-        return $this->belongsToMany('App\Solicitud','pc_solicitudEntregado','pc_sol_fk_codigopc','pc_sol_fk_solicitud');
+        return $this->belongsToMany('App\Solicitud','pc_solicitudentregado','pc_sol_fk_codigopc','pc_sol_fk_solicitud');
     }
 
     public function Ventas(){

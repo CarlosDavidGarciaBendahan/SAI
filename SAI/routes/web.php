@@ -470,6 +470,18 @@ Route::prefix('admin/cliente/')->group( function(){
 		'uses'	=> 'solicitudController@listarNotas',
 		'as'	=> 'solicitud.listarNotas'
 	]);
+	Route::get('solicitud/{id}/eliminarProductoCambio/{producto_id}/{tipo_producto}',[
+		'uses'	=> 'solicitudController@eliminarProductoCambio',
+		'as'	=> 'solicitud.eliminarProductoCambio'
+	]);
+	Route::get('solicitud/{id}/agregarProductoCambio/{producto_id}/{tipo_producto}',[
+		'uses'	=> 'solicitudController@agregarProductoCambio',
+		'as'	=> 'solicitud.agregarProductoCambio'
+	]);
+	Route::get('solicitud/elegirProductosACambiar/{id}',[
+		'uses'	=> 'solicitudController@elegirProductosACambiar',
+		'as'	=> 'solicitud.elegirProductosACambiar'
+	]);
 });
 
 

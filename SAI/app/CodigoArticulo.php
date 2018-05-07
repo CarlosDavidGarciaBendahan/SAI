@@ -46,7 +46,7 @@ class CodigoArticulo extends Model
         return $this->belongsToMany('App\Solicitud','articulo_solicitud','art_sol_fk_codigoarticulo','art_sol_fk_solicitud');
     }
     public function SolicitudesEntregadas(){
-        return $this->belongsToMany('App\Solicitud','articulo_solicitudEntregado','art_sol_fk_codigoarticulo','art_sol_fk_solicitud');
+        return $this->belongsToMany('App\Solicitud','articulo_solicitudentregado','art_sol_fk_codigoarticulo','art_sol_fk_solicitud');
     }
 
 
