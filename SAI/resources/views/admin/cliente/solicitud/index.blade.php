@@ -56,6 +56,9 @@
 					      		<span class="class glyphicon glyphicon-remove-circle"></span>
 					      	</a> 
 					      	
+					      	<a href="{{ route('solicitud.show', $solicitud->id) }}" class="btn btn-info" title="Ver solicitud">
+					      		<span class="glyphicon glyphicon-search"></span>
+					      	</a>
 					      </td>
 				    	</tr>
 				  		

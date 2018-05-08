@@ -124,7 +124,9 @@ class SolicitudController extends Controller
      */
     public function show($id)
     {
-        //
+        $solicitud = solicitud::find($id);
+
+        return view('admin.cliente.solicitud.show')->with(compact('solicitud'));
     }
 
     /**
@@ -135,7 +137,64 @@ class SolicitudController extends Controller
      */
     public function edit($id)
     {
-        //
+        $solicitud = solicitud::find($id);
+
+        $PC = new CodigoPCController();
+        $Articulo = new CodigoArticuloController();
+
+
+
+        $codigoPCsCambio = CodigoPC::orderby('cod_pc_codigo','ASC')->get();
+        $codigoArticulosCambio = CodigoArticulo::orderby('cod_art_codigo','ASC')->get();
+            
+
+            foreach ($codigoPCsCambio as $key => $codigoPC) {
+               
+               if(!$PC->disponibilidadPC($codigoPC)){//verifico si NO esta disponible
+                    $codigoPCsCambio->forget($key);//quito los NO disponibles!!!
+                }else{
+                    foreach ($solicitud->CodigoPCs as $pc) {
+                        
+                        if($codigoPC->id === $pc->id){
+                            $codigoPCsCambio->forget($key);//quito los NO disponibles!!!
+                        }
+                    }
+                }
+            } 
+            foreach ($codigoArticulosCambio as $key => $codigoArticulo) {
+               
+               if(!$PC->disponibilidadPC($codigoArticulo)){//verifico si NO esta disponible
+                    $codigoArticulosCambio->forget($key);//quito los NO disponibles!!!
+                }else{
+                    foreach ($solicitud->CodigoArticulos as $articulo) {
+                        
+                        if($codigoArticulo->id === $articulo->id){
+                            $codigoArticulosCambio->forget($key);//quito los NO disponibles!!!
+                        }
+                    }
+                }
+            } 
+
+
+
+        $CodigoPCs = collect() ;
+        $CodigoArticulos = collect() ;
+
+        foreach ($solicitud->notaEntrega->venta->ventaPCs as $CodigoPC) {
+            
+            if($PC->disponibilidadPCParaSolicitud($CodigoPC,$solicitud->notaEntrega->venta->ven_fecha_compra)){
+                $CodigoPCs->push($CodigoPC);//agrego los disponibles!!!
+            }
+        }
+        foreach ($solicitud->notaEntrega->venta->ventaArticulos as $CodigoArticulo) {
+            
+            if($Articulo->disponibilidadArticuloParaSolicitud($CodigoArticulo,$solicitud->notaEntrega->venta->ven_fecha_compra)){
+                $CodigoArticulos->push($CodigoArticulo);//agrego los disponibles!!!
+            }
+        }
+
+        //dd($CodigoPCs);
+        return view('admin.cliente.solicitud.edit')->with(compact('solicitud','CodigoPCs','CodigoArticulos','codigoArticulosCambio','codigoPCsCambio'));
     }
 
     /**
@@ -147,7 +206,7 @@ class SolicitudController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        dd($request->all());
     }
 
     /**
@@ -198,7 +257,7 @@ class SolicitudController extends Controller
     }
 
 
-    public function eliminarProducto($solicitud_id,$producto_id,$tipo_producto){
+    public function eliminarProducto($solicitud_id,$producto_id,$tipo_producto,$editar=false){
 
         $solicitud = solicitud::find($solicitud_id);
 
@@ -215,11 +274,15 @@ class SolicitudController extends Controller
             
         }
 
-
-        return redirect()->route('solicitud.seleccionarProductos',['id'=>$solicitud->id]);
+        if (!$editar) {
+            return redirect()->route('solicitud.seleccionarProductos',['id'=>$solicitud->id]);
+        } else {
+            return redirect()->route('solicitud.edit',['id'=>$solicitud->id]);
+        }
+        
         
     }
-    public function agregarProducto($solicitud_id,$producto_id,$tipo_producto){
+    public function agregarProducto($solicitud_id,$producto_id,$tipo_producto,$editar=false){
 
         $solicitud = solicitud::find($solicitud_id);
 
@@ -235,12 +298,15 @@ class SolicitudController extends Controller
             } 
             
         }
-        return redirect()->route('solicitud.seleccionarProductos',['id'=>$solicitud->id]);
 
-        
+        if (!$editar) {
+            return redirect()->route('solicitud.seleccionarProductos',['id'=>$solicitud->id]);
+        } else {
+            return redirect()->route('solicitud.edit',['id'=>$solicitud->id]);
+        }
     }
 
-    public function eliminarProductoCambio($solicitud_id,$producto_id,$tipo_producto){
+    public function eliminarProductoCambio($solicitud_id,$producto_id,$tipo_producto,$editar=false){
 
         $solicitud = solicitud::find($solicitud_id);
 
@@ -259,10 +325,16 @@ class SolicitudController extends Controller
 
 
         //return redirect()->action('SolicitudController@storeAgregarProductos');
+
+        if (!$editar) {
             return redirect()->route('solicitud.elegirProductosACambiar',['id'=>$solicitud->id]);
+        } else {
+            return redirect()->route('solicitud.edit',['id'=>$solicitud->id]);
+        }
+        
         
     }
-    public function agregarProductoCambio($solicitud_id,$producto_id,$tipo_producto){
+    public function agregarProductoCambio($solicitud_id,$producto_id,$tipo_producto,$editar=false){
 
         $solicitud = solicitud::find($solicitud_id);
 
@@ -281,8 +353,12 @@ class SolicitudController extends Controller
 
         //return redirect()->action('SolicitudController@storeAgregarProductos');
         
-            return redirect()->route('solicitud.elegirProductosACambiar',['id'=>$solicitud->id]);
 
+        if (!$editar) {
+            return redirect()->route('solicitud.elegirProductosACambiar',['id'=>$solicitud->id]);
+        } else {
+            return redirect()->route('solicitud.edit',['id'=>$solicitud->id]);
+        }
         
     }
 

@@ -454,11 +454,11 @@ Route::prefix('admin/cliente/')->group( function(){
 		'uses'	=> 'solicitudController@seleccionarProductos',
 		'as'	=> 'solicitud.seleccionarProductos'
 	]);
-	Route::get('solicitud/{id}/eliminarProducto/{producto_id}/{tipo_producto}',[
+	Route::get('solicitud/{id}/eliminarProducto/{producto_id}/{tipo_producto}/{editar?}',[
 		'uses'	=> 'solicitudController@eliminarProducto',
 		'as'	=> 'solicitud.eliminarProducto'
 	]);
-	Route::get('solicitud/{id}/agregarProducto/{producto_id}/{tipo_producto}',[
+	Route::get('solicitud/{id}/agregarProducto/{producto_id}/{tipo_producto}/{editar?}',[
 		'uses'	=> 'solicitudController@agregarProducto',
 		'as'	=> 'solicitud.agregarProducto'
 	]);
@@ -470,11 +470,11 @@ Route::prefix('admin/cliente/')->group( function(){
 		'uses'	=> 'solicitudController@listarNotas',
 		'as'	=> 'solicitud.listarNotas'
 	]);
-	Route::get('solicitud/{id}/eliminarProductoCambio/{producto_id}/{tipo_producto}',[
+	Route::get('solicitud/{id}/eliminarProductoCambio/{producto_id}/{tipo_producto}/{editar?}',[
 		'uses'	=> 'solicitudController@eliminarProductoCambio',
 		'as'	=> 'solicitud.eliminarProductoCambio'
 	]);
-	Route::get('solicitud/{id}/agregarProductoCambio/{producto_id}/{tipo_producto}',[
+	Route::get('solicitud/{id}/agregarProductoCambio/{producto_id}/{tipo_producto}/{editar?}',[
 		'uses'	=> 'solicitudController@agregarProductoCambio',
 		'as'	=> 'solicitud.agregarProductoCambio'
 	]);
