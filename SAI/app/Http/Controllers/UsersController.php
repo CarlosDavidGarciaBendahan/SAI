@@ -7,6 +7,7 @@ use App\User;
 use Laracasts\Flash\Flash;
 use App\Personal;
 use App\Rol;
+use App\Http\Requests\UserRequest;
 
 class UsersController extends Controller
 {
@@ -29,11 +30,21 @@ class UsersController extends Controller
      */
     public function create()
     {
-        $personal = Personal::orderby('per_apellido','per_nombre')->get();
+        $ids = $this->PersonalConUsuario();//consigo todos los ID de cada personal con usuario.
+        $personal = Personal::whereNotIn('id',$ids)->orderby('per_apellido','per_nombre')->get();//Busco el personal que notenga usuario.
 
-        $roles = Rol::orderby('rol_rol')->pluck('rol_rol','id');
+        if (count($personal) === 0) {
+            
+            flash("Todos los empleados tienen usuario creado.")->error();
+            return redirect()->route('users.index');
+        } else {
+            $roles = Rol::orderby('rol_rol')->pluck('rol_rol','id');
 
-        return view('admin.oficina.users.create')->with(compact('personal','roles'));
+            return view('admin.oficina.users.create')->with(compact('personal','roles'));
+        }
+        
+
+        
     }
 
     /**
@@ -42,7 +53,7 @@ class UsersController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(UserRequest $request)
     {
         
         //dd(bcrypt($request->password));
@@ -116,9 +127,24 @@ class UsersController extends Controller
     public function destroy($id)
     {
         $user = User::find($id);
+
+        $user->Roles()->detach($user->Roles);
+
         $user->delete();
 
         flash("Eliminación del usuario". $user->name." '' exitosa")->success();
         return redirect()->route('users.index');
+    }
+
+    public function PersonalConUsuario(){
+        $users = user::all();
+        $ids = array(); 
+
+        foreach ($users  as $user) {
+            array_push($ids,$user->fk_personal);
+        }
+        //dd($ids);
+
+        return $ids;
     }
 }

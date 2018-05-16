@@ -7,11 +7,23 @@
 	<section class="container">
 		<div class="row">
 			<div class="col-sm-8 offset-2">
+
+				@if (count($errors) > 0)
+					<div class="alert alert-danger" role="alert">
+						<ul>
+							@foreach ($errors->all() as $error)
+								<li>{{ $error }}</li>
+							@endforeach
+						</ul>
+					</div>
+				@endif
+
+
 				{!! Form::open(['route' => 'users.store', 'method' => 'POST' ]) !!}
 					
 					<div class="form-group ">
-							<label>Estados </label>
-							<select class="form-control input-sm" name="fk_personal" id="personal">
+							<label>Personal </label>
+							<select class="form-control input-sm required" name="fk_personal" id="personal">
 								<option value=""> Seleccionar un personal</option>
 								@foreach ($personal as $persona)
 									<option value="{{ $persona->id }}"> {{ $persona->per_nombre ." ". $persona->per_nombre2 ." ".$persona->per_apellido ." ".$persona->per_apellido2 }}</option>
