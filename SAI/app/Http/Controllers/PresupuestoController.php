@@ -27,7 +27,7 @@ class PresupuestoController extends Controller
 
     public function index()
     {
-        $presupuestos = Presupuesto::where('pre_eliminado','=','0')->orderby('id','ASC')->paginate(10);
+        $presupuestos = Presupuesto::where('pre_eliminado','=','0')->orderby('id','DESC')->paginate(10);
 
         return view('admin.oficina.presupuesto.index')->with(compact('presupuestos'));
     }

@@ -25,7 +25,7 @@ class VentaController extends Controller
     {
         
 
-        $ventas = Venta::where('ven_eliminada','=',0)->orderby('id','ASC')->paginate(10);
+        $ventas = Venta::where('ven_eliminada','=',0)->orderby('id','DESC')->paginate(10);
 
         /*foreach ($ventas as $venta) {
             dd($venta->notaentrega);

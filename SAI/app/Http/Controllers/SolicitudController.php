@@ -34,7 +34,7 @@ class SolicitudController extends Controller
 
         dd($codigoPCs);*/
 
-        $solicitudes = Solicitud::orderBy('id','ASC')->paginate(10);
+        $solicitudes = Solicitud::orderBy('id','DESC')->paginate(10);
 
         return view('admin.cliente.solicitud.index')->with(compact('solicitudes'));
     }
