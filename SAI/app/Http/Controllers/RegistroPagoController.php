@@ -70,11 +70,52 @@ class RegistroPagoController extends Controller
     {
         //dd($request->all());
 
-        $registroPago = new RegistroPago($request->all());
+        $venta = Venta::find($request->reg_fk_venta);
+        $pagado = 0;
+        $PorPagar = 0;
+        //VERIFICO SI LA VENTA TIENE REGISTROS ASOCIADOS
+        if ( count($venta->RegistroPagos) !== 0 ) {
+            //Sumo todo lo que se ha pagado
+            foreach ($venta->RegistroPagos as  $RegistroPago) {
+                $pagado = $pagado + $RegistroPago->reg_monto;
+            }
+
+            $PorPagar = $venta->ven_monto_total - $pagado;
+            //verifico que lo que se ha pagado + lo que se este pagando
+            //no sea mayor que el monto de la venta.
+            if ( $venta->ven_monto_total >= ($pagado + $request->reg_monto) ){
+                $registroPago = new RegistroPago($request->all());
+                $registroPago->save();
+
+                flash("Se ha registrado el pago exitosamente por un monto de: ".$request->reg_monto." ".$request->reg_moneda." en a venta #".$venta->id)->success();
+                return redirect()->route('venta.index');
+            } else {
+                flash("El monto: ".$request->reg_monto." ".$request->reg_moneda. " sobre pasa el valor de la venta #".$venta->id. " El monto que falta por pagar es de: ".$PorPagar." ".($pagado + $request->reg_monto))->error();
+                return redirect()->back();
+            }
+            
+
+        } else {
+            if ( $venta->ven_monto_total >= ($pagado + $request->reg_monto) ){
+                $registroPago = new RegistroPago($request->all());
+                $registroPago->save();
+
+                flash("Se ha registrado el pago exitosamente por un monto de: ".$request->reg_monto." ".$request->reg_moneda." en a venta #".$venta->id)->success();
+                return redirect()->route('venta.index');
+            } else {
+                flash("El monto: ".$request->reg_monto." ".$request->reg_moneda. " sobre pasa el valor de la venta #".$venta->id. " El monto que falta por pagar es de: ".$venta->monto_total)->error();
+                return redirect()->back();
+            }
+        }
+        
+        
+        
+
+        /*$registroPago = new RegistroPago($request->all());
         $registroPago->save();
 
         flash("Se ha registrado el pago exitosamente por un monto de: ".$request->reg_monto." ".$request->reg_moneda)->success();
-        return redirect()->route('venta.index');
+        return redirect()->route('venta.index');*/
 
 
     }
