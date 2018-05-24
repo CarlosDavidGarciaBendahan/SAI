@@ -1,6 +1,17 @@
-@extends('admin.template.main')
+@extends('admin.template.main2')
 
 @section('title', 'Listar bancos')
+
+@section('contenido-header-name', 'Banco')
+
+@section('contenido-header-name2', 'listado de bancos')
+
+@section('contenido-header-route')
+	<ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">Banco</li>
+    </ol>
+@endsection
 
 @section('body')
 	{{-- {{ dd($estado) }} --}}
@@ -34,10 +45,6 @@
 					      	<a href="{{ route('banco.destroy', $banco->id) }}" onclick="return confirm('Eliminar el banco?')" class="btn btn-danger">
 					      		<span class="class glyphicon glyphicon-remove-circle"></span>
 					      	</a> 
-
-					      	<a href="{{ route('banco.show', $banco->id) }}" class="btn btn-info">
-					      		<span class="glyphicon glyphicon-search"></span>
-					      	</a>
 					      </td>
 				    	</tr>
 				  	@endforeach
