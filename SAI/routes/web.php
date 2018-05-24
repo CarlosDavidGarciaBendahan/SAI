@@ -12,8 +12,10 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    //return view('welcome');
+    return view('admin.template.main2');
 });
+
 
 /*Route::group(['prefix' => 'Lugar'], function(){
 

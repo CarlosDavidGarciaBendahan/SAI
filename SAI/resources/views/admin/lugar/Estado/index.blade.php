@@ -1,6 +1,17 @@
-@extends('admin.template.main')
+@extends('admin.template.main2')
 
 @section('title', 'Listar estados')
+
+@section('contenido-header-name', 'Estados')
+
+@section('contenido-header-name2', 'listado')
+
+@section('contenido-header-route')
+	<ol class="breadcrumb">
+                  <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                  <li class="active">Estado</li>
+                </ol>
+@endsection
 
 @section('body')
 	{{-- {{ dd($estado) }} --}}
@@ -8,7 +19,7 @@
 	<section class="container-fluid">
 
 		<div class="row">
-			<div class="col-sm-8 offset-2">
+			<div class="col-sm-12 ">
 
 				<a href="{{ route('estado.create') }}" class="btn btn-info">Registrar nuevo estado</a>
 				

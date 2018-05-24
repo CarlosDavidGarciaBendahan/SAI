@@ -27,13 +27,13 @@
 		
 		
 		
-		<section>
+			<section>
 			<section class="container-fluid">
 				<div class="row">
-				<div class="col-sm-8 offset-2">
-					@include('flash::message')
+					<div class="col-sm-8 offset-2">
+						@include('flash::message')
+					</div>
 				</div>
-			</div>
 			</section>
 			
 			
