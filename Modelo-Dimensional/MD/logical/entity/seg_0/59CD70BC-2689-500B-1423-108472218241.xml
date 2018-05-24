@@ -1,0 +1,54 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="59CD70BC-2689-500B-1423-108472218241" name="TIENDA">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-05-24 13:34:30 UTC</createdTime>
+<ownerDesignName>MD</ownerDesignName>
+<engineerTo>
+<item key="AB7792A4-BB6E-C9F7-F6BA-46BF4C85C84F" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="id" id="C6B76094-E0F0-9753-8052-BC7C0C9EDC9F">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-05-24 13:36:43 UTC</createdTime>
+<ownerDesignName>MD</ownerDesignName>
+<engineerTo>
+<item key="AB7792A4-BB6E-C9F7-F6BA-46BF4C85C84F" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="NOMBRE" id="AEE48B23-9605-4041-5D01-F0CB1DE61346">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-05-24 13:36:52 UTC</createdTime>
+<ownerDesignName>MD</ownerDesignName>
+<engineerTo>
+<item key="AB7792A4-BB6E-C9F7-F6BA-46BF4C85C84F" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="63BCDF33-6D61-6F8A-CD5C-58A199D89E0E" name="TIENDA PK">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-05-24 13:36:48 UTC</createdTime>
+<ownerDesignName>MD</ownerDesignName>
+<engineerTo>
+<item key="AB7792A4-BB6E-C9F7-F6BA-46BF4C85C84F" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>C6B76094-E0F0-9753-8052-BC7C0C9EDC9F</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

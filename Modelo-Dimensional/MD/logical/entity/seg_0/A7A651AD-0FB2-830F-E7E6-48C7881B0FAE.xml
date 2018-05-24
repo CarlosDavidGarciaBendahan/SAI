@@ -1,0 +1,121 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="A7A651AD-0FB2-830F-E7E6-48C7881B0FAE" name="PRESUPUESTO-FACT">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-05-24 13:15:30 UTC</createdTime>
+<ownerDesignName>MD</ownerDesignName>
+<engineerTo>
+<item key="AB7792A4-BB6E-C9F7-F6BA-46BF4C85C84F" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="cantidad_presupuestos_solicitados" id="927569D4-0081-028A-235D-DFCA2E7A0F39">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-05-24 13:25:30 UTC</createdTime>
+<ownerDesignName>MD</ownerDesignName>
+<engineerTo>
+<item key="AB7792A4-BB6E-C9F7-F6BA-46BF4C85C84F" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="cantidad_presupuestos_aprobados" id="203E4173-12DB-5FD6-52A8-54FAB57540C5">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-05-24 13:40:01 UTC</createdTime>
+<ownerDesignName>MD</ownerDesignName>
+<engineerTo>
+<item key="AB7792A4-BB6E-C9F7-F6BA-46BF4C85C84F" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="cantidad_presupuestos_no_aprobados" id="C4F40C7D-25E0-D7D7-8375-95F44528276B">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-05-24 13:40:12 UTC</createdTime>
+<ownerDesignName>MD</ownerDesignName>
+<engineerTo>
+<item key="AB7792A4-BB6E-C9F7-F6BA-46BF4C85C84F" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="cantidad_ingreso_estimado" id="1DC653F4-0229-2A45-7B14-3CA78F0D0AB9">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-05-24 13:59:37 UTC</createdTime>
+<ownerDesignName>MD</ownerDesignName>
+<engineerTo>
+<item key="AB7792A4-BB6E-C9F7-F6BA-46BF4C85C84F" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="cantidad_producto" id="D80F7707-F96E-FA6E-7311-5EC0BEE8196E">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-05-24 14:12:08 UTC</createdTime>
+<ownerDesignName>MD</ownerDesignName>
+<engineerTo>
+<item key="AB7792A4-BB6E-C9F7-F6BA-46BF4C85C84F" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="cantidad_presupuestos_cancelados_stock" id="E327863F-86A2-C48C-AE05-7DAF827A1788">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-05-24 17:14:42 UTC</createdTime>
+<ownerDesignName>MD</ownerDesignName>
+<engineerTo>
+<item key="AB7792A4-BB6E-C9F7-F6BA-46BF4C85C84F" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="id" id="251F7AD0-D4D8-EC52-BCBC-62064362C336">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-05-24 14:03:28 UTC</createdTime>
+<generatorID>14D400CC-C395-2080-9E28-E48DACC57B52</generatorID>
+<ownerDesignName>MD</ownerDesignName>
+<engineerTo>
+<item key="AB7792A4-BB6E-C9F7-F6BA-46BF4C85C84F" value="true"/>
+</engineerTo>
+<referedAttribute>1D8ACC22-5711-A550-A40A-E1B83665DDEB</referedAttribute>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="id1" id="F8348937-ECD2-C9CD-7C9D-F5EF1D581A88">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-05-24 14:03:56 UTC</createdTime>
+<generatorID>0588368C-45C2-A35A-2C2A-8B7626989A3A</generatorID>
+<ownerDesignName>MD</ownerDesignName>
+<engineerTo>
+<item key="AB7792A4-BB6E-C9F7-F6BA-46BF4C85C84F" value="true"/>
+</engineerTo>
+<referedAttribute>ABE1E56C-10DC-01FF-245A-4B400D2EE8E8</referedAttribute>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="id2" id="5F9CC94D-C0EE-FFDC-AEAA-8CDD162B3A30">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-05-24 14:04:03 UTC</createdTime>
+<generatorID>1D6BE98B-57BB-5F66-C549-5ECCC88B381D</generatorID>
+<ownerDesignName>MD</ownerDesignName>
+<engineerTo>
+<item key="AB7792A4-BB6E-C9F7-F6BA-46BF4C85C84F" value="true"/>
+</engineerTo>
+<referedAttribute>B164EE06-44A0-4A2F-8F10-3D71CC4A9195</referedAttribute>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+</Entity>
