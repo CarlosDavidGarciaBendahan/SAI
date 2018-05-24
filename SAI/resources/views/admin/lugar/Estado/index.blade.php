@@ -2,9 +2,9 @@
 
 @section('title', 'Listar estados')
 
-@section('contenido-header-name', 'Estados')
+@section('contenido-header-name', 'Estado')
 
-@section('contenido-header-name2', 'listado')
+@section('contenido-header-name2', 'Listado de estados')
 
 @section('contenido-header-route')
 	<ol class="breadcrumb">

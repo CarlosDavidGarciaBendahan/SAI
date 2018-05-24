@@ -1,6 +1,18 @@
-@extends('admin.template.main')
+@extends('admin.template.main2')
 
 @section('title', 'Mostrar el estado '. $municipio->mun_nombre)
+
+@section('contenido-header-name', 'Municipio')
+
+@section('contenido-header-name2', 'observación de municipio')
+
+@section('contenido-header-route')
+	<ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active"><a href="{{ route('municipio.index') }}"> Municipio</a></li>
+        <li class="active">Observar</li>
+    </ol>
+@endsection
 
 @section('body')
 	{{-- expr --}}
@@ -11,17 +23,17 @@
 					
 					<div class="form-group"> 
 						
+						{!! Form::label('id','ID') !!}
+
+						{!! Form::text('id',$municipio->id,['class'=> 'form-control', 'placeholder'=>'Nombre del estado', 'required']) !!}
+					</div>
+					<div class="form-group"> 
+						
 						{!! Form::label('estado','Estado') !!}
 
 						{!! Form::text('estado',$municipio->estado->est_nombre,['class'=> 'form-control', 'placeholder'=>'Nombre del estado', 'required']) !!}
 					</div>
 
-					<div class="form-group"> 
-						
-						{!! Form::label('id','ID') !!}
-
-						{!! Form::text('id',$municipio->id,['class'=> 'form-control', 'placeholder'=>'Nombre del estado', 'required']) !!}
-					</div>
 					<div class="form-group"> 
 						
 						{!! Form::label('mun_nombre','Nombre') !!}
@@ -64,19 +76,7 @@
 						  		<tr>
 							      <th scope="row">{{ $parroquia->id }}</th>
 							      <td>{{ $parroquia->par_nombre }}</td>	
-							      <td>
-							      	<a href="#" class="btn btn-warning">
-							      		<span class="class glyphicon glyphicon-wrench"></span>
-							      	</a>
-
-							      	<a href="#" onclick="return confirm('Eliminar el estado?')" class="btn btn-danger">
-							      		<span class="class glyphicon glyphicon-remove-circle"></span>
-							      	</a> 
-
-							      	<a href="#" class="btn btn-info">
-							      		<span class="glyphicon glyphicon-search"></span>
-							      	</a>
-							      </td>
+							      
 						    	</tr>
 						  	@endforeach
 

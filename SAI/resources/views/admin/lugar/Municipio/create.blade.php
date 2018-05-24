@@ -1,6 +1,18 @@
-@extends('admin.template.main')
+@extends('admin.template.main2')
 
 @section('title', 'Crear municipio')
+
+@section('contenido-header-name', 'Municipio')
+
+@section('contenido-header-name2', 'registro de municipio')
+
+@section('contenido-header-route')
+	<ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active"><a href="{{ route('municipio.index') }}"> Municipio</a></li>
+        <li class="active">Crear</li>
+    </ol>
+@endsection
 
 @section('body')
 	{{-- expr --}}
