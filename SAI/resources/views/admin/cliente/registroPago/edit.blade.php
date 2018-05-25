@@ -1,6 +1,20 @@
-@extends('admin.template.main')
+@extends('admin.template.main2')
 
 @section('title', 'Modificar registro pago')
+
+@section('contenido-header-name', 'Registro de pago')
+
+@section('contenido-header-name2', 'edición del registro de pago')
+
+@section('contenido-header-route')
+	<ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active"><a href="{{ route('venta.index') }}"> Venta</a></li>
+        <li class="active"><a href="{{ route('registroPago.index',$registroPago->reg_fk_venta) }}"> Registros de pago de la venta #{{ $registroPago->reg_fk_venta }}</a></li>
+        <li class="active"><a href="{{ route('registroPago.listarRegistroPago',0) }}"> Lista de registros de pago</a></li>
+        <li class="active">Editar</li>
+    </ol>
+@endsection
 
 @section('body')
 	{{-- expr --}}

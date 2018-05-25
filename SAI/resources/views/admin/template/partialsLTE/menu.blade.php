@@ -193,6 +193,7 @@
             
             <li><a href="{{ route('presupuesto.index') }}"><i class="fa fa-circle-o"></i> Presupuesto </a></li>
             <li><a href="{{ route('venta.index') }}"><i class="fa fa-circle-o"></i> Venta </a></li>
+            <li><a href="{{ route('registroPago.listarRegistroPago',0) }}"><i class="fa fa-circle-o"></i> Registro de pago </a></li>
             <li><a href="{{ route('notaEntrega.index') }}"><i class="fa fa-circle-o"></i> Nota de entrega </a></li>
             <li><a href="{{ route('solicitud.index') }}"><i class="fa fa-circle-o"></i> Solicitud </a></li>
             

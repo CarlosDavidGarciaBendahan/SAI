@@ -35,6 +35,16 @@ class RegistroPagoController extends Controller
         
     }
 
+    public function listarRegistroPago($x = 1){
+
+        //dd($x);
+        $registroPagos = RegistroPago::orderby('reg_fk_venta','DESC')->paginate(10);
+
+        //dd($registroPagos);
+
+        return view('admin.cliente.registroPago.index')->with(compact('registroPagos'));
+    }
+
     /**
      * Show the form for creating a new resource.
      *

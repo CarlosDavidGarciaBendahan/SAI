@@ -412,6 +412,10 @@ Route::prefix('admin/cliente/')->group( function(){
 		'uses'	=> 'registroPagoController@index',
 		'as'	=> 'registroPago.index'
 	]);
+	Route::get('registroPago/listarRegistroPago/{x?}',[//NO ENTIENDO PORQUE AJURO DEBO LLAMAR A LA RUTA CON UN ARGUMENTO, SI NO, ME MUESTRA UNA PAGINA EN BLANDO, PREGUNTAR!!!
+		'uses'	=> 'registroPagoController@listarRegistroPago',
+		'as'	=> 'registroPago.listarRegistroPago'
+	]);
 	///////////////////////////////////////////////////
 	////// 		NOTA DE ENTREGA
 	///////////////////////////////////////////////////

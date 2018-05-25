@@ -1,12 +1,28 @@
-@extends('admin.template.main')
+@extends('admin.template.main2')
 
 @section('title', 'Listar nota de entrega')
+
+@section('contenido-header-name', 'Nota de entrega')
+
+@section('contenido-header-name2', 'listado de las notas de entrega')
+
+@section('contenido-header-route')
+	<ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">Nota de entrega</li>
+    </ol>
+@endsection
 
 @section('body')
 	{{-- {{ dd($estado) }} --}}
 
 	<section class="container-fluid">
-
+		<div>
+			<a href="{{ route('venta.index') }}" class="btn btn-info" title="Lista de ventas">
+						<span class="fa fa-bars"></span>
+			</a>
+			{!! Form::label('venta','Registrar nota de entrega de una venta.',['class'=> ' col-sm']) !!}
+		</div>
 		<div class="row">
 			<div class="col-sm-8 offset-2">
 				 
@@ -64,11 +80,7 @@
 				{{ $notaEntregas->links() }}
 
 
-				<div>
-					<a href="{{ route('venta.index') }}" class="btn btn-info">
-						<span class="glyphicon glyphicon-arrow-left"></span> Regresar al listado de ventas
-					</a>
-				</div>
+				
 			</div>
 
 			

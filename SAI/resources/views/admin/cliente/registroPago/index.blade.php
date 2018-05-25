@@ -1,12 +1,29 @@
-@extends('admin.template.main')
+@extends('admin.template.main2')
 
 @section('title', 'Listar Registros de pago')
+
+@section('contenido-header-name', 'Registro de pago')
+
+@section('contenido-header-name2', 'listado de los registros de pago')
+
+@section('contenido-header-route')
+	<ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active"><a href="{{ route('venta.index') }}"> Venta</a></li>
+        <li class="active">Registro de pago</li>
+    </ol>
+@endsection
 
 @section('body')
 	{{-- {{ dd($estado) }} --}}
 
 	<section class="container-fluid">
-
+		<div>
+			<a href="{{ route('venta.index') }}" class="btn btn-info" title="Lista de ventas">
+						<span class="fa fa-bars"></span>
+			</a>
+			{!! Form::label('venta','Registrar pago de una venta.',['class'=> ' col-sm']) !!}
+		</div>
 		<div class="row">
 			<div class="col-sm-8 offset-2">
 				 
@@ -16,6 +33,7 @@
 				    <tr>
 				      <th>id</th>
 				      <th>Fecha del pago</th>
+				      <th>Venta relacionada</th>
 				      <th>Monto</th>
 				      <th>Concepto</th>
 				      <th>Forma</th>
@@ -31,7 +49,8 @@
 				  		
 				  		<tr>
 					      <th scope="row">{{ $registroPago->id }}</th>
-					      <td>{{  date("d/m/Y", strtotime($registroPago->reg_fecha_pagado))}}</td>	
+					      <td>{{  date("d/m/Y", strtotime($registroPago->reg_fecha_pagado))}}</td>
+					      <td>{{ "Venta #".$registroPago->venta->id." "}}</td>	
 					      <td>{{ $registroPago->reg_monto . " " . $registroPago->reg_moneda }}</td>
 					      <td>{{ $registroPago->reg_concepto}}</td>
 					      <td>{{ $registroPago->reg_forma}}</td>
@@ -69,17 +88,18 @@
 				{{ $registroPagos->links() }}
 
 
-				<div>
-					<a href="{{ route('venta.index') }}" class="btn btn-info">
-						<span class="glyphicon glyphicon-arrow-left"></span> Regresar al listado de ventas
-					</a>
-				</div>
+				
 			</div>
 
 			
 			
 		</div>
-			
+			<div>
+			<a href="{{ route('registroPago.listarRegistroPago',0) }}" class="btn btn-info" title="Lista completa de los registros de pago">
+						<span class="fa fa-bars"></span>
+			</a>
+			{!! Form::label('venta','Ver lista completa.',['class'=> ' col-sm']) !!}
+			</div>
 	</section>
 
 
