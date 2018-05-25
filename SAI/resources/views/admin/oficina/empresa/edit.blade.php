@@ -1,6 +1,18 @@
-@extends('admin.template.main')
+@extends('admin.template.main2')
 
 @section('title', 'Editar empresa '. $empresa->emp_identificador."-".$empresa->emp_rif)
+
+@section('contenido-header-name', 'Edición de empresa')
+
+@section('contenido-header-name2', 'editar empresa')
+
+@section('contenido-header-route')
+	<ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active"><a href="{{ route('empresa.index') }}"> Empresa</a></li>
+        <li class="active">Editar</li>
+    </ol>
+@endsection
 
 @section('body')
 	{{-- expr --}}
