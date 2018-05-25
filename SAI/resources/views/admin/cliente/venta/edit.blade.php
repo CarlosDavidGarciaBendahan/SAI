@@ -1,6 +1,18 @@
-@extends('admin.template.main')
+@extends('admin.template.main2')
 
 @section('title', 'Modificar Venta')
+
+@section('contenido-header-name', 'Edición de venta')
+
+@section('contenido-header-name2', 'editar venta')
+
+@section('contenido-header-route')
+	<ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active"><a href="{{ route('venta.index') }}"> Venta</a></li>
+        <li class="active">Editar</li>
+    </ol>
+@endsection
 
 @section('body')
 	{{-- expr --}}
