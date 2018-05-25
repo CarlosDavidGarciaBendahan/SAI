@@ -1,6 +1,18 @@
-@extends('admin.template.main')
+@extends('admin.template.main2')
 
 @section('title', 'Crear Presupuesto')
+
+@section('contenido-header-name', 'Registro de persupuesto')
+
+@section('contenido-header-name2', 'crear  persupuesto')
+
+@section('contenido-header-route')
+	<ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active"><a href="{{ route('presupuesto.index') }}"> Presupuesto</a></li>
+        <li class="active">Crear</li>
+    </ol>
+@endsection
 
 @section('body')
 	{{-- expr --}}

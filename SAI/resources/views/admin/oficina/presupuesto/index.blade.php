@@ -1,6 +1,17 @@
-@extends('admin.template.main')
+@extends('admin.template.main2')
 
 @section('title', 'Listar Presupuestos')
+
+@section('contenido-header-name', 'Listado de presupuestos')
+
+@section('contenido-header-name2', 'lista de  presupuestos')
+
+@section('contenido-header-route')
+	<ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">Presupuesto</li>
+    </ol>
+@endsection
 
 @section('body')
 	{{-- {{ dd($estado) }} --}}
