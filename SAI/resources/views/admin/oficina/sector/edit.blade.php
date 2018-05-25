@@ -1,6 +1,18 @@
-@extends('admin.template.main')
+@extends('admin.template.main2')
 
 @section('title', 'Editar sector '. $sector->sec_nombre)
+
+@section('contenido-header-name', 'Edición de sector')
+
+@section('contenido-header-name2', 'editar sector')
+
+@section('contenido-header-route')
+	<ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active"><a href="{{ route('sector.index') }}"> Sector</a></li>
+        <li class="active">Editar</li>
+    </ol>
+@endsection
 
 @section('body')
 	{{-- expr --}}

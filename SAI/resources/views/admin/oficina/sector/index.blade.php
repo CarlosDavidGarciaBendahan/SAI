@@ -1,6 +1,17 @@
-@extends('admin.template.main')
+@extends('admin.template.main2')
 
 @section('title', 'Listar sectores')
+
+@section('contenido-header-name', 'Listado de sectores')
+
+@section('contenido-header-name2', 'listar sectores')
+
+@section('contenido-header-route')
+	<ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">Sector</li>
+    </ol>
+@endsection
 
 @section('body')
 	{{-- {{ dd($estado) }} --}}
