@@ -1,6 +1,18 @@
-@extends('admin.template.main')
+@extends('admin.template.main2')
 
 @section('title', 'Modificar Venta')
+
+@section('contenido-header-name', 'Edición de solicitud')
+
+@section('contenido-header-name2', 'editar la solicitud')
+
+@section('contenido-header-route')
+	<ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active"><a href="{{ route('solicitud.index') }}"> Solicitud</a></li>
+        <li class="active">Editar</li>
+    </ol>
+@endsection
 
 @section('body')
 	{{-- expr --}}
@@ -46,7 +58,7 @@
 						{!! Form::textarea('sol_observaciones',$solicitud->sol_observaciones,['class'=> 'form-control', 'placeholder'=>'Observaciones', 'required']) !!}	
 					</div>
 
-
+					<!-- VERIFICAR... PORQUE CREO QUE LOS PRODUCTOS MOSTRADOS DEBEN ESTAR EN LA SOLICITUD!! NO EN LA NOTA DE ENTREGA... O VERIFICAR LA CONDICIONES DE ABAJO!!!-->
 					<div>	
 						{!! Form::label('venta','Elegir productos a cambiar',['class'=> '']) !!}
 						<table class="table table-inverse">

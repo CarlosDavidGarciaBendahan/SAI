@@ -1,6 +1,18 @@
-@extends('admin.template.main')
+@extends('admin.template.main2')
 
 @section('title', 'Listar nota de entrega')
+
+@section('contenido-header-name', 'Registro de solicitud')
+
+@section('contenido-header-name2', 'listado de notas de entrega')
+
+@section('contenido-header-route')
+	<ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active"><a href="{{ route('solicitud.index') }}"> Solicitud</a></li>
+        <li class="active">Crear</li>
+    </ol>
+@endsection
 
 @section('body')
 	{{-- {{ dd($estado) }} --}}
@@ -8,6 +20,9 @@
 	<section class="container-fluid">
 
 		<div class="row">
+			<div>
+				{!! Form::label('venta','Para crear una solicitud, precione el botón "crear solicitud" en la Nota de Entrega que corresponda.',['class'=> ' col-sm-12']) !!}
+			</div>
 			<div class="col-sm-8 offset-2">
 				 
 

@@ -1,6 +1,19 @@
-@extends('admin.template.main')
+@extends('admin.template.main2')
 
 @section('title', 'Crear Solicitud')
+
+@section('contenido-header-name', 'Registro de solicitud')
+
+@section('contenido-header-name2', 'registro de productos para cambiar')
+
+@section('contenido-header-route')
+	<ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active"><a href="{{ route('solicitud.index') }}"> Solicitud</a></li>
+        <li class="active"><a href="{{ route('solicitud.listarNotas',0) }}"> Notas de entrega</a></li>
+        <li class="active">Crear</li>
+    </ol>
+@endsection
 
 @section('body')
 	{{-- expr --}}
