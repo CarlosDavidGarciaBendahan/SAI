@@ -2,7 +2,7 @@
 
 @section('title', 'Listar oficinas')
 
-@section('contenido-header-name', 'Lista de oficinas')
+@section('contenido-header-name', 'Listado de oficinas')
 
 @section('contenido-header-name2', 'listar oficinas')
 

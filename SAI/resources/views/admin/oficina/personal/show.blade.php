@@ -1,6 +1,18 @@
-@extends('admin.template.main')
+@extends('admin.template.main2')
 
 @section('title', 'Mostrar personal '. $personal->per_identificador."-".$personal->per_cedula)
+
+@section('contenido-header-name', 'Observación de personal')
+
+@section('contenido-header-name2', 'observar  personal')
+
+@section('contenido-header-route')
+	<ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active"><a href="{{ route('personal.index') }}"> Personal</a></li>
+        <li class="active">Observar</li>
+    </ol>
+@endsection
 
 @section('body')
 	{{-- expr --}}
