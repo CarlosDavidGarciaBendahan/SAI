@@ -1,6 +1,18 @@
-@extends('admin.template.main')
+@extends('admin.template.main2')
 
 @section('title', 'Crear rol')
+
+@section('contenido-header-name', 'Registro de rol')
+
+@section('contenido-header-name2', 'crear rol')
+
+@section('contenido-header-route')
+	<ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active"><a href="{{ route('rol.index') }}"> Rol</a></li>
+        <li class="active">Crear</li>
+    </ol>
+@endsection
 
 @section('body')
 	{{-- expr --}}

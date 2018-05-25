@@ -1,6 +1,18 @@
-@extends('admin.template.main')
+@extends('admin.template.main2')
 
 @section('title', 'Listar roles')
+
+@section('contenido-header-name', 'Listado de roles')
+
+@section('contenido-header-name2', 'lista de roles')
+
+@section('contenido-header-route')
+	<ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">Rol</li>
+    </ol>
+@endsection
+
 
 @section('body')
 	{{-- {{ dd($estado) }} --}}
