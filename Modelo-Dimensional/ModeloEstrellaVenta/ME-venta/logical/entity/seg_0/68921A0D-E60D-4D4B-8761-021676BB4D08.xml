@@ -1,0 +1,123 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="68921A0D-E60D-4D4B-8761-021676BB4D08" name="TIEMPO">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-05-25 11:38:11 UTC</createdTime>
+<ownerDesignName>ME-venta</ownerDesignName>
+<engineerTo>
+<item key="251BA8E6-B170-84CB-FFBB-BADB899C537C" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="ID" id="1257E0D5-3D6D-4CC2-0A9F-05B4170A310E">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-05-25 11:49:16 UTC</createdTime>
+<ownerDesignName>ME-venta</ownerDesignName>
+<engineerTo>
+<item key="251BA8E6-B170-84CB-FFBB-BADB899C537C" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="AÑO" id="9E355EEF-DE31-2CBE-090B-5AE6D24C2C46">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-05-25 11:49:21 UTC</createdTime>
+<ownerDesignName>ME-venta</ownerDesignName>
+<engineerTo>
+<item key="251BA8E6-B170-84CB-FFBB-BADB899C537C" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="SEMESTRE" id="C60AC1BD-A78B-3D11-E748-D24325DCC68F">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-05-25 11:49:35 UTC</createdTime>
+<ownerDesignName>ME-venta</ownerDesignName>
+<engineerTo>
+<item key="251BA8E6-B170-84CB-FFBB-BADB899C537C" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="CUATRIMESTRE" id="6D2CC453-24BA-5819-5483-3C0C9DC67410">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-05-25 11:49:43 UTC</createdTime>
+<ownerDesignName>ME-venta</ownerDesignName>
+<engineerTo>
+<item key="251BA8E6-B170-84CB-FFBB-BADB899C537C" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="TRIMESTRE" id="7E94E53F-481C-A965-7292-1C0836BB2275">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-05-25 11:49:52 UTC</createdTime>
+<ownerDesignName>ME-venta</ownerDesignName>
+<engineerTo>
+<item key="251BA8E6-B170-84CB-FFBB-BADB899C537C" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="BIMESTRE" id="F965C0B3-08E0-BC75-5439-FD4F32DCAC1A">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-05-25 11:50:01 UTC</createdTime>
+<ownerDesignName>ME-venta</ownerDesignName>
+<engineerTo>
+<item key="251BA8E6-B170-84CB-FFBB-BADB899C537C" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="MES" id="38746D2A-7A66-DF91-23F7-68A47A3D3E9C">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-05-25 11:50:08 UTC</createdTime>
+<ownerDesignName>ME-venta</ownerDesignName>
+<engineerTo>
+<item key="251BA8E6-B170-84CB-FFBB-BADB899C537C" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="SEMANA" id="09DD55BB-077C-9F80-659A-1220A90F7EB5">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-05-25 11:50:19 UTC</createdTime>
+<ownerDesignName>ME-venta</ownerDesignName>
+<engineerTo>
+<item key="251BA8E6-B170-84CB-FFBB-BADB899C537C" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="DIA" id="F14094FA-0E20-8323-163B-5D396807E141">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-05-25 11:50:24 UTC</createdTime>
+<ownerDesignName>ME-venta</ownerDesignName>
+<engineerTo>
+<item key="251BA8E6-B170-84CB-FFBB-BADB899C537C" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="8592B9D3-0A8F-ED94-7C66-70EC0ABBD22E" name="TIEMPO PK">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-05-25 11:49:19 UTC</createdTime>
+<ownerDesignName>ME-venta</ownerDesignName>
+<engineerTo>
+<item key="251BA8E6-B170-84CB-FFBB-BADB899C537C" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>1257E0D5-3D6D-4CC2-0A9F-05B4170A310E</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

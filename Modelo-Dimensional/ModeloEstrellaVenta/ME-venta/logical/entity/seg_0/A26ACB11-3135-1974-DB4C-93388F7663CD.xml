@@ -1,0 +1,108 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="A26ACB11-3135-1974-DB4C-93388F7663CD" name="HISTORICO_PRESUPUESTO_FALTA_STOCK">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-05-25 12:35:42 UTC</createdTime>
+<ownerDesignName>ME-venta</ownerDesignName>
+<engineerTo>
+<item key="251BA8E6-B170-84CB-FFBB-BADB899C537C" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="ID_PRESUPUESTO" id="F3D6BC86-3AE4-FEA1-798C-9938CF66C304">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-05-25 12:36:11 UTC</createdTime>
+<ownerDesignName>ME-venta</ownerDesignName>
+<engineerTo>
+<item key="251BA8E6-B170-84CB-FFBB-BADB899C537C" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="ID_PRODUCTO" id="736470C3-BBF6-C7DE-E067-00B6FDAD3370">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-05-25 12:36:38 UTC</createdTime>
+<ownerDesignName>ME-venta</ownerDesignName>
+<engineerTo>
+<item key="251BA8E6-B170-84CB-FFBB-BADB899C537C" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="CANTIDAD_FALTANTE" id="577A20F8-D590-A3F9-4F2C-11D50C0941E0">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-05-25 12:36:47 UTC</createdTime>
+<ownerDesignName>ME-venta</ownerDesignName>
+<engineerTo>
+<item key="251BA8E6-B170-84CB-FFBB-BADB899C537C" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="PRECIO_UNITARIO" id="64DFEA31-0E8A-004F-0381-F197B20A8995">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-05-25 12:51:02 UTC</createdTime>
+<ownerDesignName>ME-venta</ownerDesignName>
+<engineerTo>
+<item key="251BA8E6-B170-84CB-FFBB-BADB899C537C" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="TOTAL" id="19944B38-2655-BE04-49C3-F95189F032FB">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-05-25 12:51:16 UTC</createdTime>
+<ownerDesignName>ME-venta</ownerDesignName>
+<engineerTo>
+<item key="251BA8E6-B170-84CB-FFBB-BADB899C537C" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="ID" id="71863B16-0C3B-B89B-6604-2E25843B75F5">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-05-25 12:51:48 UTC</createdTime>
+<generatorID>9BFDA518-A9ED-FAB8-27BB-93953A86F088</generatorID>
+<ownerDesignName>ME-venta</ownerDesignName>
+<engineerTo>
+<item key="251BA8E6-B170-84CB-FFBB-BADB899C537C" value="true"/>
+</engineerTo>
+<referedAttribute>4A160E59-7064-FBAC-1C55-277831A88238</referedAttribute>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="ID1" id="674A3F04-4E20-0601-0320-36D90B779556">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-05-25 12:51:54 UTC</createdTime>
+<generatorID>FC2547CC-A86C-E663-2531-12B1EC72B3E9</generatorID>
+<ownerDesignName>ME-venta</ownerDesignName>
+<engineerTo>
+<item key="251BA8E6-B170-84CB-FFBB-BADB899C537C" value="true"/>
+</engineerTo>
+<referedAttribute>CCC20BAA-3C8F-5A6E-4DB7-41EC1D2CD038</referedAttribute>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="5BCC9428-37AD-53A2-24B0-80C2479F8D39" name="HISTORICO_PRESUPUESTO_FALTA_STOCK PK">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-05-25 12:36:18 UTC</createdTime>
+<ownerDesignName>ME-venta</ownerDesignName>
+<engineerTo>
+<item key="251BA8E6-B170-84CB-FFBB-BADB899C537C" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>F3D6BC86-3AE4-FEA1-798C-9938CF66C304</attributeRef>
+<attributeRef>736470C3-BBF6-C7DE-E067-00B6FDAD3370</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>
