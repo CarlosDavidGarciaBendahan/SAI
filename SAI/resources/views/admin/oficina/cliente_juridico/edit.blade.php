@@ -1,6 +1,18 @@
-@extends('admin.template.main')
+@extends('admin.template.main2')
 
 @section('title', 'Editar cliente juridico '. $cliente_juridico->cli_jur_identificador."-".$cliente_juridico->cli_jur_rif)
+
+@section('contenido-header-name', 'Edición de empresa')
+
+@section('contenido-header-name2', 'editar empresa')
+
+@section('contenido-header-route')
+	<ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active"><a href="{{ route('cliente_juridico.index') }}"> Empresa</a></li>
+        <li class="active">Editar</li>
+    </ol>
+@endsection
 
 @section('body')
 	{{-- expr --}}

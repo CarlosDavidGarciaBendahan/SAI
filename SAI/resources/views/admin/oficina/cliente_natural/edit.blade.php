@@ -1,6 +1,18 @@
-@extends('admin.template.main')
+@extends('admin.template.main2')
 
 @section('title', 'Editar cliente natural '. $cliente_natural->cli_nat_identificador."-".$cliente_natural->cli_nat_cedula)
+
+@section('contenido-header-name', 'Edición de persona')
+
+@section('contenido-header-name2', 'editar persona')
+
+@section('contenido-header-route')
+	<ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active"><a href="{{ route('cliente_natural.index') }}"> Persona</a></li>
+        <li class="active">Editar</li>
+    </ol>
+@endsection
 
 @section('body')
 	{{-- expr --}}
