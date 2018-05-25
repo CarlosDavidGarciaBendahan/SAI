@@ -1,6 +1,20 @@
-@extends('admin.template.main')
+@extends('admin.template.main2')
 
 @section('title', 'Editar contacto '. $tlf->con_tel_codigo."-".$tlf->con_tel_numero)
+
+@section('contenido-header-name', 'Edición de teléfono')
+
+@section('contenido-header-name2', 'editar teléfono')
+
+
+@section('contenido-header-route')
+	<ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active"><a href="{{ route('cliente_juridico.edit',$cliente_juridico->id) }}"> Empresa</a></li>
+        <li class="active">teléfono</li>
+        <li class="active">Editar</li>
+    </ol>
+@endsection
 
 @section('body')
 	{{-- expr --}}

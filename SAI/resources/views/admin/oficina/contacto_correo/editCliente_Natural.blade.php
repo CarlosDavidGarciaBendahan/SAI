@@ -1,6 +1,20 @@
-@extends('admin.template.main')
+@extends('admin.template.main2')
 
 @section('title', 'Editar correo '. $correo->con_cor_correo)
+
+@section('contenido-header-name', 'Edición de correo')
+
+@section('contenido-header-name2', 'editar correo')
+
+
+@section('contenido-header-route')
+	<ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active"><a href="{{ route('cliente_natural.edit',$cliente_natural->id) }}"> Persona</a></li>
+        <li class="active">Correo</li>
+        <li class="active">Editar</li>
+    </ol>
+@endsection
 
 @section('body')
 	{{-- expr --}}

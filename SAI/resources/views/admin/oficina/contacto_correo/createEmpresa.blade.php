@@ -1,6 +1,20 @@
-@extends('admin.template.main')
+@extends('admin.template.main2')
 
 @section('title', 'Crear correo ')
+
+@section('contenido-header-name', 'Registro de correo')
+
+@section('contenido-header-name2', 'crear correo')
+
+
+@section('contenido-header-route')
+	<ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active"><a href="{{ route('empresa.edit',$empresa->id) }}"> Empresa</a></li>
+        <li class="active">Correo</li>
+        <li class="active">Crear</li>
+    </ol>
+@endsection
 
 @section('body')
 	{{-- expr --}}
