@@ -32,19 +32,19 @@
 						
 							{!! Form::label('per_fecha_nacimiento','Fecha de pago') !!}
 
-							{!! Form::text('reg_fecha_pagado', '', array('id' => 'datepicker', 'placeholder'=>'DD-MM-YYYY', 'class'=> 'form-control')) !!}
+							{!! Form::text('reg_fecha_pagado', '', array('id' => 'datepicker', 'placeholder'=>'DD-MM-YYYY', 'class'=> 'form-control', 'required')) !!}
 					</div>
 
 
 					<div class="form-group">
 						{!! Form::label('fecha','Monto',['class'=> ' col-sm'] ) !!}
-						{!! Form::text('reg_monto',null,['class'=> 'form-control col-sm-10', 'placeholder'=>'123456789', 'required']) !!}		
+						{!! Form::text('reg_monto',null,['class'=> 'form-control col-sm-10', 'title'=>'Solo numeros de 0-9, min: 1 max: 10, con 2 decimales', 'placeholder'=>'1234567899.12', 'required', 'min'=>'1', 'max' => '12', 'pattern'=>'[0-9.?]+']) !!}		
 						{!! Form::select('reg_moneda',['Bs'=>'Bs','$'=>'$'],'Bs',['class'=> 'form-control col-sm-2','required']) !!}
 					</div>
 
 					<div class="form-group">
 						{!! Form::label('fecha','Concepto',['class'=> ' col-sm']) !!}
-						{!! Form::text('reg_concepto',null,['class'=> 'form-control', 'placeholder'=>'PAGO DE LA VENTA 0', 'required']) !!}	
+						{!! Form::text('reg_concepto',null,['class'=> 'form-control', 'title'=>'Solo letras mayúsculas o minúsculas y numeros de 0-9, min: 10 max: 100', 'placeholder'=>'concepto de pago', 'required', 'minlength'=>'10', 'maxlength' => '100', 'pattern'=>'[A-za-z0-9 ]+']) !!}	
 					</div>
 
 					<div class="form-group">
@@ -54,17 +54,17 @@
 
 					<div class="form-group">
 						{!! Form::label('fecha','Número de confirmación, referencia, guia, etc.',['class'=> ' col-sm']) !!}
-						{!! Form::text('reg_numero_referencia',null,['class'=> 'form-control', 'placeholder'=>'152468579', 'required']) !!}	
+						{!! Form::text('reg_numero_referencia',null,['class'=> 'form-control', 'title'=>'Solo numeros de 0-9, min: 1 max: 10. Opcional', 'placeholder'=>'0123456789', 'min'=>'1', 'max' => '10', 'pattern'=>'[0-9]+']) !!}	
 					</div>
 
 					<div class="form-group">
 						{!! Form::label('fecha','Banco origen',['class'=> ' col-sm'] ) !!}	
-						{!! Form::select('reg_fk_banco_origen',$bancos,null,['class'=> 'form-control ','required']) !!}
+						{!! Form::select('reg_fk_banco_origen',$bancos,null,['class'=> 'form-control ', 'title'=>'Opcional']) !!}
 					</div>
 					
 					<div class="form-group">
 						{!! Form::label('fecha','Banco destino',['class'=> ' col-sm'] ) !!}	
-						{!! Form::select('reg_fk_banco_destino',$bancos,null,['class'=> 'form-control ','required']) !!}
+						{!! Form::select('reg_fk_banco_destino',$bancos,null,['class'=> 'form-control ', 'title'=>'Opcional']) !!}
 					</div>
 
 					<div class="form-group col-sm-12">

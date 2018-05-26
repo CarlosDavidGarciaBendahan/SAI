@@ -18,9 +18,9 @@
 
 @section('body')
 	{{-- expr --}}
-	<section class="container">
+	<section class="container-fluid">
 		<div class="row">
-			<div class="col-sm-8 offset-2">
+			<div class="col-sm-10 offset-1">
 				{!! Form::open(['route' => ['registroPago.update',$registroPago], 'method' => 'PUT']) !!}
 					
 					<div class="form-group">
@@ -33,7 +33,7 @@
 						
 							{!! Form::label('per_fecha_nacimiento','Fecha recibido') !!}
 
-							{!! Form::text('reg_fecha_pagado',  date("d/m/Y", strtotime($registroPago->reg_fecha_pagado)), array('id' => 'datepicker', 'placeholder'=>'DD-MM-YYYY', 'class'=> 'form-control')) !!}
+							{!! Form::text('reg_fecha_pagado',  date("d/m/Y", strtotime($registroPago->reg_fecha_pagado)), array('id' => 'datepicker', 'placeholder'=>'DD-MM-YYYY', 'class'=> 'form-control', 'required')) !!}
 					</div>
 
 
@@ -55,17 +55,17 @@
 
 					<div class="form-group">
 						{!! Form::label('fecha','Número de confirmación, referencia, guia, etc.',['class'=> ' col-sm']) !!}
-						{!! Form::text('reg_numero_referencia',$registroPago->reg_numero_referencia,['class'=> 'form-control', 'placeholder'=>'152468579', 'required']) !!}	
+						{!! Form::text('reg_numero_referencia',$registroPago->reg_numero_referencia,['class'=> 'form-control',  'title'=>'Solo numeros de 0-9, min: 1 max: 10. Opcional', 'placeholder'=>'0123456789', 'min'=>'1', 'max' => '10', 'pattern'=>'[0-9]+']) !!}	
 					</div>
 
 					<div class="form-group">
 						{!! Form::label('fecha','Banco origen',['class'=> ' col-sm'] ) !!}	
-						{!! Form::select('reg_fk_banco_origen',$bancos,$registroPago->reg_fk_banco_origen,['class'=> 'form-control ','required']) !!}
+						{!! Form::select('reg_fk_banco_origen',$bancos,$registroPago->reg_fk_banco_origen,['class'=> 'form-control ', 'title'=>'Opcional']) !!}
 					</div>
 					
 					<div class="form-group">
 						{!! Form::label('fecha','Banco destino',['class'=> ' col-sm'] ) !!}	
-						{!! Form::select('reg_fk_banco_destino',$bancos,$registroPago->reg_fk_banco_destino,['class'=> 'form-control ','required']) !!}
+						{!! Form::select('reg_fk_banco_destino',$bancos,$registroPago->reg_fk_banco_destino,['class'=> 'form-control ', 'title'=>'Opcional']) !!}
 					</div>
 
 					<div class="form-group col-sm-12">

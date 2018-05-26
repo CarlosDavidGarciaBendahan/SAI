@@ -25,7 +25,7 @@
 						
 						{!! Form::label('ban_nombre','Banco') !!}
 
-						{!! Form::text('ban_nombre',null,['class'=> 'form-control', 'placeholder'=>'banco', 'required']) !!}
+						{!! Form::text('ban_nombre',null,['class'=> 'form-control', 'title'=>'Solo letras mayúsculas o minúsculas, min: 4 max: 25', 'placeholder'=>'Nombre del banco.', 'required', 'minlength'=>'4', 'maxlength' => '25', 'pattern'=>'[A-za-z ]+']) !!}
 					</div>
 
 					<div class="form-group">

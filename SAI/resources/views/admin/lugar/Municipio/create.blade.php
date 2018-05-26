@@ -21,30 +21,19 @@
 			<div class="col-sm-8 offset-2">
 				{!! Form::open(['route' => 'municipio.store', 'method' => 'POST' ]) !!}
 					
+					<!-- SELECT ESTADO-->
 					<div class="form-group">
 						{!! Form::label('mun_fk_estado','Estado') !!}
 						{!! Form::select('mun_fk_estado',$estados, null, ['class'=>'form-control', 'placeholder'=>'Elegir un estado', 'required'] ) !!}
 					</div>
-
+					
+					<!-- NOMBRE MUNICIPIO -->
 					<div class="form-group"> 
 						
 						{!! Form::label('mun_nombre','Nombre') !!}
 
-						{!! Form::text('mun_nombre',null,['class'=> 'form-control', 'placeholder'=>'Nombre del municipio', 'required']) !!}
+						{!! Form::text('mun_nombre',null,['class'=> 'form-control', 'title'=>'Solo letras mayúsculas o minúsculas, min: 4 max: 25', 'placeholder'=>'Nombre del municipio.', 'required', 'minlength'=>'4', 'maxlength' => '25', 'pattern'=>'[A-za-z ]+']) !!}
 					</div>
-					{{-- comment 
-						<div class="form-group"> 
-						
-						{!! Form::label('ejemplo','ejemplo') !!}
-
-						{!! Form::text('ejemplo',null,['class'=> 'form-control', 'placeholder'=>'ejemplo', 'required']) !!}
-					</div>
-
-					<div class="form-group">
-						{!! Form::label('type','tipo') !!}
-						{!! Form::select('type',[''=>'Seleccionar','member' => 'Miembro','admin'=>'Administrador'],null,['class'=> 'form-control']) !!}
-					</div>
-						--}}
 					
 
 					<div class="form-group">

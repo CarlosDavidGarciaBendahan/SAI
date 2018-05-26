@@ -1,6 +1,18 @@
-@extends('admin.template.main')
+@extends('admin.template.main2')
 
 @section('title', 'Consultar venta')
+
+@section('contenido-header-name', 'Observación de solicitud')
+
+@section('contenido-header-name2', 'observar solicitud')
+
+@section('contenido-header-route')
+	<ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active"><a href="{{ route('solicitud.index') }}"> Solicitud</a></li>
+        <li class="active">Observar</li>
+    </ol>
+@endsection
 
 @section('body')
 	{{-- expr --}}
@@ -169,13 +181,13 @@
 					</div>
 
 
-
+					<!--
 					<div>
 						<a href="{{ route('solicitud.index') }}" class="btn btn-info">
 						    <span class="glyphicon glyphicon-arrow-left"></span> Regresar al listado
 					 	</a>
 					</div>
-
+					-->
 						
 
 					

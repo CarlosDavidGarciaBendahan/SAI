@@ -137,7 +137,7 @@
 
 				<div class="form-group">
 						{!! Form::label('venta','Observaciones',['class'=> '']) !!}
-						{!! Form::textarea('not_observaciones',$notaEntrega->not_observaciones,['class'=> 'form-control', 'placeholder'=>'Observaciones', 'required']) !!}	
+						{!! Form::textarea('not_observaciones',$notaEntrega->not_observaciones,['class'=> 'form-control', 'title'=>'debe tener min: 10 max: 200 caracteres', 'placeholder'=>'Observaciones', 'required', 'minlength'=>'10', 'maxlength' => '200']) !!}	
 				</div>
 
 				<div class="form-group">
@@ -149,8 +149,8 @@
 						{!! Form::text('x',"Bs",['class'=> 'form-control col-sm-1', 'placeholder'=>'0', 'required', 'readonly'=>'true']) !!}
 						
 				</div>
-					<div class="form-group">
-						{!! Form::submit('Registrar',['class'=>'btn btn-primary']) !!}
+					<div class="form-group col-sm-12">
+						{!! Form::submit('Editar',['class'=>'btn btn-primary col-sm']) !!}
 					</div>
 
 					

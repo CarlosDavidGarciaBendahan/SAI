@@ -45,7 +45,7 @@
 					</div>
 					<div class="form-group">
 						{!! Form::label('venta','Concepto',['class'=> ' col-sm']) !!}
-						{!! Form::text('sol_concepto',$solicitud->sol_concepto,['class'=> 'form-control', 'placeholder'=>'El computador no arranca', 'required']) !!}	
+						{!! Form::text('sol_concepto',$solicitud->sol_concepto,['class'=> 'form-control', 'placeholder'=>'El computador no arranca', 'required','readonly'=>'true']) !!}	
 					</div>
 
 					<div>
@@ -262,7 +262,7 @@
 
 				<div class="form-group">
 						{!! Form::label('venta','Observaciones',['class'=> '']) !!}
-						{!! Form::textarea('sol_observaciones',null,['class'=> 'form-control', 'placeholder'=>'Observaciones', 'required']) !!}	
+						{!! Form::textarea('sol_observaciones',$solicitud->sol_observaciones,['class'=> 'form-control', 'placeholder'=>'Observaciones', 'required']) !!}	
 				</div>
 
 					<div class="form-group col-sm-12">

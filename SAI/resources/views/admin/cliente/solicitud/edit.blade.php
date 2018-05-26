@@ -44,7 +44,7 @@
 
 					<div class="form-group">
 						{!! Form::label('venta','Concepto de solicitud',['class'=> ' col-sm']) !!}
-						{!! Form::text('venta',$solicitud->sol_concepto,['class'=> 'form-control', 'placeholder'=>'PAGO DE LA VENTA 0', 'required']) !!}	
+						{!! Form::text('venta',$solicitud->sol_concepto,['class'=> 'form-control', 'title'=>'Solo letras mayúsculas, minúsculas y numeros de 0-9, min: 10 max: 50', 'placeholder'=>'Concepto.', 'required', 'minlength'=>'10', 'maxlength' => '50', 'pattern'=>'[A-za-z0-9 ]+']) !!}	
 					</div>
 
 					<div class="form-group">
@@ -55,7 +55,7 @@
 
 					<div class="form-group">
 						{!! Form::label('venta','Observaciones',['class'=> '']) !!}
-						{!! Form::textarea('sol_observaciones',$solicitud->sol_observaciones,['class'=> 'form-control', 'placeholder'=>'Observaciones', 'required']) !!}	
+						{!! Form::textarea('sol_observaciones',$solicitud->sol_observaciones,['class'=> 'form-control',  'title'=>'Solo letras mayúsculas o minúsculas, min: 10 max: 200', 'placeholder'=>'Observaciones', 'required', 'minlength'=>'10', 'maxlength' => '200', 'required']) !!}	
 					</div>
 
 					<!-- VERIFICAR... PORQUE CREO QUE LOS PRODUCTOS MOSTRADOS DEBEN ESTAR EN LA SOLICITUD!! NO EN LA NOTA DE ENTREGA... O VERIFICAR LA CONDICIONES DE ABAJO!!!-->

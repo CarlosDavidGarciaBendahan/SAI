@@ -69,13 +69,13 @@
 						
 						{!! Form::label('codigoPC','Códigos de computadoras') !!}
 
-						{!! Form::select('codigoPC[]',$codigosPC,null,['class'=> 'form-control select-permisos ', 'multiple','required' , 'id'=>'select-codigosPC']) !!}
+						{!! Form::select('codigoPC[]',$codigosPC,null,['class'=> 'form-control select-permisos ', 'multiple' , 'id'=>'select-codigosPC']) !!}
 					</div>
 					<div class="form-group"> 
 						
 						{!! Form::label('codigoArticulo','Códigos de artículos') !!}
 
-						{!! Form::select('codigoArticulo[]',$codigosArticulo,null,['class'=> 'form-control select-permisos ', 'multiple','required', 'id'=>'select-codigosArticulo']) !!}
+						{!! Form::select('codigoArticulo[]',$codigosArticulo,null,['class'=> 'form-control select-permisos ', 'multiple', 'id'=>'select-codigosArticulo']) !!}
 					</div>
 					
 

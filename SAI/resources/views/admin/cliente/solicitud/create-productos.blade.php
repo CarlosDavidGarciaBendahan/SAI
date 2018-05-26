@@ -23,12 +23,12 @@
 				{!! Form::open(['route' => 'solicitud.storeAgregarProductos', 'method' => 'POST' ]) !!}
 					
 
-					<div class="form-group col-sm-12"> 
+					<div class="form-group"> 
 						
 						{!! Form::label('empresa','Tipo de solicitud') !!}
 						{!! Form::select('sol_tipo',['cambio'=>'Cambio de producto','devolucion' => 'Devolución del producto'], $solicitud->sol_tipo, ['class'=>'form-control col-sm input-sm ', 'placeholder'=>'', 'required','enable'=>'false'] ) !!}
 					</div>
-					<div class="form-group col-sm-12"> 
+					<div class="form-group"> 
 						
 						{!! Form::text('id',$solicitud->id,['class'=> 'form-control', 'placeholder'=>'', 'required', 'readonly'=>'true','hidden'=>'true']) !!}
 					</div>
@@ -38,14 +38,14 @@
 
 							{!! Form::text('sol_fecha',date("d/m/Y", strtotime($solicitud->sol_fecha)), array('id' => 'datepicker', 'placeholder'=>'DD-MM-YYYY', 'class'=> 'form-control','readonly'=>'true')) !!}
 					</div>
-					<div class="form-group col-sm-12"> 
+					<div class="form-group"> 
 						
 						{!! Form::label('empresa','Aprobación de la solicitud') !!}
 						{!! Form::select('sol_aprobado',['S'=>'Aprobar la solicitud','N' => 'Rechazar solicutd'], $solicitud->sol_aprobado, ['class'=>'form-control input-sm ', 'placeholder'=>'', 'required'] ) !!}
 					</div>
 					<div class="form-group">
 						{!! Form::label('venta','Concepto',['class'=> ' col-sm']) !!}
-						{!! Form::text('sol_concepto',$solicitud->sol_concepto,['class'=> 'form-control', 'placeholder'=>'El computador no arranca', 'required']) !!}	
+						{!! Form::text('sol_concepto',$solicitud->sol_concepto,['class'=> 'form-control', 'placeholder'=>'El computador no arranca', 'required','readonly'=>'true']) !!}	
 					</div>
 
 					
@@ -190,10 +190,10 @@
 
 				<div class="form-group">
 						{!! Form::label('venta','Observaciones',['class'=> '']) !!}
-						{!! Form::textarea('sol_observaciones',null,['class'=> 'form-control', 'placeholder'=>'Observaciones', 'required']) !!}	
+						{!! Form::textarea('sol_observaciones',null,['class'=> 'form-control', 'title'=>'Solo letras mayúsculas o minúsculas, min: 10 max: 200', 'placeholder'=>'Observaciones', 'required', 'minlength'=>'10', 'maxlength' => '200', 'required']) !!}	
 				</div>
 
-					<div class="form-group col-sm-12">
+					<div class="form-group">
 						{!! Form::submit('Registrar',['class'=>'btn btn-primary']) !!}
 					</div>
 

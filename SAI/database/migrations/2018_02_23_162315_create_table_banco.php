@@ -15,7 +15,7 @@ class CreateTableBanco extends Migration
     {
         Schema::create('banco', function (Blueprint $table) {
             $table->increments('id')->nullable(false);
-            $table->string('ban_nombre')->nullable(false);
+            $table->string('ban_nombre',25)->nullable(false);
             $table->timestamps();
 
             $table->unique('ban_nombre','BANCO_UNIQUE_ban_nombre');

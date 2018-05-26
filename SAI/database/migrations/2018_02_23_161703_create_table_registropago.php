@@ -20,7 +20,7 @@ class CreateTableRegistropago extends Migration
             $table->enum('reg_moneda',['$','Bs'])->nullable(false);
             $table->string('reg_concepto',100)->nullable(false);
             $table->enum('reg_forma',['efectivo','deposito','transferencia','cheque','otro'])->nullable(false);
-            $table->float('reg_numero_referencia',10)->nullable(false);
+            $table->float('reg_numero_referencia',10)->nullable(true);
             $table->integer('reg_fk_banco_origen')->unsigned()->nullable(true);
             $table->integer('reg_fk_banco_destino')->unsigned()->nullable(true);
             $table->integer('reg_fk_venta')->unsigned()->nullable(false);

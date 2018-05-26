@@ -101,7 +101,7 @@
 						</div>
 					@endif
 
-					<div class="form-group col-sm-12"> 
+					<div class="form-group"> 
 						
 						{!! Form::label('empresa','Tipo de solicitud') !!}
 						{!! Form::select('sol_tipo',['cambio'=>'Cambio de producto','devolucion' => 'Devolución del producto'], null, ['class'=>'form-control col-sm input-sm ', 'placeholder'=>'', 'required'] ) !!}
@@ -110,16 +110,16 @@
 						
 							{!! Form::label('per_fecha_nacimiento','Fecha') !!}
 
-							{!! Form::text('sol_fecha',null, array('id' => 'datepicker', 'placeholder'=>'DD-MM-YYYY', 'class'=> 'form-control')) !!}
+							{!! Form::text('sol_fecha',null, array('id' => 'datepicker', 'placeholder'=>'DD-MM-YYYY', 'class'=> 'form-control', 'required'=>'true')) !!}
 					</div>
-					<div class="form-group col-sm-12"> 
+					<div class="form-group"> 
 						
 						{!! Form::label('empresa','Aprobación de la solicitud') !!}
 						{!! Form::select('sol_aprobado',['S'=>'Aprobar la solicitud','N' => 'Rechazar solicutd'], null, ['class'=>'form-control input-sm ', 'placeholder'=>'', 'required'] ) !!}
 					</div>
 					<div class="form-group">
 						{!! Form::label('venta','Concepto',['class'=> ' col-sm']) !!}
-						{!! Form::text('sol_concepto',null,['class'=> 'form-control', 'placeholder'=>'El computador no arranca', 'required']) !!}	
+						{!! Form::text('sol_concepto',null,['class'=> 'form-control','title'=>'Solo letras mayúsculas, minúsculas y numeros de 0-9, min: 10 max: 50', 'placeholder'=>'Concepto.', 'required', 'minlength'=>'10', 'maxlength' => '50', 'pattern'=>'[A-za-z0-9 ]+']) !!}	
 					</div>
 
 				

@@ -21,6 +21,7 @@
 			<div class="col-sm-8 offset-2">
 				{!! Form::open(['route' => 'parroquia.store', 'method' => 'POST' ]) !!}
 					
+					<!-- SELECT ESTADO-->
 					<div class="form-group">
 						<label>Estados </label>
 						<select class="form-control input-sm" name="estado" id="estado">
@@ -31,6 +32,7 @@
 						</select>
 					</div>
 
+					<!-- SELECT MUNICIPIO-->
 					<div class="form-group">
 						<label>Municipios</label>
 						<select class="form-control input-sm" name="par_fk_municipio" id="municipio">
@@ -38,11 +40,12 @@
 						</select>
 					</div>
 
+					<!-- NOMBRE PARROQUIA-->
 					<div class="form-group"> 
 						
 						{!! Form::label('par_nombre','Nombre') !!}
 
-						{!! Form::text('par_nombre',null,['class'=> 'form-control', 'placeholder'=>'Nombre de la parroquia', 'required']) !!}
+						{!! Form::text('par_nombre',null,['class'=> 'form-control', 'title'=>'Solo letras mayúsculas o minúsculas, min: 4 max: 25', 'placeholder'=>'Nombre de la parroquia.', 'required', 'minlength'=>'4', 'maxlength' => '25', 'pattern'=>'[A-za-z ]+']) !!}
 					</div>
 					
 					<div class="form-group">

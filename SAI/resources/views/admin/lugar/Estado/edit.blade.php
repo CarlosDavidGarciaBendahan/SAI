@@ -20,25 +20,14 @@
 		<div class="row">
 			<div class="col-sm">
 				{!! Form::open(['route' => ['estado.update',$estado], 'method' => 'PUT' ]) !!}
+
+					<!-- NOMBRE DEL ESTADO-->
 					<div class="form-group"> 
 						
 						{!! Form::label('est_nombre','Nombre') !!}
 
-						{!! Form::text('est_nombre',$estado->est_nombre,['class'=> 'form-control', 'placeholder'=>'Nombre del estado', 'required']) !!}
+						{!! Form::text('est_nombre',$estado->est_nombre,['class'=> 'form-control', 'title'=>'Solo letras mayúsculas o minúsculas, min: 4 max: 25', 'placeholder'=>'Nombre del estado.', 'required', 'minlength'=>'4', 'maxlength' => '25', 'pattern'=>'[A-za-z ]+']) !!}
 					</div>
-					{{-- comment 
-						<div class="form-group"> 
-						
-						{!! Form::label('ejemplo','ejemplo') !!}
-
-						{!! Form::text('ejemplo',null,['class'=> 'form-control', 'placeholder'=>'ejemplo', 'required']) !!}
-					</div>
-
-					<div class="form-group">
-						{!! Form::label('type','tipo') !!}
-						{!! Form::select('type',[''=>'Seleccionar','member' => 'Miembro','admin'=>'Administrador'],null,['class'=> 'form-control']) !!}
-					</div>
-						--}}
 					
 					<div class="form-group"> 
 						

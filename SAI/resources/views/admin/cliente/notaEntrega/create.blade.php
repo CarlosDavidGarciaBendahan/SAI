@@ -22,12 +22,16 @@
 			<div class="col-sm-8 offset-2">
 				{!! Form::open(['route' => 'notaEntrega.store', 'method' => 'POST' ]) !!}
 					<?php $subtotal = 0; ?>
+
+					<!-- DATOS DE LA VENTA-->
 					<div class="form-group">
 						{!! Form::label('venta','Venta a que se le abona',['class'=> ' col-sm']) !!}
 						{!! Form::text('venta',"Venta #".$venta->id." efectuada en la fecha: ".date("d/m/Y", strtotime($venta->ven_fecha_compra)),['class'=> 'form-control', 'placeholder'=>'PAGO DE LA VENTA 0', 'required', 'readonly'=>'true']) !!}	
 						{!! Form::text('not_fk_venta',$venta->id,['class'=> 'form-control', 'hidden'=>'true', 'required', 'readonly'=>'true']) !!}	
 					</div>
 
+					<!-- DATOS DEL CLIENTE-->
+					<!-- valida el tipo de cliente-->
 					@if ($venta->cliente_natural !== null)
 						<div class="form-group ">
 							{!! Form::label('cliente','Datos del cliente',['class'=>'col-sm']) !!}
@@ -50,6 +54,7 @@
 						</div>
 					@endif
 
+					<!-- DATOS DE LA EMPRESA-->
 					<div class="form-group col-sm-12"> 
 						
 						{!! Form::label('empresa','Empresa') !!}
@@ -61,6 +66,8 @@
 								@endforeach
 						</select>
 					</div>
+
+					<!-- FECHA-->
 					<div class="form-group"> 
 						
 							{!! Form::label('per_fecha_nacimiento','Fecha recibido') !!}
@@ -68,7 +75,7 @@
 							{!! Form::text('not_fecha', '', array('id' => 'datepicker', 'placeholder'=>'DD-MM-YYYY', 'class'=> 'form-control')) !!}
 					</div>
 
-					
+				<!-- TABLA DE COMPUTADORAS-->	
 				<div>	
 				<table class="table table-inverse">
 				  <thead>
@@ -106,6 +113,8 @@
 
 				</table>
 				</div>
+
+				<!-- TABLA DE ARTICULOS-->
 				<div>
 					<table class="table table-inverse">
 				  <thead>
@@ -141,11 +150,13 @@
 				</table>
 				</div>
 
+				<!-- OBSERVACIONES-->
 				<div class="form-group">
 						{!! Form::label('venta','Observaciones',['class'=> '']) !!}
-						{!! Form::textarea('not_observaciones',null,['class'=> 'form-control', 'placeholder'=>'Observaciones', 'required']) !!}	
+						{!! Form::textarea('not_observaciones',null,['class'=> 'form-control', 'title'=>'debe tener min: 10 max: 200 caracteres', 'placeholder'=>'Observaciones', 'required', 'minlength'=>'10', 'maxlength' => '200']) !!}	
 				</div>
 
+				<!-- TOTAL Y SUBTOTAL-->
 				<div class="form-group">
 						{!! Form::label('venta','Subtotal',['class'=> ' col-sm-1']) !!}
 						{!! Form::text('not_subtotal',$subtotal,['class'=> 'form-control col-sm-10', 'placeholder'=>'0', 'required', 'readonly'=>'true']) !!}	
@@ -155,6 +166,9 @@
 						{!! Form::text('x',"Bs",['class'=> 'form-control col-sm-1', 'placeholder'=>'0', 'required', 'readonly'=>'true']) !!}
 						
 				</div>
+
+
+
 					<div class="form-group col-sm-12">
 						{!! Form::submit('Registrar',['class'=>'btn btn-primary']) !!}
 					</div>
