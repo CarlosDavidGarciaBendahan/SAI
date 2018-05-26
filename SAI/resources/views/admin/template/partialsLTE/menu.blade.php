@@ -46,7 +46,7 @@
         <!-- MENU DE PRODUCTO-->
         <li class="treeview">
           <a href="#">
-            <i class="fa fa-television"></i> <span>Productos</span>
+            <i class="fa fa-laptop"></i> <span>Productos</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
