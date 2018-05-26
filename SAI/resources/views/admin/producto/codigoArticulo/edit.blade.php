@@ -1,6 +1,19 @@
-@extends('admin.template.main')
+@extends('admin.template.main2')
 
 @section('title', 'Modificar Articulo')
+
+@section('contenido-header-name', 'Edición de producto')
+
+@section('contenido-header-name2', 'editar producto detallado')
+
+@section('contenido-header-route')
+	<ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active"><a href="{{ route('producto_articulo.index') }}"> Producto</a></li>
+        <li class="active"><a href="{{ route('codigoArticulo.index') }}"> Producto detallado</a></li>
+        <li class="active">Editar</li>
+    </ol>
+@endsection
 
 @section('body')
 	{{-- expr --}}

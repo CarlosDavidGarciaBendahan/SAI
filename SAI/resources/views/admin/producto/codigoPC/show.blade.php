@@ -1,6 +1,19 @@
-@extends('admin.template.main')
+@extends('admin.template.main2')
 
 @section('title', 'Consultar articulo')
+
+@section('contenido-header-name', 'Obsevación de producto')
+
+@section('contenido-header-name2', 'observar producto detallado')
+
+@section('contenido-header-route')
+	<ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active"><a href="{{ route('producto_computador.index') }}"> Producto</a></li>
+        <li class="active"><a href="{{ route('codigoPC.index') }}"> Producto detallado</a></li>
+        <li class="active">Observar</li>
+    </ol>
+@endsection
 
 @section('body')
 	{{-- expr --}}

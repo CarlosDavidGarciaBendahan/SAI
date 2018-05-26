@@ -1,6 +1,18 @@
-@extends('admin.template.main')
+@extends('admin.template.main2')
 
 @section('title', 'Editar tipo de producto '. $tipo_producto->tip_tipo)
+
+@section('contenido-header-name', 'Edición de tipo de producto')
+
+@section('contenido-header-name2', 'editar tipo de producto')
+
+@section('contenido-header-route')
+	<ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active"><a href="{{ route('tipo_producto.index') }}"> Tipo de producto</a></li>
+        <li class="active">Editar</li>
+    </ol>
+@endsection
 
 @section('body')
 	{{-- expr --}}

@@ -1,6 +1,19 @@
-@extends('admin.template.main')
+@extends('admin.template.main2')
 
 @section('title', 'Listar marcas')
+
+@section('contenido-header-name', 'Listado de marcas')
+
+@section('contenido-header-name2', 'listar marcas')
+
+@section('contenido-header-route')
+	<ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active"><a href="{{ route('marca.index') }}"> Marca</a></li>
+        <li class="active">Lista</li>
+    </ol>
+@endsection
+
 
 @section('body')
 	{{-- {{ dd($estado) }} --}}

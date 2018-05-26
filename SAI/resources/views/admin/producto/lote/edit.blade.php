@@ -1,10 +1,22 @@
-@extends('admin.template.main')
+@extends('admin.template.main2')
 
 @section('link-head')
 	<link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
 @endsection
 
 @section('title', 'Editar lote '. $lote->lot_nombre)
+
+@section('contenido-header-name', 'Edición de lote')
+
+@section('contenido-header-name2', 'editar lote')
+
+@section('contenido-header-route')
+	<ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active"><a href="{{ route('lote.index') }}"> Lote</a></li>
+        <li class="active">Editar</li>
+    </ol>
+@endsection
 
 @section('body')
 	{{-- expr --}}

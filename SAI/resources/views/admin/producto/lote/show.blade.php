@@ -1,6 +1,18 @@
-@extends('admin.template.main')
+@extends('admin.template.main2')
 
 @section('title', 'Información de Lote')
+
+@section('contenido-header-name', 'Observación de lote')
+
+@section('contenido-header-name2', 'oberservar lote')
+
+@section('contenido-header-route')
+	<ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active"><a href="{{ route('lote.index') }}"> Lote</a></li>
+        <li class="active">Observar</li>
+    </ol>
+@endsection
 
 @section('body')
 	{{-- expr --}}

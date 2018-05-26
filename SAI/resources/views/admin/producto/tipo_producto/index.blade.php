@@ -1,6 +1,18 @@
-@extends('admin.template.main')
+@extends('admin.template.main2')
 
 @section('title', 'Listar Tipo de productos')
+
+@section('contenido-header-name', 'Listado de tipos de producto')
+
+@section('contenido-header-name2', 'listar tipos de producto')
+
+@section('contenido-header-route')
+	<ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active"><a href="{{ route('tipo_producto.index') }}"> Tipo de producto</a></li>
+        <li class="active">Lista</li>
+    </ol>
+@endsection
 
 @section('body')
 	{{-- {{ dd($estado) }} --}}

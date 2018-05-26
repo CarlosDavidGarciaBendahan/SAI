@@ -1,6 +1,18 @@
-@extends('admin.template.main')
+@extends('admin.template.main2')
 
 @section('title', 'Editar unidad de medida '. $unidadmedida->uni_meidda)
+
+@section('contenido-header-name', 'Edición de unidad de medida')
+
+@section('contenido-header-name2', 'editar unidad de medida')
+
+@section('contenido-header-route')
+	<ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active"><a href="{{ route('unidadmedida.index') }}"> Unidad de medida</a></li>
+        <li class="active">Editar</li>
+    </ol>
+@endsection
 
 @section('body')
 	{{-- expr --}}

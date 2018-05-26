@@ -1,6 +1,19 @@
-@extends('admin.template.main')
+@extends('admin.template.main2')
 
 @section('title', 'Editar marca '. $marca->mar_marca)
+
+@section('contenido-header-name', 'Edición de marca')
+
+@section('contenido-header-name2', 'editar marca')
+
+@section('contenido-header-route')
+	<ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active"><a href="{{ route('marca.index') }}"> Marca</a></li>
+        <li class="active">Editar</li>
+    </ol>
+@endsection
+
 
 @section('body')
 	{{-- expr --}}
