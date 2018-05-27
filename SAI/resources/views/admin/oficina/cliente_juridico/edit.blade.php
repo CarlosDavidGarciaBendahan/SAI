@@ -77,12 +77,12 @@
 
 					<div class="form-group">
 						{!! Form::label('cli_jur_direccion','Direccion') !!}
-						{!! Form::text('cli_jur_direccion',$cliente_juridico->cli_jur_direccion,['class'=> 'form-control', 'placeholder'=>'dirección', 'required']) !!}
+						{!! Form::text('cli_jur_direccion',$cliente_juridico->cli_jur_direccion,['class'=> 'form-control','title'=>'Solo letras mayúsculas, minúsculas, la coma (,), punto (.) y números de 0-9, min: 10 max: 200', 'placeholder'=>'dirección.', 'required', 'minlength'=>'10', 'maxlength' => '200', 'pattern'=>'[A-za-z0-9,. ]+']) !!}
 					</div>
 
 					<div class="form-group">
 						{!! Form::label('cli_jur_nombre','Nombre') !!}
-						{!! Form::text('cli_jur_nombre',$cliente_juridico->cli_jur_nombre,['class'=> 'form-control', 'placeholder'=>'Nombre', 'required']) !!}
+						{!! Form::text('cli_jur_nombre',$cliente_juridico->cli_jur_nombre,['class'=> 'form-control', 'title'=>'Solo letras mayúsculas, minúsculas y números min: 3 max: 50', 'placeholder'=>'Nombre de la empresa.', 'required', 'minlength'=>'3', 'maxlength' => '50', 'pattern'=>'[A-za-z0-9 ]+']) !!}
 					</div>
 
 					<div class="form-group">

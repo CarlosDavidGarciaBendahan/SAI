@@ -1,6 +1,6 @@
 
 		$(document).ready(function(){
-			var maxCorreo = 3;
+			var maxCorreo = 2;
 			var contador = 0;
 			var btn_correo = $('#addCorreo');
 			var correos = $('.correos');
@@ -11,12 +11,14 @@
 				//console.log('preciono button agregar correo');
 				if(contador < maxCorreo){
 					$(correos).append("  <div> "+
-						"<label>Correo</label>"+
-						"<input class='form-control'  type='email' name='correos[]' placeholder='correo@gmail.com' required='true'>"+
+						"<label>Correo "+(contador+2)+" </label>"+
+						"<input class='form-control'  type='email' name='correos[]' placeholder='correo@gmail.com' required='true' pattern='.+@[gG]?[mM]?[aA]?[iI]?[lL]?[hH]?[oO]?[tT]?[mM]?[aA]?[iI]?[lL]?[.][cC][oO][mM]' title='Solo se permiten cuentas GMAIL o HOTMAIL'>"+
 						" <a href='' class='remove btn btn-info'> <span class='glyphicon glyphicon-arrow-left'></span> quitar</a>" +
 						"</div>");
 					contador++;
-				}
+				}else{
+					alert("No puede agregar más de 3 correos");
+				}	
 			});
 
 			$(correos).on('click','.remove',function(event){

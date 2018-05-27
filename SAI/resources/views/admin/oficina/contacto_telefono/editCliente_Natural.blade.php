@@ -32,16 +32,17 @@
 
 					<div class="form-group">
 						{!! Form::label('con_tel_codigo','Código') !!}
-						{!! Form::text('con_tel_codigo',$tlf->con_tel_codigo,['class'=> 'form-control', 'placeholder'=>'414', 'required']) !!}
+
+						<input class='form-control' value={{ $tlf->con_tel_codigo }} type='text' name='con_tel_codigo' placeholder='414' required='true' pattern="[0-9]+" minlength="3" maxlength="4" title="Solo números, min:3 y max:4">
 					</div>
 
 					<div class="form-group">
 						{!! Form::label('con_tel_numero','Número') !!}
-						{!! Form::text('con_tel_numero',$tlf->con_tel_numero,['class'=> 'form-control', 'placeholder'=>'1234567', 'required']) !!}
+						<input class='form-control' value={{ $tlf->con_tel_numero }}  type='text' name='con_tel_numero' placeholder='1234567' required='true' pattern="[0-9]+" minlength="7" maxlength="7" title="Solo números, min:7 y max:7">
 					</div>
 					<div class="form-group">
 						{!! Form::label('con_tel_tipo','Tipo') !!}
-						{!! Form::select('con_tel_tipo',['movil'=>'Movil','local'=>'Local','fax'=>'Fax'], $tlf->con_tel_tipo, ['class'=>'form-control', 'placeholder'=>'Elegir un tipo', 'required'] ) !!}
+						{!! Form::select('con_tel_tipo',['movil'=>'Movil','local'=>'Local','fax'=>'Fax'],  $tlf->con_tel_tipo, ['class'=>'form-control', 'placeholder'=>'Elegir un tipo', 'required'] ) !!}
 					</div>
 
 					<div class="form-group">

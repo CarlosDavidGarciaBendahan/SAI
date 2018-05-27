@@ -38,7 +38,7 @@
 
 					<div class="form-group">
 						{!! Form::label('fecha','Monto',['class'=> ' col-sm'] ) !!}
-						{!! Form::text('reg_monto',null,['class'=> 'form-control col-sm-10', 'title'=>'Solo numeros de 0-9, min: 1 max: 10, con 2 decimales', 'placeholder'=>'1234567899.12', 'required', 'min'=>'1', 'max' => '12', 'pattern'=>'[0-9.?]+']) !!}		
+						{!! Form::text('reg_monto',null,['class'=> 'form-control col-sm-10', 'title'=>'Solo numeros de 0-9, min: 1 max: 10, con 2 decimales', 'placeholder'=>'1234567899.12', 'required', 'minlength'=>'1', 'maxlength' => '13', 'pattern'=>'[0-9][0-9]?[0-9]?[0-9]?[0-9]?[0-9]?[0-9]?[0-9]?[0-9]?[0-9]?[\.]?[0-9]?{1,2}']) !!}		
 						{!! Form::select('reg_moneda',['Bs'=>'Bs','$'=>'$'],'Bs',['class'=> 'form-control col-sm-2','required']) !!}
 					</div>
 

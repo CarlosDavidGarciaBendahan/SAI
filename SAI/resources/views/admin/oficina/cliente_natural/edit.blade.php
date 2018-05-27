@@ -23,7 +23,7 @@
 					
 					<div class="form-group">
 						<label>Estados </label>
-						<select class="form-control input-sm" name="estado" id="estado">
+						<select class="form-control input-sm" name="estado" id="estado" required="true">
 							<option value=""> Seleccionar un estado</option>
 							@foreach ($estados as $estado)
 								@if ($estado->est_nombre === $cliente_natural->parroquia->municipio->estado->est_nombre)
@@ -38,7 +38,7 @@
 
 					<div class="form-group">
 						<label>Municipios</label>
-						<select class="form-control input-sm" name="municipio" id="municipio">
+						<select class="form-control input-sm" name="municipio" id="municipio" required="true">
 							<option value=""> Seleccionar un municipio</option>
 							
 							@foreach ($municipios as $municipio)
@@ -59,7 +59,7 @@
 
 					<div class="form-group">
 						<label>Parroquias</label>
-						<select class="form-control input-sm" name="cli_nat_fk_parroquia" id="parroquia">
+						<select class="form-control input-sm" name="cli_nat_fk_parroquia" id="parroquia" required="true">
 							<option value=""> Seleccionar una parroquia</option>
 							@foreach ($parroquias as $parroquia)
 								@if ($parroquia->municipio->mun_nombre === $cliente_natural->parroquia->municipio->mun_nombre)
@@ -77,27 +77,27 @@
 
 					<div class="form-group">
 							{!! Form::label('cli_nat_direccion','Direccion') !!}
-							{!! Form::text('cli_nat_direccion',$cliente_natural->cli_nat_direccion,['class'=> 'form-control', 'placeholder'=>'dirección', 'required']) !!}
+							{!! Form::text('cli_nat_direccion',$cliente_natural->cli_nat_direccion,['class'=> 'form-control', 'title'=>'Solo letras mayúsculas, minúsculas, la coma (,), punto (.) y números de 0-9, min: 10 max: 200', 'placeholder'=>'dirección.', 'required', 'minlength'=>'10', 'maxlength' => '200', 'pattern'=>'[A-za-z0-9,. ]+']) !!}
 						</div>
 
 						<div class="form-group">
 							{!! Form::label('cli_nat_nombre','Nombre') !!}
-							{!! Form::text('cli_nat_nombre',$cliente_natural->cli_nat_nombre,['class'=> 'form-control', 'placeholder'=>'Nombre', 'required']) !!}
+							{!! Form::text('cli_nat_nombre',$cliente_natural->cli_nat_nombre,['class'=> 'form-control', 'title'=>'Solo letras mayúsculas, minúsculas  min: 3 max: 20', 'placeholder'=>'Nombre de la persona.', 'required', 'minlength'=>'3', 'maxlength' => '20', 'pattern'=>'[A-za-z]+']) !!}
 						</div>
 					
 						<div class="form-group">
 							{!! Form::label('cli_nat_nombre2','Segundo nombre') !!}
-							{!! Form::text('cli_nat_nombre2',$cliente_natural->cli_nat_nombre2,['class'=> 'form-control', 'placeholder'=>'Segundo nombre']) !!}
+							{!! Form::text('cli_nat_nombre2',$cliente_natural->cli_nat_nombre2,['class'=> 'form-control', 'title'=>'Solo letras mayúsculas, minúsculas  min: 3 max: 20', 'placeholder'=>'Segundo nombre de la persona.', 'minlength'=>'3', 'maxlength' => '20', 'pattern'=>'[A-za-z]+']) !!}
 						</div>
 					
 						<div class="form-group">
 							{!! Form::label('cli_nat_apellido','Apellido') !!}
-							{!! Form::text('cli_nat_apellido',$cliente_natural->cli_nat_apellido,['class'=> 'form-control', 'placeholder'=>'Apellido', 'required']) !!}
+							{!! Form::text('cli_nat_apellido',$cliente_natural->cli_nat_apellido,['class'=> 'form-control', 'title'=>'Solo letras mayúsculas, minúsculas  min: 3 max: 20', 'placeholder'=>'Apellido de la persona.', 'required', 'minlength'=>'3', 'maxlength' => '20', 'pattern'=>'[A-za-z]+']) !!}
 						</div>
 					
 						<div class="form-group">
 							{!! Form::label('cli_nat_apellido2','Segundo apellido') !!}
-							{!! Form::text('cli_nat_apellido2',$cliente_natural->cli_nat_apellido2,['class'=> 'form-control', 'placeholder'=>'Segundo apellido']) !!}
+							{!! Form::text('cli_nat_apellido2',$cliente_natural->cli_nat_apellido2,['class'=> 'form-control','title'=>'Solo letras mayúsculas, minúsculas  min: 3 max: 20', 'placeholder'=>'Segundo apellido de la persona.', 'minlength'=>'3', 'maxlength' => '20', 'pattern'=>'[A-za-z]+']) !!}
 						</div>
 					
 					

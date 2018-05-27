@@ -34,7 +34,7 @@
 
 					<div class="form-group">
 						{!! Form::label('con_cor_correo','Código') !!}
-						{!! Form::email('con_cor_correo',null,['class'=> 'form-control', 'placeholder'=>'ejemplo@gmail.com', 'required']) !!}
+						<input class='form-control'  type='email' name='con_cor_correo' placeholder='correo@gmail.com' required='true' pattern=".+@[gG]?[mM]?[aA]?[iI]?[lL]?[hH]?[oO]?[tT]?[mM]?[aA]?[iI]?[lL]?[.][cC][oO][mM]" title="Solo se permiten cuentas de GMAIL o HOTMAIL">
 					</div>
 
 					<!--

@@ -16,7 +16,7 @@
 @section('body')
 	{{-- {{ dd($estado) }} --}}
 
-	<section class="container-fluid">
+	<section class="container-fluid" >
 
 		<div class="row">
 			<div class="col-sm-8 offset-2">

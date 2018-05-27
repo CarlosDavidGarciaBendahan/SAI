@@ -71,12 +71,12 @@
 
 					<div class="form-group">
 						{!! Form::label('cli_jur_direccion','Direccion') !!}
-						{!! Form::text('cli_jur_direccion',$cliente_juridico->cli_jur_direccion,['class'=> 'form-control', 'placeholder'=>'dirección', 'required']) !!}
+						{!! Form::text('cli_jur_direccion',$cliente_juridico->cli_jur_direccion,['class'=> 'form-control', 'placeholder'=>'dirección', 'required', 'readonly'=>'true']) !!}
 					</div>
 
 					<div class="form-group">
 						{!! Form::label('cli_jur_nombre','Nombre') !!}
-						{!! Form::text('cli_jur_nombre',$cliente_juridico->cli_jur_nombre,['class'=> 'form-control', 'placeholder'=>'Nombre', 'required']) !!}
+						{!! Form::text('cli_jur_nombre',$cliente_juridico->cli_jur_nombre,['class'=> 'form-control', 'placeholder'=>'Nombre', 'required', 'readonly'=>'true']) !!}
 					</div>
 
 					<div class="form-group">
@@ -90,11 +90,51 @@
 
 						{!! Form::text('cli_jur_rif',$cliente_juridico->cli_jur_rif,['class'=> 'form-control', 'placeholder'=>'dirección', 'required','readonly'=>'true']) !!}
 					</div>
-					<div>
-						<a href="{{ route('cliente_juridico.index') }}" class="btn btn-info">
-					      		<span class="glyphicon glyphicon-arrow-left"></span> Regresar al listado
-					     </a>
-					</div>
+
+					<table class="table table-inverse">
+				  <thead>
+				    <tr>
+				      <th>ID</th>
+				      <th>Correo</th>
+				    </tr>
+				  </thead>
+				  <tbody>
+
+				  	@foreach ($cliente_juridico->Contacto_Correos as $contacto_correo)
+				  		<tr>
+					      <th scope="row">{{ $contacto_correo->id }}</th>
+					      <td>{{ $contacto_correo->con_cor_correo }}</td>
+					      
+				    	</tr>
+				  	@endforeach
+
+				  </tbody>
+
+				</table>
+				
+
+				<table class="table table-inverse">
+				  <thead>
+				    <tr>
+				      <th>ID</th>
+				      <th>tipo</th>
+				      <th>Telefono</th>
+				    </tr>
+				  </thead>
+				  <tbody>
+
+				  	@foreach ($cliente_juridico->Contacto_Telefonos  as $contacto_telefono)
+				  		<tr>
+					      <th scope="row">{{ $contacto_telefono->id }}</th>
+					      <td>{{ $contacto_telefono->con_tel_tipo }}</td>
+					      <td>{{ $contacto_telefono->con_tel_codigo . "-" . $contacto_telefono->con_tel_numero }}</td>
+					      
+				    	</tr>
+				  	@endforeach
+
+				  </tbody>
+
+				</table>
 
 				{!! Form::close() !!}
 
