@@ -11,9 +11,9 @@
 				//console.log('preciono button agregar correo');
 				//if(contador < maxCorreo){
 					$(codigosPC).append("  <div> "+
-						"<label class='col-sm'>Códigos</label>"+
-						"<input class='form-control col-sm-9'  type='text' name='codigosPC[]' placeholder='B203040' required='true'>"+
-						"<select class='form-control input-sm col-sm-2' name='estado[]' id='tipo_producto'>"+
+						"<label class='col-sm-12'>Códigos</label>"+
+						"<input class='form-control col-sm-9' title='Cantidad de caracteres max: 100' maxlength='100' type='text' name='codigosPC[]' placeholder='B203040' required='true'>"+
+						"<select class='form-control input-sm col-sm-2' name='estado[]' id='tipo_producto' required='true'>"+
 								"<option value='B'>Bueno</option>"+
 								"<option value='M'>Malo</option>"+
 						"</select>"+

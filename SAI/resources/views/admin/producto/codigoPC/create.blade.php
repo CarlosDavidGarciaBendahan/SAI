@@ -19,14 +19,14 @@
 	{{-- expr --}}
 	<section class="container">
 		<div class="row">
-			<div class="col-sm-8 offset-2">
+			<div class="col-sm-12">
 				{!! Form::open(['route' => 'codigoPC.store', 'method' => 'POST']) !!}
 					
 						
 						<div class="form-group ">
 							{!! Form::label('cod_pc_fk_producto_computador','Código') !!}
 							{!! Form::text('codigo',$producto_computador->pro_com_codigo,['class'=> 'form-control', 'placeholder'=>'B208802', 'required', 'readonly'=>'true']) !!}
-							{!! Form::text('cod_pc_fk_producto_computador',$producto_computador->id,['class'=> 'form-control', 'hidden'=>'true', 'required']) !!}
+							{!! Form::text('cod_pc_fk_producto_computador',$producto_computador->id,['class'=> 'form-control hidden', 'readonly'=>'true', 'required']) !!}
 						</div>
 						<div class="form-group ">
 							{!! Form::label('cod_pc_fk_lote','Lote del computador') !!}
@@ -38,9 +38,16 @@
 						</div>
 
 						<div class="codigoPC">
-							
+							<label class='col-sm'>Códigos</label>
+							<input class='form-control col-sm-9'  title="Cantidad de caracteres max: 100" maxlength="100" type='text' name='codigosPC[]' placeholder='B203040' required='true'>
+							<select class='form-control input-sm col-sm-2' name='estado[]' id='tipo_producto'>
+									<option value='B'>Bueno</option>
+									<option value='M'>Malo</option>
+							</select>
 						</div>
-					<div class="form-group">
+
+
+					<div class="form-group col-sm-12">
 						{!! Form::submit('Registrar',['class'=>'btn btn-primary']) !!}
 					</div>
 

@@ -19,14 +19,14 @@
 	{{-- expr --}}
 	<section class="container">
 		<div class="row">
-			<div class="col-sm-8 offset-2">
+			<div class="col-sm-12">
 				{!! Form::open(['route' => 'producto_articulo.store', 'method' => 'GET' ]) !!}
 					
 					
 						<div class="form-group ">
 							{!! Form::label('cod_art_fk_producto_articulo','Descripcion del producto') !!}
 							{!! Form::text('codigo',$codigoArticulo->producto_articulo->pro_art_descripcion,['class'=> 'form-control', 'placeholder'=>'B208802', 'required', 'readonly'=>'true']) !!}
-							{!! Form::text('cod_art_fk_producto_articulo',$codigoArticulo->producto_articulo->id,['class'=> 'form-control', 'hidden'=>'true', 'required']) !!}
+							{!! Form::text('cod_art_fk_producto_articulo',$codigoArticulo->producto_articulo->id,['class'=> 'form-control hidden', 'readonly'=>'true', 'required']) !!}
 						</div>
 						<div class="form-group ">
 
@@ -64,7 +64,7 @@
 						<div class="form-group ">
 							{!! Form::label('cod_pc','Código especifico') !!}
 							{!! Form::text('cod_art_codigo',$codigoArticulo->cod_art_codigo,['class'=> 'form-control', 'placeholder'=>'B208802', 'required', 'readonly'=>'true']) !!}
-							{!! Form::text('id',$codigoArticulo->id,['class'=> 'form-control', 'hidden'=>'true', 'required']) !!}
+							{!! Form::text('id',$codigoArticulo->id,['class'=> 'form-control hidden', 'readonly'=>'true', 'required']) !!}
 						</div>
 
 						<div class="form-group ">
@@ -99,11 +99,6 @@
 						</div>
 						-->
 
-						<div>
-							<a href="{{ route('codigoArticulo.index') }}" class="btn btn-info">
-						      		<span class="glyphicon glyphicon-arrow-left"></span> Regresar al listado
-						     </a>
-						</div>
 
 						
 

@@ -15,7 +15,7 @@ class CreateTableModelo extends Migration
     {
         Schema::create('modelo', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('mod_modelo')->nullable(false);
+            $table->string('mod_modelo',20)->nullable(false);
             $table->integer('mod_fk_marca')->nullable(false);
             $table->timestamps();
 

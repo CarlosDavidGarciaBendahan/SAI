@@ -25,7 +25,7 @@
 						
 						{!! Form::label('tip_tipo','Tipo de producto') !!}
 
-						{!! Form::text('tip_tipo',$tipo_producto->tip_tipo,['class'=> 'form-control', 'placeholder'=>'Tipo de producto', 'required']) !!}
+						{!! Form::text('tip_tipo',$tipo_producto->tip_tipo,['class'=> 'form-control', 'title'=>'Solo letras mayúsculas, minúsculas y números de 0-9, min: 2 max: 20', 'placeholder'=>'tipo.', 'required', 'minlength'=>'2', 'maxlength' => '20', 'pattern'=>'[A-za-z0-9 ]+']) !!}
 					</div>
 
 					<div class="form-group">

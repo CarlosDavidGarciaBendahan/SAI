@@ -24,7 +24,7 @@
 					
 						<div class="form-group ">
 							<label>Oficina </label>
-							<select class="form-control input-sm" name="oficina" id="oficina">
+							<select class="form-control input-sm" name="oficina" id="oficina" disabled="true">
 								<option value=""> Seleccionar oficina</option>
 								@foreach ($oficinas as $oficina)
 
@@ -41,7 +41,7 @@
 					
 						<div class="form-group ">
 							<label>Sector</label>
-							<select class="form-control input-sm" name="pro_art_fk_sector" id="sector">
+							<select class="form-control input-sm" name="pro_art_fk_sector" id="sector" disabled="true">
 								@foreach ($sectores as $sector)
 
 								@if ($sector->oficina->id === $producto_articulo->sector->oficina->id )
@@ -60,7 +60,7 @@
 
 						<div class="form-group ">
 							<label>Marca </label>
-							<select class="form-control input-sm" name="marca" id="marca">
+							<select class="form-control input-sm" name="marca" id="marca" disabled="true">
 								<option value=""> Seleccionar oficina</option>
 								@foreach ($marcas as $marca)
 
@@ -77,7 +77,7 @@
 					
 						<div class="form-group ">
 							<label>Modelo</label>
-							<select class="form-control input-sm" name="pro_art_fk_modelo" id="modelo">
+							<select class="form-control input-sm" name="pro_art_fk_modelo" id="modelo" disabled="true">
 								@foreach ($modelos as $modelo)
 
 								@if ($modelo->marca->id === $producto_articulo->modelo->marca->id)
@@ -96,7 +96,7 @@
 					
 						<div class="form-group ">
 							<label>Tipo de producto </label>
-							<select class="form-control input-sm" name="pro_art_fk_tipo_producto" id="tipo_producto">
+							<select class="form-control input-sm" name="pro_art_fk_tipo_producto" id="tipo_producto" disabled="true">
 								@foreach ($tipo_productos as $tipo)
 
 									@if ($producto_articulo->tipo_producto->id === $tipo->id)
@@ -116,39 +116,39 @@
 						</div>
 						<div class="form-group ">
 							{!! Form::label('pro_art_descripcion','Descripcion') !!}
-							{!! Form::text('pro_art_descripcion',$producto_articulo->pro_art_descripcion,['class'=> 'form-control', 'placeholder'=>'computador excelente para oficina', 'required']) !!}
+							{!! Form::text('pro_art_descripcion',$producto_articulo->pro_art_descripcion,['class'=> 'form-control', 'placeholder'=>'computador excelente para oficina', 'required', 'readonly'=>'true']) !!}
 						</div>
 					
 
 
 						<div class="form-group ">
 							{!! Form::label('pro_art_precio','Precio') !!}
-							{!! Form::text('pro_art_precio',$producto_articulo->pro_art_precio,['class'=> 'form-control', 'placeholder'=>'80', 'required']) !!}
+							{!! Form::text('pro_art_precio',$producto_articulo->pro_art_precio,['class'=> 'form-control', 'placeholder'=>'80', 'required', 'readonly'=>'true']) !!}
 						</div>
 					
 						<div class="form-group ">
 							{!! Form::label('pro_art_moneda','Moneda') !!}
-							{!! Form::select('pro_art_moneda',['$'=>'$','Bs'=>'Bs'], $producto_articulo->pro_art_moneda, ['class'=>'form-control', 'placeholder'=>'$', 'required'] ) !!}
+							{!! Form::select('pro_art_moneda',['$'=>'$','Bs'=>'Bs'], $producto_articulo->pro_art_moneda, ['class'=>'form-control', 'placeholder'=>'$', 'required', 'disabled'] ) !!}
 						</div>
 					
 						<div class="form-group ">
 							{!! Form::label('pro_art_cantidad','Cantidad del producto') !!}
-							{!! Form::text('pro_art_cantidad',$producto_articulo->pro_art_cantidad,['class'=> 'form-control', 'placeholder'=>'0', 'required']) !!}
+							{!! Form::text('pro_art_cantidad',$producto_articulo->pro_art_cantidad,['class'=> 'form-control', 'placeholder'=>'0', 'required', 'readonly'=>'true']) !!}
 						</div>
 
 						<div class="form-group ">
 							{!! Form::label('pro_art_catalogo','Publicado') !!}
-							{!! Form::select('pro_art_catalogo',[0=>'NO',1=>'SI'], $producto_articulo->pro_art_catalogo, ['class'=>'form-control', 'placeholder'=>'', 'required'] ) !!}
+							{!! Form::select('pro_art_catalogo',[0=>'NO',1=>'SI'], $producto_articulo->pro_art_catalogo, ['class'=>'form-control', 'placeholder'=>'', 'required', 'disabled'] ) !!}
 						</div>
 					
 						<div class="form-group ">
 							{!! Form::label('pro_art_capacidad','capacidad del producto') !!}
-							{!! Form::text('pro_art_capacidad',$producto_articulo->pro_art_capacidad,['class'=> 'form-control', 'placeholder'=>'0', 'required']) !!}
+							{!! Form::text('pro_art_capacidad',$producto_articulo->pro_art_capacidad,['class'=> 'form-control', 'placeholder'=>'0', 'required', 'readonly'=>'true']) !!}
 						</div>
 
 						<div class="form-group ">
 							<label>Unidad de medida </label>
-							<select class="form-control input-sm" name="pro_art_fk_unidadmedida" id="unidadmedida">
+							<select class="form-control input-sm" name="pro_art_fk_unidadmedida" id="unidadmedida" disabled="true">
 								<option value=""> Seleccionar unidad de medida</option>
 								@foreach ($unidadmedidas as $unidadmedida)
 									@if ($unidadmedida->id === $producto_articulo->unidadmedida->id)

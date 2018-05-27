@@ -25,13 +25,13 @@
 						
 						{!! Form::label('id','ID') !!}
 
-						{!! Form::text('id',$marca->id,['class'=> 'form-control', 'placeholder'=>'Nombre del estado', 'required']) !!}
+						{!! Form::text('id',$marca->id,['class'=> 'form-control', 'placeholder'=>'Nombre del estado', 'required', 'readonly'=>'true']) !!}
 					</div>
 					<div class="form-group"> 
 						
 						{!! Form::label('mar_marca','Marca') !!}
 
-						{!! Form::text('mar_marca',$marca->mar_marca,['class'=> 'form-control', 'placeholder'=>'Nombre del estado', 'required']) !!}
+						{!! Form::text('mar_marca',$marca->mar_marca,['class'=> 'form-control', 'placeholder'=>'Nombre del estado', 'required', 'readonly'=>'true']) !!}
 					</div>
 					{{-- comment 
 						<div class="form-group"> 

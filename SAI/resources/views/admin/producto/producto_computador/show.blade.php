@@ -24,7 +24,7 @@
 					
 						<div class="form-group ">
 							<label>Oficina </label>
-							<select class="form-control input-sm" name="oficina" id="oficina">
+							<select class="form-control input-sm" name="oficina" id="oficina" disabled="true">
 								<option value=""> Seleccionar oficina</option>
 								@foreach ($oficinas as $oficina)
 
@@ -41,7 +41,7 @@
 					
 						<div class="form-group ">
 							<label>Sector</label>
-							<select class="form-control input-sm" name="pro_com_fk_sector" id="sector">
+							<select class="form-control input-sm" name="pro_com_fk_sector" id="sector" disabled="true">
 								@foreach ($sectores as $sector)
 
 								@if ($sector->oficina->id === $producto_computador->sector->oficina->id )
@@ -60,7 +60,7 @@
 
 						<div class="form-group ">
 							<label>Marca </label>
-							<select class="form-control input-sm" name="marca" id="marca">
+							<select class="form-control input-sm" name="marca" id="marca" disabled="true">
 								<option value=""> Seleccionar oficina</option>
 								@foreach ($marcas as $marca)
 
@@ -77,7 +77,7 @@
 					
 						<div class="form-group ">
 							<label>Modelo</label>
-							<select class="form-control input-sm" name="pro_com_fk_modelo" id="modelo">
+							<select class="form-control input-sm" name="pro_com_fk_modelo" id="modelo" disabled="true">
 								@foreach ($modelos as $modelo)
 
 								@if ($modelo->marca->id === $producto_computador->modelo->marca->id)
@@ -96,7 +96,7 @@
 					
 						<div class="form-group ">
 							<label>Tipo de producto </label>
-							<select class="form-control input-sm" name="pro_com_fk_tipo_producto" id="tipo_producto">
+							<select class="form-control input-sm" name="pro_com_fk_tipo_producto" id="tipo_producto" disabled="true">
 								@foreach ($tipo_productos as $tipo)
 
 									@if ($producto_computador->tipo_producto->id === $tipo->id)
@@ -116,37 +116,36 @@
 						</div>
 						<div class="form-group ">
 							{!! Form::label('pro_com_descripcion','Descripcion') !!}
-							{!! Form::text('pro_com_descripcion',$producto_computador->pro_com_descripcion,['class'=> 'form-control', 'placeholder'=>'computador excelente para oficina', 'required']) !!}
+							{!! Form::text('pro_com_descripcion',$producto_computador->pro_com_descripcion,['class'=> 'form-control', 'placeholder'=>'computador excelente para oficina', 'required', 'readonly'=>'true']) !!}
 						</div>
 					
 
 
 						<div class="form-group ">
 							{!! Form::label('pro_com_precio','Precio') !!}
-							{!! Form::text('pro_com_precio',$producto_computador->pro_com_precio,['class'=> 'form-control', 'placeholder'=>'80', 'required']) !!}
+							{!! Form::text('pro_com_precio',$producto_computador->pro_com_precio,['class'=> 'form-control', 'placeholder'=>'80', 'required', 'readonly'=>'true']) !!}
 						</div>
 					
 						<div class="form-group ">
 							{!! Form::label('pro_com_moneda','Moneda') !!}
-							{!! Form::select('pro_com_moneda',['$'=>'$','Bs'=>'Bs'], $producto_computador->pro_com_moneda, ['class'=>'form-control', 'placeholder'=>'$', 'required'] ) !!}
+							{!! Form::select('pro_com_moneda',['$'=>'$','Bs'=>'Bs'], $producto_computador->pro_com_moneda, ['class'=>'form-control', 'placeholder'=>'$', 'required', 'disabled'] ) !!}
 						</div>
 					
 						<div class="form-group ">
 							{!! Form::label('pro_com_cantidad','Cantidad del producto') !!}
-							{!! Form::text('pro_com_cantidad',$producto_computador->pro_com_cantidad,['class'=> 'form-control', 'placeholder'=>'0', 'required']) !!}
+							{!! Form::text('pro_com_cantidad',$producto_computador->pro_com_cantidad,['class'=> 'form-control', 'placeholder'=>'0', 'required', 'readonly'=>'true']) !!}
 						</div>
 
 						<div class="form-group ">
 							{!! Form::label('pro_com_catalogo','Publicado') !!}
-							{!! Form::select('pro_com_catalogo',[0=>'NO',1=>'SI'], $producto_computador->pro_com_catalogo, ['class'=>'form-control', 'placeholder'=>'', 'required'] ) !!}
+							{!! Form::select('pro_com_catalogo',[0=>'NO',1=>'SI'], $producto_computador->pro_com_catalogo, ['class'=>'form-control', 'placeholder'=>'', 'required', 'disabled'] ) !!}
 						</div>
 						
 						<div class="form-group"> 
 						
 						{!! Form::label('Componentes','Componentes') !!}
 
-						{!! Form::select('componentes[]',$producto_articulos,$producto_computador->articulos->pluck('id'),['class'=> 'form-control select-componentes', 'placeholder'=>'seleccionar componentes', 'multiple','required','disabled']) !!}
-						</div>
+						
 
 
 						<table class="table table-inverse">

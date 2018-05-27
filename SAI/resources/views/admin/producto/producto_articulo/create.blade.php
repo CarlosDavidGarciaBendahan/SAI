@@ -24,7 +24,7 @@
 					
 						<div class="form-group ">
 							<label>Oficina </label>
-							<select class="form-control input-sm" name="oficina" id="oficina">
+							<select class="form-control input-sm" name="oficina" id="oficina" required="true">
 								<option value=""> Seleccionar oficina</option>
 								@foreach ($oficinas as $oficina)
 									<option value="{{ $oficina->id }}"> {{ $oficina->ofi_direccion }}</option>
@@ -34,14 +34,14 @@
 					
 						<div class="form-group ">
 							<label>Sector</label>
-							<select class="form-control input-sm" name="pro_art_fk_sector" id="sector">
+							<select class="form-control input-sm" name="pro_art_fk_sector" id="sector" required="true">
 								<option value=""> Seleccionar sector</option>
 							</select>
 						</div>
 
 						<div class="form-group ">
 							<label>Marca </label>
-							<select class="form-control input-sm" name="marca" id="marca">
+							<select class="form-control input-sm" name="marca" id="marca" required="true">
 								<option value=""> Seleccionar oficina</option>
 								@foreach ($marcas as $marca)
 									<option value="{{ $marca->id }}"> {{ $marca->mar_marca }}</option>
@@ -51,14 +51,14 @@
 					
 						<div class="form-group ">
 							<label>Modelo</label>
-							<select class="form-control input-sm" name="pro_art_fk_modelo" id="modelo">
+							<select class="form-control input-sm" name="pro_art_fk_modelo" id="modelo" required="true">
 								<option value=""> Seleccionar sector</option>
 							</select>
 						</div>
 					
 						<div class="form-group ">
 							<label>Tipo de producto </label>
-							<select class="form-control input-sm" name="pro_art_fk_tipo_producto" id="tipo_producto">
+							<select class="form-control input-sm" name="pro_art_fk_tipo_producto" id="tipo_producto" required="true">
 								<option value=""> Seleccionar un tipo</option>
 								@foreach ($tipo_productos as $tipo)
 									<option value="{{ $tipo->id }}"> {{ $tipo->tip_tipo }}</option>
@@ -68,18 +68,18 @@
 
 						<div class="form-group ">
 							{!! Form::label('pro_art_codigo','Código') !!}
-							{!! Form::text('pro_art_codigo',null,['class'=> 'form-control', 'placeholder'=>'B208802', 'required']) !!}
+							{!! Form::text('pro_art_codigo',null,['class'=> 'form-control','title'=>'Solo letras mayúsculas, minúsculas y números de 0-9, min: 10 max: 100', 'placeholder'=>'B201223.', 'required', 'minlength'=>'10', 'maxlength' => '100', 'pattern'=>'[A-za-z0-9]+']) !!}
 						</div>
 						<div class="form-group ">
 							{!! Form::label('pro_art_descripcion','Descripcion') !!}
-							{!! Form::text('pro_art_descripcion',null,['class'=> 'form-control', 'placeholder'=>'articulo excelente para oficina', 'required']) !!}
+							{!! Form::text('pro_art_descripcion',null,['class'=> 'form-control', 'title'=>'Solo letras mayúsculas, minúsculas y números de 0-9, min: 10 max: 100', 'placeholder'=>'B201223.', 'required', 'minlength'=>'10', 'maxlength' => '100', 'pattern'=>'[A-za-z0-9 ]+']) !!}
 						</div>
 					
 
 
 						<div class="form-group ">
 							{!! Form::label('pro_art_precio','Precio') !!}
-							{!! Form::text('pro_art_precio',null,['class'=> 'form-control', 'placeholder'=>'80', 'required']) !!}
+							{!! Form::text('pro_art_precio',null,['class'=> 'form-control', 'title'=>'Solo números de 0-9,  max: 10, con 2 decimales', 'placeholder'=>'352.25', 'required', 'maxlength' => '10', 'pattern'=>'[0-9]+[.]?[0-9]?[0-9]?']) !!}
 						</div>
 					
 						<div class="form-group ">
@@ -89,7 +89,7 @@
 					
 						<div class="form-group ">
 							{!! Form::label('pro_art_cantidad','Cantidad del producto') !!}
-							{!! Form::text('pro_art_cantidad',null,['class'=> 'form-control', 'placeholder'=>'0', 'required']) !!}
+							{!! Form::text('pro_art_cantidad',null,['class'=> 'form-control', 'title'=>'Solo números de 0-9,  max: 10', 'placeholder'=>'1542.', 'required', 'maxlength' => '10', 'pattern'=>'[0-9]+']) !!}
 						</div>
 
 						<div class="form-group ">
@@ -99,7 +99,7 @@
 					
 						<div class="form-group ">
 							{!! Form::label('pro_art_capacidad','capacidad del producto') !!}
-							{!! Form::text('pro_art_capacidad',null,['class'=> 'form-control', 'placeholder'=>'0', 'required']) !!}
+							{!! Form::text('pro_art_capacidad',null,['class'=> 'form-control', 'title'=>'Solo números de 0-9,  max: 10. maximo 2 decimales', 'placeholder'=>'2.53', 'required', 'maxlength' => '10', 'pattern'=>'[0-9]+[.]?[0-9]?[0-9]?']) !!}
 						</div>
 
 						<div class="form-group ">

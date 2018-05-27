@@ -23,7 +23,12 @@
 			<div class="col-sm-8 offset-2">
 
 				
-
+				<div>
+					<a href="{{ route('producto_computador.index') }}" class="btn btn-info" title="Lista de computadores">
+								<span class="fa fa-bars"></span>
+					</a>
+					{!! Form::label('venta','Registrar computador individual.',['class'=> ' col-sm']) !!}
+				</div>
 				<table class="table table-inverse">
 				  <thead>
 				    <tr>

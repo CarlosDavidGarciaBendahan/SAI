@@ -30,7 +30,7 @@
 						
 						{!! Form::label('mod_modelo','Modelo') !!}
 
-						{!! Form::text('mod_modelo',null,['class'=> 'form-control', 'placeholder'=>'Modelo', 'required']) !!}
+						{!! Form::text('mod_modelo',null,['class'=> 'form-control', 'title'=>'Solo letras mayúsculas, minúsculas y números de 0-9, min: 3 max: 20', 'placeholder'=>'Modelo.', 'required', 'minlength'=>'3', 'maxlength' => '20', 'pattern'=>'[A-za-z0-9 ]+']) !!}
 					</div>
 
 					<div class="form-group">

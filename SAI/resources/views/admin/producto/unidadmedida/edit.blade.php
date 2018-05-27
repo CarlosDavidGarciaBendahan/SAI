@@ -25,7 +25,7 @@
 						
 						{!! Form::label('uni_medida','Unidad de medida') !!}
 
-						{!! Form::text('uni_medida',$unidadmedida->uni_medida,['class'=> 'form-control', 'placeholder'=>'unidad de medida', 'required']) !!}
+						{!! Form::text('uni_medida',$unidadmedida->uni_medida,['class'=> 'form-control','title'=>'Solo letras mayúsculas, minúsculas, min: 2 max: 10', 'placeholder'=>'unidad medida.', 'required', 'minlength'=>'2', 'maxlength' => '10', 'pattern'=>'[A-za-z]+']) !!}
 					</div>
 
 					

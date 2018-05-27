@@ -21,8 +21,14 @@
 	<section class="container-fluid">
 
 		<div class="row">
+			
 			<div class="col-sm-8 offset-2">
-
+				<div>
+					<a href="{{ route('producto_articulo.index') }}" class="btn btn-info" title="Lista de artículos">
+								<span class="fa fa-bars"></span>
+					</a>
+					{!! Form::label('venta','Registrar artículos individuales.',['class'=> ' col-sm']) !!}
+				</div>
 				
 
 				<table class="table table-inverse">

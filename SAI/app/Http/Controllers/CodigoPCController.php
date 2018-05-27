@@ -94,7 +94,7 @@ class CodigoPCController extends Controller
         $codigoPC = CodigoPC::find($id);
         $lote = Lote::orderBy('id','ASC')->pluck('lot_nombre','id');
 
-        $codigosArticulo = CodigoArticulo::orderBy('cod_art_codigo','ASC')->paginate(5);
+        $codigosArticulo = CodigoArticulo::orderBy('cod_art_fk_pc','ASC')->paginate(5);
 
 
         return view("admin.producto.codigoPC.edit")->with(compact('codigoPC','lote','codigosArticulo'));

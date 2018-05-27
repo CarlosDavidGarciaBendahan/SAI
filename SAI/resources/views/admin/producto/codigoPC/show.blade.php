@@ -26,7 +26,7 @@
 						<div class="form-group ">
 							{!! Form::label('cod_pc_fk_producto_computador','Descripcion del producto') !!}
 							{!! Form::text('codigo',$codigoPC->Producto_Computador->pro_com_descripcion,['class'=> 'form-control', 'placeholder'=>'B208802', 'required', 'readonly'=>'true']) !!}
-							{!! Form::text('cod_pc_fk_producto_computador',$codigoPC->Producto_Computador->id,['class'=> 'form-control', 'hidden'=>'true', 'required']) !!}
+							{!! Form::text('cod_pc_fk_producto_computador',$codigoPC->Producto_Computador->id,['class'=> 'form-control hidden', 'readonly'=>'true', 'required']) !!}
 						</div>
 						<div class="form-group ">
 
@@ -64,7 +64,7 @@
 						<div class="form-group ">
 							{!! Form::label('cod_pc','Código especifico') !!}
 							{!! Form::text('cod_pc_codigo',$codigoPC->cod_pc_codigo,['class'=> 'form-control', 'placeholder'=>'B208802', 'required', 'readonly'=>'true']) !!}
-							{!! Form::text('id',$codigoPC->id,['class'=> 'form-control', 'hidden'=>'true', 'required']) !!}
+							{!! Form::text('id',$codigoPC->id,['class'=> 'form-control hidden', 'readonly'=>'true', 'required']) !!}
 						</div>
 
 						<div class="form-group ">
