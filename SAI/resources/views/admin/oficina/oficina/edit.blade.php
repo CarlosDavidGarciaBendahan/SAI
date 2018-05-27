@@ -23,7 +23,7 @@
 					
 					<div class="form-group">
 						<label>Estados </label>
-						<select class="form-control input-sm" name="estado" id="estado">
+						<select class="form-control input-sm" name="estado" id="estado" required="true">
 							<option value=""> Seleccionar un estado</option>
 							@foreach ($estados as $estado)
 								<option value="{{ $estado->id }}"> {{ $estado->est_nombre }}</option>
@@ -33,14 +33,14 @@
 
 					<div class="form-group">
 						<label>Municipios</label>
-						<select class="form-control input-sm" name="municipio" id="municipio">
+						<select class="form-control input-sm" name="municipio" id="municipio" required="true">
 							<option value=""> Seleccionar un municipio</option>
 						</select>
 					</div>
 
 					<div class="form-group">
 						<label>Municipios</label>
-						<select class="form-control input-sm" name="ofi_fk_parroquia" id="parroquia">
+						<select class="form-control input-sm" name="ofi_fk_parroquia" id="parroquia" required="true">
 							<option value=""> Seleccionar una parroquia</option>
 						</select>
 					</div>
@@ -54,7 +54,7 @@
 						
 						{!! Form::label('ofi_direccion','Dirección') !!}
 
-						{!! Form::text('ofi_direccion',$oficina->ofi_direccion,['class'=> 'form-control', 'placeholder'=>'dirección', 'required']) !!}
+						{!! Form::text('ofi_direccion',$oficina->ofi_direccion,['class'=> 'form-control',  'title'=>'Solo letras mayúsculas, minúsculas, la coma (,), punto (.) y números de 0-9, min: 10 max: 250', 'placeholder'=>'dirección.', 'required', 'minlength'=>'10', 'maxlength' => '250', 'pattern'=>'[A-za-z0-9,. ]+']) !!}
 					</div>
 
 					<div class="form-group">

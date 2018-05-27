@@ -23,7 +23,7 @@
 					
 					<div class="form-group">
 						<label>Oficina </label>
-						<select class="form-control input-sm" name="sec_fk_oficina" id="sec_fk_oficina">
+						<select class="form-control input-sm" name="sec_fk_oficina" id="sec_fk_oficina" required="true">
 							<option value=""> Seleccionar una oficina</option>
 							@foreach ($oficinas as $oficina)
 								<option value="{{ $oficina->id }}"> {{ $oficina->ofi_direccion }}</option>
@@ -33,7 +33,7 @@
 
 					<div class="form-group">
 						{!! Form::label('sec_sector','Sector') !!}
-						{!! Form::text('sec_sector',null,['class'=> 'form-control', 'placeholder'=>'Sector', 'required']) !!}
+						{!! Form::text('sec_sector',null,['class'=> 'form-control','title'=>'Solo letras mayúsculas, minúsculas y números min: 3 max: 20', 'placeholder'=>'Nombre del sector.', 'required', 'minlength'=>'3', 'maxlength' => '20', 'pattern'=>'[A-za-z0-9 ]+']) !!}
 					</div>
 
 					<div class="form-group">

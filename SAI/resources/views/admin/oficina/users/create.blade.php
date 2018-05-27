@@ -35,7 +35,7 @@
 					
 					<div class="form-group ">
 							<label>Personal </label>
-							<select class="form-control input-sm required" name="fk_personal" id="personal">
+							<select class="form-control input-sm required" name="fk_personal" id="personal" required="true">
 								<option value=""> Seleccionar un personal</option>
 								@foreach ($personal as $persona)
 									<option value="{{ $persona->id }}"> {{ $persona->per_nombre ." ". $persona->per_nombre2 ." ".$persona->per_apellido ." ".$persona->per_apellido2 }}</option>
@@ -47,14 +47,14 @@
 						
 						{!! Form::label('name','Nombre de usuario') !!}
 
-						{!! Form::text('name',null,['class'=> 'form-control', 'placeholder'=>'nombre', 'required']) !!}
+						{!! Form::text('name',null,['class'=> 'form-control', 'title'=>'Solo letras mayúsculas, minúsculas y números min: 3 max: 20', 'placeholder'=>'Nombre de usuario.', 'required', 'minlength'=>'3', 'maxlength' => '20', 'pattern'=>'[A-za-z0-9 ]+']) !!}
 					</div>
 
 					<div class="form-group"> 
 						
 						{!! Form::label('password','Clave') !!}
 
-						{!! Form::password('password',['class'=> 'form-control', 'placeholder'=>'*******', 'required']) !!}
+						{!! Form::password('password',['class'=> 'form-control', 'title'=>'Solo letras mayúsculas, minúsculas y números min: 8 max: 20', 'placeholder'=>'********************', 'required', 'minlength'=>'8', 'maxlength' => '20', 'pattern'=>'[A-za-z0-9 ]+']) !!}
 					</div>
 
 					<div class="form-group"> 
@@ -68,7 +68,7 @@
 						
 						{!! Form::label('roles','Roles') !!}
 
-						{!! Form::select('roles[]',$roles,null,['class'=> 'form-control select-roles', 'placeholder'=>'seleccionar roles', 'multiple','required']) !!}
+						{!! Form::select('roles[]',$roles,null,['class'=> 'form-control select-roles', 'placeholder'=>'seleccionar roles', 'required']) !!}
 					</div>
 
 					<div class="form-group">

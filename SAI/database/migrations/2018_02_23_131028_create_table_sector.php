@@ -15,7 +15,7 @@ class CreateTableSector extends Migration
     {
         Schema::create('sector', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('sec_sector',10)->nullable(false);
+            $table->string('sec_sector',20)->nullable(false);
             $table->integer('sec_fk_oficina')->unsigned()->nullable(false);
             $table->timestamps();
 

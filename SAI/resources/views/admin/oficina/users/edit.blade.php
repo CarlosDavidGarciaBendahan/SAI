@@ -32,7 +32,7 @@
 					
 					<div class="form-group ">
 							<label>Estados </label>
-							<select class="form-control input-sm" name="fk_personal" id="personal">
+							<select class="form-control input-sm" name="fk_personal" id="personal" required="true">
 								<option value=""> Seleccionar un personal</option>
 								@foreach ($personal as $persona)
 									@if ($persona->id === $user->fk_personal)
@@ -55,7 +55,7 @@
 						
 						{!! Form::label('password','Clave') !!}
 
-						{!! Form::password('password',['class'=> 'form-control', 'placeholder'=>'*******', 'required']) !!}
+						{!! Form::password('password',['class'=> 'form-control', 'title'=>'Solo letras mayúsculas, minúsculas y números min: 8 max: 20', 'placeholder'=>'********************', 'required', 'minlength'=>'8', 'maxlength' => '20', 'pattern'=>'[A-za-z0-9 ]+']) !!}
 					</div>
 
 					<div class="form-group"> 
@@ -69,7 +69,7 @@
 						
 						{!! Form::label('roles','Roles') !!}
 
-						{!! Form::select('roles[]',$roles,$user->roles->pluck('id'),['class'=> 'form-control select-roles', 'placeholder'=>'seleccionar roles', 'multiple','required']) !!}
+						{!! Form::select('roles[]',$roles,$user->roles->pluck('id'),['class'=> 'form-control select-roles', 'placeholder'=>'seleccionar roles', 'required']) !!}
 					</div>
 
 					<div class="form-group">

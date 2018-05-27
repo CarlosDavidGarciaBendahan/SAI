@@ -28,7 +28,7 @@
 
 					<div class="form-group">
 						{!! Form::label('sec_sector','Sector') !!}
-						{!! Form::text('sec_sector',$sector->sec_sector,['class'=> 'form-control', 'placeholder'=>'Sector', 'required']) !!}
+						{!! Form::text('sec_sector',$sector->sec_sector,['class'=> 'form-control', 'title'=>'Solo letras mayúsculas, minúsculas y números min: 3 max: 20', 'placeholder'=>'Nombre del sector.', 'required', 'minlength'=>'3', 'maxlength' => '20', 'pattern'=>'[A-za-z0-9 ]+']) !!}
 					</div>
 					<div class="form-group">
 						{!! Form::submit('Editar',['class'=>'btn btn-primary']) !!}

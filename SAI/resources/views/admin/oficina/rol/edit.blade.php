@@ -26,14 +26,14 @@
 						
 						{!! Form::label('rol_rol','rol') !!}
 
-						{!! Form::text('rol_rol',$rol->rol_rol,['class'=> 'form-control', 'placeholder'=>'Tipo de producto', 'required']) !!}
+						{!! Form::text('rol_rol',$rol->rol_rol,['class'=> 'form-control',  'title'=>'Solo letras mayúsculas, minúsculas y números min: 3 max: 25', 'placeholder'=>'Nombre del rol.', 'required', 'minlength'=>'3', 'maxlength' => '25', 'pattern'=>'[A-za-z0-9 ]+']) !!}
 					</div>
 
 					<div class="form-group"> 
 						
-						{!! Form::label('permisos','Permisos') !!}
+						{!! Form::label('permisos','Tipo de rol') !!}
 
-						{!! Form::select('permisos[]',$permisos,$rol->permisos->pluck('id'),['class'=> 'form-control select-permisos', 'placeholder'=>'seleccionar permisos', 'multiple','required']) !!}
+						{!! Form::select('rol_user',['0'=>'Usuario','1'=>'Personal'],$rol->rol_user,['class'=> 'form-control select-permisos', 'placeholder'=>'seleccionar permisos','required']) !!}
 					</div>
 
 					<div class="form-group">

@@ -108,7 +108,7 @@
 						
 						</div>
 					</div>
-
+					
 					<div class="form-group col-sm-12">
 						<div class="col-sm-4 offset-8">
 							{!! Form::label('productos','SubTotal',['class'=>' col-sm-4']) !!}

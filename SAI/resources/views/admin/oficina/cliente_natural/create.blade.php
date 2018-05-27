@@ -80,7 +80,7 @@
 						
 							{!! Form::label('cli_nat_cedula','cedula') !!}
 
-							{!! Form::text('cli_nat_cedula',null,['class'=> 'form-control', 'title'=>'Solo letras numeros min: 6 max: 9', 'placeholder'=>'123456789', 'minlength'=>'6', 'maxlength' => '9', 'pattern'=>'[0-9]+']) !!}
+							{!! Form::text('cli_nat_cedula',null,['class'=> 'form-control', 'title'=>'Solo numeros min: 6 max: 9', 'required'=>'true','placeholder'=>'123456789', 'minlength'=>'6', 'maxlength' => '9', 'pattern'=>'[0-9]+']) !!}
 						</div>
 					
 					

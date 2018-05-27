@@ -23,7 +23,7 @@
 					
 					<div class="form-group">
 						<label>Estados </label>
-						<select class="form-control input-sm" name="estado" id="estado">
+						<select class="form-control input-sm" name="estado" id="estado" required="true">
 							<option value=""> Seleccionar un estado</option>
 							@foreach ($estados as $estado)
 								@if ($estado->est_nombre === $empresa->parroquia->municipio->estado->est_nombre)
@@ -38,7 +38,7 @@
 
 					<div class="form-group">
 						<label>Municipios</label>
-						<select class="form-control input-sm" name="municipio" id="municipio">
+						<select class="form-control input-sm" name="municipio" id="municipio" required="true">
 							<option value=""> Seleccionar un municipio</option>
 							
 							@foreach ($municipios as $municipio)
@@ -59,7 +59,7 @@
 
 					<div class="form-group">
 						<label>Parroquias</label>
-						<select class="form-control input-sm" name="emp_fk_parroquia" id="parroquia">
+						<select class="form-control input-sm" name="emp_fk_parroquia" id="parroquia" required="true">
 							<option value=""> Seleccionar una parroquia</option>
 							@foreach ($parroquias as $parroquia)
 								@if ($parroquia->municipio->mun_nombre === $empresa->parroquia->municipio->mun_nombre)
@@ -77,12 +77,12 @@
 
 					<div class="form-group">
 						{!! Form::label('emp_direccion','Direccion') !!}
-						{!! Form::text('emp_direccion',$empresa->emp_direccion,['class'=> 'form-control', 'placeholder'=>'dirección', 'required']) !!}
+						{!! Form::text('emp_direccion',$empresa->emp_direccion,['class'=> 'form-control', 'title'=>'Solo letras mayúsculas, minúsculas, la coma (,), punto (.) y números de 0-9, min: 10 max: 200', 'placeholder'=>'dirección.', 'required', 'minlength'=>'10', 'maxlength' => '200', 'pattern'=>'[A-za-z0-9,. ]+']) !!}
 					</div>
 
 					<div class="form-group">
 						{!! Form::label('emp_nombre','Nombre') !!}
-						{!! Form::text('emp_nombre',$empresa->emp_nombre,['class'=> 'form-control', 'placeholder'=>'Nombre', 'required']) !!}
+						{!! Form::text('emp_nombre',$empresa->emp_nombre,['class'=> 'form-control','title'=>'Solo letras mayúsculas, minúsculas y números min: 3 max: 20', 'placeholder'=>'Nombre de la empresa.', 'required', 'minlength'=>'3', 'maxlength' => '20', 'pattern'=>'[A-za-z0-9 ]+']) !!}
 					</div>
 
 					<div class="form-group">

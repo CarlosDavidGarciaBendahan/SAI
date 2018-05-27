@@ -23,7 +23,7 @@
 					
 					<div class="form-group">
 						<label>Estados </label>
-						<select class="form-control input-sm" name="estado" id="estado">
+						<select class="form-control input-sm" name="estado" id="estado" required="true">
 							<option value=""> Seleccionar un estado</option>
 							@foreach ($estados as $estado)
 								@if ($estado->est_nombre === $cliente_juridico->parroquia->municipio->estado->est_nombre)
@@ -38,7 +38,7 @@
 
 					<div class="form-group">
 						<label>Municipios</label>
-						<select class="form-control input-sm" name="municipio" id="municipio">
+						<select class="form-control input-sm" name="municipio" id="municipio" required="true">
 							<option value=""> Seleccionar un municipio</option>
 							
 							@foreach ($municipios as $municipio)
@@ -59,7 +59,7 @@
 
 					<div class="form-group">
 						<label>Parroquias</label>
-						<select class="form-control input-sm" name="cli_jur_fk_parroquia" id="parroquia">
+						<select class="form-control input-sm" name="cli_jur_fk_parroquia" id="parroquia" required="true">
 							<option value=""> Seleccionar una parroquia</option>
 							@foreach ($parroquias as $parroquia)
 								@if ($parroquia->municipio->mun_nombre === $cliente_juridico->parroquia->municipio->mun_nombre)

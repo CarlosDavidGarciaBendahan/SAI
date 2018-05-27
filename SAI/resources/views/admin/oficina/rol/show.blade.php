@@ -25,26 +25,20 @@
 						
 						{!! Form::label('id','ID') !!}
 
-						{!! Form::text('id',$rol->id,['class'=> 'form-control', 'placeholder'=>'Nombre del estado', 'required']) !!}
+						{!! Form::text('id',$rol->id,['class'=> 'form-control', 'placeholder'=>'Nombre del estado', 'required', 'readonly'=>'true']) !!}
 					</div>
 					<div class="form-group"> 
 						
 						{!! Form::label('rol_rol','rol') !!}
 
-						{!! Form::text('rol_rol',$rol->rol_rol,['class'=> 'form-control', 'placeholder'=>'Nombre del estado', 'required']) !!}
+						{!! Form::text('rol_rol',$rol->rol_rol,['class'=> 'form-control', 'placeholder'=>'Nombre del estado', 'required', 'readonly'=>'true']) !!}
 					</div>
 
 					<div class="form-group"> 
 						
-						{!! Form::label('permisos','Permisos') !!}
+						{!! Form::label('permisos','Tipo de rol') !!}
 
-						{!! Form::select('permisos[]',$permisos,$rol->permisos->pluck('id'),['class'=> 'form-control select-permisos', 'placeholder'=>'seleccionar permisos', 'multiple','required','disabled']) !!}
-					</div>
-
-					<div>
-						<a href="{{ route('rol.index') }}" class="btn btn-info">
-					      		<span class="glyphicon glyphicon-arrow-left"></span> Regresar al listado
-					     </a>
+						{!! Form::select('rol_user',['0'=>'Usuario','1'=>'Personal'],$rol->rol_user,['class'=> 'form-control select-permisos', 'placeholder'=>'seleccionar permisos','disabled']) !!}
 					</div>
 
 				{!! Form::close() !!}

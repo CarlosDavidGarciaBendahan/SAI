@@ -23,7 +23,7 @@
 					
 					<div class="form-group">
 						<label>Estados </label>
-						<select class="form-control input-sm" name="estado" id="estado">
+						<select class="form-control input-sm" name="estado" id="estado" disabled="true">
 							
 							@foreach ($estados as $estado)
 								@if ($estado->est_nombre === $empresa->parroquia->municipio->estado->est_nombre)
@@ -36,7 +36,7 @@
 
 					<div class="form-group">
 						<label>Municipios</label>
-						<select class="form-control input-sm" name="municipio" id="municipio">
+						<select class="form-control input-sm" name="municipio" id="municipio" disabled="true">
 							
 							
 							@foreach ($municipios as $municipio)
@@ -55,7 +55,7 @@
 
 					<div class="form-group">
 						<label>Parroquias</label>
-						<select class="form-control input-sm" name="emp_fk_parroquia" id="parroquia">
+						<select class="form-control input-sm" name="emp_fk_parroquia" id="parroquia" disabled="true">
 							
 							@foreach ($parroquias as $parroquia)
 								@if ($parroquia->municipio->mun_nombre === $empresa->parroquia->municipio->mun_nombre)
@@ -71,12 +71,12 @@
 
 					<div class="form-group">
 						{!! Form::label('emp_direccion','Direccion') !!}
-						{!! Form::text('emp_direccion',$empresa->emp_direccion,['class'=> 'form-control', 'placeholder'=>'dirección', 'required']) !!}
+						{!! Form::text('emp_direccion',$empresa->emp_direccion,['class'=> 'form-control', 'placeholder'=>'dirección', 'required', 'readonly'=>'true']) !!}
 					</div>
 
 					<div class="form-group">
 						{!! Form::label('emp_nombre','Nombre') !!}
-						{!! Form::text('emp_nombre',$empresa->emp_nombre,['class'=> 'form-control', 'placeholder'=>'Nombre', 'required']) !!}
+						{!! Form::text('emp_nombre',$empresa->emp_nombre,['class'=> 'form-control', 'placeholder'=>'Nombre', 'required', 'readonly'=>'true']) !!}
 					</div>
 
 					<div class="form-group">
@@ -167,10 +167,6 @@
 				</table>
 
 				<div>
-						<a href="{{  route('empresa.index') }}" class="btn btn-info">
-					      		<span class="glyphicon glyphicon-arrow-left"></span> Regresar al listado
-					     </a>
-					</div>
 
 				{!! Form::close() !!}
 
