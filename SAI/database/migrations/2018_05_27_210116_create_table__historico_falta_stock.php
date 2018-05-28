@@ -16,6 +16,7 @@ class CreateTableHistoricoFaltaStock extends Migration
         Schema::create('historico_falta_stock', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('cantidad_faltante')->nullable(false);
+            $table->float('precio_unitario',10)->nullable(false);
             $table->float('cotizacion_dolar',10)->nullable(false);
             $table->integer('fk_presupuesto')->unsigned()->nullable(false);
             $table->integer('fk_producto_computador')->unsigned()->nullable(false);

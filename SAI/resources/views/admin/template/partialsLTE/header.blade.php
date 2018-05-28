@@ -21,13 +21,17 @@
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <!--<img src="/adminLTE/img/user2-160x160.jpg" class="user-image" alt="User Image">-->
-              <span class="hidden-xs">AQUI PUEDO PONER UN @ yield('usuario','default')</span>
+              <span class="hidden-xs"> usuario: {{ auth()->user()->name }}</span>
             </a>
+
           </li>
           <!-- Control Sidebar Toggle Button -->
           <li>
-            <a href="#" data-toggle="control-sidebar">aqui puedo salir header<i class="fa fa-gears"></i></a>
-            
+            <!--<a href="#" data-toggle="control-sidebar">aqui puedo salir header<i class="fa fa-gears"></i></a>-->
+            <form method="POST" action="{{ route('logout') }}">
+              {{ csrf_field() }}
+              {!! Form::submit('Salir',['class'=>'btn btn-default btn-xs btn-block' ,'title'=>'cerrar sesión']) !!}
+            </form>
           </li>
         </ul>
       </div>

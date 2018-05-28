@@ -45,7 +45,7 @@
 <use>0</use>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
-<Attribute name="PRECIO_UNITARIO" id="64DFEA31-0E8A-004F-0381-F197B20A8995">
+<Attribute name="PRECIO_UNITARIO_DOLAR" id="64DFEA31-0E8A-004F-0381-F197B20A8995">
 <createdBy>Carlos</createdBy>
 <createdTime>2018-05-25 12:51:02 UTC</createdTime>
 <ownerDesignName>ME-venta</ownerDesignName>
@@ -58,6 +58,16 @@
 <Attribute name="TOTAL" id="19944B38-2655-BE04-49C3-F95189F032FB">
 <createdBy>Carlos</createdBy>
 <createdTime>2018-05-25 12:51:16 UTC</createdTime>
+<ownerDesignName>ME-venta</ownerDesignName>
+<engineerTo>
+<item key="251BA8E6-B170-84CB-FFBB-BADB899C537C" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="COTIZACION_DOLAR" id="6278AD8A-4898-D895-BAB0-760AE937CCDB">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-05-27 20:06:46 UTC</createdTime>
 <ownerDesignName>ME-venta</ownerDesignName>
 <engineerTo>
 <item key="251BA8E6-B170-84CB-FFBB-BADB899C537C" value="true"/>
