@@ -14,10 +14,10 @@ class CreateTableCambioBolivar extends Migration
     public function up()
     {
         Schema::create('cambio_bolivar', function (Blueprint $table) {
-            $table->increments('id');
-            $table->decimal('cam_cantidad',9,2)->nullable(false);
-            $table->date('cam_fecha')->nullable(false);
-            $table->timestamps();
+            //$table->increments('id');
+            $table->decimal('precio_dolar',9,2)->nullable(false);
+            //$table->date('cam_fecha')->nullable(false);
+            //$table->timestamps();
         });
     }
 
@@ -28,6 +28,6 @@ class CreateTableCambioBolivar extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('Cambio_Bolivar');
+        Schema::dropIfExists('cambio_bolivar');
     }
 }

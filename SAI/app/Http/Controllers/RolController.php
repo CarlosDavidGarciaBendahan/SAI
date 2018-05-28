@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Laracasts\Flash\Flash;
 use App\Rol;
-use App\Permiso;
+//use App\Permiso;
 
 
 class RolController extends Controller
@@ -17,6 +17,7 @@ class RolController extends Controller
      */
     public function index()
     {
+        //dd(bcrypt('admin'));
         $roles = Rol::orderBy('rol_rol','asc')->paginate(5);
 
         return view('admin.oficina.rol.index')->with(compact('roles'));
@@ -29,9 +30,9 @@ class RolController extends Controller
      */
     public function create()
     {
-        $permisos = Permiso::orderby('perm_permiso')->pluck('perm_permiso','id');
+        //$permisos = Permiso::orderby('perm_permiso')->pluck('perm_permiso','id');
 
-        return view('admin.oficina.rol.create')->with(compact('permisos'));
+        return view('admin.oficina.rol.create');//->with(compact('permisos'));
     }
 
     /**
@@ -47,7 +48,7 @@ class RolController extends Controller
 
         $rol->save();
 
-        $rol->permisos()->sync($request->permisos);
+        //$rol->permisos()->sync($request->permisos);
 
         flash("Registro del rol '' ".$request->rol_rol." '' exitoso")->success();
         return redirect()->route('rol.index');
@@ -62,9 +63,9 @@ class RolController extends Controller
     public function show($id)
     {
         $rol = Rol::find($id);
-        $permisos = Permiso::orderby('perm_permiso')->pluck('perm_permiso','id');
+        //$permisos = Permiso::orderby('perm_permiso')->pluck('perm_permiso','id');
 
-        return view('admin.oficina.rol.show')->with(compact('rol','permisos'));
+        return view('admin.oficina.rol.show')->with(compact('rol'));
     }
 
     /**
@@ -76,9 +77,9 @@ class RolController extends Controller
     public function edit($id)
     {
         $rol = Rol::find($id);
-        $permisos = Permiso::orderby('perm_permiso')->pluck('perm_permiso','id');
+        //$permisos = Permiso::orderby('perm_permiso')->pluck('perm_permiso','id');
 
-        return view('admin.oficina.rol.edit')->with(compact('rol','permisos'));
+        return view('admin.oficina.rol.edit')->with(compact('rol'));
     }
 
     /**
@@ -93,10 +94,11 @@ class RolController extends Controller
         $rol = Rol::find($id);
 
         $rol->rol_rol = $request->rol_rol;
+        $rol->rol_tipo = $request->rol_tipo;
         $rol->save();
 
-        $rol->permisos()->detach();
-        $rol->permisos()->sync($request->permisos);
+        //$rol->permisos()->detach();
+        //$rol->permisos()->sync($request->permisos);
 
 
         flash("Modificación del rol '' ".$rol->rol_rol." '' exitoso")->success();

@@ -30,6 +30,7 @@
 				    <tr>
 				      <th>ID</th>
 				      <th>rol</th>
+				      <th>tipo</th>
 				    </tr>
 				  </thead>
 				  <tbody>
@@ -38,6 +39,13 @@
 				  		<tr>
 					      <th scope="row">{{ $rol->id }}</th>
 					      <td>{{ $rol->rol_rol }}</td>	
+					      @if ($rol->rol_tipo === 'U')
+					      	<td>Usuario</td>	
+					      @else
+					      	@if ($rol->rol_tipo === 'P')
+					      		<td>Personal</td>
+					      	@endif	
+					      @endif
 					      <td>
 					      	<a href="{{ route('rol.edit', $rol->id) }}" class="btn btn-warning">
 					      		<span class="class glyphicon glyphicon-wrench"></span>

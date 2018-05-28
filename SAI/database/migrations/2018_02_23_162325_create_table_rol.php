@@ -16,7 +16,7 @@ class CreateTableRol extends Migration
         Schema::create('rol', function (Blueprint $table) {
             $table->increments('id');
             $table->string('rol_rol',25)->nullable(false);
-            $table->integer('rol_user')->default(0)->nullable(false);//si es 0 es para usuerio si no, personal.
+            $table->enum('rol_tipo',['U','P'])->default('U')->nullable(false);
             $table->timestamps();
 
             $table->unique('rol_rol','ROL_UNIQUE_rol_rol');

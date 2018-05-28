@@ -36,6 +36,6 @@ class CreateTableImagen extends Migration
     public function down()
     {
         Schema::disableForeignKeyConstraints();
-        Schema::dropIfExists('Imagen');
+        Schema::dropIfExists('imagen');
     }
 }

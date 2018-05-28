@@ -13,7 +13,7 @@ class CreateTableRolUsers extends Migration
      */
     public function up()
     {
-        Schema::create('rol_user', function (Blueprint $table) {
+        /*Schema::create('rol_user', function (Blueprint $table) {
             //$table->increments('id');
             $table->integer('rol_use_fk_rol')->unsigned()->nullable(false);
             $table->integer('rol_use_fk_user')->unsigned()->nullable(false);
@@ -24,7 +24,7 @@ class CreateTableRolUsers extends Migration
 
             $table->unique(['rol_use_fk_rol','rol_use_fk_user'],
                 'ROL_USERS_UNIQUE_rol_use_fk_users_rol_use_fk_rol');
-        });
+        });*/
     }
 
     /**
@@ -34,6 +34,6 @@ class CreateTableRolUsers extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('Rol_Users');
+        //Schema::dropIfExists('Rol_Users');
     }
 }

@@ -32,7 +32,7 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name', 'activa', 'password',
-        'fk_personal','id'
+        'fk_personal','fk_rol','id'
     ];
 
     /**
@@ -49,7 +49,12 @@ class User extends Authenticatable
         return $this->belongsTo('App\Personal','fk_personal','id');
     }
 
-    public function Roles(){
-        return $this->belongsToMany('App\Rol','rol_user','rol_use_fk_user','rol_use_fk_rol');
+    //relacion 1 a muchos. Asi guardo la fk del rol de usuario
+    public function Rol(){
+        return $this->belongsTo('App\Rol','fk_rol','id');
     }
+
+    /*public function Roles(){
+        return $this->belongsToMany('App\Rol','rol_user','rol_use_fk_user','rol_use_fk_rol');
+    }*/
 }

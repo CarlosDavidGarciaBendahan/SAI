@@ -33,7 +33,7 @@
 						
 						{!! Form::label('permisos','Tipo de rol') !!}
 
-						{!! Form::select('rol_user',['0'=>'Usuario','1'=>'Personal'],$rol->rol_user,['class'=> 'form-control select-permisos', 'placeholder'=>'seleccionar permisos','required']) !!}
+						{!! Form::select('rol_tipo',['U'=>'Usuario','P'=>'Personal'],$rol->rol_tipo,['class'=> 'form-control select-permisos', 'placeholder'=>'seleccionar permisos','required']) !!}
 					</div>
 
 					<div class="form-group">

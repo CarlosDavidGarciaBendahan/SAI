@@ -1,4 +1,4 @@
-<?php
+<?php/*
 
 namespace App;
 
@@ -13,7 +13,7 @@ class Permiso extends Model
      * Return the sluggable configuration array for this model.
      *
      * @return array
-     */
+     
     public function sluggable()
     {
         return [
@@ -29,4 +29,4 @@ class Permiso extends Model
     public function Roles(){
     	return $this->belongsToMany('App\Rol','rol_permiso','rol_perm_fk_permiso','rol_perm_fk_rol');
     }
-}
+}*/

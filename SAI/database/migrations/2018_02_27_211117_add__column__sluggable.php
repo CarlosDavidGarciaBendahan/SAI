@@ -43,7 +43,7 @@ class AddColumnSluggable extends Migration
         Schema::table('estado', function (Blueprint $table) {
             $table->string('slug')->nullable();
         });
-        Schema::table('Imagen', function (Blueprint $table) {
+        Schema::table('imagen', function (Blueprint $table) {
             $table->string('slug')->nullable();
         });
         Schema::table('lote', function (Blueprint $table) {
@@ -67,9 +67,9 @@ class AddColumnSluggable extends Migration
         Schema::table('parroquia', function (Blueprint $table) {
             $table->string('slug')->nullable();
         });
-        Schema::table('permiso', function (Blueprint $table) {
+        /*Schema::table('permiso', function (Blueprint $table) {
             $table->string('slug')->nullable();
-        });
+        });*/
         Schema::table('personal', function (Blueprint $table) {
             $table->string('slug')->nullable();
         });

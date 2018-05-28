@@ -13,10 +13,10 @@ class AddForeignkeyRolPermiso extends Migration
      */
     public function up()
     {
-        Schema::table('rol_permiso', function (Blueprint $table) {
+       /* Schema::table('rol_permiso', function (Blueprint $table) {
             $table->foreign('rol_perm_fk_rol')->references('id')->on('rol');
             $table->foreign('rol_perm_fk_permiso')->references('id')->on('permiso');
-        });
+        });*/
         
     }
 

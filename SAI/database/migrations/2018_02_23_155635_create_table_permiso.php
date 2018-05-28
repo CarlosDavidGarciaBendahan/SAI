@@ -13,13 +13,13 @@ class CreateTablePermiso extends Migration
      */
     public function up()
     {
-        Schema::create('permiso', function (Blueprint $table) {
+        /*Schema::create('permiso', function (Blueprint $table) {
             $table->increments('id');
             $table->string('perm_permiso')->nullable(false);
             $table->timestamps();
 
             $table->unique('perm_permiso','PERMISO_UNIQUE_per_permiso');
-        });
+        });*/
     }
 
     /**
@@ -29,7 +29,7 @@ class CreateTablePermiso extends Migration
      */
     public function down()
     {
-        Schema::disableForeignKeyConstraints();
-        Schema::dropIfExists('permiso');
+        /*Schema::disableForeignKeyConstraints();
+        Schema::dropIfExists('permiso');*/
     }
 }

@@ -62,7 +62,7 @@ class UsersController extends Controller
         $user->password = bcrypt($request->password); 
         $user->save();
 
-        $user->roles()->sync($request->roles);
+        //$user->roles()->sync($request->roles);
         
         flash("Registro del usuario '' ".$request->name." '' exitoso")->success();
         return redirect()->route('users.index');
@@ -110,8 +110,8 @@ class UsersController extends Controller
         $user->save();
 
 
-        $user->roles()->detach();
-        $user->roles()->sync($request->roles);
+        //$user->roles()->detach();
+        //$user->roles()->sync($request->roles);
 
         flash("Modificación del usuario". $user->name." '' exitosa")->success();
         return redirect()->route('users.index');

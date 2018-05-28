@@ -13,7 +13,7 @@
 
 Route::get('/', function () {
     //return view('welcome');
-    return view('admin.template.main2');
+    return view('admin.login');
 });
 
 
@@ -239,6 +239,10 @@ Route::prefix('admin/oficina/')->group( function(){
 		'uses'	=> 'UsersController@destroy',
 		'as'	=> 'users.destroy'
 	]);
+	Route::get('users/{id}/destroy',[
+		'uses'	=> 'UsersController@destroy',
+		'as'	=> 'users.destroy'
+	]);
 	///////////////////////////////////////////////////
 	////// 		CORREO
 	///////////////////////////////////////////////////
@@ -378,6 +382,8 @@ Route::prefix('admin/')->group( function(){
 		'uses'	=> 'BancoController@destroy',
 		'as'	=> 'banco.destroy'
 	]);
+
+
 });
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -547,3 +553,6 @@ Route::get('PDF-ejemplo/{presupuesto_id}',function($presupuesto_id){
 	//return $pdf->download('presupuesto'.'#'.$presupuesto_id.'.pdf');
 	return $pdf->stream('presupuesto'.'#'.$presupuesto_id.'.pdf');
 });
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
