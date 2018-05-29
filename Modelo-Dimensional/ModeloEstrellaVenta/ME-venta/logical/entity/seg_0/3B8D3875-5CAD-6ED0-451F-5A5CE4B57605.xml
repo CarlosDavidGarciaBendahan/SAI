@@ -116,6 +116,16 @@
 <use>0</use>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
+<Attribute name="ID_COTIZACION" id="26EF8767-45E7-DC34-87A3-ED579E1563F3">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-05-29 11:49:16 UTC</createdTime>
+<ownerDesignName>ME-venta</ownerDesignName>
+<engineerTo>
+<item key="251BA8E6-B170-84CB-FFBB-BADB899C537C" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
 <Attribute name="ID_TIEMPO" id="21151C24-C108-F020-8953-7F89D01D2D2A">
 <createdBy>Carlos</createdBy>
 <createdTime>2018-05-25 12:07:53 UTC</createdTime>
@@ -183,6 +193,18 @@
 <engineerTo>
 <item key="251BA8E6-B170-84CB-FFBB-BADB899C537C" value="true"/>
 </engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="ID5" id="4638DE72-62FF-5E52-8BC8-45C2B3A61B85">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-05-29 11:48:55 UTC</createdTime>
+<generatorID>AE8A0B08-93B5-DC2E-FE18-461351E0E630</generatorID>
+<ownerDesignName>ME-venta</ownerDesignName>
+<engineerTo>
+<item key="251BA8E6-B170-84CB-FFBB-BADB899C537C" value="true"/>
+</engineerTo>
+<referedAttribute>DDE95FFD-90EE-EFDE-E948-FDE3777BEA0A</referedAttribute>
 <use>0</use>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
