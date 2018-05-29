@@ -172,7 +172,14 @@ Route::prefix('admin/producto/')->group( function(){
 			'uses'	=> 'codigoArticuloController@quitarPC',
 			'as'	=> 'codigoArticulo.quitarPC'
 		])->middleware('auth');
-
+	///////////////////////////////////////////////////
+	////// 		TIPO PRODUCTO	
+	///////////////////////////////////////////////////
+	//Route::resource('producto_computador','producto_computadorController')->middleware('auth');
+	Route::get('catalogo',[
+		'uses'	=> 'producto_computadorController@catalogo',
+		'as'	=> 'catalogo'
+	])->middleware('auth');
 
 });
 

@@ -68,7 +68,7 @@
 
 						<div class="form-group ">
 							{!! Form::label('pro_com_codigo','Código') !!}
-							{!! Form::text('pro_com_codigo',null,['class'=> 'form-control', 'title'=>'Solo letras mayúsculas, minúsculas y números de 0-9, min: 10 max: 100', 'placeholder'=>'B201223.', 'required', 'minlength'=>'10', 'maxlength' => '100', 'pattern'=>'[A-za-z0-9]+']) !!}
+							{!! Form::text('pro_com_codigo',null,['class'=> 'form-control', 'title'=>'Solo letras mayúsculas, minúsculas y números de 0-9, min: 3 max: 100', 'placeholder'=>'B201223.', 'required', 'minlength'=>'3', 'maxlength' => '100', 'pattern'=>'[A-za-z0-9]+']) !!}
 						</div>
 						<div class="form-group ">
 							{!! Form::label('pro_com_descripcion','Descripcion') !!}

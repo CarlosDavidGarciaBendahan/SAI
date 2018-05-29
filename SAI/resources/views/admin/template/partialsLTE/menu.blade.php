@@ -52,6 +52,7 @@
             </span>
           </a>
           <ul class="treeview-menu">
+            <li><a href="{{ route('catalogo') }}"><i class="fa fa-circle-o"></i> Catálogo </a></li>
             <li class="treeview">
               <a href="#"><i class="fa fa-circle-o"></i> Computador
                 <span class="pull-right-container">

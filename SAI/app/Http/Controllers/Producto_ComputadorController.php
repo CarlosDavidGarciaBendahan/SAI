@@ -24,7 +24,7 @@ class Producto_ComputadorController extends Controller
      */
     public function index()
     {
-        $producto_computadoras = Producto_Computador::orderby('pro_com_codigo')->paginate(5);
+        $producto_computadoras = Producto_Computador::orderby('pro_com_codigo')->paginate(10);
 
         return view('admin.producto.producto_computador.index')->with(compact('producto_computadoras'));
     }
@@ -36,7 +36,7 @@ class Producto_ComputadorController extends Controller
      */
     public function create()
     {
-        $oficinas = Oficina::orderby('ofi_direccion')->get();
+        $oficinas = Oficina::where('id','>',0)->orderby('ofi_direccion')->get();
         $marcas = Marca::orderby('mar_marca')->get();
         $tipo_productos = Tipo_Producto::orderby('tip_tipo')->get();
         $producto_articulos = Producto_Articulo::orderby('pro_art_codigo')->pluck('pro_art_codigo','id');
@@ -58,6 +58,9 @@ class Producto_ComputadorController extends Controller
         
 
         $producto_computador = new Producto_Computador($request->all());
+
+        $producto_computador->pro_com_codigo = strtoupper($producto_computador->pro_com_codigo);
+        //dd($producto_computador);
         $producto_computador->save();
 
         $producto_computador->articulos()->sync($request->componentes);
@@ -88,7 +91,7 @@ class Producto_ComputadorController extends Controller
     public function show($id)
     {
         
-        $oficinas = Oficina::orderby('ofi_direccion')->get();
+        $oficinas = Oficina::where('id','>',0)->orderby('ofi_direccion')->get();
         $sectores = Sector::orderby('sec_sector')->get();
         $marcas = Marca::orderby('mar_marca')->get();
         $modelos = Modelo::orderby('mod_modelo')->get();
@@ -109,7 +112,7 @@ class Producto_ComputadorController extends Controller
      */
     public function edit($id)
     {
-        $oficinas = Oficina::orderby('ofi_direccion')->get();
+        $oficinas = Oficina::where('id','>',0)->orderby('ofi_direccion')->get();
         $sectores = Sector::orderby('sec_sector')->get();
         $marcas = Marca::orderby('mar_marca')->get();
         $modelos = Modelo::orderby('mod_modelo')->get();
@@ -177,5 +180,14 @@ class Producto_ComputadorController extends Controller
 
 
         return ($producto_computador);
+    }
+
+    public function catalogo(){
+
+        
+        $PCs = Producto_Computador::where('pro_com_catalogo','<>',0)->orderby('pro_com_codigo')->get();
+
+
+        return view('admin.producto.catalogo.index')->with(compact('PCs'));
     }
 }

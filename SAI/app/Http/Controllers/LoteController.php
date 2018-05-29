@@ -50,7 +50,7 @@ class LoteController extends Controller
         $lote = new Lote($request->all());
         //$lote->lot_nombre = $request->lot_nombre;
         //$lote->lot_fecha_recibido = $date;
-        dd($lote);
+        //dd($lote);
         $lote->save();
 
         flash("Registro del lote '' ". $request->lot_nombre . " '' exitoso.")->success();

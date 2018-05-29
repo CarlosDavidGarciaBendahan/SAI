@@ -37,7 +37,7 @@ class Producto_ArticuloController extends Controller
      */
     public function create()
     {
-        $oficinas = Oficina::orderby('ofi_direccion')->get();
+        $oficinas = Oficina::where('id','>',0)->orderby('ofi_direccion')->get();
         $marcas = Marca::orderby('mar_marca')->get();
         $tipo_productos = Tipo_Producto::orderby('tip_tipo')->get();
         $unidadmedidas = UnidadMedida::orderby('uni_medida')->get();
@@ -55,6 +55,8 @@ class Producto_ArticuloController extends Controller
     {
         //dd($request->all());
         $producto_articulo = new Producto_Articulo($request->all());
+        $producto_articulo->pro_art_codigo = strtoupper($producto_articulo->pro_art_codigo);
+        //dd($producto_articulo);
         //dd($producto_articulo);
         $producto_articulo->save();
 
@@ -70,7 +72,7 @@ class Producto_ArticuloController extends Controller
      */
     public function show($id)
     {
-        $oficinas = Oficina::orderby('ofi_direccion')->get();
+        $oficinas = Oficina::where('id','>',0)->orderby('ofi_direccion')->get();
         $sectores = Sector::orderby('sec_sector')->get();
         $marcas = Marca::orderby('mar_marca')->get();
         $modelos = Modelo::orderby('mod_modelo')->get();
@@ -92,7 +94,7 @@ class Producto_ArticuloController extends Controller
      */
     public function edit($id)
     {
-        $oficinas = Oficina::orderby('ofi_direccion')->get();
+        $oficinas = Oficina::where('id','>',0)->orderby('ofi_direccion')->get();
         $sectores = Sector::orderby('sec_sector')->get();
         $marcas = Marca::orderby('mar_marca')->get();
         $modelos = Modelo::orderby('mod_modelo')->get();

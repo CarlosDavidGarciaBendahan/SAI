@@ -25,7 +25,7 @@
 						
 						{!! Form::label('mar_marca','Marca') !!}
 
-						{!! Form::text('mar_marca',null,['class'=> 'form-control','title'=>'Solo letras mayúsculas, minúsculas y números de 0-9, min: 3 max: 20', 'placeholder'=>'Marca.', 'required', 'minlength'=>'3', 'maxlength' => '20', 'pattern'=>'[A-za-z0-9 ]+']) !!}
+						{!! Form::text('mar_marca',null,['class'=> 'form-control','title'=>'Solo letras mayúsculas, minúsculas y números de 0-9, min: 2 max: 20', 'placeholder'=>'Marca.', 'required', 'minlength'=>'2', 'maxlength' => '20', 'pattern'=>'[A-za-z0-9 ]+']) !!}
 					</div>
 
 					<div class="form-group">
