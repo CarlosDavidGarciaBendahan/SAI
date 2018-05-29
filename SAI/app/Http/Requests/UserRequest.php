@@ -13,7 +13,13 @@ class UserRequest extends FormRequest
      */
     public function authorize()
     {
-        return true; //activo el request para validar con el valor true
+        //if ($this->user()->rol->rol_rol === 'Administrado') {
+            
+            return true; //activo el request para validar con el valor true
+        /*} else {
+            return false;
+        }*/
+        
     }
 
     /**
@@ -21,12 +27,22 @@ class UserRequest extends FormRequest
      *
      * @return array
      */
+    public function attributes(){
+        return [
+            'name'          =>'Usuario',
+            'activa'        =>'Estado',
+            'fk_rol'        =>'Rol',
+            'password'      =>'Clave'
+        ];
+    }
     public function rules()
     {
         return [
-            'name'          =>'max:20|required|unique:users',
-            'fk_personal'   =>'required',
-            'fk_rol'       =>'required'
+            'name'          =>'min:3|max:20|required|unique:users',
+            'activa'        =>'required|integer',
+            'fk_personal'   =>'required|integer',
+            'fk_rol'        =>'required|integer',
+            'password'      =>'nullable'
         ];
     }
 }

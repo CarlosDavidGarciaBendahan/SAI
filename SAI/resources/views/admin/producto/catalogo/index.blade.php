@@ -11,7 +11,7 @@
 		@foreach ($PCs as $PC)
 		
 			<div class="col-sm-6"><!-- PONGO 3 PRODUCTOS POR FILA -->
-				<div class="container col-sm-12">
+				<div class="container col-sm-12 producto">
 					<div class="col-sm-4">
 						@foreach ($PC->imagenes as $imagen)
 							<a href="{{ route('producto_computador.show', $PC->id) }}" class="">

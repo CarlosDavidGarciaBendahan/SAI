@@ -20,8 +20,10 @@
 
 		<div class="row">
 			<div class="col-sm-8 offset-2">
-
-				<a href="{{ route('users.create') }}" class="btn btn-info">Registrar nuevo usuario</a>
+				@if (Auth::user()->rol->rol_rol === 'Administrador')
+					<a href="{{ route('users.create') }}" class="btn btn-info">Registrar nuevo usuario</a>
+				@endif
+				
 				
 
 				<table class="table table-inverse">
@@ -52,13 +54,13 @@
 					      		<span class="class fa fa-edit" title="Editar"></span>
 					      	</a>
 
-					      	@if ($user->id !== 0 && (auth()->user()->id !== $user->id) )
+					      	@if ($user->id !== 0 && (auth()->user()->id !== $user->id) && (Auth::user()->rol->rol_rol === "Administrador"))
 					      		<a href="{{ route('users.destroy', $user->id) }}" onclick="return confirm('Eliminar el user?')" class="btn btn-danger">
 						      		<span class="class glyphicon glyphicon-remove-circle"></span>
 						      	</a> 
 					      	@endif
 
-					      	@if ($user->activa === 0 && $user->solicitar_clave !== 0)
+					      	@if ($user->activa === 0 && $user->solicitar_clave !== 0 && Auth::user()->rol->rol_rol === "Administrador")
 					      		<a href="{{ route('users.EnviarClave', $user->id) }}" onclick="return confirm('Enviar una nueva clave al usuario?')" class="btn btn-warning" title="RE-ENVIO DE CLAVE PENDIENTE">
 						      		<span class="class fa fa-warning"></span>
 						      	</a>

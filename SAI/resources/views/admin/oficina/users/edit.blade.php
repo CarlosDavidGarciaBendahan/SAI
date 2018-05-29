@@ -64,7 +64,7 @@
 						
 						{!! Form::label('password','Clave') !!}
 
-						{!! Form::password('password',['class'=> 'form-control', 'title'=>'Solo letras mayúsculas, minúsculas y números min: 8 max: 20', 'placeholder'=>'********************', 'required', 'minlength'=>'8', 'maxlength' => '20', 'pattern'=>'[A-za-z0-9 ]+']) !!}
+						{!! Form::password('password',['class'=> 'form-control', 'title'=>'Solo letras mayúsculas, minúsculas y números min: 8 max: 20', 'placeholder'=>'********************', 'minlength'=>'8', 'maxlength' => '20', 'required', 'pattern'=>'[A-za-z0-9 ]+']) !!}
 						</div>
 					@endif
 					
@@ -76,12 +76,15 @@
 							{!! Form::select('activa',[0=>'NO',1=>'SI'], $user->activa, ['class'=>'form-control', 'required'] ) !!}
 						</div>
 					@endif
-					<div class="form-group"> 
-						
-						{!! Form::label('roles','Roles') !!}
 
-						{!! Form::select('fk_rol',$roles,$user->rol->id,['class'=> 'form-control select-roles', 'placeholder'=>'seleccionar roles', 'required']) !!}
-					</div>
+					@if (auth()->user()->id !== $user->id)
+						<div class="form-group"> 
+							
+							{!! Form::label('roles','Roles') !!}
+
+							{!! Form::select('fk_rol',$roles,$user->rol->id,['class'=> 'form-control select-roles', 'placeholder'=>'seleccionar roles', 'required']) !!}
+						</div>
+					@endif
 
 					<div class="form-group">
 						{!! Form::submit('Editar',['class'=>'btn btn-primary']) !!}

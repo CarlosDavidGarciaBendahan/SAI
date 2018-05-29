@@ -8,6 +8,7 @@ use Laracasts\Flash\Flash;
 use App\Personal;
 use App\Rol;
 use App\Http\Requests\UserRequest;
+use App\Http\Requests\UserEditRequest;
 use App\Mail\EnvioDeClaveTemporal;
 use Auth;
 
@@ -19,10 +20,16 @@ class UsersController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        $users = User::orderby('name')->paginate(10);
+    {   
+        if (Auth::user()->rol->rol_rol === 'Administrador') 
+        {
+            $users = User::orderby('name')->paginate(10);
+        }else{
+            $users = user::where('id','=',Auth::user()->id)->paginate(1);
+        }
 
         return view('admin.oficina.users.index')->with(compact('users'));
+        
     }
 
     /**
@@ -32,20 +39,25 @@ class UsersController extends Controller
      */
     public function create()
     {
-        $ids = $this->PersonalConUsuario();//consigo todos los ID de cada personal con usuario.
-        $personal = Personal::where('id','>',0)->whereNotIn('id',$ids)->orderby('per_apellido','per_nombre')->get();//Busco el personal que notenga usuario.
+        if (Auth::user()->rol->rol_rol === 'Administrador') {
+            $ids = $this->PersonalConUsuario();//consigo todos los ID de cada personal con usuario.
+            $personal = Personal::where('id','>',0)->whereNotIn('id',$ids)->orderby('per_apellido','per_nombre')->get();//Busco el personal que notenga usuario.
 
-        if (count($personal) === 0) {
-            
-            flash("Todos los empleados tienen usuario creado.")->error();
-            return redirect()->route('users.index');
+            if (count($personal) === 0) {
+                
+                flash("Todos los empleados tienen usuario creado.")->error();
+                return redirect()->route('users.index');
+            } else {
+                $roles = Rol::where('rol_tipo','=','U')->orderby('rol_rol')->pluck('rol_rol','id');
+
+                return view('admin.oficina.users.create')->with(compact('personal','roles'));
+            }
         } else {
-            $roles = Rol::where('rol_tipo','=','U')->orderby('rol_rol')->pluck('rol_rol','id');
-
-            return view('admin.oficina.users.create')->with(compact('personal','roles'));
+            flash('Error. Solo usuarios con el rol "Administrador" puede crear nuevos usuarios')->error();
+            return redirect()->route('users.index');
         }
         
-
+        
         
     }
 
@@ -57,20 +69,27 @@ class UsersController extends Controller
      */
     public function store(UserRequest $request)
     {
-        //dd($this->CrearClave());
-        //dd(bcrypt($request->password));
-        $claveTemporal = $this->CrearClave();//Genera una clave aleatoria de 8 caracteres
+        if (Auth::user()->rol->rol_rol === 'Administrador') {
 
-        $user = new User($request->all());
-        $user->password = bcrypt($claveTemporal); 
-        $user->save();
+            //dd($this->CrearClave());
+            //dd(bcrypt($request->password));
+            $claveTemporal = $this->CrearClave();//Genera una clave aleatoria de 8 caracteres
 
-        //$user->roles()->sync($request->roles);
-        
-        $this->EnviarClaveTemporal($user,$claveTemporal);
+            $user = new User($request->all());
+            $user->password = bcrypt($claveTemporal); 
+            $user->save();
 
-        flash("Registro del usuario '' ".$request->name." '' exitoso ".$claveTemporal)->success();
-        return redirect()->route('users.index');
+            //$user->roles()->sync($request->roles);
+            
+            $this->EnviarClaveTemporal($user,$claveTemporal);
+
+            flash("Registro del usuario '' ".$request->name." '' exitoso ")->success();
+            return redirect()->route('users.index');
+
+        } else {
+            flash('Error. Solo usuarios con el rol "Administrador" puede crear nuevos usuarios')->error();
+            return redirect()->route('users.index');
+        }
 
     }
 
@@ -94,10 +113,19 @@ class UsersController extends Controller
     public function edit($id)
     {
         $user = User::find($id);
-        //$personal = Personal::orderby('per_apellido','per_nombre')->get();
-        $roles = Rol::where('rol_tipo','=','U')->orderby('rol_rol')->pluck('rol_rol','id');
+        if (Auth::user()->rol->rol_rol === 'Administrador' || Auth::user()->id === $user->id) {
+                
+            //$personal = Personal::orderby('per_apellido','per_nombre')->get();
+            $roles = Rol::where('rol_tipo','=','U')->orderby('rol_rol')->pluck('rol_rol','id');
 
-        return view('admin.oficina.users.edit')->with(compact('user',/*'personal',*/'roles'));
+            return view('admin.oficina.users.edit')->with(compact('user',/*'personal',*/'roles'));
+        } else {
+            flash('Error. Solo usuarios con el rol "Administrador" puede editar usuarios')->error();
+            return redirect()->route('users.index');
+        }
+
+
+        
     }
 
     /**
@@ -107,34 +135,44 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UserEditRequest $request, $id)
     {
-        $user = User::find($id);
-        if (auth()->user()->id === $user->id) {//mismo usuario
-            
-            $user->password = bcrypt($request->password); 
+        //dd($request->password);
+       
+            $user = User::find($id);
+            if (Auth::user()->rol->rol_rol === 'Administrador' || Auth::user()->id === $user->id) {
+                if ($request->password !== null && auth()->user()->id === $user->id  ) {//mismo usuario
+                    
+                    $user->password = bcrypt($request->password); 
 
-        } else {//diferente usuario
-            if ($user->id !== 0) {
-                $user->activa = $request->activa;
-                $user->fk_rol = $request->fk_rol;
+                } else {//diferente usuario
+                    if ($user->id !== 0) {//puedo editar siempre y cuando no sea el user admin (id=0)
+                        if (auth()->user()->id !== $user->id) {//puedo edit activa si  user logeado <> user a editar
+                            $user->activa = $request->activa;
+                        } 
+                        $user->fk_rol = $request->fk_rol;
+                    } else {
+                        flash("El usuario '' ". $user->name." '' no puede cambiar de estado ni de rol.")->error();
+                        return redirect()->route('users.index');
+                    }
+                    
+                }
             } else {
-                flash("El usuario '' ". $user->name." '' no puede cambiar de estado ni de rol.")->error();
+                flash('Error. Solo usuarios con el rol "Administrador" puede editar usuarios')->error();
                 return redirect()->route('users.index');
             }
             
-        }
+            
+            $user->save();
+
+
+            //$user->roles()->detach();
+            //$user->roles()->sync($request->roles);
+
+            flash("Modificación del usuario '' ". $user->name." '' exitosa")->success();
+            return redirect()->route('users.index');
+
         
-        
-        $user->save();
-
-
-        //$user->roles()->detach();
-        //$user->roles()->sync($request->roles);
-
-        flash("Modificación del usuario '' ". $user->name." '' exitosa")->success();
-        return redirect()->route('users.index');
-
     }
 
     /**
@@ -147,22 +185,30 @@ class UsersController extends Controller
     {
         $user = User::find($id);
 
-        //$user->Roles()->detach($user->Roles);
-        if ($user->id !== 0) {
-            if (Auth::user()->id === $user->id) {
-                flash("Imposible eliminar al usuario logeado.")->success();
-            } else {
-                $user->delete();
+        if(Auth::user()->rol->rol_rol === 'Administrador'){
 
-                flash("Eliminación del usuario '' ". $user->name." '' exitosa")->success();
+            //$user->Roles()->detach($user->Roles);
+            if ($user->id !== 0) {
+                if (Auth::user()->id === $user->id) {
+                    flash("Imposible eliminar al usuario logeado.")->success();
+                } else {
+                    $user->delete();
+
+                    flash("Eliminación del usuario '' ". $user->name." '' exitosa")->success();
+                    //return redirect()->route('users.index');
+                }
+                
+            } else {
+
+                flash("El usuario admin no puede eliminarse del sistema.")->error();
                 //return redirect()->route('users.index');
             }
-            
-        } else {
+        }else{
 
-            flash("El usuario admin no puede eliminarse del sistema.")->error();
-            //return redirect()->route('users.index');
+                flash("Los usuarios con rol de 'Administrador' pueden eliminar otros usuarios del sistema.")->error();
         }
+
+
         return redirect()->route('users.index');
         
     }
@@ -187,10 +233,11 @@ class UsersController extends Controller
 
     public function EnviarClaveTemporal($user, $clave){
 
-        foreach ($user->personal->contacto_correos as $correo) {
+            foreach ($user->personal->contacto_correos as $correo) {
                 \Mail::to($correo->con_cor_correo)->send(new EnvioDeClaveTemporal("Se le notifica que para su usuario ".$user->name." se le ha asignado la clave: ".$clave." que deberá modificar una vez ingrese al sistema. Borrar este mensaje por seguridad.","Envio de clave para acceder al sistema SAI"));
-        }
-        flash("Se ha realizado el envio de la clave a los correos del personal ".$user->personal->per_nombre." ".$user->personal->per_nombre2." ".$user->personal->per_apellido." ".$user->personal->per_apellido2)->success();
+            }
+            flash("Se ha realizado el envio de la clave a los correos del personal ".$user->personal->per_nombre." ".$user->personal->per_nombre2." ".$user->personal->per_apellido." ".$user->personal->per_apellido2)->success();
+        
     }
 
     public function reset(){
@@ -200,25 +247,30 @@ class UsersController extends Controller
 
     public function resetClave(Request $request){
 
-        $user = User::where('name','=',$request->name)->get();
+        //if(Auth::user()->rol->rol_rol === 'Administrador'){
+            $user = User::where('name','=',$request->name)->get();
 
-        //dd($user);
-        //dd($request->all());
-        foreach ($user as  $u) {
-            //dd($u);
-            if ($u->activa !== 0) {//si esta activa la cuenta
-                $u->solicitar_clave = 1;//cambio el esto de solicitar_clave a 1
-                $u->activa = 0; //desactivo la cuenta para que no pueda ser utilizada hasta no dar nueva clave
-                $u->save(); // guardo los cambios
-                flash("Se ha enviado la solicitud para reestablecer una nueva clave al correo del personal: ".$u->personal->per_identificador."-".$u->personal->per_cedula)->success();
-                return redirect()->route('inicio');
+            //dd($user);
+            //dd($request->all());
+            foreach ($user as  $u) {
+                //dd($u);
+                if ($u->activa !== 0) {//si esta activa la cuenta
+                    $u->solicitar_clave = 1;//cambio el esto de solicitar_clave a 1
+                    $u->activa = 0; //desactivo la cuenta para que no pueda ser utilizada hasta no dar nueva clave
+                    $u->save(); // guardo los cambios
+                    flash("Se ha enviado la solicitud para reestablecer una nueva clave al correo del personal: ".$u->personal->per_identificador."-".$u->personal->per_cedula)->success();
+                    return redirect()->route('inicio');
 
-            } else {
-                flash("El usuario ".$u->name." se encuentra inactivo. No puede solicitar nueva clave.")->error();
-                return redirect()->back();
+                } else {
+                    flash("El usuario ".$u->name." se encuentra inactivo. No puede solicitar nueva clave.")->error();
+                    return redirect()->back();
+                }
+                
             }
-            
-        }
+        /*}else {
+                flash('Error. Solo usuarios con el rol "Administrador" puede Resetear clave de usuarios')->error();
+                return redirect()->route('users.index');
+        }*/
         //busco el usuario por su nombre
         //NO PUEDE estar desactivado
         //SI ESTA ACTIVO
