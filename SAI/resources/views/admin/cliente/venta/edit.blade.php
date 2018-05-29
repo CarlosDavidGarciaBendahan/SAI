@@ -50,6 +50,11 @@
 					@else
 						{{-- false expr --}}
 					@endif
+
+					<div class="form-group col-sm-12"> 
+						{!! Form::label('fecha','Porcentaje de descuento') !!}
+						{!! Form::text('ven_porcentaje_descuento',$venta->ven_porcentaje_descuento,['class'=> 'form-control', 'title'=>'Solo números del 1 al 100. ','placeholder'=>'100.', 'minlength'=>'1', 'maxlength' => '3', 'pattern'=>'[0-9]+']) !!}		
+					</div>
 							
 					<div class="form-group ">
 					{!! Form::label('Productos','Lista de computadoras') !!}

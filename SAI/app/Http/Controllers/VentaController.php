@@ -95,6 +95,14 @@ class VentaController extends Controller
             $venta->ven_monto_total = $venta->ven_monto_total + $codigoArticulo->Producto_Articulo->pro_art_precio;
         }
 
+
+        //SI EXISTE DESCUENTO
+        if ($request->ven_porcentaje_descuento !== null && $request->ven_porcentaje_descuento !== 0) {
+            $total_descuento =  $venta->ven_monto_total * ($request->ven_porcentaje_descuento / 100) ;
+            $venta->ven_monto_total = $venta->ven_monto_total - $total_descuento;
+        }
+        
+
         $venta->ven_moneda = "Bs";
 
         $venta->save();
@@ -167,6 +175,9 @@ class VentaController extends Controller
 
         $venta->VentaPCs()->attach($request->codigoPC);
         $venta->VentaArticulos()->attach($request->codigoArticulo);
+        if ($request->ven_porcentaje_descuento !== null && $request->ven_porcentaje_descuento !== 0) {
+            $venta->ven_porcentaje_descuento = $request->ven_porcentaje_descuento
+        }
 
         $venta->ven_monto_total = 0;
 
@@ -179,6 +190,12 @@ class VentaController extends Controller
             //$codigoArticulo = codigoArticulo::find($id);
 
             $venta->ven_monto_total = $venta->ven_monto_total + $codigoArticulo->Producto_Articulo->pro_art_precio;
+        }
+
+
+        if ($venta->ven_porcentaje_descuento !== null && $venta->ven_porcentaje_descuento !== 0) {
+            $total_descuento =  $venta->ven_monto_total * ($venta->ven_porcentaje_descuento / 100) ;
+            $venta->ven_monto_total = $venta->ven_monto_total - $total_descuento;
         }
 
         $venta->save();
