@@ -1,7 +1,7 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="52824B34-2F65-81FC-7775-FB6E817E0350" name="Users">
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="C8CADDEF-F163-4FFA-C6C3-9C50F40776C2" name="Historico_falta_stock">
 <createdBy>Carlos</createdBy>
-<createdTime>2018-02-21 23:53:21 UTC</createdTime>
+<createdTime>2018-05-27 20:04:44 UTC</createdTime>
 <ownerDesignName>ER-SAI</ownerDesignName>
 <engineerTo>
 <item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
@@ -15,42 +15,9 @@
 <minVolumes>0</minVolumes>
 <normalForm>Third</normalForm>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
-<Attribute name="id" id="0D9325CF-E28C-F192-47F5-E358AB31A52E">
+<Attribute name="id" id="AC820A8E-DE24-9246-2E51-E3F778EAFDA5">
 <createdBy>Carlos</createdBy>
-<createdTime>2018-02-21 23:53:21 UTC</createdTime>
-<ownerDesignName>ER-SAI</ownerDesignName>
-<importedID>89F4B713-CF0C-087E-5132-4FECB72D4468</importedID>
-<engineerTo>
-<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
-</engineerTo>
-<use>0</use>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-</Attribute>
-<Attribute name="name" id="A32B6135-C2C8-17B4-EE04-31798ED121CA">
-<createdBy>Carlos</createdBy>
-<createdTime>2018-02-21 23:53:21 UTC</createdTime>
-<ownerDesignName>ER-SAI</ownerDesignName>
-<importedID>A842E84E-B3BB-6ED2-8E47-E76CFB822908</importedID>
-<engineerTo>
-<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
-</engineerTo>
-<use>0</use>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-</Attribute>
-<Attribute name="password" id="69497234-84F9-3114-8DF4-0181F673F421">
-<createdBy>Carlos</createdBy>
-<createdTime>2018-02-21 23:53:21 UTC</createdTime>
-<ownerDesignName>ER-SAI</ownerDesignName>
-<importedID>64C4403C-95B4-D351-1DB4-EA3F6EAE5073</importedID>
-<engineerTo>
-<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
-</engineerTo>
-<use>0</use>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-</Attribute>
-<Attribute name="activa" id="6F13F0D1-74BB-A57D-1C54-F11722F0A973">
-<createdBy>Carlos</createdBy>
-<createdTime>2018-02-23 13:32:25 UTC</createdTime>
+<createdTime>2018-05-27 20:05:18 UTC</createdTime>
 <ownerDesignName>ER-SAI</ownerDesignName>
 <engineerTo>
 <item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
@@ -58,9 +25,9 @@
 <use>0</use>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
-<Attribute name="solicitar_clave" id="F348D9D5-DF83-2C16-B519-4D1275813101">
+<Attribute name="cantidad_faltante" id="FA6582CA-876D-10A1-E99E-ECEACAA2954C">
 <createdBy>Carlos</createdBy>
-<createdTime>2018-05-28 22:36:02 UTC</createdTime>
+<createdTime>2018-05-27 20:05:23 UTC</createdTime>
 <ownerDesignName>ER-SAI</ownerDesignName>
 <engineerTo>
 <item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
@@ -68,42 +35,64 @@
 <use>0</use>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
-<Attribute name="id1" id="3C79C2EC-C111-57CC-38FF-889AB6DE2DB9">
+<Attribute name="precio_unitario" id="4D045664-195F-10D2-BB74-68D6BBD372FD">
 <createdBy>Carlos</createdBy>
-<createdTime>2018-02-21 23:53:58 UTC</createdTime>
-<generatorID>CCDFC016-5453-2339-E198-C404439D4B87</generatorID>
+<createdTime>2018-05-28 19:15:22 UTC</createdTime>
 <ownerDesignName>ER-SAI</ownerDesignName>
 <engineerTo>
 <item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
 </engineerTo>
-<referedAttribute>77764938-4EBB-A1E1-2480-6BED9D722A88</referedAttribute>
 <use>0</use>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
-<Attribute name="id2" id="8DF07738-A455-46A0-7CB3-4464A60CB773">
+<Attribute name="cotizacion_dolar" id="9330A053-D1F4-AB23-3458-6BF772A13941">
 <createdBy>Carlos</createdBy>
-<createdTime>2018-05-27 20:19:12 UTC</createdTime>
-<generatorID>0CE343E4-7D48-A26C-F4CA-EB13F0DC1108</generatorID>
+<createdTime>2018-05-27 20:07:39 UTC</createdTime>
 <ownerDesignName>ER-SAI</ownerDesignName>
 <engineerTo>
 <item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
 </engineerTo>
-<referedAttribute>6AACADF3-681E-875E-6C28-2CC3C542BA56</referedAttribute>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="id1" id="D6490032-6EE8-EF49-8E1D-1D0B6E10E886">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-05-27 21:24:19 UTC</createdTime>
+<generatorID>D8CCB017-D825-FDA8-DC38-2BFE5CD57C32</generatorID>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<referedAttribute>1CE09014-1D61-C55F-C8CD-7FA108423940</referedAttribute>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="id2" id="AAFF8ED1-71A5-7156-BEB6-A1A94186B113">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-05-27 21:24:32 UTC</createdTime>
+<generatorID>5D5350F0-3979-5DDD-1B02-3F68F537F22C</generatorID>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<referedAttribute>580B56D3-075E-685E-C9EA-2B2CEDCA9D69</referedAttribute>
 <use>0</use>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
 </attributes>
 <identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
-<identifier id="E2099FCA-937D-42D1-EB41-8EA1C6423D65" name="USUARIO PK">
+<identifier id="64E82C10-475D-9596-6EBA-B8B7F87A37A3" name="Historico_falta_stock PK">
 <createdBy>Carlos</createdBy>
-<createdTime>2018-02-21 23:53:21 UTC</createdTime>
+<createdTime>2018-05-27 20:05:21 UTC</createdTime>
 <ownerDesignName>ER-SAI</ownerDesignName>
 <engineerTo>
 <item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
 </engineerTo>
 <pk>true</pk>
 <usedAttributes>
-<attributeRef>0D9325CF-E28C-F192-47F5-E358AB31A52E</attributeRef>
+<attributeRef>AC820A8E-DE24-9246-2E51-E3F778EAFDA5</attributeRef>
+<attributeRef>D6490032-6EE8-EF49-8E1D-1D0B6E10E886</attributeRef>
+<attributeRef>AAFF8ED1-71A5-7156-BEB6-A1A94186B113</attributeRef>
 </usedAttributes>
 </identifier>
 </identifiers>

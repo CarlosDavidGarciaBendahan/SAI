@@ -1,0 +1,7 @@
+insert into estado values (0,'admin');
+insert into municipio values (0,'admin',0);
+insert into parroquia values (0,'admin',0);
+insert into oficina values (0,'local','admin',0);
+insert into rol values(0,'Administrador','U');
+insert into personal values (0,'admin',null,'admin',null,'V',0,'01-01-1900',0,0,'admin',0,0);
+insert into users values (0,'admin','$2y$10$ulcBLT69MHzMAoUcdD0MuOA.WM4F26fRllfALAYZx5Ybd2Oymwh82',1,0,0);

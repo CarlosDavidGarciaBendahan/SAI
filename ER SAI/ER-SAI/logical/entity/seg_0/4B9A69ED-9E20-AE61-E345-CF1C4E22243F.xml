@@ -15,29 +15,9 @@
 <minVolumes>0</minVolumes>
 <normalForm>Third</normalForm>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
-<Attribute name="id" id="CFBD8EE0-7DFD-1A94-1336-F05A996DA115">
-<createdBy>Carlos</createdBy>
-<createdTime>2018-04-26 17:19:45 UTC</createdTime>
-<ownerDesignName>ER-SAI</ownerDesignName>
-<engineerTo>
-<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
-</engineerTo>
-<use>0</use>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-</Attribute>
-<Attribute name="cam_cantidad" id="2817EE2C-85BA-F90A-9017-C2B44187BBC4">
+<Attribute name="precio_dolar" id="2817EE2C-85BA-F90A-9017-C2B44187BBC4">
 <createdBy>Carlos</createdBy>
 <createdTime>2018-04-26 17:19:54 UTC</createdTime>
-<ownerDesignName>ER-SAI</ownerDesignName>
-<engineerTo>
-<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
-</engineerTo>
-<use>0</use>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-</Attribute>
-<Attribute name="cam_fecha" id="06F6A358-3A70-A159-12B5-056B3B4B57FB">
-<createdBy>Carlos</createdBy>
-<createdTime>2018-04-26 17:27:31 UTC</createdTime>
 <ownerDesignName>ER-SAI</ownerDesignName>
 <engineerTo>
 <item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
@@ -56,7 +36,7 @@
 </engineerTo>
 <pk>true</pk>
 <usedAttributes>
-<attributeRef>CFBD8EE0-7DFD-1A94-1336-F05A996DA115</attributeRef>
+<attributeRef>2817EE2C-85BA-F90A-9017-C2B44187BBC4</attributeRef>
 </usedAttributes>
 </identifier>
 </identifiers>
