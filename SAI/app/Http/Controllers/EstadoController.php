@@ -35,7 +35,7 @@ class EstadoController extends Controller
         //$estado = new Estado::all();
         //$estado = DB::table('estado')->orderBy('est_nombre', 'asc')->get();
 
-        $estado = Estado::orderBy('est_nombre')->paginate(10);
+        $estado = Estado::where('id','>',0)->orderBy('est_nombre')->paginate(10);
         //dd($estado);
         
         //$estado = new Estado();   

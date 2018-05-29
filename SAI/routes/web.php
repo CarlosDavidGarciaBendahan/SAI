@@ -15,7 +15,7 @@
     return view('admin.login.login');
 });*/
 
-Route::get('/', 'Auth\LoginController@showLoginForm');//->middleware('guest');
+Route::get('/', 'Auth\LoginController@showLoginForm')->name('inicio');//->middleware('guest');
 
 Route::get('/admin/home', function () {
     return view('admin.home');
@@ -255,6 +255,10 @@ Route::prefix('admin/oficina/')->group( function(){
 	Route::get('users/{id}/destroy',[
 		'uses'	=> 'UsersController@destroy',
 		'as'	=> 'users.destroy'
+	])->middleware('auth');
+	Route::get('users/{id}/EnviarClave',[
+		'uses'	=> 'UsersController@EnviarClave',
+		'as'	=> 'users.EnviarClave'
 	])->middleware('auth');
 	///////////////////////////////////////////////////
 	////// 		CORREO
@@ -601,4 +605,6 @@ Route::get('/home', 'HomeController@index')->name('home');*/
 
 //ruta para login
 Route::post('login', 'Auth\LoginController@login')->name('login');
+Route::get('reset', 'UsersController@reset')->name('reset')->middleware('guest');
+Route::post('resetClave', 'UsersController@resetClave')->name('resetClave')->middleware('guest');
 Route::post('logout', 'Auth\LoginController@logout')->name('logout')->middleware('auth');

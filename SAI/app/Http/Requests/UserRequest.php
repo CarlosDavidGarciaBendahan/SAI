@@ -26,7 +26,7 @@ class UserRequest extends FormRequest
         return [
             'name'          =>'max:20|required|unique:users',
             'fk_personal'   =>'required',
-            'roles[]'       =>'required'
+            'fk_rol'       =>'required'
         ];
     }
 }

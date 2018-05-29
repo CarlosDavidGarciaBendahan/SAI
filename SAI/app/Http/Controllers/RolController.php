@@ -18,7 +18,7 @@ class RolController extends Controller
     public function index()
     {
         //dd(bcrypt('admin'));
-        $roles = Rol::orderBy('rol_rol','asc')->paginate(5);
+        $roles = Rol::orderBy('rol_tipo','asc')->paginate(10);
 
         return view('admin.oficina.rol.index')->with(compact('roles'));
     }

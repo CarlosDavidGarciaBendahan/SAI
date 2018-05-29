@@ -47,16 +47,17 @@
 						
 						{!! Form::label('name','Nombre de usuario') !!}
 
-						{!! Form::text('name',null,['class'=> 'form-control', 'title'=>'Solo letras mayúsculas, minúsculas y números min: 3 max: 20', 'placeholder'=>'Nombre de usuario.', 'required', 'minlength'=>'3', 'maxlength' => '20', 'pattern'=>'[A-za-z0-9 ]+']) !!}
+						{!! Form::text('name',null,['class'=> 'form-control', 'title'=>'Solo letras mayúsculas, minúsculas y números min: 3 max: 20', 'placeholder'=>'Nombre de usuario.', 'required', 'minlength'=>'3', 'maxlength' => '20', 'pattern'=>'[A-za-z0-9]+']) !!}
 					</div>
 
+					<!--
 					<div class="form-group"> 
 						
 						{!! Form::label('password','Clave') !!}
 
 						{!! Form::password('password',['class'=> 'form-control', 'title'=>'Solo letras mayúsculas, minúsculas y números min: 8 max: 20', 'placeholder'=>'********************', 'required', 'minlength'=>'8', 'maxlength' => '20', 'pattern'=>'[A-za-z0-9 ]+']) !!}
 					</div>
-
+					-->
 					<div class="form-group"> 
 						
 						{!! Form::label('activa','Activado') !!}
@@ -68,7 +69,7 @@
 						
 						{!! Form::label('roles','Roles') !!}
 
-						{!! Form::select('roles[]',$roles,null,['class'=> 'form-control select-roles', 'placeholder'=>'seleccionar roles', 'required']) !!}
+						{!! Form::select('fk_rol',$roles,null,['class'=> 'form-control select-roles', 'placeholder'=>'seleccionar roles', 'required']) !!}
 					</div>
 
 					<div class="form-group">

@@ -18,7 +18,7 @@ class OficinaController extends Controller
      */
     public function index()
     {
-        $oficinas = Oficina::orderby('ofi_tipo','ofi_direccion')->paginate(5);
+        $oficinas = Oficina::where('id','>',0)->orderby('ofi_tipo','ofi_direccion')->paginate(5);
 
         return view('admin.oficina.oficina.index')->with(compact('oficinas'));
     }
@@ -30,7 +30,7 @@ class OficinaController extends Controller
      */
     public function create()
     {
-        $estados = Estado::select('est_nombre','id')->orderby('est_nombre','asc')->get();
+        $estados = Estado::select('est_nombre','id')->where('id','>',0)->orderby('est_nombre','asc')->get();
 
         return view ('admin.oficina.oficina.create')->with(compact('estados'));
     }
@@ -61,7 +61,7 @@ class OficinaController extends Controller
      */
     public function show($id)
     {
-        $estados = Estado::select('est_nombre','id')->orderby('est_nombre','asc')->get();
+        $estados = Estado::select('est_nombre','id')->where('id','>',0)->orderby('est_nombre','asc')->get();
         $oficina = Oficina::find($id);
 
         return view ('admin.oficina.oficina.show')->with(compact('estados','oficina'));
@@ -75,7 +75,7 @@ class OficinaController extends Controller
      */
     public function edit($id)
     {
-        $estados = Estado::select('est_nombre','id')->orderby('est_nombre','asc')->get();
+        $estados = Estado::select('est_nombre','id')->where('id','>',0)->orderby('est_nombre','asc')->get();
         $oficina = Oficina::find($id);
 
         return view ('admin.oficina.oficina.edit')->with(compact('estados','oficina'));

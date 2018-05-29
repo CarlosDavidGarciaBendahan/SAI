@@ -23,7 +23,7 @@ class PersonalController extends Controller
      */
     public function index()
     {
-         $personals = Personal::orderby('per_identificador','per_cedula')->paginate(5);
+         $personals = Personal::where('id','>',0)->orderby('per_identificador','per_cedula')->paginate(5);
 
         return view('admin.oficina.personal.index')->with(compact('personals'));
     }
@@ -35,9 +35,9 @@ class PersonalController extends Controller
      */
     public function create()
     {
-        $estados = Estado::orderby('est_nombre','asc')->get();
-        $roles = Rol::orderby('rol_rol')->pluck('rol_rol','id');
-        $oficinas = Oficina::orderby('ofi_direccion')->pluck('ofi_direccion','id');
+        $estados = Estado::where('id','>',0)->orderby('est_nombre','asc')->get();
+        $roles = Rol::where('rol_tipo','=','P')->orderby('rol_rol')->pluck('rol_rol','id');
+        $oficinas = Oficina::where('id','>',0)->orderby('ofi_direccion')->pluck('ofi_direccion','id');
 
         return view('admin.oficina.personal.create')->with(compact('estados','roles','oficinas'));
     }
@@ -94,10 +94,10 @@ class PersonalController extends Controller
      */
     public function show($id)
     {
-        $estados = Estado::orderby('est_nombre','asc')->get();
-        $municipios = Municipio::orderby('mun_nombre','asc')->get();
-        $parroquias = Parroquia::orderby('par_nombre','asc')->get();
-        $roles = Rol::orderby('rol_rol')->pluck('rol_rol','id');
+        $estados = Estado::where('id','>',0)->orderby('est_nombre','asc')->get();
+        $municipios = Municipio::where('id','>',0)->orderby('mun_nombre','asc')->get();
+        $parroquias = Parroquia::where('id','>',0)->orderby('par_nombre','asc')->get();
+        $roles = Rol::where('rol_tipo','=','P')->orderby('rol_rol')->pluck('rol_rol','id');
         $oficinas = Oficina::orderby('ofi_direccion')->pluck('ofi_direccion','id');
         $personal = Personal::find($id);
 
@@ -116,11 +116,11 @@ class PersonalController extends Controller
      */
     public function edit($id)
     {
-        $estados = Estado::orderby('est_nombre','asc')->get();
-        $municipios = Municipio::orderby('mun_nombre','asc')->get();
-        $parroquias = Parroquia::orderby('par_nombre','asc')->get();
-        $roles = Rol::orderby('rol_rol')->pluck('rol_rol','id');
-        $oficinas = Oficina::orderby('ofi_direccion')->pluck('ofi_direccion','id');
+        $estados = Estado::where('id','>',0)->orderby('est_nombre','asc')->get();
+        $municipios = Municipio::where('id','>',0)->orderby('mun_nombre','asc')->get();
+        $parroquias = Parroquia::where('id','>',0)->orderby('par_nombre','asc')->get();
+        $roles = Rol::where('rol_tipo','=','P')->orderby('rol_rol')->pluck('rol_rol','id');
+        $oficinas = Oficina::where('id','>',0)->orderby('ofi_direccion')->pluck('ofi_direccion','id');
         $personal = Personal::find($id);
 
         $contacto_correos = Contacto_Correo::where('con_cor_fk_personal','=',$personal->id)->orderby('con_cor_correo')->get();

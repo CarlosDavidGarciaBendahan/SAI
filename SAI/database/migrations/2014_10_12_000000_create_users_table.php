@@ -18,6 +18,7 @@ class CreateUsersTable extends Migration
             $table->string('name');
             $table->string('password');
             $table->integer('activa')->default(1);
+            $table->integer('solicitar_clave')->default(0);
             $table->integer('fk_personal')->unsigned()->nullable(false);
             $table->integer('fk_rol')->unsigned()->nullable(false);
             //$table->integer('fk_rol')->unsigned()->nullable(false);

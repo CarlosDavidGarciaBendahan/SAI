@@ -29,21 +29,29 @@
 					</div>
 				@endif
 				{!! Form::open(['route' => ['users.update',$user], 'method' => 'PUT' ]) !!}
-					
+					<!-- QUITO EL SELECT... NO PERMITIRE CAMBIAR EL PERSONAL... SI SOLO PODRE DESACTIVAR O ACTIVAR
+						O CAMBIAR LA CLAVE... NO PUEDO CAMBIAR NI EL NOMBRE DEL USUARIO NI EL PERSONAL A CUAL ESTA 
+						ASIGNADO
 					<div class="form-group ">
 							<label>Estados </label>
 							<select class="form-control input-sm" name="fk_personal" id="personal" required="true">
 								<option value=""> Seleccionar un personal</option>
-								@foreach ($personal as $persona)
-									@if ($persona->id === $user->fk_personal)
-										<option value="{{ $persona->id }}" selected="true" disabled="true"> {{ $persona->per_nombre ." ". $persona->per_nombre2 ." ".$persona->per_apellido ." ".$persona->per_apellido2 }}</option>
-									@else
-										<option value="{{ $persona->id }}"> {{ $persona->per_nombre ." ". $persona->per_nombre2 ." ".$persona->per_apellido ." ".$persona->per_apellido2 }}</option>
-									@endif
-								@endforeach 
+								foreach ($personal as $persona)
+									if ($persona->id === $user->fk_personal)
+										<option value=" $persona->id }}" selected="true" disabled="true">  $persona->per_nombre ." ". $persona->per_nombre2 ." ".$persona->per_apellido ." ".$persona->per_apellido2 }}</option>
+									else
+										<option value=" $persona->id }}">  $persona->per_nombre ." ". $persona->per_nombre2 ." ".$persona->per_apellido ." ".$persona->per_apellido2 }}</option>
+									endif
+								endforeach 
 							</select>
 					</div>
+				-->
+					<div class="form-group"> 
+						
+						{!! Form::label('fk_personal','Nombre del personal') !!}
 
+						{!! Form::text('fk_personal',$user->personal->per_nombre." ".$user->personal->per_nombre2." ".$user->personal->per_apellido." ".$user->personal->per_apellido2,['class'=> 'form-control', 'placeholder'=>'nombre', 'required', 'readonly'=>'true']) !!}
+					</div>
 					<div class="form-group"> 
 						
 						{!! Form::label('name','Nombre de usuario') !!}
@@ -51,25 +59,28 @@
 						{!! Form::text('name',$user->name,['class'=> 'form-control', 'placeholder'=>'nombre', 'required', 'readonly'=>'true']) !!}
 					</div>
 
-					<div class="form-group"> 
+					@if (auth()->user()->id === $user->id)
+						<div class="form-group"> 
 						
 						{!! Form::label('password','Clave') !!}
 
 						{!! Form::password('password',['class'=> 'form-control', 'title'=>'Solo letras mayúsculas, minúsculas y números min: 8 max: 20', 'placeholder'=>'********************', 'required', 'minlength'=>'8', 'maxlength' => '20', 'pattern'=>'[A-za-z0-9 ]+']) !!}
-					</div>
+						</div>
+					@endif
+					
+					@if (auth()->user()->id !== $user->id)
+						<div class="form-group"> 
+							
+							{!! Form::label('activa','Activado') !!}
 
-					<div class="form-group"> 
-						
-						{!! Form::label('activa','Activado') !!}
-
-						{!! Form::select('activa',[0=>'NO',1=>'SI'], $user->activa, ['class'=>'form-control', 'required'] ) !!}
-					</div>
-
+							{!! Form::select('activa',[0=>'NO',1=>'SI'], $user->activa, ['class'=>'form-control', 'required'] ) !!}
+						</div>
+					@endif
 					<div class="form-group"> 
 						
 						{!! Form::label('roles','Roles') !!}
 
-						{!! Form::select('roles[]',$roles,$user->roles->pluck('id'),['class'=> 'form-control select-roles', 'placeholder'=>'seleccionar roles', 'required']) !!}
+						{!! Form::select('fk_rol',$roles,$user->rol->id,['class'=> 'form-control select-roles', 'placeholder'=>'seleccionar roles', 'required']) !!}
 					</div>
 
 					<div class="form-group">

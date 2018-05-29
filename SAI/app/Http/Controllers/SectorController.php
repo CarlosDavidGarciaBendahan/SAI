@@ -28,7 +28,7 @@ class SectorController extends Controller
      */
     public function create()
     {
-        $oficinas = Oficina::select('*')->orderby('ofi_direccion','asc')->get();
+        $oficinas = Oficina::select('*')->where('id','>',0)->orderby('ofi_direccion','asc')->get();
 
         return view('admin.oficina.sector.create')->with(compact('oficinas'));
     }
@@ -70,7 +70,7 @@ class SectorController extends Controller
     {
         $sector = Sector::find($id);
        // $oficinas = Oficina::select('*')->orderby('ofi_direccion','asc')->get();
-        $oficinas = Oficina::select('id','ofi_direccion')->orderby('ofi_direccion','asc')->pluck('ofi_direccion','id');
+        $oficinas = Oficina::select('id','ofi_direccion')->where('id','>',0)->orderby('ofi_direccion','asc')->pluck('ofi_direccion','id');
 
         return view('admin.oficina.sector.edit')->with(compact('sector','oficinas'));
     }

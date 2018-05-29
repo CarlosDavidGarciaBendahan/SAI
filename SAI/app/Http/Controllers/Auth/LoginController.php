@@ -33,14 +33,16 @@ class LoginController extends Controller
                 
                 return redirect()->route('admin.home');
             } else {
-                
-                return back()
+                //dd('El usuario que intenta ingresar no esta activo.');
+                flash("El usuario que intenta ingresar no esta activo.")->error();
+                return view('admin.login.login')
                 ->withErrors([$this->username() => 'El usuario que intenta ingresar no esta activo.'])
                 ->withInput(request([$this->username()]));
             }
             
         }
             //return back()->withErrors([$this->username() => 'Estas credenciales no coinciden con nuestros registros']);
+            flash("El usuario que intenta ingresar no esta activo.")->error();
             return back()
             ->withErrors([$this->username() => trans('auth.failed')])
             ->withInput(request([$this->username()]));

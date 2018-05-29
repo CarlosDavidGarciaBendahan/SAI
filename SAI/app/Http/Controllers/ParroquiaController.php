@@ -20,7 +20,7 @@ class ParroquiaController extends Controller
     public function index()
     {
         //dd("fffff");
-        $parroquias = Parroquia::orderby('par_fk_municipio','asc')->paginate(5);
+        $parroquias = Parroquia::where('id','>',0)->orderby('par_fk_municipio','asc')->paginate(5);
 
         return view('admin.lugar.parroquia.index',['parroquias'=>$parroquias]);
 
@@ -33,7 +33,7 @@ class ParroquiaController extends Controller
      */
     public function create()
     {
-        $estados = Estado::select('est_nombre','id')->orderby('est_nombre','asc')->get();
+        $estados = Estado::select('est_nombre','id')->where('id','>',0)->orderby('est_nombre','asc')->get();
 
         return view ('admin.lugar.parroquia.create')->with(compact('estados'));
     }
@@ -73,7 +73,7 @@ class ParroquiaController extends Controller
      */
     public function edit($id)
     {
-        $estados = Estado::select('est_nombre','id')->orderby('est_nombre','asc')->get();
+        $estados = Estado::select('est_nombre','id')->where('id','>',0)->orderby('est_nombre','asc')->get();
         $parroquia = Parroquia::find($id);
 
         return view ('admin.lugar.parroquia.edit')->with(compact(['parroquia','estados']));
