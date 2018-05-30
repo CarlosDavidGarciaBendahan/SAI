@@ -42,8 +42,11 @@ class PresupuestoController extends Controller
         $empresas = Empresa::orderby('emp_nombre','ASC')->get();
         $clientes_naturales = Cliente_Natural::orderby('cli_nat_apellido','cli_nat_nombre','ASC')->get();
         $clientes_juridicos= Cliente_Juridico::orderby('cli_jur_nombre','ASC')->get();
-        $productos_computadores = Producto_Computador::orderby('pro_com_codigo','ASC')->pluck('pro_com_codigo','id');
-        $productos_articulos = Producto_Articulo::orderby('pro_art_codigo','ASC')->pluck('pro_art_codigo','id');
+        /*$productos_computadores = Producto_Computador::orderby('pro_com_codigo','ASC')->pluck('pro_com_codigo','id');
+        $productos_articulos = Producto_Articulo::orderby('pro_art_codigo','ASC')->pluck('pro_art_codigo','id');*/
+
+        $productos_computadores = Producto_Computador::orderby('pro_com_codigo','ASC')->paginate(5);
+        $productos_articulos = Producto_Articulo::orderby('pro_art_codigo','ASC')->paginate(5);
 
         $fecha = Carbon::now();
         $fecha = $fecha->format('d-m-Y');
@@ -62,11 +65,16 @@ class PresupuestoController extends Controller
     public function store(Request $request)
     {
         //dd($request->articulo_id);
+        //dd($request->agregarPC);
         //dd($request->computador_id);
         // dd($request->all());
+
+
+        
         $validar_stock = null; //donde guardo el mensaje que se envía si no hay suficiente stock
         $presupuesto = new Presupuesto($request->all());
 
+        $presupuesto->pre_subtotal = 0;
 
         $tipo_cliente = $request->tipo_cliente;
         
@@ -91,43 +99,52 @@ class PresupuestoController extends Controller
         $cantidadPC = sizeof($request->computador_id);
 
         for ($i=0; $i < $cantidadPC; $i++) { 
+            if ($request->agregarPC[$i] === 'true') {
+                $co
+                mputador = Producto_Computador::find($request->computador_id[$i]);
+                $detalle = new Detalle();
 
-            $detalle = new Detalle();
+                $detalle->det_cantidad = $request->cantidad_computador[$i];
+                $detalle->det_total = $computador->pro_com_precio * $request->cantidad_computador[$i];
+                $detalle->Presupuesto()->associate($presupuesto); 
+                $detalle->Producto_Computador()->associate($computador); 
+                $detalle->det_fk_producto_articulo = null;
 
-            $detalle->det_cantidad = $request->cantidad_computador[$i];
-            $detalle->det_total = $request->total_computador[$i];
-            $detalle->Presupuesto()->associate($presupuesto); 
-            $detalle->Producto_Computador()->associate($request->computador_id[$i]); 
-            $detalle->det_fk_producto_articulo = null;
+                $detalle->save();
 
-            $detalle->save();
-
-            //$validar_stock = $validar_stock . $this->ValidarStockDelProducto($request->computador_id[$i],"PC",$request->cantidad_computador[$i]);
+                $presupuesto->pre_subtotal = $presupuesto->pre_subtotal + $computador->pro_com_precio * $request->cantidad_computador[$i];
+            } 
+                        //$validar_stock = $validar_stock . $this->ValidarStockDelProducto($request->computador_id[$i],"PC",$request->cantidad_computador[$i]);
         }
         //Registro de los detalles - ARTICULO
         $cantidadArticulo = sizeof($request->articulo_id);
 
         for ($i=0; $i < $cantidadArticulo; $i++) { 
+            if ($request->agregarArticulo[$i] === 'true') {
+                $articulo = Producto_articulo::find($request->articulo_id[$i]);
+                $detalle = new Detalle();
 
-            $detalle = new Detalle();
+                $detalle->det_cantidad = $request->cantidad_articulo[$i];   //cantidad solicitado del articulo
+                $detalle->det_total = $articulo->pro_art_precio * $request->cantidad_articulo[$i];        //costo total cantidad*precio
+                $detalle->Presupuesto()->associate($presupuesto);           //vinculo la fk presupuesto
+                $detalle->Producto_Articulo()->associate($request->articulo_id[$i]); //vinculo la fk del articulo
+                $detalle->det_fk_producto_computador = null;                //detalle de articulo -> fk_PC = null
 
-            $detalle->det_cantidad = $request->cantidad_articulo[$i];   //cantidad solicitado del articulo
-            $detalle->det_total = $request->total_articulo[$i];         //costo total cantidad*precio
-            $detalle->Presupuesto()->associate($presupuesto);           //vinculo la fk presupuesto
-            $detalle->Producto_Articulo()->associate($request->articulo_id[$i]); //vinculo la fk del articulo
-            $detalle->det_fk_producto_computador = null;                //detalle de articulo -> fk_PC = null
+                $detalle->save();
 
-            $detalle->save();
+                $presupuesto->pre_subtotal = $presupuesto->pre_subtotal + $articulo->pro_art_precio * $request->cantidad_articulo[$i];
+            }
 
             //$validar_stock = $validar_stock . $this->ValidarStockDelProducto($request->computador_id[$i],"PC",$request->cantidad_computador[$i]);
         }
 
+        $presupuesto->save();
 
         //show($presupuesto->id);
 
         
         $this->downloadServer($presupuesto->id);
-
+        //return redirect()->route('presupuesto.index');
         /*if ($validar_stock !== null) {
             $this->stock = $validar_stock;
             //flash($validar_stock)->success();
