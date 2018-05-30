@@ -55,4 +55,8 @@ class Venta extends Model
         return $this->belongsToMany('App\CodigoArticulo','articulo_venta','art_ven_fk_venta','art_ven_fk_codigoarticulo');
     }
 
+    public function FuenteVenta(){
+        return $this->belongsTo('App\FuenteVenta','ven_fk_fuenteventa','id');
+    }
+
 }

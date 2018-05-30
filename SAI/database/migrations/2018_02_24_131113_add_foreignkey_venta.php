@@ -16,6 +16,7 @@ class AddForeignkeyVenta extends Migration
         Schema::table('venta', function (Blueprint $table) {
             $table->foreign('ven_fk_cliente_natural')->references('id')->on('cliente_natural');
             $table->foreign('ven_fk_cliente_juridico')->references('id')->on('cliente_juridico');
+            $table->foreign('ven_fk_fuenteventa')->references('id')->on('fuenteventa');
         });
 
     
