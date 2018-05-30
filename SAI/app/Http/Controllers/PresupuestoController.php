@@ -135,6 +135,8 @@ class PresupuestoController extends Controller
 
         $this->ValidarStockPresupuesto($presupuesto);
 
+
+
         return redirect()->action('PresupuestoController@enviarPresupuesto', [$presupuesto->id]);
 
 
@@ -247,6 +249,8 @@ class PresupuestoController extends Controller
 
         $presupuesto = Presupuesto::find($id);
         $this->enviarPresupuestoCliente($presupuesto,"Adjunto se encuentra el presupuesto#".$presupuesto->id." .Cualquier duda comunicarse con nosotros.");
+        $this->MostrarMensajesHistoricoFaltaStock($presupuesto->id);
+        //flash("hola ".$this->MostrarMensajesHistoricoFaltaStock($presupuesto->id))->error();
         return redirect()->route('presupuesto.index');
     }
 
@@ -262,6 +266,8 @@ class PresupuestoController extends Controller
             }
             flash("Se ha realizado el envio del presupuesto#". $presupuesto->id." al cliente ". $presupuesto->cliente_juridico->cli_jur_nombre)->success();
         }
+
+
     }
 
     public function CancelarPresupuesto($id)
@@ -346,7 +352,7 @@ class PresupuestoController extends Controller
                 }
                 
             }
-        }
+        }         
            
     }
     public function ValidarStockComputador( $computador, $cantidadSolicitada){
@@ -370,6 +376,33 @@ class PresupuestoController extends Controller
             return false;
         }
         
+    }
+
+    public function MostrarMensajesHistoricoFaltaStock($presupuesto_id){
+
+        $historicos = Historico_Falta_Stock::where('fk_presupuesto','=',$presupuesto_id)->get();
+        //$mensaje = "ERROR CANTIDAD PRODUCTO ";
+        foreach ($historicos as $historico) {
+            if ($historico->fk_producto_computador !== null ) {
+                $computador = producto_computador::find($historico->fk_producto_computador);
+
+                flash("Error computador ".$computador->pro_com_codigo." faltan: ".$historico->cantidad_faltante." para cumplir con el presupuesto#".$presupuesto_id)->error();
+
+                //$mensaje = $mensaje ." ". "computador: ".$computador->pro_com_codigo." faltan: ".$historico->cantidad_faltante." ";
+                
+
+            }else{
+               if ($historico->fk_producto_articulo !== null ) {
+                    $articulo = producto_articulo::find($historico->fk_producto_articulo);
+
+                    flash("Error articulo ".$articulo->pro_art_codigo." faltan: ".$historico->cantidad_faltante." para cumplir con el presupuesto#".$presupuesto_id)->error();
+                    //$mensaje = $mensaje ." "."ERROR CANTIDAD PRODUCTO articulo ".$producto_articulo->pro_art_codigo." faltan: ".$historico->cantidad_faltante." para cumplir con el presupuesto#".$presupuesto_id;
+
+                } 
+            }
+        }
+        /*dd($mensaje);
+        return $mensaje;*/
     }
 
 }
