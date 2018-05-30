@@ -209,9 +209,9 @@
 					      <td>{{ $producto_articulo->pro_art_cantidad }}</td>	
 					      <td>
 					      	<div class="container col-sm-12">
-					      		{!! Form::text('articulo_id[]',$producto_computador->id,['class'=> 'form-control  hidden', 'readonly'=>'true']) !!}
+					      		{!! Form::text('articulo_id[]',$producto_articulo->id,['class'=> 'form-control  hidden', 'readonly'=>'true']) !!}
 
-						      	{!! Form::text('cantidad_articulo[]'.$producto_computador->id,'0',['class'=> 'form-control col-sm-8', 'title'=>'Solo números de 0-9, min: 1 max: 4', 'placeholder'=>'1.', 'required', 'minlength'=>'1', 'maxlength' => '4', 'pattern'=>'[0-9]+']) !!}
+						      	{!! Form::text('cantidad_articulo[]'.$producto_articulo->id,'0',['class'=> 'form-control col-sm-8', 'title'=>'Solo números de 0-9, min: 1 max: 4', 'placeholder'=>'1.', 'required', 'minlength'=>'1', 'maxlength' => '4', 'pattern'=>'[0-9]+']) !!}
 
 						      	{!! Form::label('tipo de cliente','Agregar') !!}
 

@@ -13,6 +13,7 @@ use App\Producto_Computador;
 use App\Producto_Articulo;
 use Carbon\Carbon;
 use App\Mail\EnvioDePresupuesto;
+use App\Historico_Falta_Stock;
 
 class PresupuestoController extends Controller
 {
@@ -64,13 +65,6 @@ class PresupuestoController extends Controller
      */
     public function store(Request $request)
     {
-        //dd($request->articulo_id);
-        //dd($request->agregarPC);
-        //dd($request->computador_id);
-        // dd($request->all());
-
-
-        
         $validar_stock = null; //donde guardo el mensaje que se envía si no hay suficiente stock
         $presupuesto = new Presupuesto($request->all());
 
@@ -100,8 +94,7 @@ class PresupuestoController extends Controller
 
         for ($i=0; $i < $cantidadPC; $i++) { 
             if ($request->agregarPC[$i] === 'true') {
-                $co
-                mputador = Producto_Computador::find($request->computador_id[$i]);
+                $computador = Producto_Computador::find($request->computador_id[$i]);
                 $detalle = new Detalle();
 
                 $detalle->det_cantidad = $request->cantidad_computador[$i];
@@ -114,7 +107,6 @@ class PresupuestoController extends Controller
 
                 $presupuesto->pre_subtotal = $presupuesto->pre_subtotal + $computador->pro_com_precio * $request->cantidad_computador[$i];
             } 
-                        //$validar_stock = $validar_stock . $this->ValidarStockDelProducto($request->computador_id[$i],"PC",$request->cantidad_computador[$i]);
         }
         //Registro de los detalles - ARTICULO
         $cantidadArticulo = sizeof($request->articulo_id);
@@ -134,27 +126,16 @@ class PresupuestoController extends Controller
 
                 $presupuesto->pre_subtotal = $presupuesto->pre_subtotal + $articulo->pro_art_precio * $request->cantidad_articulo[$i];
             }
-
-            //$validar_stock = $validar_stock . $this->ValidarStockDelProducto($request->computador_id[$i],"PC",$request->cantidad_computador[$i]);
         }
 
         $presupuesto->save();
 
-        //show($presupuesto->id);
-
         
         $this->downloadServer($presupuesto->id);
-        //return redirect()->route('presupuesto.index');
-        /*if ($validar_stock !== null) {
-            $this->stock = $validar_stock;
-            //flash($validar_stock)->success();
-        } */
-        
+
+        $this->ValidarStockPresupuesto($presupuesto);
 
         return redirect()->action('PresupuestoController@enviarPresupuesto', [$presupuesto->id]);
-        //$this->enviarPresupuesto($presupuesto->id);
-        //flash("Registro del presupuesto '' ".$presupuesto->id." '' exitoso")->success();
-        //return redirect()->route('presupuesto.index');
 
 
     }
@@ -197,24 +178,11 @@ class PresupuestoController extends Controller
             $presupuesto->save();
             $this->downloadServer($presupuesto->id);
             $this->enviarPresupuestoCliente($presupuesto,"El presupuesto #".$presupuesto->id."  ha sido aprobado en la fecha ".date("d/m/Y", strtotime($presupuesto->pre_fecha_aprobado)));
-            /*if ($presupuesto->cliente_natural !== null) {
-            foreach ($presupuesto->cliente_natural->contacto_correos as $correo) {
-                \Mail::to($correo->con_cor_correo)->send(new EnvioDePresupuesto("El presupuesto #".$presupuesto->id."  ha sido aprobado en la fecha ".date("d/m/Y", strtotime($presupuesto->pre_fecha_aprobado)),$presupuesto->id,"Aprobación del presupuesto#".$presupuesto->id));
-            }
-            } else {
-                foreach ($presupuesto->cliente_juridico->contacto_correos as $correo) {
-                    \Mail::to($correo->con_cor_correo)->send(new EnvioDePresupuesto("El presupuesto #".$presupuesto->id." ya ha sido aprobado anteriormente en la fecha ".date("d/m/Y", strtotime($presupuesto->pre_fecha_aprobado)),$presupuesto->id,"Aprobación del presupuesto#".$presupuesto->id));
-                }
-            }*/
             flash("Se ha aprobado el presupuesto #".$presupuesto->id." '' exitosamente")->success();
-            //EJEMPLO PARA ENVIO DE CORREO ELECTRONICO
-            
+ 
         }else
             flash("El presupuesto #".$presupuesto->id." ya ha sido aprobado anteriormente en la fecha ".date("d/m/Y", strtotime($presupuesto->pre_fecha_aprobado)))->error();
 
-        
-        
-        //\Mail::to($presupuesto->)->send(new EnvioDePresupuesto("mensaje enviado al momento de aprobar el presupuesto."));
         return redirect()->route('presupuesto.index');
     }
 
@@ -279,21 +247,6 @@ class PresupuestoController extends Controller
 
         $presupuesto = Presupuesto::find($id);
         $this->enviarPresupuestoCliente($presupuesto,"Adjunto se encuentra el presupuesto#".$presupuesto->id." .Cualquier duda comunicarse con nosotros.");
-        /*if ($presupuesto->cliente_natural !== null) {
-            foreach ($presupuesto->cliente_natural->contacto_correos as $correo) {
-                \Mail::to($correo->con_cor_correo)->send(new EnvioDePresupuesto("El presupuesto #".$presupuesto->id." ya ha sido aprobado anteriormente en la fecha ".date("d/m/Y", strtotime($presupuesto->pre_fecha_aprobado)),$presupuesto->id," presupuesto#".$presupuesto->id));
-            }
-            flash("Se ha realizado el envio del presupuesto#". $presupuesto->id." al cliente " . $presupuesto->cliente_natural->cli_nat_nombre ." ".$presupuesto->cliente_natural->cli_nat_nombre2." ".$presupuesto->cliente_natural->cli_nat_apellido." ".$presupuesto->cliente_natural->cli_nat_apellido2)->success();
-        } else {
-            foreach ($presupuesto->cliente_juridico->contacto_correos as $correo) {
-                \Mail::to($correo->con_cor_correo)->send(new EnvioDePresupuesto("El presupuesto #".$presupuesto->id." ya ha sido aprobado anteriormente en la fecha ".date("d/m/Y", strtotime($presupuesto->pre_fecha_aprobado)),$presupuesto->id," presupuesto#".$presupuesto->id));
-            }
-            flash("Se ha realizado el envio del presupuesto#". $presupuesto->id." al cliente ". $presupuesto->cliente_juridico->cli_jur_nombre)->success();
-        }*/
-
-        /*if($this->stock !== null){
-            flash($this->stock)->error();
-        }*/
         return redirect()->route('presupuesto.index');
     }
 
@@ -336,27 +289,88 @@ class PresupuestoController extends Controller
         return redirect()->route('presupuesto.index');
     }
 
-    /*public function ValidarStockDelProducto($producto_id,$tipo,$cantidad_solicitada){
-        if ($tipo === "PC") {
-            $producto = Producto_Computador::find($producto_id); //Busco producto solicitado
+    public function ValidarStockPresupuesto(Presupuesto $presupuesto){
 
-            if ($producto->pro_com_cantidad < $cantidad_solicitada) {//verifico si la cantidad solicitada es mayor que la existente.
-                $cantidad_faltante = $cantidad_solicitada - $producto->pro_com_cantidad;
-                return "La cantidad del producto ". $producto->pro_com_codigo ."(".$producto->pro_com_cantidad.")". " no es suficiente para cumplir con este presupuesto. Falta la cantidad de ".$cantidad_faltante." para completarlo \n" ;
+        if ($presupuesto !== null) {
+            foreach ($presupuesto->detalles as $detalle) {
+                if ($detalle->producto_computador !== null) {
+                    
+                    //valido la existencia actual, con la cantidad solicitada
+                    if ($this->ValidarStockComputador($detalle->producto_computador,$detalle->det_cantidad)) {
+                        //SI cantidad solicitada > stock
+                        //creo mi historico
+                        $historico = new Historico_Falta_Stock();
+                        //lleno mi tabla de historico
+                        //cantidad solicitada - stock
+                        $historico->cantidad_faltante =  $detalle->det_cantidad - $detalle->producto_computador->pro_com_cantidad;
+                        //precio unitario del producto en ese momento del producto
+                        $historico->precio_unitario = $detalle->producto_computador->pro_com_precio;
+                        //cotizacion del dolar es sacado de la tabla Cambio_Bolivar
+                        $historico->cotizacion_dolar = 1; //dato de ejemplo
+
+                        //relaciones con presupuesto y producto computador o articulo
+                        $historico->fk_presupuesto = $presupuesto->id;
+                        $historico->fk_producto_computador = $detalle->producto_computador->id;
+                        $historico->fk_producto_articulo = null; //solo puede ser computador o articulo.
+
+                        $historico->save();
+
+                        /*flash("ERROR CANTIDAD PRODUCTO computador ".$detalle->producto_computador->pro_com_codigo." cantidad: ".$detalle->producto_computador->pro_com_cantidad." solicitado: ".$detalle->det_cantidad)->error();*/
+                    }    
+
+                } else {
+                    if ($detalle->producto_articulo !== null) {
+                        //valido la existencia actual, con la cantidad solicitada
+                        if ($this->ValidarStockArticulo($detalle->producto_articulo,$detalle->det_cantidad)) {
+                            //SI cantidad solicitada > stock
+                            //creo mi historico
+                            $historico = new Historico_Falta_Stock();
+                            //lleno mi tabla de historico
+                            //cantidad solicitada - stock
+                            $historico->cantidad_faltante =  $detalle->det_cantidad - $detalle->producto_articulo->pro_art_cantidad;
+                            //precio unitario del producto en ese momento del producto
+                            $historico->precio_unitario = $detalle->producto_articulo->pro_art_precio;
+                            //cotizacion del dolar es sacado de la tabla Cambio_Bolivar
+                            $historico->cotizacion_dolar = 1; //dato de ejemplo
+
+                            //relaciones con presupuesto y producto computador o articulo
+                            $historico->fk_presupuesto = $presupuesto->id;
+                            $historico->fk_producto_articulo = $detalle->producto_articulo->id;
+                            $historico->fk_producto_computador = null; //solo puede ser computador o articulo.
+
+                            $historico->save();
+                        
+                            /*flash("ERROR CANTIDAD PRODUCTO artículo ".$detalle->producto_articulo->pro_art_codigo." cantidad: ".$detalle->producto_articulo->pro_art_cantidad." solicitado: ".$detalle->det_cantidad)->error();*/
+                        }   
+                    } 
+                }
                 
             }
+        }
+           
+    }
+    public function ValidarStockComputador( $computador, $cantidadSolicitada){
 
-        } else { 
-            $producto = Producto_Articulo::find($producto_id); //Busco producto solicitado
+        //$computador = Producto_Computador::find($computador_id);
 
-            if ($producto->pro_art_cantidad < $cantidad_solicitada) {//verifico si la cantidad solicitada es mayor que la existente.
-                $cantidad_faltante = $cantidad_solicitada - $producto->pro_art_cantidad;
-                return "La cantidad del producto ". $producto->pro_art_codigo ."(".$producto->pro_art_cantidad.")". " no es suficiente para cumplir con este presupuesto. Falta la cantidad de ".$cantidad_faltante." para completarlo \n" ;
-                
-            } 
+        if ($cantidadSolicitada > $computador->pro_com_cantidad  ) {
+            return true;
+        } else {
+            return false;
         }
         
-    }*/
-    
+    }
+    public function ValidarStockArticulo( $articulo, $cantidadSolicitada){
+
+        //$articulo = Producto_articulo::find($articulo_id);
+
+        if ($cantidadSolicitada > $articulo->pro_art_cantidad) {
+            return true;
+        } else {
+            return false;
+        }
+        
+    }
+
 }
 

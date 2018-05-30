@@ -19,8 +19,8 @@ class CreateTableHistoricoFaltaStock extends Migration
             $table->float('precio_unitario',10)->nullable(false);
             $table->float('cotizacion_dolar',10)->nullable(false);
             $table->integer('fk_presupuesto')->unsigned()->nullable(false);
-            $table->integer('fk_producto_computador')->unsigned()->nullable(false);
-            $table->integer('fk_producto_articulo')->unsigned()->nullable(false);
+            $table->integer('fk_producto_computador')->unsigned();
+            $table->integer('fk_producto_articulo')->unsigned();
             $table->timestamps();
 
 
