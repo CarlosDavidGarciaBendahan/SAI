@@ -60,4 +60,8 @@ class Producto_Computador extends Model
         return $this->belongsToMany('App\Producto_Articulo','computador_articulo','com_art_fk_producto_computador','com_art_fk_producto_articulo');
     }
 
+    public function Historicos_Falta_Stock(){
+        return $this->hasMany('App\Historico_Falta_Stock','fk_producto_computador','id');
+    }
+
 }

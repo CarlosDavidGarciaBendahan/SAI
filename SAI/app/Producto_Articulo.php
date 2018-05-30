@@ -63,4 +63,8 @@ class Producto_Articulo extends Model
     public function Computadores(){
         return $this->belongsToMany('App\Producto_Computador','computador_articulo','com_art_fk_producto_articulo','com_art_fk_producto_computador');
     }
+
+    public function Historicos_Falta_Stock(){
+        return $this->hasMany('App\Historico_Falta_Stock','fk_producto_articulo','id');
+    }
 }
