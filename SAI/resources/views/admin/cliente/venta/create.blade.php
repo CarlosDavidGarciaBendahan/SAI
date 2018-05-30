@@ -71,6 +71,13 @@
 					
 					<div class="form-group col-sm-12"> 
 						
+						{!! Form::label('codigoArticulo','Fuente de la venta') !!}
+
+						{!! Form::select('ven_fk_fuenteventa',$fuenteventas,null,['class'=> 'form-control  ', 'required']) !!}
+					</div>
+
+					<div class="form-group col-sm-12"> 
+						
 						{!! Form::label('codigoPC','Códigos de computadoras') !!}
 
 						{!! Form::select('codigoPC[]',$codigosPC,null,['class'=> 'form-control select-multiple ', 'multiple' , 'id'=>'select-codigosPC']) !!}

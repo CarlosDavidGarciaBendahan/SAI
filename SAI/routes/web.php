@@ -391,6 +391,14 @@ Route::prefix('admin/oficina/')->group( function(){
 		'uses'	=> 'PresupuestoController@CancelarPresupuesto',
 		'as'	=> 'presupuesto.CancelarPresupuesto'
 	])->middleware('auth');
+	///////////////////////////////////////////////////
+	////// 		FuenteVenta	
+	///////////////////////////////////////////////////
+	Route::resource('fuenteventa','fuenteventaController')->middleware('auth');
+	Route::get('fuenteventa/{id}/destroy',[
+		'uses'	=> 'fuenteventaController@destroy',
+		'as'	=> 'fuenteventa.destroy'
+	])->middleware('auth');
 });
 
 

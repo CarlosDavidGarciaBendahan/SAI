@@ -15,6 +15,7 @@ use App\CodigoArticulo;
 use Illuminate\Support\Facades\DB;
 use App\http\Controllers\CodigoPCController;
 use App\http\Controllers\CodigoArticuloController;
+use App\FuenteVenta;
 
 class VentaController extends Controller
 {
@@ -51,7 +52,7 @@ class VentaController extends Controller
 
         $clientes_naturales = Cliente_Natural::orderby('cli_nat_apellido','cli_nat_nombre','ASC')->get();
         $clientes_juridicos= Cliente_Juridico::orderby('cli_jur_nombre','ASC')->get();
-
+        $fuenteventas = fuenteventa::orderby('nombre','ASC')->pluck('nombre','id');
 
         //BUSCO TODOS LOS ARTICULOS Y TODAS LAS PCS
         $codigosPC = CodigoPC::orderby('cod_pc_codigo','ASC')->get();
@@ -84,7 +85,7 @@ class VentaController extends Controller
         //dd($clientes_naturales);
         //dd($clientes_juridicos);
 
-        return view('admin.cliente.venta.create')->with(compact('clientes_naturales','clientes_juridicos','fecha','codigosPC','codigosArticulo'));;
+        return view('admin.cliente.venta.create')->with(compact('clientes_naturales','clientes_juridicos','fecha','codigosPC','codigosArticulo','fuenteventas'));;
     }
 
     /**

@@ -143,6 +143,7 @@
                     <ul class="treeview-menu">
                       <li><a href="{{ route('oficina.index') }}"><i class="fa fa-circle-o"></i> Oficina</a></li>
                       <li><a href="{{ route('sector.index') }}"><i class="fa fa-circle-o"></i> Sector</a></li>
+                      <li><a href="{{ route('fuenteventa.index') }}"><i class="fa fa-circle-o"></i> Fuente de ventas</a></li>
                     </ul>
                   </li>
                 <li><a href="{{ route('banco.index') }}"><i class="fa fa-circle-o"></i> Banco</a></li>
