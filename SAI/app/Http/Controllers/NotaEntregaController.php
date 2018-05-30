@@ -156,20 +156,33 @@ class NotaEntregaController extends Controller
 
         $NotaEntrega = NotaEntrega::find($id);
         $this->enviarNotaEntregaCliente($NotaEntrega,"Adjunto se encuentra la NotaEntrega#".$NotaEntrega->id." .Cualquier duda comunicarse con nosotros.");
+
         return redirect()->route('venta.index');
     }
 
     public function enviarNotaEntregaCliente($NotaEntrega,$mensaje){
         if ($NotaEntrega->venta->cliente_natural !== null) {
-            foreach ($NotaEntrega->venta->cliente_natural->contacto_correos as $correo) {
-                \Mail::to($correo->con_cor_correo)->send(new EnvioDeNotaEntrega($mensaje,$NotaEntrega->id," NotaEntrega#".$NotaEntrega->id));
+            if (count($NotaEntrega->venta->cliente_natural->contacto_correos) !== 0) {
+               foreach ($NotaEntrega->venta->cliente_natural->contacto_correos as $correo) {
+                \Mail::to($correo->con_cor_correo)->send(new EnvioDeNotaEntrega($mensaje,$NotaEntrega->id," NotaEntrega#".$NotaEntrega->id)); 
+
+                }
+                flash("Se ha realizado el envio del NotaEntrega#". $NotaEntrega->id." al cliente " . $NotaEntrega->venta->cliente_natural->cli_nat_nombre ." ".$NotaEntrega->venta->cliente_natural->cli_nat_nombre2." ".$NotaEntrega->venta->cliente_natural->cli_nat_apellido." ".$NotaEntrega->venta->cliente_natural->cli_nat_apellido2)->success();
+            } else {
+                flash("NO se realizo el envío. el cliente no posee correos asociados")->error();
             }
-            flash("Se ha realizado el envio del NotaEntrega#". $NotaEntrega->id." al cliente " . $NotaEntrega->venta->cliente_natural->cli_nat_nombre ." ".$NotaEntrega->venta->cliente_natural->cli_nat_nombre2." ".$NotaEntrega->venta->cliente_natural->cli_nat_apellido." ".$NotaEntrega->venta->cliente_natural->cli_nat_apellido2)->success();
+            
+            
         } else {
-            foreach ($NotaEntrega->venta->cliente_juridico->contacto_correos as $correo) {
-                \Mail::to($correo->con_cor_correo)->send(new EnvioDeNotaEntrega($mensaje,$NotaEntrega->id," NotaEntrega#".$NotaEntrega->id));
+            
+            if (count($NotaEntrega->venta->cliente_juridico->contacto_correos) !== 0) {
+                foreach ($NotaEntrega->venta->cliente_juridico->contacto_correos as $correo) {
+                    \Mail::to($correo->con_cor_correo)->send(new EnvioDeNotaEntrega($mensaje,$NotaEntrega->id," NotaEntrega#".$NotaEntrega->id));
+                }
+                flash("Se ha realizado el envio del NotaEntrega#". $NotaEntrega->id." al cliente ". $NotaEntrega->venta->cliente_juridico->cli_jur_nombre)->success();
+            } else {
+                flash("NO se realizo el envío. el cliente no posee correos asociados")->error();
             }
-            flash("Se ha realizado el envio del NotaEntrega#". $NotaEntrega->id." al cliente ". $NotaEntrega->venta->cliente_juridico->cli_jur_nombre)->success();
         }
     }
 

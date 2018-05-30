@@ -23,7 +23,8 @@ class CreateTableContactoCorreo extends Migration
 
             $table->timestamps();
 
-            $table->unique('con_cor_correo','CONTACTO_CORREO_UNIQUE_con_cor_correo');
+            //$table->unique('con_cor_correo','CONTACTO_CORREO_UNIQUE_con_cor_correo');
+
             $table->unique(['con_cor_fk_personal','con_cor_fk_empresa',
                             'con_cor_fk_cliente_juridico','con_cor_fk_cliente_natural',
                             'con_cor_correo'],

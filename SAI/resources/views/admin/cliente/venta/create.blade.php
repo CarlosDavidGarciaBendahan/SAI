@@ -69,17 +69,17 @@
 						{!! Form::text('ven_porcentaje_descuento',null,['class'=> 'form-control', 'title'=>'Solo números del 1 al 100. ','placeholder'=>'100.', 'minlength'=>'1', 'maxlength' => '3', 'pattern'=>'[0-9]+']) !!}		
 					</div>
 					
-					<div class="form-group"> 
+					<div class="form-group col-sm-12"> 
 						
 						{!! Form::label('codigoPC','Códigos de computadoras') !!}
 
-						{!! Form::select('codigoPC[]',$codigosPC,null,['class'=> 'form-control select-permisos ', 'multiple' , 'id'=>'select-codigosPC']) !!}
+						{!! Form::select('codigoPC[]',$codigosPC,null,['class'=> 'form-control select-multiple ', 'multiple' , 'id'=>'select-codigosPC']) !!}
 					</div>
-					<div class="form-group"> 
+					<div class="form-group col-sm-12"> 
 						
 						{!! Form::label('codigoArticulo','Códigos de artículos') !!}
 
-						{!! Form::select('codigoArticulo[]',$codigosArticulo,null,['class'=> 'form-control select-permisos ', 'multiple', 'id'=>'select-codigosArticulo']) !!}
+						{!! Form::select('codigoArticulo[]',$codigosArticulo,null,['class'=> 'form-control select-multiple ', 'multiple', 'id'=>'select-codigosArticulo']) !!}
 					</div>
 					
 
@@ -99,7 +99,7 @@
 
 @endsection
 @section('scripts')
-	<script src = "{{ asset('plugins/Script/ChosenMultipleSelectorEmpresas.js') }}"></script>
+	<script src = "{{ asset('plugins/Script/ChosenMultipleSelectorAll.js') }}"></script>
 	<!--<script src = "{{ asset('plugins/Script/ObtenerDatosEmpresa.js') }}"></script>-->
 	<script src = "{{ asset('plugins/Script/ObtenerDatosClienteNatural.js') }}"></script>
 	<script src = "{{ asset('plugins/Script/ObtenerDatosClienteJuridico.js') }}"></script>

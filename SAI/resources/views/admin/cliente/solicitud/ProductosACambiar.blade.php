@@ -105,7 +105,7 @@
 
 
 					<div>
-						@if (count($solicitud->CodigoPCsEntregado) !== 0)
+						@if (count($solicitud->CodigoPCsEntregado) !== 0 || count($solicitud->CodigoArticulosEntregado) !== 0)
 							{!! Form::label('venta','Productos Elegidos',['class'=> ' col-sm']) !!}
 						<table class="table table-inverse">
 						  <thead>
@@ -119,7 +119,7 @@
 						    </tr>
 						  </thead>
 						  <tbody>
-
+						  	
 						  	@foreach ($solicitud->CodigoPCsEntregado as $codigoPC)
 						  	
 						  		<tr>
@@ -157,13 +157,14 @@
 							  	  	{{ $codigoArticulo->producto_articulo->pro_art_precio." ".$codigoArticulo->producto_articulo->pro_art_moneda }}
 							  	  </td>
 							  	  <td>
-							  	  	<a href="{{ route('solicitud.eliminarProductoCambio', [$solicitud->id,$codigoPC->id,'articulo']) }}" onclick="return confirm('Seguro que desea quitar este artículo de la solicitud?')" class="btn btn-danger" title="Quitar producto de esta solicitud">
+							  	  	<a href="{{ route('solicitud.eliminarProductoCambio', [$solicitud->id,$codigoArticulo->id,'articulo']) }}" onclick="return confirm('Seguro que desea quitar este artículo de la solicitud?')" class="btn btn-danger" title="Quitar producto de esta solicitud">
 										<span class="class glyphicon glyphicon-remove-circle"></span>
 								</a>
 							  	  </td>
 						    	</tr>
 						  	
 						  	@endforeach
+						  	
 						  </tbody>
 
 						</table>
@@ -234,7 +235,7 @@
 					  	  </td>
 					  	  <td>
 					  	  	@if (count($solicitud->CodigoArticulosEntregado) < count($solicitud->CodigoArticulos))
-								<a href="{{ route('solicitud.agregarProductoCambio', [$solicitud->id,$codigoPC->id,'articulo']) }}" onclick="return confirm('Seguro que desea agregar este artículo de la solicitud?')" class="btn btn-info" title="Agregar producto de esta solicitud">
+								<a href="{{ route('solicitud.agregarProductoCambio', [$solicitud->id,$codigoArticulo->id,'articulo']) }}" onclick="return confirm('Seguro que desea agregar este artículo de la solicitud?')" class="btn btn-info" title="Agregar producto de esta solicitud">
 							      	<span class="class glyphicon glyphicon-ok"></span>
 						      		</a> 
 							@else

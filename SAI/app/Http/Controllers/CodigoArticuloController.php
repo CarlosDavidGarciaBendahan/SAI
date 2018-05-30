@@ -52,7 +52,7 @@ class CodigoArticuloController extends Controller
 
             $codigoArticulo = new codigoArticulo($request->all());
 
-            $codigoArticulo->cod_art_codigo = $request->codigosArticulo[$i];
+            $codigoArticulo->cod_art_codigo = strtoupper($request->codigosArticulo[$i]);
             $codigoArticulo->cod_art_estado = $request->estado[$i];
             $codigoArticulo->cod_art_fk_pc  = null;
             //$codigoArticulo->cod_pc_fk_producto_computador = $request->cod_pc_fk_producto_computador;
@@ -60,6 +60,9 @@ class CodigoArticuloController extends Controller
             $codigoArticulo->save();
 
         }
+        $articulo = producto_articulo::find( $codigoArticulo->cod_art_fk_producto_articulo);
+        $articulo->pro_art_cantidad = $articulo->pro_art_cantidad + $cantidad;
+        $articulo->save();
 
         flash("Registro de los artículos exitosamente")->success();
         //return redirect()->route('producto_computador.show')->with(['id' => $request->cod_pc_fk_producto_computador]);

@@ -13,6 +13,8 @@ use App\Venta;
 use App\CodigoPC;
 use App\CodigoArticulo;
 use Illuminate\Support\Facades\DB;
+use App\http\Controllers\CodigoPCController;
+use App\http\Controllers\CodigoArticuloController;
 
 class VentaController extends Controller
 {
@@ -41,19 +43,38 @@ class VentaController extends Controller
     public function create()
     {
         //dd("crear venta");
+
+        //para poder utilizar los metodos de validacion de disponibilidad
+        $PC = new CodigoPCController();
+        $Articulo = new CodigoArticuloController();
+
+
         $clientes_naturales = Cliente_Natural::orderby('cli_nat_apellido','cli_nat_nombre','ASC')->get();
         $clientes_juridicos= Cliente_Juridico::orderby('cli_jur_nombre','ASC')->get();
 
-        $codigosPC = DB::select('
-                                select pc.id, pc.cod_pc_codigo
-                                from codigoPC as pc  
-                                ');
-        $codigosPC = collect($codigosPC)->pluck('cod_pc_codigo','id');
 
-        $codigosArticulo = DB::select('
-                                select art.id, art.cod_art_codigo
-                                from codigoArticulo as art  
-                                ');
+        //BUSCO TODOS LOS ARTICULOS Y TODAS LAS PCS
+        $codigosPC = CodigoPC::orderby('cod_pc_codigo','ASC')->get();
+        //busco todos los articulos que no esten asignados a una PC
+        $codigosArticulo = CodigoArticulo::whereNull('cod_art_fk_pc')->orderby('cod_art_codigo','ASC')->get();
+
+
+        foreach ($codigosPC as $key => $computador) {
+            
+            //verifico si el computador NO esta disponible
+            //si NO esta disponible lo quito de la lista que se va a mostrar en la venta
+            if(!$PC->disponibilidadPC($computador)){
+               $codigosPC->forget($key);//quito los NO disponibles!!!  porque NO pueden ser elegidos...
+            }  
+        } 
+        foreach ($codigosArticulo as $key => $componente) {
+               
+               if(!$Articulo->disponibilidadArticulo($componente)){//verifico si NO esta disponible
+                    $codigosArticulo->forget($key);//quito los NO disponibles!!!
+                }
+            } 
+
+        $codigosPC = collect($codigosPC)->pluck('cod_pc_codigo','id');
         $codigosArticulo = collect($codigosArticulo)->pluck('cod_art_codigo','id');
 
         $fecha = Carbon::now();
@@ -144,16 +165,37 @@ class VentaController extends Controller
     {
         $venta = Venta::find($id);
 
-        $codigosPC = DB::select('
-                                select pc.id, pc.cod_pc_codigo
-                                from codigoPC as pc  
-                                ');
-        $codigosPC = collect($codigosPC)->pluck('cod_pc_codigo','id');
+        //para poder utilizar los metodos de validacion de disponibilidad
+        $PC = new CodigoPCController();
+        $Articulo = new CodigoArticuloController();
 
-        $codigosArticulo = DB::select('
-                                select art.id, art.cod_art_codigo
-                                from codigoArticulo as art  
-                                ');
+
+        $clientes_naturales = Cliente_Natural::orderby('cli_nat_apellido','cli_nat_nombre','ASC')->get();
+        $clientes_juridicos= Cliente_Juridico::orderby('cli_jur_nombre','ASC')->get();
+
+
+        //BUSCO TODOS LOS ARTICULOS Y TODAS LAS PCS
+        $codigosPC = CodigoPC::orderby('cod_pc_codigo','ASC')->get();
+        //busco todos los articulos que no esten asignados a una PC
+        $codigosArticulo = CodigoArticulo::whereNull('cod_art_fk_pc')->orderby('cod_art_codigo','ASC')->get();
+
+
+        foreach ($codigosPC as $key => $computador) {
+            
+            //verifico si el computador NO esta disponible
+            //si NO esta disponible lo quito de la lista que se va a mostrar en la venta
+            if(!$PC->disponibilidadPC($computador)){
+               $codigosPC->forget($key);//quito los NO disponibles!!!  porque NO pueden ser elegidos...
+            }  
+        } 
+        foreach ($codigosArticulo as $key => $componente) {
+               
+               if(!$Articulo->disponibilidadArticulo($componente)){//verifico si NO esta disponible
+                    $codigosArticulo->forget($key);//quito los NO disponibles!!!
+                }
+            } 
+
+        $codigosPC = collect($codigosPC)->pluck('cod_pc_codigo','id');
         $codigosArticulo = collect($codigosArticulo)->pluck('cod_art_codigo','id');
         
         return view('admin.cliente.venta.edit')->with(compact('venta','codigosPC','codigosArticulo'));
@@ -176,7 +218,7 @@ class VentaController extends Controller
         $venta->VentaPCs()->attach($request->codigoPC);
         $venta->VentaArticulos()->attach($request->codigoArticulo);
         if ($request->ven_porcentaje_descuento !== null && $request->ven_porcentaje_descuento !== 0) {
-            $venta->ven_porcentaje_descuento = $request->ven_porcentaje_descuento
+            $venta->ven_porcentaje_descuento = $request->ven_porcentaje_descuento;
         }
 
         $venta->ven_monto_total = 0;

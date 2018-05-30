@@ -163,7 +163,7 @@ class SolicitudController extends Controller
             } 
             foreach ($codigoArticulosCambio as $key => $codigoArticulo) {
                
-               if(!$PC->disponibilidadPC($codigoArticulo)){//verifico si NO esta disponible
+               if(!$Articulo->disponibilidadArticulo($codigoArticulo)){//verifico si NO esta disponible
                     $codigoArticulosCambio->forget($key);//quito los NO disponibles!!!
                 }else{
                     foreach ($solicitud->CodigoArticulos as $articulo) {
@@ -366,7 +366,7 @@ class SolicitudController extends Controller
             $solicitud = solicitud::find($solicitud_id);
 
             $codigoPCs = CodigoPC::orderby('cod_pc_codigo','ASC')->get();
-            $codigoArticulos = CodigoArticulo::orderby('cod_art_codigo','ASC')->get();
+            $codigoArticulos = CodigoArticulo::whereNull('cod_art_fk_pc')->orderby('cod_art_codigo','ASC')->get();
             //BUSCAR UNA MANERA DE MOSTRAR LOS PRODUCTOS DISPONIBLES PARA CAMBIO. 
             //EN LA LISTA TENDRE EL BTN PARA AGREGAR LOS PRODUCTOS
             //DEBO VERIFICAR UNA MANERA DE QUE NO INGRESE MAS PRODUCTOS DE LO QUE SON

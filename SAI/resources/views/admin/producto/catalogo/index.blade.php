@@ -15,7 +15,7 @@
 					<div class="col-sm-4">
 						@foreach ($PC->imagenes as $imagen)
 							<a href="{{ route('producto_computador.show', $PC->id) }}" class="">
-					      		<img class="img-fluid" src="{{"\\imagenes\\computador\\".$imagen->ima_nombre  }}" width="150" height="150">
+					      		<img class="img-fluid" src="{{ asset('imagenes/computador/'.$imagen->ima_nombre) }}" width="150" height="150">
 					      	</a>
 						@endforeach
 					</div>

@@ -53,12 +53,16 @@ class CodigoPCController extends Controller
 
             $codigoPC = new codigoPC($request->all());
 
-            $codigoPC->cod_pc_codigo = $request->codigosPC[$i];
+            $codigoPC->cod_pc_codigo = strtoupper($request->codigosPC[$i]);
             $codigoPC->cod_pc_estado = $request->estado[$i];
             //$codigoPC->cod_pc_fk_producto_computador = $request->cod_pc_fk_producto_computador;
 
             $codigoPC->save();
         }
+
+        $Computador = producto_computador::find( $codigoPC->cod_pc_fk_producto_computador);
+        $Computador->pro_com_cantidad = $Computador->pro_com_cantidad + $cantidad;
+        $Computador->save();
 
         flash("Registro de las computadoras exitosamente")->success();
         //return redirect()->route('producto_computador.show')->with(['id' => $request->cod_pc_fk_producto_computador]);
