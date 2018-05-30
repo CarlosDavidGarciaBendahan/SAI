@@ -71,6 +71,16 @@
 <use>0</use>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
+<Attribute name="VEN_porcentaje_descuento" id="A7F08AF8-2483-899D-E442-4736A63213ED">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-05-29 18:05:37 UTC</createdTime>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
 <Attribute name="id1" id="9C309252-74B5-AF17-0722-3B5597C4E08A">
 <createdBy>Carlos</createdBy>
 <createdTime>2018-02-22 00:29:38 UTC</createdTime>
@@ -80,6 +90,18 @@
 <item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
 </engineerTo>
 <referedAttribute>235B0D83-17BB-4537-A15A-10616BF28232</referedAttribute>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="id2" id="ECC47DF9-880C-2D16-7ADE-4B7C7AD539F1">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-05-30 22:11:58 UTC</createdTime>
+<generatorID>EE4F32ED-5484-20C1-72D8-02475AE16F81</generatorID>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<referedAttribute>ACE3A662-B8AA-6A9C-1119-4C420B2C1218</referedAttribute>
 <use>0</use>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
