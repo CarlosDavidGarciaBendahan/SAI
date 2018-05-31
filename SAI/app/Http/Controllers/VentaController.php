@@ -99,6 +99,7 @@ class VentaController extends Controller
         //dd($request->all());
 
         $venta = new Venta($request->all());
+        //dd($venta);
         $venta->ven_monto_total = 0;
         if ($request->tipo_cliente !== null) {
             $venta->ven_fk_cliente_juridico = null;
@@ -130,7 +131,7 @@ class VentaController extends Controller
         }
         
 
-        $venta->ven_moneda = "Bs";
+        $venta->ven_moneda = "$";
 
         $venta->save();
 
