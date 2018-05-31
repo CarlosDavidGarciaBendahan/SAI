@@ -10,6 +10,9 @@ use App\Municipio;
 use App\Parroquia;
 use App\Contacto_Correo;
 use App\Contacto_Telefono;
+use App\Venta;
+use App\Solicitud;
+use Carbon\Carbon;
 
 class Cliente_JuridicoController extends Controller
 {
@@ -94,7 +97,15 @@ class Cliente_JuridicoController extends Controller
         $municipios = Municipio::orderby('mun_nombre','asc')->get();
         $parroquias = Parroquia::orderby('par_nombre','asc')->get();
 
-        return view('admin.oficina.cliente_juridico.show')->with(compact('cliente_juridico','estados','municipios','parroquias'));
+        $ultimaCompra = venta::where('ven_fk_cliente_juridico','=',$id)->where('ven_eliminada','=',0)->latest()->limit(1)->get();
+        //$ultimaSolicitud = solicitud::where('ven_fk_cliente_juridico','=',$id)->latest()->limit(1)->get();
+        //dd($Compras);
+        $ventas = venta::where('ven_fk_cliente_juridico','=',$id)->where('ven_eliminada','=',0)->orderby('id','DESC')->get();
+        $frecuenciaVenta = $this->CalcularFrecuenciaVenta($ventas);
+        $ventas = venta::where('ven_fk_cliente_juridico','=',$id)->where('ven_eliminada','=',0)->orderby('id','DESC')->paginate(5);
+        //dd($frecuenciaVenta);
+
+        return view('admin.oficina.cliente_juridico.show')->with(compact('cliente_juridico','estados','municipios','parroquias','ultimaCompra','frecuenciaVenta','ventas'));
     }
 
     /**
@@ -164,5 +175,24 @@ class Cliente_JuridicoController extends Controller
         $cliente_juridico->parroquia->municipio->estado;
 
         return ($cliente_juridico);
+    }
+
+    public function CalcularFrecuenciaVenta($lista_venta){
+
+        $acumulador_frecuencia = 0; //  f1 + f2 +f3 + ... + fn + fn1
+        $contador = 0;
+        if (count($lista_venta)  > 1) {
+            for ($i=1; $i < count($lista_venta); $i++) { 
+                $fechaMayor = Carbon::parse($lista_venta[$i]->ven_fecha_compra);
+                $fechaMenor = Carbon::parse($lista_venta[$i-1]->ven_fecha_compra);
+                $acumulador_frecuencia = $acumulador_frecuencia + $fechaMayor->diffInDays($fechaMenor);
+                $contador++;
+            }
+            //dd("acumulado ".$acumulador_frecuencia." total de fechas".$contador );
+            return ($acumulador_frecuencia/$contador);
+        }else{
+            return 0;//retorno 0 porque solo tiene una venta, por ende, no hay frecuencia
+        }
+
     }
 }
