@@ -27,6 +27,7 @@
 				    <tr>
 				      <th>id</th>
 				      <th>Fecha</th>
+				      <th>cliente</th>
 				      <th>Tipo</th>
 				      <th>Concepto</th>
 				      <th>Observaciones</th>
@@ -41,6 +42,15 @@
 				  			<tr>
 					      <th scope="row">{{ $solicitud->id }}</th>
 					      <td>{{  date("d/m/Y", strtotime($solicitud->sol_fecha))}}</td>		
+					      <td>
+					      	@if ($solicitud->notaEntrega->venta->cliente_juridico !== null)
+					      		{{ $solicitud->notaEntrega->venta->cliente_juridico->id }}
+					      	@endif
+					      	@if ($solicitud->notaEntrega->venta->cliente_natural !== null)
+					      		{{ $solicitud->notaEntrega->venta->cliente_natural->id }}
+					      	sss
+					      	@endif
+					      </td>	
 					      <td>{{ $solicitud->sol_tipo}}</td>
 					      <td>{{ $solicitud->sol_concepto}}</td>
 					      <td>{{ $solicitud->sol_observaciones}}</td>

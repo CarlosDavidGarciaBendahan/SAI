@@ -546,6 +546,14 @@ Route::prefix('admin/reportes/')->group( function(){
 		'uses'	=> 'ReporteClienteController@index',
 		'as'	=> 'reporteCliente.index'
 	])->middleware('auth');
+	///////////////////////////////////////////////////
+	////// 		SOLICITUDES
+	///////////////////////////////////////////////////
+	//Route::resource('reporteCliente','reporteClienteController')->middleware('auth');
+	Route::get('reportesolicitud/index',[
+		'uses'	=> 'reportesolicitudController@index',
+		'as'	=> 'reportesolicitud.index'
+	])->middleware('auth');
 
 
 });

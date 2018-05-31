@@ -213,6 +213,7 @@
           </a>
           <ul class="treeview-menu">
             <li class="active"><a href="{{ route('reporteCliente.index') }}"><i class="fa fa-circle-o"></i> Clientes </a></li>
+            <li class="active"><a href="{{ route('reportesolicitud.index') }}"><i class="fa fa-circle-o"></i> Solicitudes </a></li>
           </ul>
         </li>
         <!-- /MENU DE UBICACION-->
