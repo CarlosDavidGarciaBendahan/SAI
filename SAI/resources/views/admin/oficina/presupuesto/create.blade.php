@@ -129,6 +129,7 @@
 				-->
 
 <!-- TABLAS DE PRODUCTOS PARA PODER INGRESAR EN EL PRESUPUESTO.  TANTO DE PC COMO DE ARTICULOS-->
+<div class="container-fluid">
 				<table class="table table-inverse">
 				  <thead>
 				    <tr>
@@ -177,7 +178,7 @@
 
 				</table>
 				{{ $productos_computadores->links() }}
-			</div>
+			
 
 
 
@@ -231,6 +232,7 @@
 
 				</table>
 				{{ $productos_articulos->links() }}
+</div>
 <!-- FIN FIN FIN FIN   TABLAS DE PRODUCTOS PARA PODER INGRESAR EN EL PRESUPUESTO.  TANTO DE PC COMO DE ARTICULOS-->
 					<div class="form-group col-sm-12">
 						{!! Form::submit('Registrar',['class'=>'btn btn-primary']) !!}

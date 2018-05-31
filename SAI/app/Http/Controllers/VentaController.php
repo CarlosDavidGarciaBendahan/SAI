@@ -106,15 +106,20 @@ class VentaController extends Controller
             $venta->ven_fk_cliente_natural = null;
         }
 
-        foreach ($request->codigoPC as $id ) {
-            $codigoPC = CodigoPC::find($id);
+        if ($request->codigoPC !== null) {
+            foreach ($request->codigoPC as $id ) {
+                $codigoPC = CodigoPC::find($id);
 
-            $venta->ven_monto_total = $venta->ven_monto_total + $codigoPC->Producto_Computador->pro_com_precio;
+                $venta->ven_monto_total = $venta->ven_monto_total + $codigoPC->Producto_Computador->pro_com_precio;
+            }
         }
-        foreach ($request->codigoArticulo as $id ) {
-            $codigoArticulo = codigoArticulo::find($id);
+        if ($request->codigoArticulo !== null) {
+            
+            foreach ($request->codigoArticulo as $id ) {
+                $codigoArticulo = codigoArticulo::find($id);
 
-            $venta->ven_monto_total = $venta->ven_monto_total + $codigoArticulo->Producto_Articulo->pro_art_precio;
+                $venta->ven_monto_total = $venta->ven_monto_total + $codigoArticulo->Producto_Articulo->pro_art_precio;
+            }
         }
 
 
