@@ -110,9 +110,12 @@ class Cliente_NaturalController extends Controller
         $ultimaCompra = venta::where('ven_fk_cliente_natural','=',$id)->where('ven_eliminada','=',0)->latest()->limit(1)->get();
         //$ultimaSolicitud = solicitud::whereHas()
         //dd($ultimaCompra);
-        $ventas = venta::where('ven_fk_cliente_natural','=',$id)->where('ven_eliminada','=',0)->orderby('id','DESC')->get();
+        $ventas = venta::where('ven_fk_cliente_natural','=',$id)->where('ven_eliminada','=',0)->orderby('ven_fecha_compra','DESC')->get();
         $frecuenciaVenta = $this->CalcularFrecuenciaVenta($ventas);
         $ventas = venta::where('ven_fk_cliente_natural','=',$id)->where('ven_eliminada','=',0)->orderby('id','DESC')->paginate(5);
+
+
+
 
         //dd($frecuenciaVenta);
         return view('admin.oficina.cliente_natural.show')->with(compact('cliente_natural','estados','municipios','parroquias','ultimaCompra','frecuenciaVenta','ventas'));
@@ -197,6 +200,14 @@ class Cliente_NaturalController extends Controller
                 $acumulador_frecuencia = $acumulador_frecuencia + $fechaMayor->diffInDays($fechaMenor);
                 $contador++;
             }
+            $fecha = Carbon::now();
+            //$fecha = $fecha->format('d-m-Y');
+            if ($fecha > $lista_venta->last()->ven_fecha_compra) {//si la fecha actual es mayor a la ultima compra entonces debo sacar la diferencai de los dias entre esa compra y la actualidad!
+                $fechaMayor = $fecha ;
+                $fechaMenor = Carbon::parse($lista_venta->last()->ven_fecha_compra);
+                $acumulador_frecuencia = $acumulador_frecuencia + $fechaMayor->diffInDays($fechaMenor);
+                $contador++;
+            }//SI NO, NO HAGO NADA Y YA
             //dd("acumulado ".$acumulador_frecuencia." total de fechas".$contador );
             return ($acumulador_frecuencia/$contador);
         }else{
