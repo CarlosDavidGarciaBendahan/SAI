@@ -215,6 +215,7 @@
             <li class="active"><a href="{{ route('reporteCliente.index') }}"><i class="fa fa-circle-o"></i> Clientes </a></li>
             <li class="active"><a href="{{ route('reportesolicitud.index') }}"><i class="fa fa-circle-o"></i> Solicitudes </a></li>
             <li class="active"><a href="{{ route('reporteventa.index') }}"><i class="fa fa-circle-o"></i> Ventas </a></li>
+            <li class="active"><a href="{{ route('reporteproducto.index') }}"><i class="fa fa-circle-o"></i> Productos </a></li>
           </ul>
         </li>
         <!-- /MENU DE REPORTE-->

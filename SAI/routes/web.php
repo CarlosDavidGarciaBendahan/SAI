@@ -570,6 +570,14 @@ Route::prefix('admin/reportes/')->group( function(){
 		'uses'	=> 'reporteventaController@ventasSemanales',
 		'as'	=> 'reporteventa.ventasSemanales'
 	])->middleware('auth');
+	///////////////////////////////////////////////////
+	////// 		Productos
+	///////////////////////////////////////////////////
+	//Route::resource('reporteCliente','reporteClienteController')->middleware('auth');
+	Route::get('reporteproducto/index',[
+		'uses'	=> 'reporteproductoController@index',
+		'as'	=> 'reporteproducto.index'
+	])->middleware('auth');
 
 });
 
