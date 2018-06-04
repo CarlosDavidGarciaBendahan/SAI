@@ -554,7 +554,18 @@ Route::prefix('admin/reportes/')->group( function(){
 		'uses'	=> 'reportesolicitudController@index',
 		'as'	=> 'reportesolicitud.index'
 	])->middleware('auth');
-
+	///////////////////////////////////////////////////
+	////// 		VENTAS
+	///////////////////////////////////////////////////
+	//Route::resource('reporteCliente','reporteClienteController')->middleware('auth');
+	Route::get('reporteventa/index',[
+		'uses'	=> 'reporteventaController@index',
+		'as'	=> 'reporteventa.index'
+	])->middleware('auth');
+	Route::post('reporteventa/ventasMensuales',[
+		'uses'	=> 'reporteventaController@ventasMensuales',
+		'as'	=> 'reporteventa.ventasMensuales'
+	])->middleware('auth');
 
 });
 
