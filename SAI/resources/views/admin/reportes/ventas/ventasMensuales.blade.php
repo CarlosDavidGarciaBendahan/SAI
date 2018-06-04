@@ -123,7 +123,6 @@
 				      <th>Fecha efectuada</th>
 				      <th>Monto total</th>
 				      <th>Monto cancelado</th>
-				      <th>Nota de entrega</th>
 				      
 
 				    </tr>
@@ -149,31 +148,10 @@
 					      	@endif
 					      </td>
 
-					      <td>
-					      	@if ($venta->NotaEntrega !== null)
-					      		<a href="{{ route('notaEntrega.show', $venta->NotaEntrega->id) }}"  class="btn btn-primary" title="Ver nota de entrega" target="_blank">
-					      		<span class="class glyphicon glyphicon-file"></span>
-						      	</a> 
-					      	</a>
-						    @else
-						    	<?php $monto_pagado2 = 0; ?> 
-						    	@if ( count($venta->RegistroPagos) !== 0)
-						      		@foreach ($venta->RegistroPagos as $pago)
-						      			<?php $monto_pagado2 = $monto_pagado2 + $pago->reg_monto; ?>
-						      		@endforeach
-						      	@endif
-							    @if ($monto_pagado2 >= $venta->ven_monto_total)
-							    	<a href="{{ route('notaEntrega.create', $venta->id) }}"  class="btn btn-success" title="Crear Nota de entrega">
-						      		<span class="class glyphicon glyphicon-paperclip"></span>
-							      	</a> 
-							    @endif
-					      	@endif
-					      	
-					      </td>
-
+					       
 					      <td>
 					      	
-					      	<a href="{{ route('venta.show', $venta->id) }}" class="btn btn-info">
+					      	<a href="{{ route('venta.show', $venta->id) }}" class="btn btn-info" title="Ver detalle">
 					      		<span class="fa fa-eye"></span>
 					      	</a> 
 					      	 

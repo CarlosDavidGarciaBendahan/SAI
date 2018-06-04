@@ -16,10 +16,10 @@
 @section('body')
 	{{-- {{ dd($estado) }} --}}
 
-	<section class="container-fluid">
+	<section class="container  ">
 	{!! Form::open(['route' => 'reporteventa.ventasMensuales', 'method' => 'POST']) !!}	
-		<div class="row">
-			<div class="col-sm-2">
+		<div class="row ">
+			<div class="col-sm-2 ">
 				<div class="form-group">
 					{!! Form::label('mun_fk_estado','Seleccionar año') !!}
 					{!! Form::select('year',$anos, \Carbon\Carbon::now()->year, ['class'=>'form-control', 'placeholder'=>'Elegir un año', 'required'] ) !!}

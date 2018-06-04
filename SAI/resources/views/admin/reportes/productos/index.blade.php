@@ -27,7 +27,6 @@
 					      <th>Código</th>
 					      <th>Marca/Modelo</th>
 					      <th>Tipo</th>
-					      <th>Ubicación</th>
 					      <th>Componentes</th>
 					      <th>Disponible</th>
 
@@ -41,7 +40,6 @@
 						      <td>{{ "Marca: ".$codigoPC->producto_computador->modelo->marca->mar_marca ." Modelo: ".$codigoPC->producto_computador->modelo->mod_modelo }}</td>	
 						      <td>{{ $codigoPC->producto_computador->Tipo_Producto->tip_tipo }}</td>
 						      
-						      <td>{{ $codigoPC->producto_computador->sector->sec_sector ." Ofi: ".$codigoPC->producto_computador->sector->oficina->ofi_direccion }}</td>	
 						      <td>
 						      	@foreach ($codigoPC->CodigoArticulos as $componente)
 						      		{{ $componente->producto_articulo->pro_art_capacidad." ".$componente->producto_articulo->unidadMedida->uni_medida." / " }}
@@ -60,7 +58,7 @@
 						  	  </td>
 						      <td>
 
-						      	<a href="{{ route('codigoPC.show', $codigoPC->id) }}" class="btn btn-default" title="Ver detalles del computador">
+						      	<a href="{{ route('codigoPC.show', $codigoPC->id) }}" class="btn btn-default" title="Ver detalles">
 						      		<span class="fa fa-eye"></span>
 						      	</a>
 						      </td>
@@ -85,9 +83,8 @@
 				      <th>Código</th>
 				      <th>Marca/Modelo</th>
 				      <th>Tipo</th>
-				      <th>Ubicación</th>
 				      <th>Disponible</th>
-				      <th>Componente del computador</th>
+				      <th>PC</th>
 
 				    </tr>
 				  </thead>
@@ -99,7 +96,6 @@
 					      <td>{{ "Marca: ".$codigoArticulo->producto_articulo->modelo->marca->mar_marca ." Modelo: ".$codigoArticulo->producto_articulo->modelo->mod_modelo }}</td>	
 					      <td>{{ $codigoArticulo->producto_articulo->Tipo_Producto->tip_tipo }}</td>
 					      
-					      <td>{{ $codigoArticulo->producto_articulo->sector->sec_sector ." Ofi: ".$codigoArticulo->producto_articulo->sector->oficina->ofi_direccion }}</td>	
 					      
 					  	  <td>
 					  	  	@if (count($codigoArticulo->Solicitudes) === 0 && count($codigoArticulo->Ventas) === 0  )
@@ -131,7 +127,7 @@
 						  	@endif
 
 						  	<td>
-					      	<a href="{{ route('codigoArticulo.show', $codigoArticulo->id) }}" class="btn btn-default">
+					      	<a href="{{ route('codigoArticulo.show', $codigoArticulo->id) }}" class="btn btn-default" title="Ver detalles">
 					      		<span class="fa fa-eye"></span>
 					      	</a>
 					      </td>
