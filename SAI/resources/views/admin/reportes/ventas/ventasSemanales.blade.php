@@ -4,7 +4,7 @@
 
 @section('contenido-header-name', 'Reporte de ventas')
 
-@section('contenido-header-name2', 'Estadísticas del mes')
+@section('contenido-header-name2', 'Estadísticas de la semana')
 
 @section('contenido-header-route')
 	<ol class="breadcrumb">
@@ -18,49 +18,30 @@
 
 	<section class="container-fluid">
 
-	{!! Form::open(['route' => 'reporteventa.ventasSemanales', 'method' => 'POST']) !!}	
-
-
-
 		<div class="row">
 			<div class="col-sm-2">
 				<div class="form-group">
 					{!! Form::label('mun_fk_estado','Seleccionar año') !!}
-					<!-- { !! Form::select('year',$anos, $year, ['class'=>'form-control hidden', 'placeholder'=>'Elegir un año', 'required', 'disabled'] ) !!} -->
-					{!! Form::text('year',$anos[$year],['class'=> 'form-control', 'readonly'=>'true', 'required']) !!}
+					{!! Form::select('mun_fk_estado',$anos, $year, ['class'=>'form-control', 'placeholder'=>'Elegir un año', 'required', 'disabled'] ) !!}
 				</div>
 				<div class="form-group">
 					{!! Form::label('mun_fk_estado','Seleccionar mes del año') !!}
-					{!! Form::select('month',$meses, $month, ['class'=>'form-control hidden', 'placeholder'=>'Elegir un mes', 'required'] ) !!}
-					{!! Form::text('ccc',$meses[$month],['class'=> 'form-control', 'readonly'=>'true', 'required']) !!}
-				</div>
-				<div class="form-group">
-					<a href=" {{ route('reporteventa.index') }} " class="btn btn-primary btn-block" title="Regresar para seleccionar otro mes">
-						Regresar
-					</a>
+					{!! Form::select('mun_fk_estado',$meses, $month, ['class'=>'form-control', 'placeholder'=>'Elegir un mes', 'required', 'disabled'] ) !!}
 				</div>
 
-				<br>
-				<br>
-
 				<div class="form-group">
-					{!! Form::label('mun_fk_estado','Seleccionar semana del mes') !!}
+					{!! Form::label('mun_fk_estado','Semana') !!}
 					<!--{ !! Form::select('numeroSemana',$array_inicioSemana, 1, ['class'=>'form-control', 'placeholder'=>'Elegir semana de mes', 'required'] ) !!}-->
-					<div class="form-group">
-						<select class="form-control input-sm" name="numeroSemana" >
+						<select class="form-control input-sm" name="numeroSemana" disabled="true">
 							@for ($i = 1; $i <= count($array_inicioSemana); $i++)
 								<option value="{{ $i }}"> {{  date("d/m/Y", strtotime($array_inicioSemana[$i]))." al ". date("d/m/Y", strtotime($array_finSemana[$i])) }}</option>
 							@endfor
 						</select>
-					</div>
 				</div>
-				<!--<div class="form-group">
-					<a href=" { { route('reporteventa.ventasSemanales') }} " class="btn btn-primary btn-block" title="Estadística semanal">
-						Ver estadística semanal
-					</a>
-				</div> -->
 				<div class="form-group">
-					{!! Form::submit('Ver estadística semanal',['class'=>'btn btn-primary btn-block', 'title'=>'Calcular estadisticas de las ventas de una semana del mes']) !!}
+					<a href=" {{ route('reporteventa.index') }} " class="btn btn-primary btn-block" title="Regresar a las estadísticas mensuales">
+						Regresar
+					</a>
 				</div>
 
 			</div>
@@ -70,7 +51,7 @@
 						<!-- DONUT CHART -->
 			          <div class="box box-danger">
 			            <div class="box-header with-border">
-			              <h3 class="box-title">Cantidad de productos vendidos en el mes</h3>
+			              <h3 class="box-title">Cantidad de productos vendidos en la semana</h3>
 
 			              <div class="box-tools pull-right">
 			                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -89,7 +70,7 @@
 						<!-- DONUT CHART -->
 			          <div class="box box-danger">
 			            <div class="box-header with-border">
-			              <h3 class="box-title">Cantidad de ingreso en dolares ($) por producto en el mes</h3>
+			              <h3 class="box-title">Ingreso en dolares ($) por producto en la semana</h3>
 
 			              <div class="box-tools pull-right">
 			                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -108,10 +89,9 @@
 
 
 		</div>
-
 		<div class="row">
 			<div class="col-sm-2">
-				{!! Form::label('mun_fk_estado','Ingreso mensual en dolares') !!}
+				{!! Form::label('mun_fk_estado','Ingreso semanal en dolares') !!}
 						{!! Form::text('ven_fecha_compra',$ingresoMensual." $",['class'=> 'form-control', 'placeholder'=>'d-m-Y', 'required', 'readonly'=>'true']) !!}	
 			</div>
 			<div class="col-sm-10">
@@ -187,8 +167,6 @@
 
 				</table>
 			</div>
-			
-		</div>
 
 			
 
@@ -259,10 +237,6 @@
     
   });
 </script>
-
-
-	
-	{!! Form::close() !!}
 	</section>
 
 

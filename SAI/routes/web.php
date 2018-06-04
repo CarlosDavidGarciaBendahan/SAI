@@ -566,6 +566,10 @@ Route::prefix('admin/reportes/')->group( function(){
 		'uses'	=> 'reporteventaController@ventasMensuales',
 		'as'	=> 'reporteventa.ventasMensuales'
 	])->middleware('auth');
+	Route::post('reporteventa/ventasSemanales',[
+		'uses'	=> 'reporteventaController@ventasSemanales',
+		'as'	=> 'reporteventa.ventasSemanales'
+	])->middleware('auth');
 
 });
 
