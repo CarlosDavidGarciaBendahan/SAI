@@ -1,22 +1,26 @@
-$('#estado').on('change',function(e){
-	console.log(e);
 
-	var estado_id = e.target.value;
 
-	//ajax
-	$.get('/ajax-ObtenerMunicipiosPorEstado/' + estado_id, function(data){
+$(document).ready(function(){
+	$('#estado').on('change',function(e){
+		console.log(e);
 
-		//succes data
-		console.log(data);
-					
-		$('#municipio').empty();
-		$('#municipio').append('<option value="">Seleccionar un municipio</option>');
-		$.each(data, function(index,subcatObj){
+		var estado_id = e.target.value;
 
-			$('#municipio').append('<option value="'+subcatObj.id+'">'+subcatObj.mun_nombre+' </option>');
+		//ajax
+		$.get('/ajax-ObtenerMunicipiosPorEstado/' + estado_id, function(data){
+
+			//succes data
+			console.log(data);
+						
+			$('#municipio').empty();
+			$('#municipio').append('<option value="">Seleccionar un municipio</option>');
+			$.each(data, function(index,subcatObj){
+
+				$('#municipio').append('<option value="'+subcatObj.id+'">'+subcatObj.mun_nombre+' </option>');
+			});
+						
+			$('#parroquia').empty();
+			$('#parroquia').append('<option value="">Seleccionar una parroquia</option>');
 		});
-					
-		$('#parroquia').empty();
-		$('#parroquia').append('<option value="">Seleccionar una parroquia</option>');
 	});
 });

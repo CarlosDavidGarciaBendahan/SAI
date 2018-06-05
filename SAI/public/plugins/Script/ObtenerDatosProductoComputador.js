@@ -10,7 +10,7 @@ $(document).ready(function(){
 		var cantidad;
 		//ajax
 		//ruta que que retornará los datos de la cliente_natural seleccionada.
-		$.get('/ajax-ObtenerDatosProducto_Computador/' + producto_computador_id, function(data){
+		$.get('/SAI/public/ajax-ObtenerDatosProducto_Computador/' + producto_computador_id, function(data){
 
 			console.log(data);
 			cantidad =prompt('Ingrese la cantidad de producto:','');

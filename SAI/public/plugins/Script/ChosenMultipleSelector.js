@@ -1,3 +1,7 @@
-$('.select-permisos').chosen({
 
+
+$(document).ready(function(){
+	$('.select-permisos').chosen({
+
+	});
 });

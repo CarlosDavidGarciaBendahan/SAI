@@ -9,7 +9,7 @@ $(document).ready(function(){
 
 		//ajax
 		//ruta que que retornará los datos de la cliente_natural seleccionada.
-		$.get('/ajax-ObtenerDatosclientes_naturales/' + cliente_natural_id, function(data){
+		$.get('/SAI/public/ajax-ObtenerDatosclientes_naturales/' + cliente_natural_id, function(data){
 
 			console.log(data);
 			
