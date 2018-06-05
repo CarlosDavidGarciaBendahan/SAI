@@ -29,15 +29,16 @@
 					
 					<div class="form-group col-sm-12"> 
 						{!! Form::label('tipo de cliente','Tipo de cliente: Persona') !!}
-						{!! Form::checkbox('tipo_cliente', 'natural','true') !!}
+						{!! Form::checkbox('tipo_cliente', 'natural','true',['id'=>'CB']) !!}
+						<!--<label><input type="checkbox" id="CB" value="first_checkbox"> Este es mi primer checkbox</label><br>-->
 					</div>
 					
 					<div class="form-group col-sm-12"> 
 						
-						{!! Form::label('cliente','Cliente') !!}
+						{!! Form::label('cliente','Persona') !!}
 
-						<select class="form-control col-sm input-sm select-empresas" name="ven_fk_cliente_natural" id="clientes_naturales" >
-								<option value="" > Seleccionar empresa</option>
+						<select class="form-control col-sm input-sm " name="ven_fk_cliente_natural" id="clientes_naturales" required="true" >
+								<option value="" > Seleccionar cliente</option>
 								@foreach ($clientes_naturales as $cliente_natural)
 									<option value="{{ $cliente_natural->id }}"> {{ $cliente_natural->cli_nat_nombre." ".$cliente_natural->cli_nat_nombre2." ".$cliente_natural->cli_nat_apellido." ".$cliente_natural->cli_nat_apellido2 }}</option>
 								@endforeach
@@ -50,9 +51,9 @@
 
 					<div class="form-group col-sm-12"> 
 						
-						{!! Form::label('cliente','Cliente ') !!}
+						{!! Form::label('cliente','Empresa ') !!}
 
-						<select class="form-control col-sm input-sm select-empresas" name="ven_fk_cliente_juridico" id="clientes_juridicos">
+						<select class="form-control col-sm input-sm " name="ven_fk_cliente_juridico" id="clientes_juridicos" disabled="true">
 								<option value="" > Seleccionar empresa</option>
 								@foreach ($clientes_juridicos as $cliente_juridico)
 									<option value="{{ $cliente_juridico->id }}"> {{ $cliente_juridico->cli_jur_nombre }}</option>
@@ -104,9 +105,14 @@
 	</section>
 	
 
+		
+
+		
+
 @endsection
 @section('scripts')
 	<script src = "{{ asset('plugins/Script/ChosenMultipleSelectorAll.js') }}"></script>
+	<script src = "{{ asset('plugins/Script/check.js') }}"></script>
 	<!--<script src = "{{ asset('plugins/Script/ObtenerDatosEmpresa.js') }}"></script>-->
 	<script src = "{{ asset('plugins/Script/ObtenerDatosClienteNatural.js') }}"></script>
 	<script src = "{{ asset('plugins/Script/ObtenerDatosClienteJuridico.js') }}"></script>
