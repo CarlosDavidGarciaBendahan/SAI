@@ -9,6 +9,7 @@ $(document).ready(function(){
 
 	        $('#clientes_juridicos').attr("disabled", true);
 	        $('#clientes_juridicos').attr("required", false);
+
 	        alert("Ha elegido para la venta registrar un cliente NATURAL");
 	    } else {
 	        // Hacer algo si el checkbox ha sido deseleccionado
