@@ -16,9 +16,18 @@
 
 @section('body')
 	{{-- expr --}}
-	<section class="container">
+	<section class="container-fluid">
 		<div class="row">
-			<div class="col-sm-8 offset-2">
+			<div class="col-sm-12">
+				@if (count($errors) > 0)
+					<div class="alert alert-danger" role="alert">
+						<ul>
+							@foreach ($errors->all() as $error)
+								<li>{{ $error }}</li>
+							@endforeach
+						</ul>
+					</div>	
+				@endif
 				{!! Form::open(['route' => 'municipio.store', 'method' => 'POST' ]) !!}
 					
 					<!-- SELECT ESTADO-->
@@ -38,6 +47,7 @@
 
 					<div class="form-group">
 						{!! Form::submit('Registrar',['class'=>'btn btn-primary']) !!}
+						<a href="{{ route('municipio.index') }}" class="btn btn-danger">Calcelar</a>
 					</div>
 
 					

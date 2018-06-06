@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 use Laracast\Flash\Flash;
 use App\Estado;
 use App\Municipio;
+use App\Http\Requests\EstadoResquest;
 
 class EstadoController extends Controller
 {
@@ -31,15 +32,7 @@ class EstadoController extends Controller
     }*/
     public function index(Request $request)
     {
-        //$estado = new Estado::orderBy('est_nombre','ASC')->paginate(1);
-        //$estado = new Estado::all();
-        //$estado = DB::table('estado')->orderBy('est_nombre', 'asc')->get();
-
         $estado = Estado::where('id','>',0)->orderBy('est_nombre')->paginate(10);
-        //dd($estado);
-        
-        //$estado = new Estado();   
-        //retornar la variable a una vista
         
         return view('admin.lugar.estado.index',['estado'=>$estado]);
 
@@ -61,17 +54,21 @@ class EstadoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(EstadoResquest $request)
     {
         //dd($request);
-        $estado = new Estado($request->all()); //request valores recibidos del formulario
-        $estado->save();
 
-        //$estado = DB::table('estado')->orderBy('est_nombre', 'asc')->get();
+        //DB::beginTransaction();
+
+            $estado = new Estado($request->all()); //request valores recibidos del formulario
+            $estado->save();
+
+            //$estado = DB::table('estado')->orderBy('est_nombre', 'asc')->get();
 
 
-        //return view ('admin.lugar.estado.index',['estado' => $estado]);
-        
+            //return view ('admin.lugar.estado.index',['estado' => $estado]);
+        //DB::commit();
+
         flash("Registro del estado " .$request->est_nombre . " exitosamente.")->success();
         return redirect()->route('estado.index');
     }
@@ -84,9 +81,15 @@ class EstadoController extends Controller
      */
     public function show($id)
     {
-       $estado = Estado::find($id);
 
-        return view('admin.lugar.estado.show',['estado'=>$estado]);
+       $estado = Estado::find($id);
+        if ($estado !== null) {
+           
+            return view('admin.lugar.estado.show',['estado'=>$estado]);
+        }else{  
+            flash('No hay ningun registro en la Base de Datos del objeto buscado.')->error();
+            return redirect()->route('estado.index');
+        }
     }
 
     /**
@@ -98,8 +101,13 @@ class EstadoController extends Controller
     public function edit($id)
     {
         $estado = Estado::find($id);
-
-        return view('admin.lugar.estado.edit',['estado'=>$estado]);
+        if ($estado !== null) {
+           
+            return view('admin.lugar.estado.edit',['estado'=>$estado]);
+        }else{  
+            flash('No hay ningun registro en la Base de Datos del objeto buscado.')->error();
+            return redirect()->route('estado.index');
+        }
     }
 
     /**
@@ -109,17 +117,22 @@ class EstadoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(EstadoResquest $request, $id)
     {
         $estado = Estado::find($id);
+        if ($estado !== null) {
+           
+            $estado->est_nombre = $request->est_nombre;
+            $estado->save();
+            //$estado->slug = $request->slug;
+            //dd($estado);
 
-        $estado->est_nombre = $request->est_nombre;
-        $estado->save();
-        //$estado->slug = $request->slug;
-        //dd($estado);
-
-        flash("Modificación del estado exitosamente a ".$estado->est_nombre )->success();
-        return redirect()->route('estado.index');
+            flash("Modificación del estado exitosamente a ".$estado->est_nombre )->success();
+            return redirect()->route('estado.index');
+        }else{  
+            flash('No hay ningun registro en la Base de Datos del objeto buscado.')->error();
+            return redirect()->route('estado.index');
+        }
 
     }
 
@@ -129,13 +142,20 @@ class EstadoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy( $id)
     {
         $estado = Estado::find($id);
-        $estado->delete();
 
-        flash("Eliminación del estado " .$estado->est_nombre . " exitosamente.")->success();
-        return redirect()->route('estado.index');
+        if ($estado !== null) {
+            
+            $estado->delete();
+
+            flash("Eliminación del estado " .$estado->est_nombre . " exitosamente.")->success();
+            return redirect()->route('estado.index');
+        }else{  
+            flash('No hay ningun registro en la Base de Datos del objeto buscado.')->error();
+            return redirect()->route('estado.index');
+        }
 
     }
 }

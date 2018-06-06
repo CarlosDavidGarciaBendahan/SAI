@@ -4,6 +4,7 @@ namespace App\Exceptions;
 
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Support\Facades\DB;
 
 class Handler extends ExceptionHandler
 {
@@ -50,6 +51,26 @@ class Handler extends ExceptionHandler
     {
         if ($exception instanceof \Illuminate\Auth\AuthenticationException) {
             return redirect('/')->with('flash','Por favor, inicie sesión.');
+        }
+        if ($exception instanceof \Illuminate\Database\QueryException) {
+            if ($exception->getCode() === '23505') {
+                flash('ERROR!!! Los datos que intenta ingresar ya existen.')->error();
+
+            }
+            if ($exception->getCode() === '23503') {
+                flash('ERROR!!! Intenta eliminar un registro que tiene información asociada a él.')->error();
+            }
+            flash('ERROR con la base de datos. Código QueryException error: '.$exception->getCode())->error();
+            
+
+
+
+
+            
+            //flash('ERROR en la base de datos. ')->error();
+            //flash($exception->getCode())->error();
+            //DB::rollback();
+            return redirect()->back();
         }
         
         return parent::render($request, $exception);

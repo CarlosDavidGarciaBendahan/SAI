@@ -16,21 +16,21 @@
 
 @section('body')
 	{{-- expr --}}
-	<section class="container">
+	<section class="container-fluid">
 		<div class="row">
-			<div class="col-sm">
+			<div class="col-sm-12">
 				{!! Form::open(['route' => 'estado.store', 'method' => 'POST' ]) !!}
 					<div class="form-group"> 
 						
 						{!! Form::label('id','ID') !!}
 
-						{!! Form::text('id',$estado->id,['class'=> 'form-control', 'placeholder'=>'Nombre del estado', 'required']) !!}
+						{!! Form::text('id',$estado->id,['class'=> 'form-control', 'placeholder'=>'Nombre del estado', 'required','readonly'=>'true']) !!}
 					</div>
 					<div class="form-group"> 
 						
 						{!! Form::label('est_nombre','Nombre') !!}
 
-						{!! Form::text('est_nombre',$estado->est_nombre,['class'=> 'form-control', 'placeholder'=>'Nombre del estado', 'required']) !!}
+						{!! Form::text('est_nombre',$estado->est_nombre,['class'=> 'form-control', 'placeholder'=>'Nombre del estado', 'required','readonly'=>'true']) !!}
 					</div>
 					{{-- comment 
 						<div class="form-group"> 
@@ -77,6 +77,7 @@
 
 					
 
+						<a href="{{ route('estado.index') }}" class="btn btn-info">Regresar</a>
 				{!! Form::close() !!}
 
 				
