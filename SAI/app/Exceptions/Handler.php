@@ -57,7 +57,7 @@ class Handler extends ExceptionHandler
                 flash('ERROR!!! Los datos que intenta ingresar ya existen.')->error();
 
             }
-            if ($exception->getCode() === '23503') {
+            if ($exception->getCode() === '23503') { 
                 flash('ERROR!!! Intenta eliminar un registro que tiene información asociada a él.')->error();
             }
             flash('ERROR con la base de datos. Código QueryException error: '.$exception->getCode())->error();
