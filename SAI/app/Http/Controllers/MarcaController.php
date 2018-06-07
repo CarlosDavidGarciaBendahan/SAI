@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Laracast\Flash\Flash;
 use App\Marca;
+use App\Http\Requests\MarcaRequest;
+use Auth;
 
 class MarcaController extends Controller
 {
@@ -27,7 +29,15 @@ class MarcaController extends Controller
      */
     public function create()
     {
-        return view('admin.producto.marca.create');
+        if (Auth::user()->rol->rol_rol === 'Administrador' || Auth::user()->rol->rol_rol === 'Encargado'){
+            return view('admin.producto.marca.create');
+
+        }else{
+
+            flash('Solo los usuarios con el rol "Administrador" o "Encargado" pueden registrar.')->error();
+            return redirect()->back();
+
+        }
     }
 
     /**
@@ -36,13 +46,21 @@ class MarcaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(MarcaRequest $request)
     {
-        $marca = new Marca($request->all());
-        $marca->save();
+        if (Auth::user()->rol->rol_rol === 'Administrador' || Auth::user()->rol->rol_rol === 'Encargado'){
+            $marca = new Marca($request->all());
+            $marca->save();
 
-        flash("Registro de la marca '' " .$request->mar_marca . " '' exitosamente.")->success();
-        return redirect()->route('marca.index');
+            flash("Registro de la marca '' " .$request->mar_marca . " '' exitosamente.")->success();
+            return redirect()->route('marca.index');
+
+        }else{
+
+            flash('Solo los usuarios con el rol "Administrador" o "Encargado" pueden registrar.')->error();
+            return redirect()->back();
+
+        }
     }
 
     /**
@@ -54,7 +72,13 @@ class MarcaController extends Controller
     public function show($id)
     {
         $marca = Marca::find($id);
-        return view('admin.producto.marca.show')->with(compact('marca'));
+        if ($marca !== null) {
+            return view('admin.producto.marca.show')->with(compact('marca'));
+
+        }else{  
+                flash('No hay ningun registro en la Base de Datos del objeto buscado.')->error();
+                return redirect()->route('producto_articulo.index');
+        }
     }
 
     /**
@@ -65,9 +89,23 @@ class MarcaController extends Controller
      */
     public function edit($id)
     {
-        $marca = Marca::find($id);
+        if (Auth::user()->rol->rol_rol === 'Administrador' || Auth::user()->rol->rol_rol === 'Encargado'){
 
-        return view('admin.producto.marca.edit')->with(compact('marca'));
+            $marca = Marca::find($id);
+            if ($marca !== null) {
+
+                return view('admin.producto.marca.edit')->with(compact('marca'));
+            }else{  
+                flash('No hay ningun registro en la Base de Datos del objeto buscado.')->error();
+                return redirect()->route('producto_articulo.index');
+            }
+        }else{
+
+            flash('Solo los usuarios con el rol "Administrador" o "Encargado" pueden modificar.')->error();
+            return redirect()->back();
+
+        }
+
     }
 
     /**
@@ -77,14 +115,28 @@ class MarcaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(MarcaRequest $request, $id)
     {
-        $marca = Marca::find($id);
-        $marca->mar_marca = $request->mar_marca;
-        $marca->save();
+        if (Auth::user()->rol->rol_rol === 'Administrador' || Auth::user()->rol->rol_rol === 'Encargado'){
 
-        flash("Edición de la marca '' ". $request->mar_marca . " '' exitosa.")->success();
-        return redirect()->route('marca.index');
+            $marca = Marca::find($id);
+            if ($marca !== null) {
+
+                $marca->mar_marca = $request->mar_marca;
+                $marca->save();
+
+                flash("Edición de la marca '' ". $request->mar_marca . " '' exitosa.")->success();
+                return redirect()->route('marca.index');
+            }else{  
+                flash('No hay ningun registro en la Base de Datos del objeto buscado.')->error();
+                return redirect()->route('producto_articulo.index');
+            }
+        }else{
+
+            flash('Solo los usuarios con el rol "Administrador" o "Encargado" pueden modificar.')->error();
+            return redirect()->back();
+
+        }
     }
 
     /**
@@ -95,10 +147,24 @@ class MarcaController extends Controller
      */
     public function destroy($id)
     {
-         $marca = Marca::find($id);
-         $marca->delete();
-         flash("Eliminación de la marca '' ". $marca->mar_marca . " '' exitosa.")->success();
-        return redirect()->route('marca.index');
+        if (Auth::user()->rol->rol_rol === 'Administrador'){
+
+            $marca = Marca::find($id);
+            if ($marca !== null) {
+
+                 $marca->delete();
+                 flash("Eliminación de la marca '' ". $marca->mar_marca . " '' exitosa.")->success();
+                return redirect()->route('marca.index');
+            }else{  
+                flash('No hay ningun registro en la Base de Datos del objeto buscado.')->error();
+                return redirect()->route('producto_articulo.index');
+            }
+        }else{
+
+            flash('Solo los usuarios con el rol "Administrador"  puede eliminar.')->error();
+            return redirect()->back();
+
+        }
 
     }
 }

@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Laracast\Flash\Flash;
 use App\Marca;
 use App\Modelo;
+use App\Http\Requests\ModeloRequest;
+use Auth;
 
 class ModeloController extends Controller
 {
@@ -38,7 +40,7 @@ class ModeloController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ModeloRequest $request)
     {
         $modelo = new Modelo($request->all());
         $modelo->save();
@@ -78,7 +80,7 @@ class ModeloController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ModeloRequest $request, $id)
     {
         $modelo = Modelo::find($id);
 
@@ -99,10 +101,24 @@ class ModeloController extends Controller
      */
     public function destroy($id)
     {
-        $modelo = Modelo::find($id);
-        $modelo->delete();
+        if (Auth::user()->rol->rol_rol === 'Administrador'){
 
-        flash("Eliminación del modelo '' ". $modelo->mod_modelo." '' exitoso.")->success();
-        return redirect()->route('modelo.index');
+            $modelo = Modelo::find($id);
+            if ($modelo !== null) {
+
+                $modelo->delete();
+
+                flash("Eliminación del modelo '' ". $modelo->mod_modelo." '' exitoso.")->success();
+                return redirect()->route('modelo.index');
+            }else{  
+                flash('No hay ningun registro en la Base de Datos del objeto buscado.')->error();
+                return redirect()->route('producto_articulo.index');
+            }
+        }else{
+
+            flash('Solo los usuarios con el rol "Administrador"  puede eliminar.')->error();
+            return redirect()->back();
+
+        }
     }
 }

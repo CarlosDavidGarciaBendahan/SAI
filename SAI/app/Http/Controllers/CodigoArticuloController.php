@@ -150,7 +150,7 @@ class CodigoArticuloController extends Controller
             }
         }else{
 
-            flash('Solo los usuarios con el rol "Administrador" o "Encargado" pueden registrar.')->error();
+            flash('Solo los usuarios con el rol "Administrador" o "Encargado" pueden modificar.')->error();
             return redirect()->back();
 
         }
@@ -185,7 +185,7 @@ class CodigoArticuloController extends Controller
             }
         }else{
 
-            flash('Solo los usuarios con el rol "Administrador" o "Encargado" pueden registrar.')->error();
+            flash('Solo los usuarios con el rol "Administrador" o "Encargado" pueden modificar.')->error();
             return redirect()->back();
 
         }
