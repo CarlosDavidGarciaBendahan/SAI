@@ -8,6 +8,8 @@ use App\Producto_Computador;
 use App\Lote;
 use App\CodigoPC;
 use App\CodigoArticulo;
+use App\Http\Requests\CodigoPCRequest;
+use Auth;
 
 class CodigoPCController extends Controller
 {
@@ -47,26 +49,49 @@ class CodigoPCController extends Controller
     {
         //dd($request->all());
 
-        $cantidad = sizeof($request->codigosPC);
+        if (Auth::user()->rol->rol_rol === 'Administrador' || Auth::user()->rol->rol_rol === 'Encargado'){
 
-        for ($i=0; $i < $cantidad; $i++) { 
+            $cantidad = sizeof($request->codigosPC);//cantidad de codigos ingresados
+            $cantidadAgregada = 0;//cuenta los que se han agregado
+            $NoAgregado = null; //copio los codigos no agregados
 
-            $codigoPC = new codigoPC($request->all());
+            if ($cantidad > 0) {
+                for ($i=0; $i < $cantidad; $i++) { 
 
-            $codigoPC->cod_pc_codigo = strtoupper($request->codigosPC[$i]);
-            $codigoPC->cod_pc_estado = $request->estado[$i];
-            //$codigoPC->cod_pc_fk_producto_computador = $request->cod_pc_fk_producto_computador;
+                    $codigoPC = new codigoPC($request->all());
 
-            $codigoPC->save();
+                    $codigoPC->cod_pc_codigo = strtoupper($request->codigosPC[$i]);
+                    $codigoPC->cod_pc_estado = $request->estado[$i];
+                    //$codigoPC->cod_pc_fk_producto_computador = $request->cod_pc_fk_producto_computador;
+                    if (!$this->Exist($codigoPC->cod_pc_codigo)) {
+                        $codigoPC->save();
+                        $cantidadAgregada++;
+                    }else{
+                        $NoAgregado = $NoAgregado ."/".$codigoPC->cod_pc_codigo; 
+                    }
+                }
+
+                $Computador = producto_computador::find( $request->cod_pc_fk_producto_computador);
+                $Computador->pro_com_cantidad = $Computador->pro_com_cantidad + $cantidadAgregada;
+                $Computador->save();
+
+                flash("Registro de las computadoras exitosamente")->success();
+                if ($NoAgregado !== null) {
+                    flash('Estos códigos ya estan registrados: '.$NoAgregado)->error();
+                    
+                }
+                return redirect()->route('producto_computador.show',['id' => $request->cod_pc_fk_producto_computador]);
+            }else{
+                flash('Debe de agregar al menos un producto.')->error();
+                return redirect()->back();
+            }
+            
+        }else{
+
+            flash('Solo los usuarios con el rol "Administrador" o "Encargado" pueden registrar.')->error();
+            return redirect()->back();
+
         }
-
-        $Computador = producto_computador::find( $codigoPC->cod_pc_fk_producto_computador);
-        $Computador->pro_com_cantidad = $Computador->pro_com_cantidad + $cantidad;
-        $Computador->save();
-
-        flash("Registro de las computadoras exitosamente")->success();
-        //return redirect()->route('producto_computador.show')->with(['id' => $request->cod_pc_fk_producto_computador]);
-        return redirect()->route('producto_computador.show',['id' => $request->cod_pc_fk_producto_computador]);
 
     }
 
@@ -78,13 +103,20 @@ class CodigoPCController extends Controller
      */
     public function show($id)
     {
-        $codigoPC = CodigoPC::find($id);
-        $lote = Lote::orderBy('id','ASC')->pluck('lot_nombre','id');
+            $codigoPC = CodigoPC::find($id);
+            if ($codigoPC !== null) {
 
-        $codigosArticulo = CodigoArticulo::where('cod_art_fk_pc','=',$id)->orderBy('cod_art_codigo','ASC')->paginate(5);
+                $lote = Lote::orderBy('id','ASC')->pluck('lot_nombre','id');
+
+                $codigosArticulo = CodigoArticulo::where('cod_art_fk_pc','=',$id)->orderBy('cod_art_codigo','ASC')->paginate(5);
 
 
-        return view("admin.producto.codigoPC.show")->with(compact('codigoPC','lote','codigosArticulo'));
+                return view("admin.producto.codigoPC.show")->with(compact('codigoPC','lote','codigosArticulo'));
+            }else{  
+                flash('No hay ningun registro en la Base de Datos del objeto buscado.')->error();
+                return redirect()->route('producto_computador.index');
+            }
+        
     }
 
     /**
@@ -95,13 +127,27 @@ class CodigoPCController extends Controller
      */
     public function edit($id)
     {
-        $codigoPC = CodigoPC::find($id);
-        $lote = Lote::orderBy('id','ASC')->pluck('lot_nombre','id');
+        if (Auth::user()->rol->rol_rol === 'Administrador' || Auth::user()->rol->rol_rol === 'Encargado'){
+            $codigoPC = CodigoPC::find($id);
+            if ($codigoPC !== null) {
+                $lote = Lote::orderBy('id','ASC')->pluck('lot_nombre','id');
 
-        $codigosArticulo = CodigoArticulo::orderBy('cod_art_fk_pc','ASC')->paginate(5);
+                $codigosArticulo = CodigoArticulo::orderBy('cod_art_fk_pc','ASC')->paginate(5);
 
 
-        return view("admin.producto.codigoPC.edit")->with(compact('codigoPC','lote','codigosArticulo'));
+                return view("admin.producto.codigoPC.edit")->with(compact('codigoPC','lote','codigosArticulo'));
+
+            }else{  
+                flash('No hay ningun registro en la Base de Datos del objeto buscado.')->error();
+                return redirect()->route('producto_computador.index');
+            }
+        }else{
+
+            flash('Solo los usuarios con el rol "Administrador" o "Encargado" pueden registrar.')->error();
+            return redirect()->back();
+
+        }
+        
     }
 
     /**
@@ -113,17 +159,31 @@ class CodigoPCController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $codigoPC = CodigoPC::find($id);
+        if (Auth::user()->rol->rol_rol === 'Administrador' || Auth::user()->rol->rol_rol === 'Encargado'){
+            $codigoPC = CodigoPC::find($id);
+            if ($codigoPC !== null) {
 
-        $codigoPC->cod_pc_fk_lote = $request->cod_pc_fk_lote;
-        $codigoPC->cod_pc_estado = $request->cod_pc_estado;
+                $codigoPC->cod_pc_fk_lote = $request->cod_pc_fk_lote;
+                $codigoPC->cod_pc_estado = $request->cod_pc_estado;
 
-        $codigoPC->save();
+                $codigoPC->save();
 
-        //dd($request->all());
+                //dd($request->all());
 
-        flash("Modificación de la PC '' ".$codigoPC->cod_pc_codigo." '' exitosa")->success();
-        return redirect()->route('codigoPC.index');
+                flash("Modificación de la PC '' ".$codigoPC->cod_pc_codigo." '' exitosa")->success();
+                return redirect()->route('codigoPC.index');
+
+            }else{  
+                flash('No hay ningun registro en la Base de Datos del objeto buscado.')->error();
+                return redirect()->route('producto_computador.index');
+            }
+        }else{
+
+            flash('Solo los usuarios con el rol "Administrador" o "Encargado" pueden registrar.')->error();
+            return redirect()->back();
+
+        }
+        
     }
 
     /**
@@ -134,15 +194,29 @@ class CodigoPCController extends Controller
      */
     public function destroy($id)
     {
-        $codigoPC = CodigoPC::find($id);
+        if (Auth::user()->rol->rol_rol === 'Administrador'){
+
+            $codigoPC = CodigoPC::find($id);
+            if ($codigoPC !== null) {
+                $codigoPC->delete();
+
+                //dd($request->all());
+
+                flash("Eliminación de la PC '' ".$codigoPC->cod_pc_codigo." '' exitosa")->success();
+                return redirect()->route('codigoPC.index');
+
+            }else{  
+                flash('No hay ningun registro en la Base de Datos del objeto buscado.')->error();
+                return redirect()->route('producto_computador.index');
+            }
+        }else{
+
+            flash('Solo los usuarios con el rol "Administrador"  puede eliminar.')->error();
+            return redirect()->back();
+
+        }
 
         
-        $codigoPC->delete();
-
-        //dd($request->all());
-
-        flash("Eliminación de la PC '' ".$codigoPC->cod_pc_codigo." '' exitosa")->success();
-        return redirect()->route('codigoPC.index');
     }
 
     public function disponibilidadPC($codigoPC){ 
@@ -272,5 +346,19 @@ class CodigoPCController extends Controller
         }
         
         return (true);
+    }
+
+
+    public function Exist($cod_pc_codigo){//verifico la existencia del producto
+        $exist = false;
+
+        $pc = codigoPC::where('cod_pc_codigo','like',$cod_pc_codigo)->get();// o busco
+
+            //dd($pc);
+        if(count($pc) <> 0){// si lo consigo entonces si existe
+            $exist = true;
+        } 
+        //dd($exist);
+        return $exist;
     }
 }

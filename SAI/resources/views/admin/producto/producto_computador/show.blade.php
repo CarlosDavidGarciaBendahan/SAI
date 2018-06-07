@@ -16,13 +16,13 @@
 
 @section('body')
 	{{-- expr --}}
-	<section class="container">
+	<section class="container-fluid">
 		<div class="row">
-			<div class="col-sm-8 offset-2">
+			<div class="col-sm-12">
 				{!! Form::open(['route' => 'producto_computador.store', 'method' => 'GET' ]) !!}
-					
-					
-						<div class="form-group ">
+					<div class="row">
+						<div class="col-sm-6">
+						<div class="form-group col-sm-6 ">
 							<label>Oficina </label>
 							<select class="form-control input-sm" name="oficina" id="oficina" disabled="true">
 								<option value=""> Seleccionar oficina</option>
@@ -39,7 +39,7 @@
 							</select>
 						</div>
 					
-						<div class="form-group ">
+						<div class="form-group col-sm-6 ">
 							<label>Sector</label>
 							<select class="form-control input-sm" name="pro_com_fk_sector" id="sector" disabled="true">
 								@foreach ($sectores as $sector)
@@ -58,7 +58,7 @@
 							</select>
 						</div>
 
-						<div class="form-group ">
+						<div class="form-group col-sm-6 ">
 							<label>Marca </label>
 							<select class="form-control input-sm" name="marca" id="marca" disabled="true">
 								<option value=""> Seleccionar oficina</option>
@@ -75,7 +75,7 @@
 							</select>
 						</div>
 					
-						<div class="form-group ">
+						<div class="form-group col-sm-6 ">
 							<label>Modelo</label>
 							<select class="form-control input-sm" name="pro_com_fk_modelo" id="modelo" disabled="true">
 								@foreach ($modelos as $modelo)
@@ -94,7 +94,7 @@
 							</select>
 						</div>
 					
-						<div class="form-group ">
+						<div class="form-group col-sm-6 ">
 							<label>Tipo de producto </label>
 							<select class="form-control input-sm" name="pro_com_fk_tipo_producto" id="tipo_producto" disabled="true">
 								@foreach ($tipo_productos as $tipo)
@@ -110,43 +110,42 @@
 							</select>
 						</div>
 
-						<div class="form-group ">
+						<div class="form-group col-sm-6 ">
 							{!! Form::label('pro_com_codigo','Código') !!}
 							{!! Form::text('pro_com_codigo',$producto_computador->pro_com_codigo,['class'=> 'form-control', 'placeholder'=>'B208802', 'required', 'readonly'=>'true']) !!}
 						</div>
-						<div class="form-group ">
+						<div class="form-group col-sm-6 ">
 							{!! Form::label('pro_com_descripcion','Descripcion') !!}
 							{!! Form::text('pro_com_descripcion',$producto_computador->pro_com_descripcion,['class'=> 'form-control', 'placeholder'=>'computador excelente para oficina', 'required', 'readonly'=>'true']) !!}
 						</div>
 					
 
 
-						<div class="form-group ">
+						<div class="form-group col-sm-6 ">
 							{!! Form::label('pro_com_precio','Precio') !!}
 							{!! Form::text('pro_com_precio',$producto_computador->pro_com_precio,['class'=> 'form-control', 'placeholder'=>'80', 'required', 'readonly'=>'true']) !!}
 						</div>
 					
-						<div class="form-group ">
+						<div class="form-group col-sm-6 ">
 							{!! Form::label('pro_com_moneda','Moneda') !!}
 							{!! Form::select('pro_com_moneda',['$'=>'$','Bs'=>'Bs'], $producto_computador->pro_com_moneda, ['class'=>'form-control', 'placeholder'=>'$', 'required', 'disabled'] ) !!}
 						</div>
 					
-						<div class="form-group ">
+						<div class="form-group col-sm-6 ">
 							{!! Form::label('pro_com_cantidad','Cantidad del producto') !!}
 							{!! Form::text('pro_com_cantidad',$producto_computador->pro_com_cantidad,['class'=> 'form-control', 'placeholder'=>'0', 'required', 'readonly'=>'true']) !!}
 						</div>
 
-						<div class="form-group ">
+						<div class="form-group col-sm-6 ">
 							{!! Form::label('pro_com_catalogo','Publicado') !!}
 							{!! Form::select('pro_com_catalogo',[0=>'NO',1=>'SI'], $producto_computador->pro_com_catalogo, ['class'=>'form-control', 'placeholder'=>'', 'required', 'disabled'] ) !!}
 						</div>
 						
-						<div class="form-group"> 
-						
-						{!! Form::label('Componentes','Componentes') !!}
+					</div>
 
-						
 
+					<div class="col-sm-6">
+						{!! Form::label('Componentes','Lista de productos') !!}
 
 						<table class="table table-inverse">
 						<thead>
@@ -168,27 +167,13 @@
 						      	@endif
 
 						      </td>		
-						     
+						     	<td>
+					      	<a href="{{ route('codigoPC.show', $codigoPC->id) }}" class="btn btn-default" title="Ver detalles">
+					      		<span class="fa fa-eye"></span></td>
 					     
-					      <!--
-					      	
-					      <td>
-					      	<a href="{{ route('codigoPC.edit', $codigoPC->id) }}" class="btn btn-warning">
-					      		<span class="class glyphicon glyphicon-wrench"></span>
-					      	</a>
-
-					      	<a href="{{ route('codigoPC.destroy', $codigoPC->id) }}" onclick="return confirm('Eliminar el codigoPC?')" class="btn btn-danger">
-					      		<span class="class glyphicon glyphicon-remove-circle"></span>
-					      	</a> 
-					      	<a href="{{ route('codigoPC.show', $codigoPC->id) }}" class="btn btn-info">
-					      		<span class="glyphicon glyphicon-search"></span>
-					      	</a>
-
-					      	<a href="{{ route('codigoPC.create', $codigoPC->id) }}" class="btn btn-success" title="Agregar PCs">
-					      		<span class="glyphicon glyphicon-plus-sign"></span>
+					       
 					      	</a>
 					      </td>
-					 		 -->
 				    	</tr>
 					  	@endforeach
 
@@ -196,12 +181,21 @@
 
 					</table>
 					{{ $codigosPC->links() }}
-
-						<div>
+					</div>
+					</div>
+					<div class="row">
+						
+						<div class="col-sm-12">
 							<a href="{{ route('producto_computador.index') }}" class="btn btn-info">
 						      		<span class="glyphicon glyphicon-arrow-left"></span> Regresar al listado
 						     </a>
 						</div>
+					</div>
+					
+						
+						
+						
+
 
 					
 
