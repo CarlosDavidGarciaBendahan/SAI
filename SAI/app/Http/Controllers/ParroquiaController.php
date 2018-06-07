@@ -7,6 +7,7 @@ use App\Parroquia;
 use App\Estado;
 use App\Municipio;
 use Laracast\Flash\Flash;
+use App\Http\Requests\ParroquiaRequest;
 
 class ParroquiaController extends Controller
 {
@@ -33,9 +34,16 @@ class ParroquiaController extends Controller
      */
     public function create()
     {
-        $estados = Estado::select('est_nombre','id')->where('id','>',0)->orderby('est_nombre','asc')->get();
+        if (Auth::user()->rol->rol_rol === 'Administrador' || Auth::user()->rol->rol_rol === 'Encargado'){
+            $estados = Estado::select('est_nombre','id')->where('id','>',0)->orderby('est_nombre','asc')->get();
 
-        return view ('admin.lugar.parroquia.create')->with(compact('estados'));
+            return view ('admin.lugar.parroquia.create')->with(compact('estados'));
+        }else{
+
+            flash('Solo los usuarios con el rol "Administrador" o "Encargado" pueden registrar.')->error();
+            return redirect()->back();
+
+        }
     }
 
     /**
@@ -44,14 +52,21 @@ class ParroquiaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ParroquiaRequest $request)
     {
-        //dd($request->all());
+        if (Auth::user()->rol->rol_rol === 'Administrador' || Auth::user()->rol->rol_rol === 'Encargado'){
 
-        $parroquia = new Parroquia($request->all());
-        $parroquia->save();
-        flash("Registro de la parroquia " .$request->par_nombre . " exitosamente.")->success();
-        return redirect()->route('parroquia.index');
+            $parroquia = new Parroquia($request->all());
+            $parroquia->save();
+            flash("Registro de la parroquia " .$request->par_nombre . " exitosamente.")->success();
+            return redirect()->route('parroquia.index');
+        }else{
+
+            flash('Solo los usuarios con el rol "Administrador" o "Encargado" pueden registrar.')->error();
+            return redirect()->back();
+
+        }
+        //dd($request->all());
     }
 
     /**
@@ -73,10 +88,23 @@ class ParroquiaController extends Controller
      */
     public function edit($id)
     {
-        $estados = Estado::select('est_nombre','id')->where('id','>',0)->orderby('est_nombre','asc')->get();
-        $parroquia = Parroquia::find($id);
+        if (Auth::user()->rol->rol_rol === 'Administrador' || Auth::user()->rol->rol_rol === 'Encargado'){
+            $estados = Estado::select('est_nombre','id')->where('id','>',0)->orderby('est_nombre','asc')->get();
+            $parroquia = Parroquia::find($id);
+            if ($Parroquia !== null) {
 
-        return view ('admin.lugar.parroquia.edit')->with(compact(['parroquia','estados']));
+                return view ('admin.lugar.parroquia.edit')->with(compact(['parroquia','estados']));
+            }else{  
+                flash('No hay ningun registro en la Base de Datos del objeto buscado.')->error();
+                return redirect()->route('parroquia.index');
+            }
+
+        }else{
+
+            flash('Solo los usuarios con el rol "Administrador" o "Encargado" pueden modificar.')->error();
+            return redirect()->back();
+
+        }
     }
 
     /**
@@ -86,17 +114,29 @@ class ParroquiaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ParroquiaRequest $request, $id)
     {
-       // dd($request->all());
-        $parroquia = Parroquia::find($id);
-        $parroquia->par_nombre = $request->par_nombre;
-        $parroquia->par_fk_municipio = $request->par_fk_municipio;
-        $parroquia->save();
-        //dd($parroquia);
+        if (Auth::user()->rol->rol_rol === 'Administrador' || Auth::user()->rol->rol_rol === 'Encargado'){
+            $parroquia = Parroquia::find($id);
+            if ($Parroquia !== null) {
+                $parroquia->par_nombre = $request->par_nombre;
+                $parroquia->par_fk_municipio = $request->par_fk_municipio;
+                $parroquia->save();
+                flash("Modificación de la Parroquia " .$parroquia->par_nombre . " exitosamente.")->success();
+                return redirect()->route('parroquia.index');
+            }else{  
+                flash('No hay ningun registro en la Base de Datos del objeto buscado.')->error();
+                return redirect()->route('parroquia.index');
+            }
+            //dd($parroquia);
 
-        flash("Modificación de la Parroquia " .$parroquia->par_nombre . " exitosamente.")->success();
-        return redirect()->route('parroquia.index');
+        }else{
+
+            flash('Solo los usuarios con el rol "Administrador" o "Encargado" pueden modificar.')->error();
+            return redirect()->back();
+
+        }
+       // dd($request->all());
     }
 
     /**
@@ -107,10 +147,23 @@ class ParroquiaController extends Controller
      */
     public function destroy($id)
     {
-        $Parroquia = Parroquia::find($id);
-        $Parroquia->delete();
+        if (Auth::user()->rol->rol_rol === 'Administrador'){
 
-        flash("Eliminación de la Parroquia " .$Parroquia->par_nombre . " exitosamente.")->success();
-        return redirect()->route('parroquia.index');
+            $Parroquia = Parroquia::find($id);
+            if ($Parroquia !== null) {
+                $Parroquia->delete();
+
+                flash("Eliminación de la Parroquia " .$Parroquia->par_nombre . " exitosamente.")->success();
+                return redirect()->route('parroquia.index');
+            }else{  
+                flash('No hay ningun registro en la Base de Datos del objeto buscado.')->error();
+                return redirect()->route('parroquia.index');
+            }    
+        }else{
+
+            flash('Solo los usuarios con el rol "Administrador" puede eliminar.')->error();
+            return redirect()->back();
+
+        }
     }
 }
