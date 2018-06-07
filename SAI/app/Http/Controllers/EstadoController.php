@@ -44,7 +44,8 @@ class EstadoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {   if (Auth::user()->rol->rol_rol === 'Administrador' || Auth::user()->rol->rol_rol === 'Encargado'){
+    {   
+        if (Auth::user()->rol->rol_rol === 'Administrador' || Auth::user()->rol->rol_rol === 'Encargado'){
             return view('admin.lugar.estado.create');
         }else{
 

@@ -31,9 +31,16 @@ class MunicipioController extends Controller
      */
     public function create()
     {
-        $estados = Estado::select('est_nombre','id')->where('id','>',0)->orderby('est_nombre','asc')->pluck('est_nombre','id');
+        if (Auth::user()->rol->rol_rol === 'Administrador' || Auth::user()->rol->rol_rol === 'Encargado'){
+            $estados = Estado::select('est_nombre','id')->where('id','>',0)->orderby('est_nombre','asc')->pluck('est_nombre','id');
 
-        return view('admin.lugar.municipio.create',['estados'=>$estados]);
+            return view('admin.lugar.municipio.create',['estados'=>$estados]);
+        }else{
+
+            flash('Solo los usuarios con el rol "Administrador" o "Encargado" pueden registrar.')->error();
+            return redirect()->back();
+
+        }
     }
 
     /**
@@ -44,15 +51,22 @@ class MunicipioController extends Controller
      */
     public function store(MunicipioRequest $request)
     {
-        //dd($request->all());
-        
-        
-        //DB::beginTransaction();    
+        if (Auth::user()->rol->rol_rol === 'Administrador' || Auth::user()->rol->rol_rol === 'Encargado'){
             $municipio = new Municipio($request->all());
             $municipio->save();
         //DB::commit();    
             flash("Registro del municipio " .$request->mun_nombre . " exitosamente.")->success();
             return redirect()->route('municipio.index');
+        }else{
+
+            flash('Solo los usuarios con el rol "Administrador" o "Encargado" pueden registrar.')->error();
+            return redirect()->back();
+
+        }
+        //dd($request->all());
+        
+        
+        //DB::beginTransaction();    
 
        
     }
@@ -83,17 +97,24 @@ class MunicipioController extends Controller
      */
     public function edit($id)
     {
-        $municipio = Municipio::find($id);
+        if (Auth::user()->rol->rol_rol === 'Administrador' || Auth::user()->rol->rol_rol === 'Encargado'){
+            $municipio = Municipio::find($id);
 
-        if ($municipio !== null) {
-        
-            $estados = Estado::select('est_nombre','id')->where('id','>',0)->orderby('est_nombre','asc')->pluck('est_nombre','id');
-            //dd($municipio);
+            if ($municipio !== null) {
+            
+                $estados = Estado::select('est_nombre','id')->where('id','>',0)->orderby('est_nombre','asc')->pluck('est_nombre','id');
+                //dd($municipio);
 
-            return view('admin.lugar.municipio.edit',['municipio'=>$municipio, 'estados'=>$estados]);
-        }else{  
-            flash('No hay ningun registro en la Base de Datos del objeto buscado.')->error();
-            return redirect()->route('municipio.index');
+                return view('admin.lugar.municipio.edit',['municipio'=>$municipio, 'estados'=>$estados]);
+            }else{  
+                flash('No hay ningun registro en la Base de Datos del objeto buscado.')->error();
+                return redirect()->route('municipio.index');
+            }
+        }else{
+
+            flash('Solo los usuarios con el rol "Administrador" o "Encargado" pueden modificar.')->error();
+            return redirect()->back();
+
         }
     }
 
@@ -106,22 +127,29 @@ class MunicipioController extends Controller
      */
     public function update(MunicipioRequest $request, $id)
     {
-        //dd($request->all());
-        $municipio = Municipio::find($id);
-        
-        if ($municipio !== null) {
-        
-            $municipio->mun_nombre = $request->mun_nombre;
-            $municipio->mun_fk_estado = $request->mun_fk_estado;
+        if (Auth::user()->rol->rol_rol === 'Administrador' || Auth::user()->rol->rol_rol === 'Encargado'){
+            $municipio = Municipio::find($id);
+            
+            if ($municipio !== null) {
+            
+                $municipio->mun_nombre = $request->mun_nombre;
+                $municipio->mun_fk_estado = $request->mun_fk_estado;
 
-            $municipio->save();
+                $municipio->save();
 
-            flash("Modificación del municipio exitosamente a ".$municipio->mun_nombre )->success();
-            return redirect()->route('municipio.index');
-        }else{  
-            flash('No hay ningun registro en la Base de Datos del objeto buscado.')->error();
-            return redirect()->route('municipio.index');
+                flash("Modificación del municipio exitosamente a ".$municipio->mun_nombre )->success();
+                return redirect()->route('municipio.index');
+            }else{  
+                flash('No hay ningun registro en la Base de Datos del objeto buscado.')->error();
+                return redirect()->route('municipio.index');
+            }
+        }else{
+
+            flash('Solo los usuarios con el rol "Administrador" o "Encargado" pueden modificar.')->error();
+            return redirect()->back();
+
         }
+        //dd($request->all());
 
     }
 
@@ -133,16 +161,23 @@ class MunicipioController extends Controller
      */
     public function destroy($id)
     {
-        $municipio = Municipio::find($id);
-        
-        if ($municipio !== null) {
-            $municipio->delete();
+        if (Auth::user()->rol->rol_rol === 'Administrador'){
+            $municipio = Municipio::find($id);
+            
+            if ($municipio !== null) {
+                $municipio->delete();
 
-            flash("Eliminación del municipio " .$municipio->mun_nombre . " exitosamente.")->success();
-            return redirect()->route('municipio.index');
-        }else{  
-            flash('No hay ningun registro en la Base de Datos del objeto buscado.')->error();
-            return redirect()->route('municipio.index');
+                flash("Eliminación del municipio " .$municipio->mun_nombre . " exitosamente.")->success();
+                return redirect()->route('municipio.index');
+            }else{  
+                flash('No hay ningun registro en la Base de Datos del objeto buscado.')->error();
+                return redirect()->route('municipio.index');
+            }
+        }else{
+
+            flash('Solo los usuarios con el rol "Administrador" puede eliminar.')->error();
+            return redirect()->back();
+
         }
     }
 }
