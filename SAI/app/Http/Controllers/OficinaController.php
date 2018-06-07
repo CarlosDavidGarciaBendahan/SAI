@@ -8,6 +8,8 @@ use App\Oficina;
 use App\Estado;
 use App\Municipio;
 use App\Parroquia;
+use App\Http\Requests\OficinaRequest;
+use Auth;
 
 class OficinaController extends Controller
 {
@@ -30,9 +32,17 @@ class OficinaController extends Controller
      */
     public function create()
     {
-        $estados = Estado::select('est_nombre','id')->where('id','>',0)->orderby('est_nombre','asc')->get();
+        if (Auth::user()->rol->rol_rol === 'Administrador' || Auth::user()->rol->rol_rol === 'Encargado'){
+            $estados = Estado::select('est_nombre','id')->where('id','>',0)->orderby('est_nombre','asc')->get();
 
-        return view ('admin.oficina.oficina.create')->with(compact('estados'));
+            return view ('admin.oficina.oficina.create')->with(compact('estados'));
+        }else{
+
+            flash('Solo los usuarios con el rol "Administrador" o "Encargado" pueden registrar.')->error();
+            return redirect()->back();
+
+        }
+        
     }
 
     /**
@@ -41,15 +51,23 @@ class OficinaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(OficinaRequest $request)
     {
+        if (Auth::user()->rol->rol_rol === 'Administrador' || Auth::user()->rol->rol_rol === 'Encargado'){
+            $oficina = new Oficina($request->all());
+            $oficina->save();
+
+            flash("Registro de la oficina '' ".$request->ofi_direccion." '' exitoso")->success();
+            return redirect()->route('oficina.index');
+        }else{
+
+            flash('Solo los usuarios con el rol "Administrador" o "Encargado" pueden registrar.')->error();
+            return redirect()->back();
+
+        }
         //dd($request->all());
 
-        $oficina = new Oficina($request->all());
-        $oficina->save();
-
-        flash("Registro de la oficina '' ".$request->ofi_direccion." '' exitoso")->success();
-        return redirect()->route('oficina.index');
+        
         
     }
 
@@ -60,11 +78,17 @@ class OficinaController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {
-        $estados = Estado::select('est_nombre','id')->where('id','>',0)->orderby('est_nombre','asc')->get();
-        $oficina = Oficina::find($id);
+    {       $oficina = Oficina::find($id);
+            if ($oficina !== null) {
+                $estados = Estado::select('est_nombre','id')->where('id','>',0)->orderby('est_nombre','asc')->get();
+        
 
-        return view ('admin.oficina.oficina.show')->with(compact('estados','oficina'));
+                return view ('admin.oficina.oficina.show')->with(compact('estados','oficina'));
+            }else{  
+                flash('No hay ningun registro en la Base de Datos del objeto buscado.')->error();
+                return redirect()->route('producto_articulo.index');
+            }
+        
     }
 
     /**
@@ -75,10 +99,24 @@ class OficinaController extends Controller
      */
     public function edit($id)
     {
-        $estados = Estado::select('est_nombre','id')->where('id','>',0)->orderby('est_nombre','asc')->get();
-        $oficina = Oficina::find($id);
+        if (Auth::user()->rol->rol_rol === 'Administrador' || Auth::user()->rol->rol_rol === 'Encargado'){
+            $oficina = Oficina::find($id);
+            if ($oficina !== null) {
+                $estados = Estado::select('est_nombre','id')->where('id','>',0)->orderby('est_nombre','asc')->get();
+                
 
-        return view ('admin.oficina.oficina.edit')->with(compact('estados','oficina'));
+                return view ('admin.oficina.oficina.edit')->with(compact('estados','oficina'));
+            }else{  
+                flash('No hay ningun registro en la Base de Datos del objeto buscado.')->error();
+                return redirect()->route('producto_articulo.index');
+            }
+        }else{
+
+            flash('Solo los usuarios con el rol "Administrador" o "Encargado" pueden modificar.')->error();
+            return redirect()->back();
+
+        }
+        
     }
 
     /**
@@ -88,16 +126,30 @@ class OficinaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(OficinaRequest $request, $id)
     {
-        $oficina = Oficina::find($id);
-        $oficina->ofi_tipo = $request->ofi_tipo;
-        $oficina->ofi_direccion = $request->ofi_direccion;
-        $oficina->ofi_fk_parroquia = $request->ofi_fk_parroquia;
-        $oficina->save();
+        if (Auth::user()->rol->rol_rol === 'Administrador' || Auth::user()->rol->rol_rol === 'Encargado'){
+            $oficina = Oficina::find($id);
+            if ($oficina !== null) {
+                $oficina->ofi_tipo = $request->ofi_tipo;
+                $oficina->ofi_direccion = $request->ofi_direccion;
+                $oficina->ofi_fk_parroquia = $request->ofi_fk_parroquia;
+                $oficina->save();
 
-        flash("Modificación de la oficina '' ". $request->ofi_direccion ." '' exitoso")->success();
-        return redirect()->route('oficina.index');
+                flash("Modificación de la oficina '' ". $request->ofi_direccion ." '' exitoso")->success();
+                return redirect()->route('oficina.index');
+            }else{  
+                flash('No hay ningun registro en la Base de Datos del objeto buscado.')->error();
+                return redirect()->route('producto_articulo.index');
+            }
+        }else{
+
+            flash('Solo los usuarios con el rol "Administrador" o "Encargado" pueden modificar.')->error();
+            return redirect()->back();
+
+        }
+        
+        
         //dd($request->all());
     }
 
@@ -109,11 +161,25 @@ class OficinaController extends Controller
      */
     public function destroy($id)
     {
-        $oficina = Oficina::find($id);
-        $oficina->delete();
+        if (Auth::user()->rol->rol_rol === 'Administrador'){
+            $oficina = Oficina::find($id);
+            if ($oficina !== null) {
+                $oficina->delete();
 
-        flash("Eliminación de la oficina '' ". $oficina->ofi_direccion ." '' exitoso")->success();
-        return redirect()->route('oficina.index');
+                flash("Eliminación de la oficina '' ". $oficina->ofi_direccion ." '' exitoso")->success();
+                return redirect()->route('oficina.index');
+            }else{  
+                flash('No hay ningun registro en la Base de Datos del objeto buscado.')->error();
+                return redirect()->route('producto_articulo.index');
+            }
+        }else{
+
+            flash('Solo los usuarios con el rol "Administrador"  puede eliminar.')->error();
+            return redirect()->back();
+
+        }
+        
+        
 
     }
 }
