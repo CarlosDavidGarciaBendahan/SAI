@@ -19,7 +19,7 @@
 	<section class="container-fluid">
 
 		<div class="row">
-			<div class="col-sm-8 offset-2">
+			<div class="col-sm-12">
 
 				<a href="{{ route('empresa.create') }}" class="btn btn-info">Registrar nueva empresa</a>
 				
