@@ -48,7 +48,7 @@ class ProComRequest extends FormRequest
             'pro_com_fk_modelo'             => 'required|integer',
             'pro_com_fk_sector'             => 'required|integer',
             'componentes'                   => 'required',
-            'imagen'                        => 'required|mimes:.jpg,.jpeg,.png'
+            'imagen'                        => 'required|mimes:jpg,jpeg,png'
             
         ];
     }

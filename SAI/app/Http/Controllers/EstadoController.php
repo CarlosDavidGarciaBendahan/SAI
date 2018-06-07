@@ -9,6 +9,7 @@ use Laracast\Flash\Flash;
 use App\Estado;
 use App\Municipio;
 use App\Http\Requests\EstadoResquest;
+use App\Http\Requests\EstadoEditResquest;
 use Auth;
 
 class EstadoController extends Controller
@@ -134,7 +135,7 @@ class EstadoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(EstadoResquest $request, $id)
+    public function update(EstadoEditResquest $request, $id)
     {
         if (Auth::user()->rol->rol_rol === 'Administrador' || Auth::user()->rol->rol_rol === 'Encargado'){
             $estado = Estado::find($id);

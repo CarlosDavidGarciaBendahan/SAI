@@ -14,6 +14,7 @@ use App\Modelo;
 use App\Imagen;
 use App\CodigoPC;
 use App\Http\Requests\ProComRequest;
+use App\Http\Requests\ProComEditRequest;
 use Auth;
 
 
@@ -254,8 +255,8 @@ class Producto_ComputadorController extends Controller
     public function catalogo(){
 
         
-        $PCs = Producto_Computador::where('pro_com_catalogo','<>',0)->orderby('pro_com_codigo')->get();
-        $articulos = producto_articulo::where('pro_art_catalogo','<>',0)->orderby('pro_art_codigo')->get();
+        $PCs = Producto_Computador::where('pro_com_catalogo','<>',0)->where('pro_com_catalogo','=',1)->orderby('pro_com_codigo')->get();
+        $articulos = producto_articulo::where('pro_art_catalogo','<>',0)->where('pro_art_catalogo','=',1)->orderby('pro_art_codigo')->get();
 
         return view('admin.producto.catalogo.index')->with(compact('PCs','articulos'));
     }

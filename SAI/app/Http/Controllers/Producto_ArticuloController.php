@@ -16,6 +16,7 @@ use App\UnidadMedida;
 use App\CodigoArticulo;
 use Auth;
 use App\Http\Requests\ProArtRequest;
+use App\Http\Requests\ProArtEditRequest;
 
 
 class Producto_ArticuloController extends Controller
@@ -173,7 +174,7 @@ class Producto_ArticuloController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(ProArtRequest $request, $id)
+    public function update(ProArtEditRequest $request, $id)
     {
         //dd($request->all());
         if (Auth::user()->rol->rol_rol === 'Administrador' || Auth::user()->rol->rol_rol === 'Encargado'){
