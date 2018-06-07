@@ -16,16 +16,25 @@
 
 @section('body')
 	{{-- expr --}}
-	<section class="container">
+	<section class="container-fluid">
 		<div class="row">
-			<div class="col-sm-8 offset-2">
+			<div class="col-sm-12">
+				@if (count($errors) > 0)
+					<div class="alert alert-danger" role="alert">
+						<ul>
+							@foreach ($errors->all() as $error)
+								<li>{{ $error }}</li>
+							@endforeach
+						</ul>
+					</div>	
+				@endif
 				{!! Form::open(['route' => 'unidadmedida.store', 'method' => 'POST' ]) !!}
 					
 					<div class="form-group"> 
 						
 						{!! Form::label('uni_medida','Unidad de medida') !!}
 
-						{!! Form::text('uni_medida',null,['class'=> 'form-control', 'title'=>'Solo letras mayúsculas, minúsculas, min: 2 max: 10', 'placeholder'=>'unidad medida.', 'required', 'minlength'=>'2', 'maxlength' => '10', 'pattern'=>'[A-za-z]+']) !!}
+						{!! Form::text('uni_medida',null,['class'=> 'form-control', 'title'=>'Solo letras mayúsculas, minúsculas, min: 1 max: 10', 'placeholder'=>'unidad medida.', 'required', 'minlength'=>'1', 'maxlength' => '10', 'pattern'=>'[A-za-z"/]+']) !!}
 					</div>
 
 					<div class="form-group">
