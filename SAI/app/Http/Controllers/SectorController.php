@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Laracasts\Flash\Flash;
 use App\Oficina;
 use App\Sector;
+use App\Http\Requests\SectorRequest;
+use Auth;
 
 class SectorController extends Controller
 {
@@ -28,9 +30,17 @@ class SectorController extends Controller
      */
     public function create()
     {
-        $oficinas = Oficina::select('*')->where('id','>',0)->orderby('ofi_direccion','asc')->get();
+        if (Auth::user()->rol->rol_rol === 'Administrador' || Auth::user()->rol->rol_rol === 'Encargado'){
+            $oficinas = Oficina::select('*')->where('id','>',0)->orderby('ofi_direccion','asc')->get();
 
-        return view('admin.oficina.sector.create')->with(compact('oficinas'));
+            return view('admin.oficina.sector.create')->with(compact('oficinas'));
+        }else{
+
+            flash('Solo los usuarios con el rol "Administrador" o "Encargado" pueden registrar.')->error();
+            return redirect()->back();
+
+        }
+        
     }
 
     /**
@@ -39,14 +49,22 @@ class SectorController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(SectorRequest $request)
     {
-        //dd($request->all());
-        $sector = new Sector($request->all());
-        $sector->save();
+        if (Auth::user()->rol->rol_rol === 'Administrador' || Auth::user()->rol->rol_rol === 'Encargado'){
+            $sector = new Sector($request->all());
+            $sector->save();
 
-        flash("Registro del sector '' ".$request->sec_sector." '' exitoso")->success();
-        return redirect()->route('sector.index');
+            flash("Registro del sector '' ".$request->sec_sector." '' exitoso")->success();
+            return redirect()->route('sector.index');
+        }else{
+
+            flash('Solo los usuarios con el rol "Administrador" o "Encargado" pueden registrar.')->error();
+            return redirect()->back();
+
+        }
+        //dd($request->all());
+        
     }
 
     /**
@@ -68,11 +86,25 @@ class SectorController extends Controller
      */
     public function edit($id)
     {
-        $sector = Sector::find($id);
-       // $oficinas = Oficina::select('*')->orderby('ofi_direccion','asc')->get();
-        $oficinas = Oficina::select('id','ofi_direccion')->where('id','>',0)->orderby('ofi_direccion','asc')->pluck('ofi_direccion','id');
+        if (Auth::user()->rol->rol_rol === 'Administrador' || Auth::user()->rol->rol_rol === 'Encargado'){
+            $sector = Sector::find($id);
+            if ($sector !== null) {
+                $oficinas = Oficina::select('id','ofi_direccion')->where('id','>',0)->orderby('ofi_direccion','asc')->pluck('ofi_direccion','id');
 
-        return view('admin.oficina.sector.edit')->with(compact('sector','oficinas'));
+                return view('admin.oficina.sector.edit')->with(compact('sector','oficinas'));
+            }else{  
+                flash('No hay ningun registro en la Base de Datos del objeto buscado.')->error();
+                return redirect()->route('producto_articulo.index');
+            }
+        }else{
+
+            flash('Solo los usuarios con el rol "Administrador" o "Encargado" pueden modificar.')->error();
+            return redirect()->back();
+
+        }
+        
+       // $oficinas = Oficina::select('*')->orderby('ofi_direccion','asc')->get();
+        
     }
 
     /**
@@ -82,15 +114,29 @@ class SectorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(SectorRequest $request, $id)
     {
-        $sector = Sector::find($id);
-        $sector->sec_sector = $request->sec_sector;
-        $sector->sec_fk_oficina = $request->sec_fk_oficina;
-        $sector->save();
+        if (Auth::user()->rol->rol_rol === 'Administrador' || Auth::user()->rol->rol_rol === 'Encargado'){
+            $sector = Sector::find($id);
+            if ($sector !== null) {
+                $sector->sec_sector = $request->sec_sector;
+                $sector->sec_fk_oficina = $request->sec_fk_oficina;
+                $sector->save();
 
-        flash("Modificación del sector '' ".$sector->sec_sector." exitosa")->success();
-        return redirect()->route('sector.index');
+                flash("Modificación del sector '' ".$sector->sec_sector." exitosa")->success();
+                return redirect()->route('sector.index');
+            }else{  
+                flash('No hay ningun registro en la Base de Datos del objeto buscado.')->error();
+                return redirect()->route('producto_articulo.index');
+            }
+        }else{
+
+            flash('Solo los usuarios con el rol "Administrador" o "Encargado" pueden modificar.')->error();
+            return redirect()->back();
+
+        }
+        
+        
     }
 
     /**
@@ -101,10 +147,24 @@ class SectorController extends Controller
      */
     public function destroy($id)
     {
-        $sector = Sector::find($id);
-        $sector->delete();
+        if (Auth::user()->rol->rol_rol === 'Administrador'){
+            $sector = Sector::find($id);
+            if ($sector !== null) {
+                $sector->delete();
 
-        flash("Eliminación del sector '' ".$sector->sec_sector." exitosa")->success();
-        return redirect()->route('sector.index');
+                flash("Eliminación del sector '' ".$sector->sec_sector." exitosa")->success();
+                return redirect()->route('sector.index');
+            }else{  
+                flash('No hay ningun registro en la Base de Datos del objeto buscado.')->error();
+                return redirect()->route('producto_articulo.index');
+            }
+        }else{
+
+            flash('Solo los usuarios con el rol "Administrador"  puede eliminar.')->error();
+            return redirect()->back();
+
+        }
+        
+        
     }
 }
