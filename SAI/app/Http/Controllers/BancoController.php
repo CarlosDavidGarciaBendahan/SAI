@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Laracasts\Flash\Flash;
 use App\Banco;
+use App\Http\Requests\BancoRequest;
+use Auth;
 
 class BancoController extends Controller
 {
@@ -27,7 +29,15 @@ class BancoController extends Controller
      */
     public function create()
     {
-        return view('admin.banco.banco.create');
+        if (Auth::user()->rol->rol_rol === 'Administrador' || Auth::user()->rol->rol_rol === 'Encargado'){
+            return view('admin.banco.banco.create');
+        }else{
+
+            flash('Solo los usuarios con el rol "Administrador" o "Encargado" pueden registrar.')->error();
+            return redirect()->back();
+
+        }
+        
     }
 
     /**
@@ -36,13 +46,21 @@ class BancoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(BancoRequest $request)
     {
-        $banco = new Banco($request->all());
-        $banco->save();
+        if (Auth::user()->rol->rol_rol === 'Administrador' || Auth::user()->rol->rol_rol === 'Encargado'){
+            $banco = new Banco($request->all());
+            $banco->save();
 
-        flash("Registro del banco '' ".$request->ban_nombre." '' exitoso")->success();
-        return redirect()->route('banco.index');
+            flash("Registro del banco '' ".$request->ban_nombre." '' exitoso")->success();
+            return redirect()->route('banco.index');
+        }else{
+
+            flash('Solo los usuarios con el rol "Administrador" o "Encargado" pueden registrar.')->error();
+            return redirect()->back();
+
+        }
+        
     }
 
     /**
@@ -64,9 +82,23 @@ class BancoController extends Controller
      */
     public function edit($id)
     {
-        $banco =  Banco::find($id);
+        if (Auth::user()->rol->rol_rol === 'Administrador' || Auth::user()->rol->rol_rol === 'Encargado'){
+            $banco =  Banco::find($id);
+            if ($banco !== null) {
+                return view('admin.banco.banco.edit')->with(compact('banco'));
+            }else{  
+                flash('No hay ningun registro en la Base de Datos del objeto buscado.')->error();
+                return redirect()->route('producto_articulo.index');
+            }
+        }else{
+
+            flash('Solo los usuarios con el rol "Administrador" o "Encargado" pueden modificar.')->error();
+            return redirect()->back();
+
+        }
+        
     
-        return view('admin.banco.banco.edit')->with(compact('banco'));
+        
     }
 
     /**
@@ -76,14 +108,28 @@ class BancoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(BancoRequest $request, $id)
     {
-        $banco = Banco::find($id);
-        $banco->ban_nombre = $request->ban_nombre;
-        $banco->save();
+        if (Auth::user()->rol->rol_rol === 'Administrador' || Auth::user()->rol->rol_rol === 'Encargado'){
+            $banco = Banco::find($id);
+            if ($banco !== null) {
+                $banco->ban_nombre = $request->ban_nombre;
+                $banco->save();
 
-        flash("Modificación del banco '' ".$banco->ban_nombre." '' exitoso")->success();
-        return redirect()->route('banco.index');
+                flash("Modificación del banco '' ".$banco->ban_nombre." '' exitoso")->success();
+                return redirect()->route('banco.index');
+            }else{  
+                flash('No hay ningun registro en la Base de Datos del objeto buscado.')->error();
+                return redirect()->route('producto_articulo.index');
+            }
+        }else{
+
+            flash('Solo los usuarios con el rol "Administrador" o "Encargado" pueden modificar.')->error();
+            return redirect()->back();
+
+        }
+        
+        
     }
 
     /**
@@ -94,10 +140,24 @@ class BancoController extends Controller
      */
     public function destroy($id)
     {
-        $banco = Banco::find($id);
-        $banco->delete();
+        if (Auth::user()->rol->rol_rol === 'Administrador'){
+            $banco = Banco::find($id);
+            if ($banco !== null) {
+                $banco->delete();
 
-        flash("Eliminación del banco '' ".$banco->ban_nombre." '' exitoso")->success();
-        return redirect()->route('banco.index');
+                flash("Eliminación del banco '' ".$banco->ban_nombre." '' exitoso")->success();
+                return redirect()->route('banco.index');
+            }else{  
+                flash('No hay ningun registro en la Base de Datos del objeto buscado.')->error();
+                return redirect()->route('producto_articulo.index');
+            }
+        }else{
+
+            flash('Solo los usuarios con el rol "Administrador"  puede eliminar.')->error();
+            return redirect()->back();
+
+        }
+            
+        
     }
 }
