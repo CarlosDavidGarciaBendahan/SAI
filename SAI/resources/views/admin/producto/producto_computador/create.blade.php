@@ -16,9 +16,9 @@
 
 @section('body')
 	{{-- expr --}}
-	<section class="container">
+	<section class="container-fluid">
 		<div class="row">
-			<div class="col-sm-8 offset-2">
+			<div class="col-sm-12">
 				{!! Form::open(['route' => 'producto_computador.store', 'method' => 'POST', 'files' => 'true' ]) !!}
 					
 					
@@ -68,11 +68,11 @@
 
 						<div class="form-group ">
 							{!! Form::label('pro_com_codigo','Código') !!}
-							{!! Form::text('pro_com_codigo',null,['class'=> 'form-control', 'title'=>'Solo letras mayúsculas, minúsculas y números de 0-9, min: 3 max: 100', 'placeholder'=>'B201223.', 'required', 'minlength'=>'3', 'maxlength' => '100', 'pattern'=>'[A-za-z0-9]+']) !!}
+							{!! Form::text('pro_com_codigo',null,['class'=> 'form-control', 'title'=>'Solo letras mayúsculas, minúsculas y números de 0-9, min: 3 max: 200', 'placeholder'=>'B201223.', 'required', 'minlength'=>'3', 'maxlength' => '200', 'pattern'=>'[A-za-z0-9]+']) !!}
 						</div>
 						<div class="form-group ">
 							{!! Form::label('pro_com_descripcion','Descripcion') !!}
-							{!! Form::text('pro_com_descripcion',null,['class'=> 'form-control', 'title'=>'Solo letras mayúsculas, minúsculas y números de 0-9, min: 10 max: 100', 'placeholder'=>'B201223.', 'required', 'minlength'=>'10', 'maxlength' => '100', 'pattern'=>'[A-za-z0-9 ]+']) !!}
+							{!! Form::text('pro_com_descripcion',null,['class'=> 'form-control', 'title'=>'Solo letras mayúsculas, minúsculas y números de 0-9, min: 10 max: 200', 'placeholder'=>'B201223.', 'required', 'minlength'=>'10', 'maxlength' => '200', 'pattern'=>'[A-za-z0-9 ]+']) !!}
 						</div>
 					
 
@@ -89,7 +89,7 @@
 					
 						<div class="form-group ">
 							{!! Form::label('pro_com_cantidad','Cantidad del producto') !!}
-							{!! Form::text('pro_com_cantidad',null,['class'=> 'form-control','title'=>'Solo números de 0-9,  max: 10', 'placeholder'=>'1542.', 'required', 'maxlength' => '10', 'pattern'=>'[0-9]+']) !!}
+							{!! Form::text('pro_com_cantidad','0',['class'=> 'form-control', 'readonly'=>'true','title'=>'Solo números de 0-9,  max: 1', 'placeholder'=>'1542.', 'required', 'maxlength' => '10', 'pattern'=>'[0]+']) !!}
 						</div>
 
 						<div class="form-group ">
@@ -108,7 +108,19 @@
 						
 							{!! Form::label('ima','Imagen') !!}
 
-							{!! Form::file('imagen')!!}
+							 {{-- {!! Form::file('imagen')!!} --}}
+
+							<!-- File input field -->
+							<input type="file" name="imagen" id="file" onchange="return fileValidation()"/>
+
+							<!-- Image preview -->
+							
+								
+							<div id="imagePreview">
+								
+							</div>
+							
+
 						</div>
 
 						<!--
@@ -121,7 +133,7 @@
 						</div>
 						-->
 	
-					<div class="form-group">
+					<div class="form-group col-sm-12">
 						{!! Form::submit('Registrar',['class'=>'btn btn-primary']) !!}
 					</div>
 
@@ -140,5 +152,6 @@
 	<script src="{{ asset('plugins/Script/ObtenerSectoresPorOficina.js') }}"></script>
 	<script src="{{ asset('plugins/Script/ObtenerModelosPorMarca.js') }}"></script>
 	<script src = "{{ asset('plugins/Script/ChosenMultipleSelectorComponentes.js') }}"></script>
+	<script src = "{{ asset('plugins/Script/ValidarImage.js') }}"></script>
 	<!--<script src = "{{ asset('plugins/Script/FormDinamicoAgregarCodigoPC.js') }}"></script>-->
 @endsection

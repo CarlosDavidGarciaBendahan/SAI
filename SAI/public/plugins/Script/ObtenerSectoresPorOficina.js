@@ -5,7 +5,8 @@ $(document).ready(function(){
 	var oficina_id = e.target.value;
 
 	//ajax
-	$.get('/SAI/public/ajax-ObtenerSectoresPorOficina/' + oficina_id, function(data){
+	//$.get('/SAI/public/ajax-ObtenerSectoresPorOficina/' + oficina_id, function(data){
+	$.get('/ajax-ObtenerSectoresPorOficina/' + oficina_id, function(data){
 
 			//succes data
 			//console.log(data);

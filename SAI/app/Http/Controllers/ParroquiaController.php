@@ -8,6 +8,7 @@ use App\Estado;
 use App\Municipio;
 use Laracast\Flash\Flash;
 use App\Http\Requests\ParroquiaRequest;
+use Auth;
 
 class ParroquiaController extends Controller
 {

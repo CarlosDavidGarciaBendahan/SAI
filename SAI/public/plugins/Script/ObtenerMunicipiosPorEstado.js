@@ -7,6 +7,7 @@ $(document).ready(function(){
 		var estado_id = e.target.value;
 
 		//ajax
+		//$.get('/SAI/public/ajax-ObtenerMunicipiosPorEstado/' + estado_id, function(data){
 		$.get('/ajax-ObtenerMunicipiosPorEstado/' + estado_id, function(data){
 
 			//succes data

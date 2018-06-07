@@ -8,6 +8,7 @@ use App\Municipio;
 use Laracast\Flash\Flash;
 use App\Http\Requests\MunicipioRequest;
 use Illuminate\Support\Facades\DB;
+use Auth;
 
 class MunicipioController extends Controller
 {

@@ -9,6 +9,7 @@ $(document).ready(function(){
 
 		//ajax
 		//ruta que que retornará los datos de la cliente_juridico seleccionada.
+		//$.get('/ajax-ObtenerDatosclientes_juridicos/' + cliente_juridico_id, function(data){
 		$.get('/SAI/public/ajax-ObtenerDatosclientes_juridicos/' + cliente_juridico_id, function(data){
 
 			console.log(data);

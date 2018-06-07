@@ -9,6 +9,7 @@ $(document).ready(function(){
 
 		//ajax
 		//ruta que que retornará los datos de la empresa seleccionada.
+		//$.get('/ajax-ObtenerDatosEmpresa2/' + empresa_id, function(data){
 		$.get('/SAI/public/ajax-ObtenerDatosEmpresa2/' + empresa_id, function(data){
 
 			console.log(data);

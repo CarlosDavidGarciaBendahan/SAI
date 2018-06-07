@@ -9,6 +9,7 @@ use Laracast\Flash\Flash;
 use App\Estado;
 use App\Municipio;
 use App\Http\Requests\EstadoResquest;
+use Auth;
 
 class EstadoController extends Controller
 {

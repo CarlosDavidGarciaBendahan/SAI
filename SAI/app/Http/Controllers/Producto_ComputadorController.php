@@ -13,6 +13,8 @@ use App\Marca;
 use App\Modelo;
 use App\Imagen;
 use App\CodigoPC;
+use App\Http\Requests\ProComRequest;
+use Auth;
 
 
 class Producto_ComputadorController extends Controller
@@ -36,12 +38,20 @@ class Producto_ComputadorController extends Controller
      */
     public function create()
     {
-        $oficinas = Oficina::where('id','>',0)->orderby('ofi_direccion')->get();
-        $marcas = Marca::orderby('mar_marca')->get();
-        $tipo_productos = Tipo_Producto::orderby('tip_tipo')->get();
-        $producto_articulos = Producto_Articulo::orderby('pro_art_codigo')->pluck('pro_art_codigo','id');
+        if (Auth::user()->rol->rol_rol === 'Administrador' || Auth::user()->rol->rol_rol === 'Encargado'){
+            $oficinas = Oficina::where('id','>',0)->orderby('ofi_direccion')->get();
+            $marcas = Marca::orderby('mar_marca')->get();
+            $tipo_productos = Tipo_Producto::orderby('tip_tipo')->get();
+            $producto_articulos = Producto_Articulo::orderby('pro_art_codigo')->pluck('pro_art_codigo','id');
 
-        return view('admin.producto.producto_computador.create')->with(compact('oficinas','marcas','tipo_productos','producto_articulos'));
+            return view('admin.producto.producto_computador.create')->with(compact('oficinas','marcas','tipo_productos','producto_articulos'));
+
+        }else{
+
+            flash('Solo los usuarios con el rol "Administrador" o "Encargado" pueden registrar.')->error();
+            return redirect()->back();
+
+        }
     }
 
     /**
@@ -50,36 +60,44 @@ class Producto_ComputadorController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ProComRequest $request)
     {
         
-        //dd($request->file('imagen'));
-        //dd($request->codigosPC);
+        if (Auth::user()->rol->rol_rol === 'Administrador' || Auth::user()->rol->rol_rol === 'Encargado'){
         
 
-        $producto_computador = new Producto_Computador($request->all());
+            $producto_computador = new Producto_Computador($request->all());
 
-        $producto_computador->pro_com_codigo = strtoupper($producto_computador->pro_com_codigo);
-        //dd($producto_computador);
-        $producto_computador->save();
+            $producto_computador->pro_com_codigo = strtoupper($producto_computador->pro_com_codigo);
+            //dd($producto_computador);
+            $producto_computador->save();
 
-        $producto_computador->articulos()->sync($request->componentes);
-
-
-        $file = $request->file('imagen');        
-        $name = 'indatechC.A._' . time() . '.' . $request->file('imagen')->getClientOriginalExtension();
-        $path = public_path() . '/imagenes/computador/';
-        $file->move($path,$name);
-
-        $imagen = new Imagen();
-        $imagen->ima_nombre = $name;
-        $imagen->producto_computador()->associate($producto_computador);
-        $imagen->save();
+            $producto_computador->articulos()->sync($request->componentes);
 
 
+            $file = $request->file('imagen');        
+            $name = 'indatechC.A._' . time() . '.' . $request->file('imagen')->getClientOriginalExtension();
+            $path = public_path() . '/imagenes/computador/';
+            $file->move($path,$name);
 
-        flash("Registro del computador '' ".$request->pro_com_codigo." '' exitoso")->success();
-        return redirect()->route('producto_computador.index');
+            $imagen = new Imagen();
+            $imagen->ima_nombre = $name;
+            $imagen->producto_computador()->associate($producto_computador);
+            $imagen->save();
+
+
+
+            flash("Registro del computador '' ".$request->pro_com_codigo." '' exitoso")->success();
+            return redirect()->route('producto_computador.index');
+
+        }else{
+
+            flash('Solo los usuarios con el rol "Administrador" o "Encargado" pueden registrar.')->error();
+            return redirect()->back();
+
+        }
+        //dd($request->file('imagen'));
+        //dd($request->codigosPC);
     }
 
     /**
@@ -91,17 +109,23 @@ class Producto_ComputadorController extends Controller
     public function show($id)
     {
         
-        $oficinas = Oficina::where('id','>',0)->orderby('ofi_direccion')->get();
-        $sectores = Sector::orderby('sec_sector')->get();
-        $marcas = Marca::orderby('mar_marca')->get();
-        $modelos = Modelo::orderby('mod_modelo')->get();
-        $tipo_productos = Tipo_Producto::orderby('tip_tipo')->get();
         $producto_computador = Producto_Computador::find($id);
-        $producto_articulos = Producto_Articulo::orderby('pro_art_codigo')->pluck('pro_art_codigo','id');
+        if ($producto_computador !== null) {
+            $oficinas = Oficina::where('id','>',0)->orderby('ofi_direccion')->get();
+            $sectores = Sector::orderby('sec_sector')->get();
+            $marcas = Marca::orderby('mar_marca')->get();
+            $modelos = Modelo::orderby('mod_modelo')->get();
+            $tipo_productos = Tipo_Producto::orderby('tip_tipo')->get();
+            $producto_articulos = Producto_Articulo::orderby('pro_art_codigo')->pluck('pro_art_codigo','id');
 
-        $codigosPC = CodigoPC::where('cod_pc_fk_producto_computador','=',$id)->orderby('cod_pc_codigo','ASC')->paginate(5);
+            $codigosPC = CodigoPC::where('cod_pc_fk_producto_computador','=',$id)->orderby('cod_pc_codigo','ASC')->paginate(5);
 
-        return view('admin.producto.producto_computador.show')->with(compact('oficinas','marcas','tipo_productos','producto_computador','sectores','modelos','producto_articulos','codigosPC'));
+            return view('admin.producto.producto_computador.show')->with(compact('oficinas','marcas','tipo_productos','producto_computador','sectores','modelos','producto_articulos','codigosPC'));
+
+        }else{  
+            flash('No hay ningun registro en la Base de Datos del objeto buscado.')->error();
+            return redirect()->route('producto_computador.index');
+        }
     }
 
     /**
@@ -112,17 +136,32 @@ class Producto_ComputadorController extends Controller
      */
     public function edit($id)
     {
-        $oficinas = Oficina::where('id','>',0)->orderby('ofi_direccion')->get();
-        $sectores = Sector::orderby('sec_sector')->get();
-        $marcas = Marca::orderby('mar_marca')->get();
-        $modelos = Modelo::orderby('mod_modelo')->get();
-        $tipo_productos = Tipo_Producto::orderby('tip_tipo')->get();
-        $producto_computador = Producto_Computador::find($id);
+        if (Auth::user()->rol->rol_rol === 'Administrador' || Auth::user()->rol->rol_rol === 'Encargado'){
 
-        $producto_articulos = Producto_Articulo::orderby('pro_art_codigo')->pluck('pro_art_codigo','id');
-        $codigosPC = CodigoPC::where('cod_pc_fk_producto_computador','=',$id)->orderby('cod_pc_codigo','ASC')->paginate(5);
 
-        return view('admin.producto.producto_computador.edit')->with(compact('oficinas','marcas','tipo_productos','producto_computador','sectores','modelos','producto_articulos','codigosPC'));
+            $producto_computador = Producto_Computador::find($id);
+            if ($producto_computador !== null) {
+
+                $oficinas = Oficina::where('id','>',0)->orderby('ofi_direccion')->get();
+                $sectores = Sector::orderby('sec_sector')->get();
+                $marcas = Marca::orderby('mar_marca')->get();
+                $modelos = Modelo::orderby('mod_modelo')->get();
+                $tipo_productos = Tipo_Producto::orderby('tip_tipo')->get();
+
+                $producto_articulos = Producto_Articulo::orderby('pro_art_codigo')->pluck('pro_art_codigo','id');
+                $codigosPC = CodigoPC::where('cod_pc_fk_producto_computador','=',$id)->orderby('cod_pc_codigo','ASC')->paginate(5);
+
+                return view('admin.producto.producto_computador.edit')->with(compact('oficinas','marcas','tipo_productos','producto_computador','sectores','modelos','producto_articulos','codigosPC'));
+            }else{  
+                flash('No hay ningun registro en la Base de Datos del objeto buscado.')->error();
+                return redirect()->route('producto_computador.index');
+            }
+        }else{
+
+            flash('Solo los usuarios con el rol "Administrador" o "Encargado" pueden registrar.')->error();
+            return redirect()->back();
+
+        }
     }
 
     /**
@@ -132,27 +171,41 @@ class Producto_ComputadorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ProComRequest $request, $id)
     {
         //dd($request->all());
-        $producto_computador = Producto_Computador::find($id);
+        if (Auth::user()->rol->rol_rol === 'Administrador' || Auth::user()->rol->rol_rol === 'Encargado'){
 
-        $producto_computador->pro_com_descripcion = $request->pro_com_descripcion;
-        $producto_computador->pro_com_cantidad = $request->pro_com_cantidad;
-        $producto_computador->pro_com_precio = $request->pro_com_precio;
-        $producto_computador->pro_com_moneda = $request->pro_com_moneda;
-        $producto_computador->pro_com_catalogo = $request->pro_com_catalogo;
-        $producto_computador->pro_com_fk_sector = $request->pro_com_fk_sector;
-        $producto_computador->pro_com_fk_modelo = $request->pro_com_fk_modelo;
-        $producto_computador->pro_com_fk_tipo_producto = $request->pro_com_fk_tipo_producto;
+            $producto_computador = Producto_Computador::find($id);    
+            if ($producto_computador !== null) {
+                $producto_computador->pro_com_descripcion = $request->pro_com_descripcion;
+                $producto_computador->pro_com_cantidad = $request->pro_com_cantidad;
+                $producto_computador->pro_com_precio = $request->pro_com_precio;
+                $producto_computador->pro_com_moneda = $request->pro_com_moneda;
+                $producto_computador->pro_com_catalogo = $request->pro_com_catalogo;
+                $producto_computador->pro_com_fk_sector = $request->pro_com_fk_sector;
+                $producto_computador->pro_com_fk_modelo = $request->pro_com_fk_modelo;
+                $producto_computador->pro_com_fk_tipo_producto = $request->pro_com_fk_tipo_producto;
 
-        $producto_computador->save();
+                $producto_computador->save();
 
-        $producto_computador->articulos()->detach();
-        $producto_computador->articulos()->sync($request->componentes);
+                $producto_computador->articulos()->detach();
+                $producto_computador->articulos()->sync($request->componentes);
 
-        flash("Modificación del computador '' ".$producto_computador->pro_com_codigo." '' exitoso")->success();
-        return redirect()->route('producto_computador.index');
+                flash("Modificación del computador '' ".$producto_computador->pro_com_codigo." '' exitoso")->success();
+                return redirect()->route('producto_computador.index');
+
+            }else{  
+                flash('No hay ningun registro en la Base de Datos del objeto buscado.')->error();
+                return redirect()->route('producto_computador.index');
+            }
+        }else{
+
+            flash('Solo los usuarios con el rol "Administrador" o "Encargado" pueden registrar.')->error();
+            return redirect()->back();
+
+        }
+
 
 
     }
@@ -166,10 +219,24 @@ class Producto_ComputadorController extends Controller
     public function destroy($id)
     {
         
-        $producto_computador = Producto_Computador::find($id);
-        $producto_computador->delete();
-        flash("Eliminación del computador '' ".$producto_computador->pro_com_codigo." '' exitoso")->success();
-        return redirect()->route('producto_computador.index');
+        if (Auth::user()->rol->rol_rol === 'Administrador' || Auth::user()->rol->rol_rol === 'Encargado'){
+
+            $producto_computador = Producto_Computador::find($id);
+            if ($producto_computador !== null) {
+
+                $producto_computador->delete();
+                flash("Eliminación del computador '' ".$producto_computador->pro_com_codigo." '' exitoso")->success();
+                return redirect()->route('producto_computador.index');
+            }else{  
+                flash('No hay ningun registro en la Base de Datos del objeto buscado.')->error();
+                return redirect()->route('producto_computador.index');
+            }
+        }else{
+
+            flash('Solo los usuarios con el rol "Administrador" o "Encargado" pueden registrar.')->error();
+            return redirect()->back();
+
+        }
     }
 
     public function BuscarComputador($id){

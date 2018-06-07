@@ -5,7 +5,8 @@ $(document).ready(function(){
 	var mun_id = e.target.value;
 
 	//ajax
-	$.get('/SAI/public/ajax-ObtenerParroquiasPorMunicipio/' + mun_id, function(data){
+	//$.get('/SAI/public/ajax-ObtenerParroquiasPorMunicipio/' + mun_id, function(data){
+	$.get('/ajax-ObtenerParroquiasPorMunicipio/' + mun_id, function(data){
 
 			//succes data
 			console.log(data);

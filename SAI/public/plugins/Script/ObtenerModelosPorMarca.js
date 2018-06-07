@@ -5,7 +5,8 @@ $(document).ready(function(){
 	var marca_id = e.target.value;
 
 	//ajax
-	$.get('/SAI/public/ajax-ObtenerModelosPorMarca/' + marca_id, function(data){
+	//$.get('/SAI/public/ajax-ObtenerModelosPorMarca/' + marca_id, function(data){
+	$.get('/ajax-ObtenerModelosPorMarca/' + marca_id, function(data){
 
 			//succes data
 			//console.log(data);
