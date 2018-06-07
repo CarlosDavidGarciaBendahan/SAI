@@ -44,8 +44,14 @@ class EstadoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
-        return view('admin.lugar.estado.create');
+    {   if (Auth::user()->rol->rol_rol === 'Administrador' || Auth::user()->rol->rol_rol === 'Encargado'){
+            return view('admin.lugar.estado.create');
+        }else{
+
+            flash('Solo los usuarios con el rol "Administrador" o "Encargado" pueden registrar.')->error();
+            return redirect()->back();
+
+        }
     }
 
     /**
@@ -60,17 +66,19 @@ class EstadoController extends Controller
 
         //DB::beginTransaction();
 
+        if (Auth::user()->rol->rol_rol === 'Administrador' || Auth::user()->rol->rol_rol === 'Encargado'){
             $estado = new Estado($request->all()); //request valores recibidos del formulario
-            $estado->save();
+            $estado->save(););
 
-            //$estado = DB::table('estado')->orderBy('est_nombre', 'asc')->get();
+            flash("Registro del estado " .$request->est_nombre . " exitosamente.")->success();
+            return redirect()->route('estado.index');  
+        }else{
 
+            flash('Solo los usuarios con el rol "Administrador" o "Encargado" pueden registrar.')->error();
+            return redirect()->back();
 
-            //return view ('admin.lugar.estado.index',['estado' => $estado]);
-        //DB::commit();
-
-        flash("Registro del estado " .$request->est_nombre . " exitosamente.")->success();
-        return redirect()->route('estado.index');
+        }
+            
     }
 
     /**
@@ -82,7 +90,7 @@ class EstadoController extends Controller
     public function show($id)
     {
 
-       $estado = Estado::find($id);
+        $estado = Estado::find($id);
         if ($estado !== null) {
            
             return view('admin.lugar.estado.show',['estado'=>$estado]);
@@ -100,14 +108,21 @@ class EstadoController extends Controller
      */
     public function edit($id)
     {
-        $estado = Estado::find($id);
-        if ($estado !== null) {
-           
-            return view('admin.lugar.estado.edit',['estado'=>$estado]);
-        }else{  
-            flash('No hay ningun registro en la Base de Datos del objeto buscado.')->error();
-            return redirect()->route('estado.index');
+        if (Auth::user()->rol->rol_rol === 'Administrador' || Auth::user()->rol->rol_rol === 'Encargado'){
+            $estado = Estado::find($id);
+            if ($estado !== null) {
+               
+                return view('admin.lugar.estado.edit',['estado'=>$estado]);
+            }else{  
+                flash('No hay ningun registro en la Base de Datos del objeto buscado.')->error();
+                return redirect()->route('estado.index');
+            }
+        }else{
+
+            flash('Solo los usuarios con el rol "Administrador" o "Encargado" pueden modificar.')->error();
+            return redirect()->back();
         }
+        
     }
 
     /**
@@ -119,20 +134,26 @@ class EstadoController extends Controller
      */
     public function update(EstadoResquest $request, $id)
     {
-        $estado = Estado::find($id);
-        if ($estado !== null) {
-           
-            $estado->est_nombre = $request->est_nombre;
-            $estado->save();
-            //$estado->slug = $request->slug;
-            //dd($estado);
+        if (Auth::user()->rol->rol_rol === 'Administrador' || Auth::user()->rol->rol_rol === 'Encargado'){
+            $estado = Estado::find($id);
+            if ($estado !== null) {
+               
+                $estado->est_nombre = $request->est_nombre;
+                $estado->save();
+                //$estado->slug = $request->slug;
+                //dd($estado);
 
-            flash("Modificación del estado exitosamente a ".$estado->est_nombre )->success();
-            return redirect()->route('estado.index');
-        }else{  
-            flash('No hay ningun registro en la Base de Datos del objeto buscado.')->error();
-            return redirect()->route('estado.index');
+                flash("Modificación del estado exitosamente a ".$estado->est_nombre )->success();
+                return redirect()->route('estado.index');
+            }else{  
+                flash('No hay ningun registro en la Base de Datos del objeto buscado.')->error();
+                return redirect()->route('estado.index');
+            }
+        }else{
+            flash('Solo los usuarios con el rol "Administrador" o "Encargado" pueden modificar.')->error();
+            return redirect()->back();
         }
+        
 
     }
 
@@ -144,18 +165,26 @@ class EstadoController extends Controller
      */
     public function destroy( $id)
     {
-        $estado = Estado::find($id);
 
-        if ($estado !== null) {
-            
-            $estado->delete();
+        if (Auth::user()->rol->rol_rol === 'Administrador'){
+            $estado = Estado::find($id);
 
-            flash("Eliminación del estado " .$estado->est_nombre . " exitosamente.")->success();
-            return redirect()->route('estado.index');
-        }else{  
-            flash('No hay ningun registro en la Base de Datos del objeto buscado.')->error();
-            return redirect()->route('estado.index');
+            if ($estado !== null) {
+                
+                $estado->delete();
+
+                flash("Eliminación del estado " .$estado->est_nombre . " exitosamente.")->success();
+                return redirect()->route('estado.index');
+            }else{  
+                flash('No hay ningun registro en la Base de Datos del objeto buscado.')->error();
+                return redirect()->route('estado.index');
+            }        
+        }else{
+            flash('Solo los usuarios con el rol "Administrador" pueden eliminar.')->error();
+            return redirect()->back();
         }
+
+        
 
     }
 }

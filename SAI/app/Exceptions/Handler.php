@@ -72,6 +72,14 @@ class Handler extends ExceptionHandler
             //DB::rollback();
             return redirect()->back();
         }
+        /*if ($exception instanceof \Illuminate\Remote\Connection) {
+            flash('ERROR con la conexion intente más tarde.')->error();
+            return redirect()->back();
+        }
+        if ($exception instanceof Illuminate\Mail\swiTransport) {
+            flash('ERROR con la conexion intente más tarde.')->error();
+            return redirect()->back();
+        }*/
         
         return parent::render($request, $exception);
     }
