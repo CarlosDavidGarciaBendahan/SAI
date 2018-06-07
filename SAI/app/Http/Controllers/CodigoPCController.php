@@ -45,7 +45,7 @@ class CodigoPCController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CodigoPCRequest $request)
     {
         //dd($request->all());
 
@@ -143,7 +143,7 @@ class CodigoPCController extends Controller
             }
         }else{
 
-            flash('Solo los usuarios con el rol "Administrador" o "Encargado" pueden registrar.')->error();
+            flash('Solo los usuarios con el rol "Administrador" o "Encargado" pueden modificar.')->error();
             return redirect()->back();
 
         }
@@ -157,7 +157,7 @@ class CodigoPCController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(CodigoPCRequest $request, $id)
     {
         if (Auth::user()->rol->rol_rol === 'Administrador' || Auth::user()->rol->rol_rol === 'Encargado'){
             $codigoPC = CodigoPC::find($id);
@@ -179,7 +179,7 @@ class CodigoPCController extends Controller
             }
         }else{
 
-            flash('Solo los usuarios con el rol "Administrador" o "Encargado" pueden registrar.')->error();
+            flash('Solo los usuarios con el rol "Administrador" o "Encargado" pueden modificar.')->error();
             return redirect()->back();
 
         }

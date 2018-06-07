@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class EstadoEditResquest extends FormRequest
+class CodigoArticuloRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -21,16 +21,19 @@ class EstadoEditResquest extends FormRequest
      *
      * @return array
      */
-
     public function attributes(){
         return [
-            'est_nombre'          =>'Nombre del estado'
+            'cod_art_fk_producto_articulo'          =>'Código general del producto',
+            'cod_art_fk_lote'                         =>'Código del lote',
+            //'codigosPC'                         =>'Códigos de cada PC'
         ];
     }
     public function rules()
     {
         return [
-            'est_nombre'        => 'min:4|max:25|required|string'
+            'cod_art_fk_producto_articulo'     =>'required|integer',
+            'cod_art_fk_lote'                    =>'required|integer',
+            //'codigosPC'                         =>'required'
         ];
     }
 }

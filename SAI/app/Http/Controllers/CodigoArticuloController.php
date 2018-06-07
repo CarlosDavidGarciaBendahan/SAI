@@ -7,6 +7,8 @@ use Laracasts\Flash\Flash;
 use App\Lote;
 use App\producto_articulo;
 USE App\CodigoArticulo;
+use App\Http\Requests\CodigoArticuloRequest;
+use Auth;
 
 class CodigoArticuloController extends Controller
 {
@@ -29,11 +31,20 @@ class CodigoArticuloController extends Controller
      */
     public function create($articulo_id)
     {
-        $producto_articulo = Producto_articulo::find($articulo_id);
+        if (Auth::user()->rol->rol_rol === 'Administrador' || Auth::user()->rol->rol_rol === 'Encargado'){
 
-        $lote = Lote::orderBy('id','ASC')->pluck('lot_nombre','id');
+            $producto_articulo = Producto_articulo::find($articulo_id);
 
-        return view("admin.producto.codigoArticulo.create")->with(compact('producto_articulo','lote'));
+            $lote = Lote::orderBy('id','ASC')->pluck('lot_nombre','id');
+
+            return view("admin.producto.codigoArticulo.create")->with(compact('producto_articulo','lote'));
+            
+        }else{
+
+            flash('Solo los usuarios con el rol "Administrador" o "Encargado" pueden registrar.')->error();
+            return redirect()->back();
+
+        }
     }
 
     /**
@@ -42,31 +53,58 @@ class CodigoArticuloController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CodigoArticuloRequest $request)
     {
-        //dd($request->all());
+        if (Auth::user()->rol->rol_rol === 'Administrador' || Auth::user()->rol->rol_rol === 'Encargado'){
 
-        $cantidad = sizeof($request->codigosArticulo);
 
-        for ($i=0; $i < $cantidad; $i++) { 
+            $cantidad = sizeof($request->codigosArticulo);//cantidad de codigos ingresados
+            $cantidadAgregada = 0;//cuenta los que se han agregado
+            $NoAgregado = null; //copio los codigos no agregados
 
-            $codigoArticulo = new codigoArticulo($request->all());
+            if ($cantidad > 0) {
+                for ($i=0; $i < $cantidad; $i++) { 
 
-            $codigoArticulo->cod_art_codigo = strtoupper($request->codigosArticulo[$i]);
-            $codigoArticulo->cod_art_estado = $request->estado[$i];
-            $codigoArticulo->cod_art_fk_pc  = null;
-            //$codigoArticulo->cod_pc_fk_producto_computador = $request->cod_pc_fk_producto_computador;
+                    $codigoArticulo = new codigoArticulo($request->all());
 
-            $codigoArticulo->save();
+                    $codigoArticulo->cod_art_codigo = strtoupper($request->codigosArticulo[$i]);
+                    $codigoArticulo->cod_art_estado = $request->estado[$i];
+                    $codigoArticulo->cod_art_fk_pc  = null;
+                    //$codigoArticulo->cod_pc_fk_producto_articulo = $request->cod_pc_fk_producto_articulo;
+                    if (!$this->Exist($codigoArticulo->cod_art_codigo)) {
+                        
+                        $codigoArticulo->save();
+                        $cantidadAgregada++;
+                    }else{
+                        $NoAgregado = $NoAgregado ."/".$codigoArticulo->cod_art_codigo; 
+                    }
+
+
+                }
+
+                $articulo = producto_articulo::find( $codigoArticulo->cod_art_fk_producto_articulo);
+                $articulo->pro_art_cantidad = $articulo->pro_art_cantidad + $cantidadAgregada;
+                $articulo->save();
+
+                flash("Registro de los artículos exitosamente")->success();
+                if ($NoAgregado !== null) {
+                    flash('Estos códigos ya estan registrados: '.$NoAgregado)->error();
+                    
+                }
+                //return redirect()->route('producto_articulo.show')->with(['id' => $request->cod_pc_fk_producto_articulo]);
+                return redirect()->route('producto_articulo.show',['id' => $request->cod_art_fk_producto_articulo]);
+            }else{
+                flash('Debe de agregar al menos un producto.')->error();
+                return redirect()->back();
+            }
+            
+        }else{
+
+            flash('Solo los usuarios con el rol "Administrador" o "Encargado" pueden registrar.')->error();
+            return redirect()->back();
 
         }
-        $articulo = producto_articulo::find( $codigoArticulo->cod_art_fk_producto_articulo);
-        $articulo->pro_art_cantidad = $articulo->pro_art_cantidad + $cantidad;
-        $articulo->save();
-
-        flash("Registro de los artículos exitosamente")->success();
-        //return redirect()->route('producto_computador.show')->with(['id' => $request->cod_pc_fk_producto_computador]);
-        return redirect()->route('producto_articulo.show',['id' => $request->cod_art_fk_producto_articulo]);
+        //dd($request->all());
     }
 
     /**
@@ -77,11 +115,17 @@ class CodigoArticuloController extends Controller
      */
     public function show($id)
     {
-        
-        $codigoArticulo = codigoArticulo::find($id);
-        $lote = Lote::orderBy('id','ASC')->pluck('lot_nombre','id');
 
-        return view("admin.producto.codigoArticulo.show")->with(compact('codigoArticulo','lote'));
+        $codigoArticulo = codigoArticulo::find($id);
+        if ($codigoArticulo !== null) {
+
+            $lote = Lote::orderBy('id','ASC')->pluck('lot_nombre','id');
+
+            return view("admin.producto.codigoArticulo.show")->with(compact('codigoArticulo','lote'));
+        }else{  
+                flash('No hay ningun registro en la Base de Datos del objeto buscado.')->error();
+                return redirect()->route('producto_articulo.index');
+        }
     }
 
     /**
@@ -92,10 +136,24 @@ class CodigoArticuloController extends Controller
      */
     public function edit($id)
     {
-        $codigoArticulo = codigoArticulo::find($id);
-        $lote = Lote::orderBy('id','ASC')->pluck('lot_nombre','id');
+        if (Auth::user()->rol->rol_rol === 'Administrador' || Auth::user()->rol->rol_rol === 'Encargado'){
 
-        return view("admin.producto.codigoArticulo.edit")->with(compact('codigoArticulo','lote'));
+            $codigoArticulo = codigoArticulo::find($id);
+            if ($codigoArticulo !== null) {
+
+                $lote = Lote::orderBy('id','ASC')->pluck('lot_nombre','id');
+
+                return view("admin.producto.codigoArticulo.edit")->with(compact('codigoArticulo','lote'));
+            }else{  
+                flash('No hay ningun registro en la Base de Datos del objeto buscado.')->error();
+                return redirect()->route('producto_articulo.index');
+            }
+        }else{
+
+            flash('Solo los usuarios con el rol "Administrador" o "Encargado" pueden registrar.')->error();
+            return redirect()->back();
+
+        }
     }
 
     /**
@@ -105,22 +163,36 @@ class CodigoArticuloController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(CodigoArticuloRequest $request, $id)
     {
         
-        $codigoArticulo = codigoArticulo::find($id);
+        if (Auth::user()->rol->rol_rol === 'Administrador' || Auth::user()->rol->rol_rol === 'Encargado'){
+            $codigoArticulo = codigoArticulo::find($id);
+
+            if ($codigoArticulo !== null) {
+                $codigoArticulo->cod_art_fk_lote = $request->cod_art_fk_lote;
+                $codigoArticulo->cod_art_estado = $request->cod_art_estado;
+
+                $codigoArticulo->save();
+
+                //dd($request->all());
+
+                flash("Modificación del artículo'' ".$codigoArticulo->cod_art_codigo." '' exitosa")->success();
+                return redirect()->route('codigoArticulo.index');
+            }else{  
+                flash('No hay ningun registro en la Base de Datos del objeto buscado.')->error();
+                return redirect()->route('producto_articulo.index');
+            }
+        }else{
+
+            flash('Solo los usuarios con el rol "Administrador" o "Encargado" pueden registrar.')->error();
+            return redirect()->back();
+
+        }
 
         //dd($codigoArticulo->codigoPC === null);
 
-        $codigoArticulo->cod_art_fk_lote = $request->cod_art_fk_lote;
-        $codigoArticulo->cod_art_estado = $request->cod_art_estado;
-
-        $codigoArticulo->save();
-
-        //dd($request->all());
-
-        flash("Modificación del artículo'' ".$codigoArticulo->cod_art_codigo." '' exitosa")->success();
-        return redirect()->route('codigoArticulo.index');
+        
     }
 
     /**
@@ -131,15 +203,28 @@ class CodigoArticuloController extends Controller
      */
     public function destroy($id)
     {
-        $codigoArticulo = codigoArticulo::find($id);
+        if (Auth::user()->rol->rol_rol === 'Administrador'){
 
-        
-        $codigoArticulo->delete();
 
-        //dd($request->all());
+            $codigoArticulo = codigoArticulo::find($id);
+            if ($codigoArticulo !== null) {
+                
+                $codigoArticulo->delete();
 
-        flash("Eliminación del artículo '' ".$codigoArticulo->cod_art_codigo." '' exitosa")->success();
-        return redirect()->route('codigoArticulo.index');
+                //dd($request->all());
+
+                flash("Eliminación del artículo '' ".$codigoArticulo->cod_art_codigo." '' exitosa")->success();
+                return redirect()->route('codigoArticulo.index');
+            }else{  
+                flash('No hay ningun registro en la Base de Datos del objeto buscado.')->error();
+                return redirect()->route('producto_articulo.index');
+            }
+        }else{
+
+            flash('Solo los usuarios con el rol "Administrador"  puede eliminar.')->error();
+            return redirect()->back();
+
+        }
     }
 
     public function asignarPC($articulo_id,$pc_id){
@@ -299,5 +384,18 @@ class CodigoArticuloController extends Controller
         }
         
         return (true);
+    }
+
+    public function Exist($cod_art_codigo){//verifico la existencia del producto
+        $exist = false;
+
+        $pc = codigoArticulo::where('cod_art_codigo','like',$cod_art_codigo)->get();// o busco
+
+            //dd($pc);
+        if(count($pc) <> 0){// si lo consigo entonces si existe
+            $exist = true;
+        } 
+        //dd($exist);
+        return $exist;
     }
 }

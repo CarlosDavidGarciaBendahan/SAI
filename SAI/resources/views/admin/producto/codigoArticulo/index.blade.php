@@ -22,7 +22,7 @@
 
 		<div class="row">
 			
-			<div class="col-sm-8 offset-2">
+			<div class="col-sm-12">
 				<div>
 					<a href="{{ route('producto_articulo.index') }}" class="btn btn-info" title="Lista de artículos">
 								<span class="fa fa-bars"></span>
