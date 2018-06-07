@@ -30,8 +30,17 @@ class ModeloController extends Controller
      */
     public function create()
     {
-        $marcas = Marca::orderby('mar_marca')->pluck('mar_marca','id');
-        return view('admin.producto.modelo.create')->with(compact('marcas'));
+        if (Auth::user()->rol->rol_rol === 'Administrador' || Auth::user()->rol->rol_rol === 'Encargado'){
+            $marcas = Marca::orderby('mar_marca')->pluck('mar_marca','id');
+            return view('admin.producto.modelo.create')->with(compact('marcas'));
+
+
+        }else{
+
+            flash('Solo los usuarios con el rol "Administrador" o "Encargado" pueden registrar.')->error();
+            return redirect()->back();
+
+        }
     }
 
     /**
@@ -42,11 +51,21 @@ class ModeloController extends Controller
      */
     public function store(ModeloRequest $request)
     {
-        $modelo = new Modelo($request->all());
-        $modelo->save();
+        if (Auth::user()->rol->rol_rol === 'Administrador' || Auth::user()->rol->rol_rol === 'Encargado'){
 
-        flash("Registro del modelo '' ". $request->mod_modelo." '' exitoso.")->success();
-        return redirect()->route('modelo.index');
+            $modelo = new Modelo($request->all());
+            $modelo->save();
+
+            flash("Registro del modelo '' ". $request->mod_modelo." '' exitoso.")->success();
+            return redirect()->route('modelo.index');
+
+
+        }else{
+
+            flash('Solo los usuarios con el rol "Administrador" o "Encargado" pueden registrar.')->error();
+            return redirect()->back();
+
+        }
     }
 
     /**
@@ -68,9 +87,23 @@ class ModeloController extends Controller
      */
     public function edit($id)
     {
-        $modelo = Modelo::find($id);
-        $marcas = Marca::orderby('mar_marca')->pluck('mar_marca','id');
-        return view('admin.producto.modelo.edit')->with(compact(['modelo','marcas']));
+        if (Auth::user()->rol->rol_rol === 'Administrador' || Auth::user()->rol->rol_rol === 'Encargado'){
+
+            $modelo = Modelo::find($id);
+            if ($modelo !== null) {
+                $marcas = Marca::orderby('mar_marca')->pluck('mar_marca','id');
+                return view('admin.producto.modelo.edit')->with(compact(['modelo','marcas']));
+
+            }else{  
+                flash('No hay ningun registro en la Base de Datos del objeto buscado.')->error();
+                return redirect()->route('producto_articulo.index');
+            }
+        }else{
+
+            flash('Solo los usuarios con el rol "Administrador" o "Encargado" pueden modificar.')->error();
+            return redirect()->back();
+
+        }
     }
 
     /**
@@ -82,14 +115,29 @@ class ModeloController extends Controller
      */
     public function update(ModeloRequest $request, $id)
     {
-        $modelo = Modelo::find($id);
+        if (Auth::user()->rol->rol_rol === 'Administrador' || Auth::user()->rol->rol_rol === 'Encargado'){
 
-        $modelo->mod_modelo = $request->mod_modelo;
-        $modelo->mod_fk_marca = $request->mod_fk_marca;
-        $modelo->save();
+            $modelo = Modelo::find($id);
+            if ($modelo !== null) {
 
-        flash("Modificación del modelo '' ". $request->mod_modelo." '' exitoso.")->success();
-        return redirect()->route('modelo.index');
+                $modelo->mod_modelo = $request->mod_modelo;
+                $modelo->mod_fk_marca = $request->mod_fk_marca;
+                $modelo->save();
+
+                flash("Modificación del modelo '' ". $request->mod_modelo." '' exitoso.")->success();
+                return redirect()->route('modelo.index');
+
+
+            }else{  
+                flash('No hay ningun registro en la Base de Datos del objeto buscado.')->error();
+                return redirect()->route('producto_articulo.index');
+            }
+        }else{
+
+            flash('Solo los usuarios con el rol "Administrador" o "Encargado" pueden modificar.')->error();
+            return redirect()->back();
+
+        }
 
     }
 

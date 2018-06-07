@@ -24,13 +24,15 @@ class ModeloRequest extends FormRequest
     
     public function attributes(){
         return [
-            'mar_marca'          =>'Nombre de la marca'
+            'mod_modelo'          =>'Nombre del modelo',
+            'mod_fk_marca'        => 'Código de la marca'
         ];
     }
     public function rules()
     {
         return [
-            'mar_marca'        => 'min:2|max:20|required|string|unique:marca'
+            'mod_modelo'        => 'min:3|max:20|required|string',
+            'mod_fk_marca'      => 'integer|required'
         ];
     }
 }

@@ -20,7 +20,7 @@
 	<section class="container-fluid">
 
 		<div class="row">
-			<div class="col-sm-8 offset-2">
+			<div class="col-sm-12">
 
 				<a href="{{ route('modelo.create') }}" class="btn btn-info">Registrar nuevo modelo</a>
 				
