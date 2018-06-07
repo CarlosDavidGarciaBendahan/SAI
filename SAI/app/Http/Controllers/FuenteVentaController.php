@@ -7,6 +7,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use Laracast\Flash\Flash;
 use App\FuenteVenta;
+use App\Http\Requests\FuenteVentaRequest;
+use Auth;
 
 class FuenteVentaController extends Controller
 {
@@ -30,7 +32,15 @@ class FuenteVentaController extends Controller
      */
     public function create()
     {
-        return view('admin.oficina.fuenteventa.create');
+        if (Auth::user()->rol->rol_rol === 'Administrador' || Auth::user()->rol->rol_rol === 'Encargado'){
+            return view('admin.oficina.fuenteventa.create');
+        }else{
+
+            flash('Solo los usuarios con el rol "Administrador" o "Encargado" pueden registrar.')->error();
+            return redirect()->back();
+
+        }
+        
     }
 
     /**
@@ -39,15 +49,23 @@ class FuenteVentaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(FuenteVentaRequest $request)
     {
-        $fuenteventa = new fuenteventa($request->all());
+        if (Auth::user()->rol->rol_rol === 'Administrador' || Auth::user()->rol->rol_rol === 'Encargado'){
+            $fuenteventa = new fuenteventa($request->all());
 
 
-        $fuenteventa->save();
+            $fuenteventa->save();
 
-        flash('Fuente de venta "'.$request->nombre.'" creada exitosamente.' )->success();
-        return redirect()->route('fuenteventa.index');
+            flash('Fuente de venta "'.$request->nombre.'" creada exitosamente.' )->success();
+            return redirect()->route('fuenteventa.index')
+        }else{
+
+            flash('Solo los usuarios con el rol "Administrador" o "Encargado" pueden registrar.')->error();
+            return redirect()->back();
+
+        }
+        ;
     }
 
     /**
@@ -69,9 +87,23 @@ class FuenteVentaController extends Controller
      */
     public function edit($id)
     {
-        $fuenteventa = fuenteventa::find($id);
+        if (Auth::user()->rol->rol_rol === 'Administrador' || Auth::user()->rol->rol_rol === 'Encargado'){
 
-        return view('admin.oficina.fuenteventa.edit')->with(compact('fuenteventa'));
+            $fuenteventa = fuenteventa::find($id);
+            if ($fuenteventa !== null) {
+
+                return view('admin.oficina.fuenteventa.edit')->with(compact('fuenteventa'));
+            }else{  
+                flash('No hay ningun registro en la Base de Datos del objeto buscado.')->error();
+                return redirect()->route('producto_articulo.index');
+            }
+        }else{
+
+            flash('Solo los usuarios con el rol "Administrador" o "Encargado" pueden modificar.')->error();
+            return redirect()->back();
+
+        }
+        
     }
 
     /**
@@ -81,19 +113,29 @@ class FuenteVentaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(FuenteVentaRequest $request, $id)
     {
+        if (Auth::user()->rol->rol_rol === 'Administrador' || Auth::user()->rol->rol_rol === 'Encargado'){
+            $fuenteventa = fuenteventa::find($id);
+            if ($fuenteventa !== null) {
+                $fuenteventa->nombre = $request->nombre;
+                $fuenteventa->descripcion = $request->descripcion;
 
-        $fuenteventa = fuenteventa::find($id);
-
-        $fuenteventa->nombre = $request->nombre;
-        $fuenteventa->descripcion = $request->descripcion;
-
-        $fuenteventa->save();
+                $fuenteventa->save();
 
 
-        flash('Fuente de venta "'.$fuenteventa->nombre.'" editada exitosamente.' )->success();
-        return redirect()->route('fuenteventa.index');
+                flash('Fuente de venta "'.$fuenteventa->nombre.'" editada exitosamente.' )->success();
+                return redirect()->route('fuenteventa.index');
+            }else{  
+                flash('No hay ningun registro en la Base de Datos del objeto buscado.')->error();
+                return redirect()->route('producto_articulo.index');
+            }
+        }else{
+
+            flash('Solo los usuarios con el rol "Administrador" o "Encargado" pueden modificar.')->error();
+            return redirect()->back();
+
+        }
         
     }
 
@@ -105,11 +147,25 @@ class FuenteVentaController extends Controller
      */
     public function destroy($id)
     {
-        $fuenteventa = fuenteventa::find($id);
+        if (Auth::user()->rol->rol_rol === 'Administrador'){
+            $fuenteventa = fuenteventa::find($id);
+            if ($fuenteventa !== null) {
+                $fuenteventa->delete();
 
-        $fuenteventa->delete();
+                flash('Fuente de venta "'.$fuenteventa->nombre.'" eliminada exitosamente.' )->error();
+                return redirect()->route('fuenteventa.index');
+            }else{  
+                flash('No hay ningun registro en la Base de Datos del objeto buscado.')->error();
+                return redirect()->route('producto_articulo.index');
+            }
+        }else{
 
-        flash('Fuente de venta "'.$fuenteventa->nombre.'" eliminada exitosamente.' )->error();
-        return redirect()->route('fuenteventa.index');
+            flash('Solo los usuarios con el rol "Administrador"  puede eliminar.')->error();
+            return redirect()->back();
+
+        }
+        
+
+        
     }
 }
