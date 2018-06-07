@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Carbon\Carbon;
 use App\Lote;
 use Laracast\Flash\Flash;
+use App\Http\Requests\LoteRequest;
+use Auth;
 
 class LoteController extends Controller
 {
@@ -32,7 +34,15 @@ class LoteController extends Controller
      */
     public function create()
     {
-        return view('admin.producto.lote.create');
+        if (Auth::user()->rol->rol_rol === 'Administrador' || Auth::user()->rol->rol_rol === 'Encargado'){
+            return view('admin.producto.lote.create');
+        }else{
+
+            flash('Solo los usuarios con el rol "Administrador" o "Encargado" pueden registrar.')->error();
+            return redirect()->back();
+
+        }
+        
     }
 
     /**
@@ -41,22 +51,22 @@ class LoteController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(LoteRequest $request)
     {
-        //$date = new Carbon;
-        //$date = $date->format('d-m-Y');
-        //$date = $request->lot_fecha_recibido;
-        
-        $lote = new Lote($request->all());
-        //$lote->lot_nombre = $request->lot_nombre;
-        //$lote->lot_fecha_recibido = $date;
-        //dd($lote);
-        $lote->save();
+        if (Auth::user()->rol->rol_rol === 'Administrador' || Auth::user()->rol->rol_rol === 'Encargado'){
 
-        flash("Registro del lote '' ". $request->lot_nombre . " '' exitoso.")->success();
-        return redirect()->route('lote.index');
-        //dd($date);
-        //dd($request->all());
+            $lote = new Lote($request->all());
+
+            $lote->save();
+
+            flash("Registro del lote '' ". $request->lot_nombre . " '' exitoso.")->success();
+            return redirect()->route('lote.index');
+        }else{
+
+            flash('Solo los usuarios con el rol "Administrador" o "Encargado" pueden registrar.')->error();
+            return redirect()->back();
+
+        }
     }
 
     /**
@@ -67,9 +77,14 @@ class LoteController extends Controller
      */
     public function show($id)
     {
-        $lote =  Lote::find($id);
-
-        return view('admin.producto.lote.show')->with(compact('lote'));
+            $lote =  Lote::find($id);
+            if ($lote !== null) {
+                return view('admin.producto.lote.show')->with(compact('lote'));
+            }else{  
+                flash('No hay ningun registro en la Base de Datos del objeto buscado.')->error();
+                return redirect()->route('producto_articulo.index');
+            }
+        
     }
 
     /**
@@ -80,9 +95,23 @@ class LoteController extends Controller
      */
     public function edit($id)
     {
-        $lote =  Lote::find($id);
+        if (Auth::user()->rol->rol_rol === 'Administrador' || Auth::user()->rol->rol_rol === 'Encargado'){
+            $lote =  Lote::find($id);
+            if ($lote !== null) {
+                return view('admin.producto.lote.edit')->with(compact('lote'));
+            }else{  
+                flash('No hay ningun registro en la Base de Datos del objeto buscado.')->error();
+                return redirect()->route('producto_articulo.index');
+            }
+        }else{
 
-        return view('admin.producto.lote.edit')->with(compact('lote'));
+            flash('Solo los usuarios con el rol "Administrador" o "Encargado" pueden modificar.')->error();
+            return redirect()->back();
+
+        }
+        
+
+        
     }
 
     /**
@@ -92,17 +121,31 @@ class LoteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(LoteRequest $request, $id)
     {
-        $lote =  Lote::find($id);
+        if (Auth::user()->rol->rol_rol === 'Administrador' || Auth::user()->rol->rol_rol === 'Encargado'){
+            $lote =  Lote::find($id);
+            if ($lote !== null) {
+                $lote->lot_nombre = $request->lot_nombre;
+                $lote->lot_fecha_recibido = $request->lot_fecha_recibido;
 
-        $lote->lot_nombre = $request->lot_nombre;
-        $lote->lot_fecha_recibido = $request->lot_fecha_recibido;
+                $lote->save();
 
-        $lote->save();
+                flash("Modificación del lote '' ". $lote->lot_nombre ." '' exitoso")->success();
+                return redirect()->route('lote.index');
+            }else{  
+                flash('No hay ningun registro en la Base de Datos del objeto buscado.')->error();
+                return redirect()->route('producto_articulo.index');
+            }
+        }else{
 
-        flash("Modificación del lote '' ". $lote->lot_nombre ." '' exitoso")->success();
-        return redirect()->route('lote.index');
+            flash('Solo los usuarios con el rol "Administrador" o "Encargado" pueden modificar.')->error();
+            return redirect()->back();
+
+        }
+        
+
+        
     }
 
     /**
@@ -112,11 +155,25 @@ class LoteController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
-    {
-        $lote =  Lote::find($id);
-        $lote->delete();
+    {   
+        if (Auth::user()->rol->rol_rol === 'Administrador'){
+            $lote =  Lote::find($id);
+            if ($lote !== null) {
+                $lote->delete();
 
-        flash("Eliminación del lote '' ". $lote->lot_nombre ." '' exitoso")->success();
-        return redirect()->route('lote.index');
+                flash("Eliminación del lote '' ". $lote->lot_nombre ." '' exitoso")->success();
+                return redirect()->route('lote.index');
+            }else{  
+                flash('No hay ningun registro en la Base de Datos del objeto buscado.')->error();
+                return redirect()->route('producto_articulo.index');
+            }
+        }else{
+
+            flash('Solo los usuarios con el rol "Administrador"  puede eliminar.')->error();
+            return redirect()->back();
+
+        }
+        
+        
     }
 }
