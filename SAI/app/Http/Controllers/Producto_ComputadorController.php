@@ -65,11 +65,13 @@ class Producto_ComputadorController extends Controller
         
         if (Auth::user()->rol->rol_rol === 'Administrador' || Auth::user()->rol->rol_rol === 'Encargado'){
         
-
+            //dd($request->all());
             $producto_computador = new Producto_Computador($request->all());
 
             $producto_computador->pro_com_codigo = strtoupper($producto_computador->pro_com_codigo);
             //dd($producto_computador);
+            $producto_computador->pro_com_cantidad = 0;
+            $producto_computador->pro_com_moneda = '$';
             $producto_computador->save();
 
             $producto_computador->articulos()->sync($request->componentes);
@@ -253,8 +255,8 @@ class Producto_ComputadorController extends Controller
 
         
         $PCs = Producto_Computador::where('pro_com_catalogo','<>',0)->orderby('pro_com_codigo')->get();
+        $articulos = producto_articulo::where('pro_art_catalogo','<>',0)->orderby('pro_art_codigo')->get();
 
-
-        return view('admin.producto.catalogo.index')->with(compact('PCs'));
+        return view('admin.producto.catalogo.index')->with(compact('PCs','articulos'));
     }
 }

@@ -14,6 +14,8 @@ use App\Modelo;
 use App\Imagen;
 use App\UnidadMedida;
 use App\CodigoArticulo;
+use Auth;
+use App\Http\Requests\ProArtRequest;
 
 
 class Producto_ArticuloController extends Controller
@@ -37,12 +39,20 @@ class Producto_ArticuloController extends Controller
      */
     public function create()
     {
-        $oficinas = Oficina::where('id','>',0)->orderby('ofi_direccion')->get();
-        $marcas = Marca::orderby('mar_marca')->get();
-        $tipo_productos = Tipo_Producto::orderby('tip_tipo')->get();
-        $unidadmedidas = UnidadMedida::orderby('uni_medida')->get();
+        if (Auth::user()->rol->rol_rol === 'Administrador' || Auth::user()->rol->rol_rol === 'Encargado'){
 
-        return view('admin.producto.producto_articulo.create')->with(compact('oficinas','marcas','tipo_productos','unidadmedidas'));
+            $oficinas = Oficina::where('id','>',0)->orderby('ofi_direccion')->get();
+            $marcas = Marca::orderby('mar_marca')->get();
+            $tipo_productos = Tipo_Producto::orderby('tip_tipo')->get();
+            $unidadmedidas = UnidadMedida::orderby('uni_medida')->get();
+
+            return view('admin.producto.producto_articulo.create')->with(compact('oficinas','marcas','tipo_productos','unidadmedidas'));
+        }else{
+
+            flash('Solo los usuarios con el rol "Administrador" o "Encargado" pueden registrar.')->error();
+            return redirect()->back();
+
+        }
     }
 
     /**
@@ -51,17 +61,40 @@ class Producto_ArticuloController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ProArtRequest $request)
     {
-        //dd($request->all());
-        $producto_articulo = new Producto_Articulo($request->all());
-        $producto_articulo->pro_art_codigo = strtoupper($producto_articulo->pro_art_codigo);
-        //dd($producto_articulo);
-        //dd($producto_articulo);
-        $producto_articulo->save();
 
-        flash("Registro del articulo '' ".$request->pro_art_codigo." '' exitoso")->success();
-        return redirect()->route('producto_articulo.index');
+        if (Auth::user()->rol->rol_rol === 'Administrador' || Auth::user()->rol->rol_rol === 'Encargado'){
+
+            //dd($request->all());
+            $producto_articulo = new Producto_Articulo($request->all());
+            $producto_articulo->pro_art_codigo = strtoupper($producto_articulo->pro_art_codigo);
+            //dd($producto_articulo);
+            //dd($producto_articulo);
+            $producto_articulo->pro_art_cantidad = 0;
+            $producto_articulo->pro_art_moneda = '$';
+            $producto_articulo->save();
+
+            $file = $request->file('imagen');        
+            $name = 'indatechC.A._' . time() . '.' . $request->file('imagen')->getClientOriginalExtension();
+            $path = public_path() . '/imagenes/articulo/';
+            $file->move($path,$name);
+
+            $imagen = new Imagen();
+            $imagen->ima_nombre = $name;
+            $imagen->producto_articulo()->associate($producto_articulo);
+            $imagen->save();
+
+
+
+            flash("Registro del articulo '' ".$request->pro_art_codigo." '' exitoso")->success();
+            return redirect()->route('producto_articulo.index');
+        }else{
+
+            flash('Solo los usuarios con el rol "Administrador" o "Encargado" pueden registrar.')->error();
+            return redirect()->back();
+
+        }
     }
 
     /**
@@ -72,18 +105,25 @@ class Producto_ArticuloController extends Controller
      */
     public function show($id)
     {
-        $oficinas = Oficina::where('id','>',0)->orderby('ofi_direccion')->get();
-        $sectores = Sector::orderby('sec_sector')->get();
-        $marcas = Marca::orderby('mar_marca')->get();
-        $modelos = Modelo::orderby('mod_modelo')->get();
-        $tipo_productos = Tipo_Producto::orderby('tip_tipo')->get();
-        $producto_articulo = Producto_Articulo::find($id);
-        $unidadmedidas = UnidadMedida::orderby('uni_medida')->get();
+
+            $producto_articulo = Producto_Articulo::find($id);
+            if ($producto_articulo !== null) {
+
+                $oficinas = Oficina::where('id','>',0)->orderby('ofi_direccion')->get();
+                $sectores = Sector::orderby('sec_sector')->get();
+                $marcas = Marca::orderby('mar_marca')->get();
+                $modelos = Modelo::orderby('mod_modelo')->get();
+                $tipo_productos = Tipo_Producto::orderby('tip_tipo')->get();
+                $unidadmedidas = UnidadMedida::orderby('uni_medida')->get();
 
 
-        $codigosArticulo = CodigoArticulo::where('cod_art_fk_producto_articulo','=',$id)->orderby('cod_art_codigo','ASC')->paginate(5);
+                $codigosArticulo = CodigoArticulo::where('cod_art_fk_producto_articulo','=',$id)->orderby('cod_art_codigo','ASC')->paginate(5);
 
-        return view('admin.producto.producto_articulo.show')->with(compact('oficinas','marcas','tipo_productos','producto_articulo','sectores','modelos','unidadmedidas','codigosArticulo'));
+                return view('admin.producto.producto_articulo.show')->with(compact('oficinas','marcas','tipo_productos','producto_articulo','sectores','modelos','unidadmedidas','codigosArticulo'));
+            }else{  
+                flash('No hay ningun registro en la Base de Datos del objeto buscado.')->error();
+                return redirect()->route('producto_articulo.index');
+            }
     }
 
     /**
@@ -94,17 +134,36 @@ class Producto_ArticuloController extends Controller
      */
     public function edit($id)
     {
-        $oficinas = Oficina::where('id','>',0)->orderby('ofi_direccion')->get();
-        $sectores = Sector::orderby('sec_sector')->get();
-        $marcas = Marca::orderby('mar_marca')->get();
-        $modelos = Modelo::orderby('mod_modelo')->get();
-        $tipo_productos = Tipo_Producto::orderby('tip_tipo')->get();
-        $producto_articulo = Producto_Articulo::find($id);
-        $unidadmedidas = UnidadMedida::orderby('uni_medida')->get();
+        if (Auth::user()->rol->rol_rol === 'Administrador' || Auth::user()->rol->rol_rol === 'Encargado'){
 
-        $codigosArticulo = CodigoArticulo::where('cod_art_fk_producto_articulo','=',$id)->orderby('cod_art_codigo','ASC')->paginate(5);
 
-        return view('admin.producto.producto_articulo.edit')->with(compact('oficinas','marcas','tipo_productos','producto_articulo','sectores','modelos','unidadmedidas','codigosArticulo'));
+            $producto_articulo = Producto_Articulo::find($id);
+            if ($producto_articulo !== null) {
+
+                $oficinas = Oficina::where('id','>',0)->orderby('ofi_direccion')->get();
+                $sectores = Sector::orderby('sec_sector')->get();
+                $marcas = Marca::orderby('mar_marca')->get();
+                $modelos = Modelo::orderby('mod_modelo')->get();
+                $tipo_productos = Tipo_Producto::orderby('tip_tipo')->get();
+                $unidadmedidas = UnidadMedida::orderby('uni_medida')->get();
+
+                $codigosArticulo = CodigoArticulo::where('cod_art_fk_producto_articulo','=',$id)->orderby('cod_art_codigo','ASC')->paginate(5);
+
+                return view('admin.producto.producto_articulo.edit')->with(compact('oficinas','marcas','tipo_productos','producto_articulo','sectores','modelos','unidadmedidas','codigosArticulo'));
+
+           
+
+            }else{  
+                flash('No hay ningun registro en la Base de Datos del objeto buscado.')->error();
+                return redirect()->route('producto_articulo.index');
+            }
+        }else{
+
+            flash('Solo los usuarios con el rol "Administrador" o "Encargado" pueden registrar.')->error();
+            return redirect()->back();
+
+        }
+
     }
 
     /**
@@ -114,27 +173,42 @@ class Producto_ArticuloController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ProArtRequest $request, $id)
     {
         //dd($request->all());
+        if (Auth::user()->rol->rol_rol === 'Administrador' || Auth::user()->rol->rol_rol === 'Encargado'){
 
-        $producto_articulo = Producto_Articulo::find($id);
 
-        $producto_articulo->pro_art_descripcion = $request->pro_art_descripcion;
-        $producto_articulo->pro_art_cantidad = $request->pro_art_cantidad;
-        $producto_articulo->pro_art_precio = $request->pro_art_precio;
-        $producto_articulo->pro_art_moneda = $request->pro_art_moneda;
-        $producto_articulo->pro_art_catalogo = $request->pro_art_catalogo;
-        $producto_articulo->pro_art_capacidad = $request->pro_art_capacidad;
-        $producto_articulo->pro_art_fk_sector = $request->pro_art_fk_sector;
-        $producto_articulo->pro_art_fk_modelo = $request->pro_art_fk_modelo;
-        $producto_articulo->pro_art_fk_tipo_producto = $request->pro_art_fk_tipo_producto;
-        $producto_articulo->pro_art_fk_unidadmedida = $request->pro_art_fk_unidadmedida;
+            $producto_articulo = Producto_Articulo::find($id);   
+            if ($producto_articulo !== null) {
 
-        $producto_articulo->save();
+                $producto_articulo->pro_art_descripcion = $request->pro_art_descripcion;
+                $producto_articulo->pro_art_cantidad = $request->pro_art_cantidad;
+                $producto_articulo->pro_art_precio = $request->pro_art_precio;
+                $producto_articulo->pro_art_moneda = $request->pro_art_moneda;
+                $producto_articulo->pro_art_catalogo = $request->pro_art_catalogo;
+                $producto_articulo->pro_art_capacidad = $request->pro_art_capacidad;
+                $producto_articulo->pro_art_fk_sector = $request->pro_art_fk_sector;
+                $producto_articulo->pro_art_fk_modelo = $request->pro_art_fk_modelo;
+                $producto_articulo->pro_art_fk_tipo_producto = $request->pro_art_fk_tipo_producto;
+                $producto_articulo->pro_art_fk_unidadmedida = $request->pro_art_fk_unidadmedida;
 
-        flash("Modificación del articulo '' ".$producto_articulo->pro_art_codigo." '' exitoso")->success();
-        return redirect()->route('producto_articulo.index');
+                $producto_articulo->save();
+
+                flash("Modificación del articulo '' ".$producto_articulo->pro_art_codigo." '' exitoso")->success();
+                return redirect()->route('producto_articulo.index');
+           
+
+            }else{  
+                flash('No hay ningun registro en la Base de Datos del objeto buscado.')->error();
+                return redirect()->route('producto_articulo.index');
+            }
+        }else{
+
+            flash('Solo los usuarios con el rol "Administrador" o "Encargado" pueden modificar.')->error();
+            return redirect()->back();
+
+        }
     }
 
     /**
@@ -145,11 +219,27 @@ class Producto_ArticuloController extends Controller
      */
     public function destroy($id)
     {
-        
-        $producto_articulo = Producto_Articulo::find($id);
-        $producto_articulo->delete();
-        flash("Eliminación del articulo '' ".$producto_articulo->pro_art_codigo." '' exitoso")->success();
-        return redirect()->route('producto_articulo.index');
+        if (Auth::user()->rol->rol_rol === 'Administrador'){
+
+
+            $producto_articulo = Producto_Articulo::find($id);
+            if ($producto_articulo !== null) {
+
+                $producto_articulo->delete();
+                flash("Eliminación del articulo '' ".$producto_articulo->pro_art_codigo." '' exitoso")->success();
+                return redirect()->route('producto_articulo.index');
+           
+
+            }else{  
+                flash('No hay ningun registro en la Base de Datos del objeto buscado.')->error();
+                return redirect()->route('producto_articulo.index');
+            }
+        }else{
+
+            flash('Solo los usuarios con el rol "Administrador" puede eliminar.')->error();
+            return redirect()->back();
+
+        }
     }
 
     public function BuscarArticulo($id){

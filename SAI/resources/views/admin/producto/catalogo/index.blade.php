@@ -15,7 +15,7 @@
 					<div class="col-sm-4">
 						@foreach ($PC->imagenes as $imagen)
 							<a href="{{ route('producto_computador.show', $PC->id) }}" class="">
-					      		<img class="img-fluid" src="{{ asset('imagenes/computador/'.$imagen->ima_nombre) }}" width="150" height="150">
+					      		<img class="img-fluid " src="{{ asset('imagenes/computador/'.$imagen->ima_nombre) }}" width="125" height="125">
 					      	</a>
 						@endforeach
 					</div>
@@ -34,7 +34,28 @@
 					</div>
 				</div>
 			</div>
+		@endforeach
+
+		@foreach ($articulos as $articulo)
 		
+			<div class="col-sm-6"><!-- PONGO 3 PRODUCTOS POR FILA -->
+				<div class="container col-sm-12 producto">
+					<div class="col-sm-4">
+						@foreach ($articulo->imagenes as $imagen)
+							<a href="{{ route('producto_articulo.show', $articulo->id) }}" class="">
+					      		<img class="img-fluid " src="{{ asset('imagenes/articulo/'.$imagen->ima_nombre) }}" width="125" height="125">
+					      	</a>
+						@endforeach
+					</div>
+					<div class="col-sm-8">
+						<div>código: {{ $articulo->pro_art_codigo }}</div>
+						<div>descripción: {{ $articulo->pro_art_descripcion}}</div>
+						<div>precio: {{ $articulo->pro_art_precio." ".$articulo->pro_art_moneda }}</div>
+						<div>capacidad: {{ $articulo->pro_art_capacidad." ".$articulo->unidadmedida->uni_medida }}</div>
+						
+					</div>
+				</div>
+			</div>
 		@endforeach
 	</div>
 	
