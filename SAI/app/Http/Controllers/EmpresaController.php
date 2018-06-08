@@ -11,6 +11,7 @@ use App\Parroquia;
 use App\Contacto_Correo;
 use App\Contacto_Telefono;
 use App\Http\Requests\EmpresaRequest;
+use App\Http\Requests\EmpresaEditRequest;
 use Auth;
 
 class EmpresaController extends Controller
@@ -170,7 +171,7 @@ class EmpresaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(EmpresaRequest $request, $id)
+    public function update(EmpresaEditRequest $request, $id)
     {
         if (Auth::user()->rol->rol_rol === 'Administrador' || Auth::user()->rol->rol_rol === 'Encargado'){
             $empresa = Empresa::find($id);

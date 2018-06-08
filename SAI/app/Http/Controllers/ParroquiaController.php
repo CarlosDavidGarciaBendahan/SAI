@@ -92,7 +92,7 @@ class ParroquiaController extends Controller
         if (Auth::user()->rol->rol_rol === 'Administrador' || Auth::user()->rol->rol_rol === 'Encargado'){
             $estados = Estado::select('est_nombre','id')->where('id','>',0)->orderby('est_nombre','asc')->get();
             $parroquia = Parroquia::find($id);
-            if ($Parroquia !== null) {
+            if ($parroquia !== null) {
 
                 return view ('admin.lugar.parroquia.edit')->with(compact(['parroquia','estados']));
             }else{  
@@ -119,7 +119,7 @@ class ParroquiaController extends Controller
     {
         if (Auth::user()->rol->rol_rol === 'Administrador' || Auth::user()->rol->rol_rol === 'Encargado'){
             $parroquia = Parroquia::find($id);
-            if ($Parroquia !== null) {
+            if ($parroquia !== null) {
                 $parroquia->par_nombre = $request->par_nombre;
                 $parroquia->par_fk_municipio = $request->par_fk_municipio;
                 $parroquia->save();
@@ -151,7 +151,7 @@ class ParroquiaController extends Controller
         if (Auth::user()->rol->rol_rol === 'Administrador'){
 
             $Parroquia = Parroquia::find($id);
-            if ($Parroquia !== null) {
+            if ($parroquia !== null) {
                 $Parroquia->delete();
 
                 flash("Eliminación de la Parroquia " .$Parroquia->par_nombre . " exitosamente.")->success();

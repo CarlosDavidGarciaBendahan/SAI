@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Laracasts\Flash\Flash;
 use App\Banco;
-use App\Http\Requests\BancoRequest;
+use App\Http\Requests\BancoResquest;
 use Auth;
 
 class BancoController extends Controller
@@ -46,7 +46,7 @@ class BancoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(BancoRequest $request)
+    public function store(BancoResquest $request)
     {
         if (Auth::user()->rol->rol_rol === 'Administrador' || Auth::user()->rol->rol_rol === 'Encargado'){
             $banco = new Banco($request->all());
@@ -108,7 +108,7 @@ class BancoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(BancoRequest $request, $id)
+    public function update(BancoResquest $request, $id)
     {
         if (Auth::user()->rol->rol_rol === 'Administrador' || Auth::user()->rol->rol_rol === 'Encargado'){
             $banco = Banco::find($id);

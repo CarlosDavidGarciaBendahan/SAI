@@ -58,7 +58,7 @@ class FuenteVentaController extends Controller
             $fuenteventa->save();
 
             flash('Fuente de venta "'.$request->nombre.'" creada exitosamente.' )->success();
-            return redirect()->route('fuenteventa.index')
+            return redirect()->route('fuenteventa.index');
         }else{
 
             flash('Solo los usuarios con el rol "Administrador" o "Encargado" pueden registrar.')->error();

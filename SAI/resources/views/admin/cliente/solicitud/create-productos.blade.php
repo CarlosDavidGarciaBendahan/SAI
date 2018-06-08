@@ -78,49 +78,73 @@
 					  	  <td>
 					  	  	{{ $codigoPC->producto_computador->pro_com_precio." ".$codigoPC->producto_computador->pro_com_moneda }}
 					  	  </td>
+
 					  	  <td>
-					  	  	@if ($CodigoPCs->contains($codigoPC)) 
+					  	  	@if ($CodigoPCs->contains($codigoPC)) <!-- Si la pc esta en la lista-->
 					  	  		
 					  	  		@if (count($codigoPC->solicitudes)===0)
 					  	  			<a href="{{ route('solicitud.agregarProducto', [$solicitud->id,$codigoPC->id,'pc']) }}" onclick="return confirm('Seguro que desea agregar este computador de la solicitud?')" class="btn btn-success" title="Agregar producto de esta solicitud">
 							      		<span class="class glyphicon glyphicon-ok"></span>
 						      		</a> 
-						      	@else
-						      		@foreach ($codigoPC->solicitudes as $sol)
-						  	  			@if ($sol->sol_aprobado === 'S'  && $solicitud->sol_fecha >= $sol->sol_fecha )					  	  		
-							  	  			@if ($solicitud->id <= $sol->id)
-							  	  				<a href="{{ route('solicitud.eliminarProducto', [$solicitud->id,$codigoPC->id,'pc']) }}" onclick="return confirm('Seguro que desea quitar este computador de la solicitud?')" class="btn btn-danger" title="Quitar producto de esta solicitud">
-										      		<span class="class glyphicon glyphicon-remove-circle"></span>
-									      		</a> 
-									      	@else
-									      		<a  class="btn btn-default" title="Producto NO disponible para esta solicitud. Ya ha sido ingresado en una solicitud anterior.">
-										      		<span class="class glyphicon glyphicon-thumbs-down"></span>
-									      		</a> 
+						      	@else <!-- SI TIENE SOLICITUDES ENTRA EN EL ELSE-->
+						      		@foreach ($codigoPC->solicitudes as $sol) <!--RECORRO LAS SOLICITUDES-->
+						  	  			<!-- DEBO VERIFICAR SI LA SOLICITUD QUE ESTOY HACIENDO ES LA MAS RECIENTE-->
+						  	  			@if ($sol->sol_aprobado === 'S'  && $solicitud->id > $sol->id)
+						  	  			<!-- Si la solicilitud (sol) esta aprobada-->
+						  	  			<!-- Si el id de la solicitud es mayor que todas entonces debe poder seleccionarse-->
+						  	  				<a href="{{ route('solicitud.agregarProducto', [$solicitud->id,$codigoPC->id,'pc']) }}" onclick="return confirm('Seguro que desea agregar este computador de la solicitud?')" class="btn btn-success" title="Agregar producto de esta solicitud">
+								      		<span class="class glyphicon glyphicon-ok"> </span>
+							      		</a> 
+						  	  			@else
+						  	  				@if ($sol->sol_aprobado === 'S'  && $solicitud->sol_fecha >= $sol->sol_fecha )					  	  		
+								  	  			@if ($solicitud->id <= $sol->id)
+								  	  				<a href="{{ route('solicitud.eliminarProducto', [$solicitud->id,$codigoPC->id,'pc']) }}" onclick="return confirm('Seguro que desea quitar este computador de la solicitud?')" class="btn btn-danger" title="Quitar producto de esta solicitud">
+											      		<span class="class glyphicon glyphicon-remove-circle"></span>
+										      		</a> 
+										      	@else
+										      		<a  class="btn btn-default" title="Producto NO disponible para esta solicitud. Ya ha sido ingresado en una solicitud anterior.">
+											      		<span class="class glyphicon glyphicon-thumbs-down"></span>
+										      		</a> 
+								  	  			@endif
 							  	  			@endif
 						  	  			@endif
+
+
+						  	  			
 
 						  	  		@endforeach
 					  	  		@endif
 					      		
 					  	  	
 					  	  	@else
-					  	  		@foreach ($codigoPC->solicitudes as $sol)
-					  	  			@if ($sol->sol_aprobado === 'S'  && $solicitud->sol_fecha >= $sol->sol_fecha )					  	  		
-						  	  			@if ($solicitud->id <= $sol->id)
-						  	  				<a href="{{ route('solicitud.eliminarProducto', [$solicitud->id,$codigoPC->id,'pc']) }}" onclick="return confirm('Seguro que desea quitar este computador de la solicitud?')" class="btn btn-danger" title="Quitar producto de esta solicitud">
-									      		<span class="class glyphicon glyphicon-remove-circle"></span>
-								      		</a> 
-								      	@else
-								      		<a  class="btn btn-default" title="Producto NO disponible para esta solicitud. Ya ha sido ingresado en una solicitud anterior.">
-									      		<span class="class glyphicon glyphicon-thumbs-down"></span>
-								      		</a> 
+					  	  		@foreach ($codigoPC->solicitudes as $sol) <!--RECORRO LAS SOLICITUDES-->
+						  	  			<!-- DEBO VERIFICAR SI LA SOLICITUD QUE ESTOY HACIENDO ES LA MAS RECIENTE-->
+						  	  			@if ($sol->sol_aprobado === 'S'  && $solicitud->id > $sol->id)
+						  	  			<!-- Si la solicilitud (sol) esta aprobada-->
+						  	  			<!-- Si el id de la solicitud es mayor que todas entonces debe poder seleccionarse-->
+						  	  				<a href="{{ route('solicitud.agregarProducto', [$solicitud->id,$codigoPC->id,'pc']) }}" onclick="return confirm('Seguro que desea agregar este computador de la solicitud?')" class="btn btn-success" title="Agregar producto de esta solicitud">
+								      		<span class="class glyphicon glyphicon-ok"> </span>
+							      		</a> 
+						  	  			@else
+						  	  				@if ($sol->sol_aprobado === 'S'  && $solicitud->sol_fecha >= $sol->sol_fecha )					  	  		
+								  	  			@if ($solicitud->id <= $sol->id)
+								  	  				<a href="{{ route('solicitud.eliminarProducto', [$solicitud->id,$codigoPC->id,'pc']) }}" onclick="return confirm('Seguro que desea quitar este computador de la solicitud?')" class="btn btn-danger" title="Quitar producto de esta solicitud">
+											      		<span class="class glyphicon glyphicon-remove-circle"></span>
+										      		</a> 
+										      	@else
+										      		<a  class="btn btn-default" title="Producto NO disponible para esta solicitud. Ya ha sido ingresado en una solicitud anterior.">
+											      		<span class="class glyphicon glyphicon-thumbs-down"></span>
+										      		</a> 
+								  	  			@endif
+							  	  			@endif
 						  	  			@endif
-					  	  			@endif
 
-					  	  		@endforeach
+
+						  	  			
+
+						  	  		@endforeach
 					  	  	@endif
 					  	  </td>
-					  	  
 				    	</tr>
 				  	
 				  		
@@ -137,6 +161,7 @@
 					      <td>
 					  	  	{{ $codigoArticulo->producto_articulo->pro_art_precio." ".$codigoArticulo->producto_articulo->pro_art_moneda }}
 					  	  </td>
+					  	  {
 					  	  <td>
 					  	  	@if ($CodigoArticulos->contains($codigoArticulo)) 
 					  	  		@if (count($codigoArticulo->solicitudes)===0)
@@ -144,41 +169,66 @@
 							      		<span class="class glyphicon glyphicon-ok"></span>
 						      		</a> 
 						      	@else
-						      		@foreach ($codigoArticulo->solicitudes as $sol)
-						  	  			@if ($sol->sol_aprobado === 'S'  && $solicitud->sol_fecha >= $sol->sol_fecha )					  	  		
-							  	  			@if ($solicitud->id <= $sol->id)
-							  	  				<a href="{{ route('solicitud.eliminarProducto', [$solicitud->id,$codigoArticulo->id,'articulo']) }}" onclick="return confirm('Seguro que desea quitar este artículo de la solicitud?')" class="btn btn-danger" title="Quitar producto de esta solicitud">
-										      		<span class="class glyphicon glyphicon-remove-circle"></span>
-									      		</a> 
-									      	@else
-									      		<a  class="btn btn-default" title="Producto NO disponible para esta solicitud. Ya ha sido ingresado en una solicitud anterior.">
-										      		<span class="class glyphicon glyphicon-thumbs-down"></span>
-									      		</a> 
+						      		@foreach ($codigoArticulo->solicitudes as $sol) <!--RECORRO LAS SOLICITUDES-->
+						  	  			<!-- DEBO VERIFICAR SI LA SOLICITUD QUE ESTOY HACIENDO ES LA MAS RECIENTE-->
+						  	  			@if ($sol->sol_aprobado === 'S'  && $solicitud->id > $sol->id)
+						  	  			<!-- Si la solicilitud (sol) esta aprobada-->
+						  	  			<!-- Si el id de la solicitud es mayor que todas entonces debe poder seleccionarse-->
+						  	  				<a href="{{ route('solicitud.agregarProducto', [$solicitud->id,$codigoArticulo->id,'articulo']) }}" onclick="return confirm('Seguro que desea agregar este articulo de la solicitud?')" class="btn btn-success" title="Agregar producto de esta solicitud">
+								      		<span class="class glyphicon glyphicon-ok"> </span>
+							      		</a> 
+						  	  			@else
+						  	  				@if ($sol->sol_aprobado === 'S'  && $solicitud->sol_fecha >= $sol->sol_fecha )					  	  		
+								  	  			@if ($solicitud->id <= $sol->id)
+								  	  				<a href="{{ route('solicitud.eliminarProducto', [$solicitud->id,$codigoArticulo->id,'articulo']) }}" onclick="return confirm('Seguro que desea quitar este articulo de la solicitud?')" class="btn btn-danger" title="Quitar producto de esta solicitud">
+											      		<span class="class glyphicon glyphicon-remove-circle"></span>
+										      		</a> 
+										      	@else
+										      		<a  class="btn btn-default" title="Producto NO disponible para esta solicitud. Ya ha sido ingresado en una solicitud anterior.">
+											      		<span class="class glyphicon glyphicon-thumbs-down"></span>
+										      		</a> 
+								  	  			@endif
 							  	  			@endif
 						  	  			@endif
+
+
+						  	  			
 
 						  	  		@endforeach
 					  	  		@endif
 					  	  		
 					  	  	@else
-					  	  		@foreach ($codigoArticulo->solicitudes as $sol)
-					  	  			@if ($sol->sol_aprobado === 'S'  && $solicitud->sol_fecha >= $sol->sol_fecha )					  	  		
-						  	  			@if ($solicitud->id <= $sol->id)
-						  	  				<a href="{{ route('solicitud.eliminarProducto', [$solicitud->id,$codigoArticulo->id,'articulo']) }}" onclick="return confirm('Seguro que desea quitar este artículo de la solicitud?')" class="btn btn-danger" title="Quitar producto de esta solicitud">
-									      		<span class="class glyphicon glyphicon-remove-circle"></span>
-								      		</a> 
-								      	@else
-								      		<a  class="btn btn-default" title="Producto NO disponible para esta solicitud. Ya ha sido ingresado en una solicitud anterior.">
-									      		<span class="class glyphicon glyphicon-thumbs-down"></span>
-								      		</a> 
+					  	  		@foreach ($codigoArticulo->solicitudes as $sol) <!--RECORRO LAS SOLICITUDES-->
+						  	  			<!-- DEBO VERIFICAR SI LA SOLICITUD QUE ESTOY HACIENDO ES LA MAS RECIENTE-->
+						  	  			@if ($sol->sol_aprobado === 'S'  && $solicitud->id > $sol->id)
+						  	  			<!-- Si la solicilitud (sol) esta aprobada-->
+						  	  			<!-- Si el id de la solicitud es mayor que todas entonces debe poder seleccionarse-->
+						  	  				<a href="{{ route('solicitud.agregarProducto', [$solicitud->id,$codigoArticulo->id,'articulo']) }}" onclick="return confirm('Seguro que desea agregar este articulo de la solicitud?')" class="btn btn-success" title="Agregar producto de esta solicitud">
+								      		<span class="class glyphicon glyphicon-ok"> </span>
+							      		</a> 
+						  	  			@else
+						  	  				@if ($sol->sol_aprobado === 'S'  && $solicitud->sol_fecha >= $sol->sol_fecha )					  	  		
+								  	  			@if ($solicitud->id <= $sol->id)
+								  	  				<a href="{{ route('solicitud.eliminarProducto', [$solicitud->id,$codigoArticulo->id,'articulo']) }}" onclick="return confirm('Seguro que desea quitar este articulo de la solicitud?')" class="btn btn-danger" title="Quitar producto de esta solicitud">
+											      		<span class="class glyphicon glyphicon-remove-circle"></span>
+										      		</a> 
+										      	@else
+										      		<a  class="btn btn-default" title="Producto NO disponible para esta solicitud. Ya ha sido ingresado en una solicitud anterior.">
+											      		<span class="class glyphicon glyphicon-thumbs-down"></span>
+										      		</a> 
+								  	  			@endif
+							  	  			@endif
 						  	  			@endif
-					  	  			@endif
 
-					  	  		@endforeach
+
+						  	  			
+
+						  	  		@endforeach
 					  	  		
 					  	  	@endif
 					  	  </td>
-					        
+					       
+
 				    	</tr>
 				  	
 				  	@endforeach

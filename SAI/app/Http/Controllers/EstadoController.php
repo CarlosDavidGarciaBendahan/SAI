@@ -9,7 +9,6 @@ use Laracast\Flash\Flash;
 use App\Estado;
 use App\Municipio;
 use App\Http\Requests\EstadoResquest;
-use App\Http\Requests\EstadoEditResquest;
 use Auth;
 
 class EstadoController extends Controller
@@ -71,7 +70,7 @@ class EstadoController extends Controller
 
         if (Auth::user()->rol->rol_rol === 'Administrador' || Auth::user()->rol->rol_rol === 'Encargado'){
             $estado = new Estado($request->all()); //request valores recibidos del formulario
-            $estado->save(););
+            $estado->save();
 
             flash("Registro del estado " .$request->est_nombre . " exitosamente.")->success();
             return redirect()->route('estado.index');  
@@ -135,7 +134,7 @@ class EstadoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(EstadoEditResquest $request, $id)
+    public function update(EstadoResquest $request, $id)
     {
         if (Auth::user()->rol->rol_rol === 'Administrador' || Auth::user()->rol->rol_rol === 'Encargado'){
             $estado = Estado::find($id);
