@@ -28,7 +28,7 @@
 						</ul>
 					</div>	
 				@endif
-				{!! Form::open(['route' => ['producto_articulo.update',$producto_articulo], 'method' => 'PUT' ]) !!}
+				{!! Form::open(['route' => ['producto_articulo.update',$producto_articulo], 'method' => 'PUT', 'files' => 'true'  ]) !!}
 					
 					
 						<div class="form-group ">
@@ -219,10 +219,32 @@
 					</table>
 					{{ $codigosArticulo->links() }}
 
-					<div class="form-group">
-						{!! Form::submit('Editar',['class'=>'btn btn-primary']) !!}
-						<a href="{{ route('producto_articulo.index') }}" class="btn btn-danger">Calcelar</a>
+
+					<div class="form-group col-sm-6"> 
+						
+							{!! Form::label('ima','Imagen') !!}
+
+						    {!! Form::file('imagen',['class'=>'col-sm-12','id'=>'file', 'onchange'=>'return fileValidation()'])!!}
+
+							<!-- File input field 
+							<input class="col-sm-12" type="file" name="imagen" id="file" onchange="return fileValidation()"/>
+							--><br>
+							<!-- Image preview -->
+							
+								
+							<div class="" id="imagePreview">
+								
+							</div>
+							
+
 					</div>
+					<div class="form-group col-sm-12"> 
+						<div class="form-group">
+							{!! Form::submit('Editar',['class'=>'btn btn-primary']) !!}
+							<a href="{{ route('producto_articulo.index') }}" class="btn btn-danger">Calcelar</a>
+						</div>
+					</div>
+					
 
 					
 
@@ -238,4 +260,5 @@
 @section('scripts')
 	<script src="{{ asset('plugins/Script/ObtenerSectoresPorOficina.js') }}"></script>
 	<script src="{{ asset('plugins/Script/ObtenerModelosPorMarca.js') }}"></script>
+	<script src = "{{ asset('plugins/Script/ValidarImage.js') }}"></script>
 @endsection

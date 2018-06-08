@@ -17,6 +17,8 @@ use App\CodigoArticulo;
 use Auth;
 use App\Http\Requests\ProArtRequest;
 use App\Http\Requests\ProArtEditRequest;
+use Illuminate\Support\Facades\Storage; //eliminar imagenes
+use Illuminate\Support\Facades\DB;
 
 
 class Producto_ArticuloController extends Controller
@@ -176,7 +178,10 @@ class Producto_ArticuloController extends Controller
      */
     public function update(ProArtEditRequest $request, $id)
     {
-        //dd($request->all());
+        /*if (   $request->imagen === null) {
+            dd("no hay imagen");
+        }
+        dd($request->all());*/
         if (Auth::user()->rol->rol_rol === 'Administrador' || Auth::user()->rol->rol_rol === 'Encargado'){
 
 
@@ -195,6 +200,35 @@ class Producto_ArticuloController extends Controller
                 $producto_articulo->pro_art_fk_unidadmedida = $request->pro_art_fk_unidadmedida;
 
                 $producto_articulo->save();
+
+
+                //Actualizo la imagen... SI Y SOLO SI, SE HA ENVIADO UNA NUEVA
+                if ($request->imagen !== null) {
+                    $path = public_path() . '\\imagenes\\articulo\\';
+                    if (count($producto_articulo->imagenes) !== 0) { //si tengo imagenes elimino esas imagenes
+                        foreach ($producto_articulo->imagenes as $imagen) {
+                            if(file_exists($path.$imagen->ima_nombre)){
+                              unlink($path.$imagen->ima_nombre);
+                            }
+                            //Storage::delete($path.$imagen->ima_nombre);
+                            //dd($path.$imagen->ima_nombre);
+                        }
+                        DB::table('imagen')->where('ima_fk_producto_articulo','=',$producto_articulo->id)->delete();
+                    }
+
+                    $file = $request->file('imagen');        
+                    $name = 'indatechC.A._' . time() . '.' . $request->file('imagen')->getClientOriginalExtension();
+                   
+                    $file->move($path,$name);
+
+                    $imagen = new Imagen();
+                    $imagen->ima_nombre = $name;
+                    $imagen->producto_articulo()->associate($producto_articulo);
+                    $imagen->save();
+                }
+                
+
+
 
                 flash("Modificación del articulo '' ".$producto_articulo->pro_art_codigo." '' exitoso")->success();
                 return redirect()->route('producto_articulo.index');
@@ -252,4 +286,5 @@ class Producto_ArticuloController extends Controller
 
         return ($producto_articulo);
     }
+
 }

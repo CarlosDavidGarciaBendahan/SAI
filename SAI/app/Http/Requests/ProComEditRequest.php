@@ -41,7 +41,7 @@ class ProComEditRequest extends FormRequest
         return [
             'pro_com_codigo'                => 'min:3|max:200|required|string',
             'pro_com_descripcion'           => 'min:10|max:200|required|string',
-            'pro_com_precio'                => 'digits_between:1,10|required|numeric',
+            'pro_com_precio'                => 'required|numeric',
             'pro_com_moneda'                => 'min:1|max:2|required|string',
             'pro_com_cantidad'              => 'digits_between:1,6|required|integer',
             'pro_com_fk_tipo_producto'      => 'required|integer',

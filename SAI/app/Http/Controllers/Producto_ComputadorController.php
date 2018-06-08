@@ -16,6 +16,7 @@ use App\CodigoPC;
 use App\Http\Requests\ProComRequest;
 use App\Http\Requests\ProComEditRequest;
 use Auth;
+use Illuminate\Support\Facades\DB;
 
 
 class Producto_ComputadorController extends Controller
@@ -174,7 +175,7 @@ class Producto_ComputadorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(ProComRequest $request, $id)
+    public function update(ProComEditRequest $request, $id)
     {
         //dd($request->all());
         if (Auth::user()->rol->rol_rol === 'Administrador' || Auth::user()->rol->rol_rol === 'Encargado'){
@@ -194,6 +195,31 @@ class Producto_ComputadorController extends Controller
 
                 $producto_computador->articulos()->detach();
                 $producto_computador->articulos()->sync($request->componentes);
+
+                //Actualizo la imagen... SI Y SOLO SI, SE HA ENVIADO UNA NUEVA
+                if ($request->imagen !== null) {
+                    $path = public_path() . '\\imagenes\\computador\\';
+                    if (count($producto_computador->imagenes) !== 0) { //si tengo imagenes elimino esas imagenes
+                        foreach ($producto_computador->imagenes as $imagen) {
+                            if(file_exists($path.$imagen->ima_nombre)){
+                              unlink($path.$imagen->ima_nombre);
+                            }
+                            //Storage::delete($path.$imagen->ima_nombre);
+                            //dd($path.$imagen->ima_nombre);
+                        }
+                        DB::table('imagen')->where('ima_fk_producto_computador','=',$producto_computador->id)->delete();
+                    }
+
+                    $file = $request->file('imagen');        
+                    $name = 'indatechC.A._' . time() . '.' . $request->file('imagen')->getClientOriginalExtension();
+                   
+                    $file->move($path,$name);
+
+                    $imagen = new Imagen();
+                    $imagen->ima_nombre = $name;
+                    $imagen->producto_computador()->associate($producto_computador);
+                    $imagen->save();
+                }
 
                 flash("Modificación del computador '' ".$producto_computador->pro_com_codigo." '' exitoso")->success();
                 return redirect()->route('producto_computador.index');
