@@ -236,6 +236,7 @@
 <!-- FIN FIN FIN FIN   TABLAS DE PRODUCTOS PARA PODER INGRESAR EN EL PRESUPUESTO.  TANTO DE PC COMO DE ARTICULOS-->
 					<div class="form-group col-sm-12">
 						{!! Form::submit('Registrar',['class'=>'btn btn-primary']) !!}
+						<a href="{{ route('presupuesto.index') }}" class="btn btn-danger">Calcelar</a>
 					</div>
 
 					

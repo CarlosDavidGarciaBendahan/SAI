@@ -185,6 +185,7 @@
 
 					<div class="form-group">
 						{!! Form::submit('Editar',['class'=>'btn btn-primary']) !!}
+						<a href="{{ route('cliente_juridico.index') }}" class="btn btn-danger">Calcelar</a>
 					</div>
 
 

@@ -111,6 +111,7 @@
 
 						<div class="form-group">
 							{!! Form::submit('Agregar Telefono',['class'=>'btn btn-primary', 'id' => 'addTelefono']) !!}
+						<a href="{{ route('cliente_natural.index') }}" class="btn btn-danger">Calcelar</a>
 						</div>
 
 					

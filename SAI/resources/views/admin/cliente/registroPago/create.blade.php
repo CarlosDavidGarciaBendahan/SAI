@@ -69,6 +69,7 @@
 
 					<div class="form-group col-sm-12">
 						{!! Form::submit('Registrar',['class'=>'btn btn-primary']) !!}
+						<a href="{{ route('registroPago.index') }}" class="btn btn-danger">Calcelar</a>
 					</div>
 
 					

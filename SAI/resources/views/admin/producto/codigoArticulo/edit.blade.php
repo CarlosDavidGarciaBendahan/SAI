@@ -97,6 +97,7 @@
 						-->
 					<div class="form-group col-sm-12">
 						{!! Form::submit('Editar',['class'=>'btn btn-primary']) !!}
+						<a href="{{ route('codigoArticulo.index') }}" class="btn btn-danger">Calcelar</a>
 					</div>
 
 					

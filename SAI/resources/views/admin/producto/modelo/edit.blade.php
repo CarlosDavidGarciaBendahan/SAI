@@ -35,6 +35,7 @@
 
 					<div class="form-group">
 						{!! Form::submit('Editar',['class'=>'btn btn-primary']) !!}
+						<a href="{{ route('modelo.index') }}" class="btn btn-danger">Calcelar</a>
 					</div>
 					
 

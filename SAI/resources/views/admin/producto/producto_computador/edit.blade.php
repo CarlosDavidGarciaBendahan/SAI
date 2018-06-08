@@ -209,6 +209,7 @@
 					{{ $codigosPC->links() }}		
 					<div class="form-group">
 						{!! Form::submit('Editar',['class'=>'btn btn-primary']) !!}
+						<a href="{{ route('producto_computador.index') }}" class="btn btn-danger">Calcelar</a>
 					</div>
 
 					

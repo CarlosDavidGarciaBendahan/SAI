@@ -184,6 +184,7 @@
 				</table>
 					<div class="form-group">
 						{!! Form::submit('Editar',['class'=>'btn btn-primary']) !!}
+						<a href="{{ route('empresa.index') }}" class="btn btn-danger">Calcelar</a>
 					</div>
 
 

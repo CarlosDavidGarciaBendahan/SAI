@@ -39,6 +39,7 @@
 
 					<div class="form-group">
 						{!! Form::submit('Registrar',['class'=>'btn btn-primary']) !!}
+						<a href="{{ route('tipo_producto.index') }}" class="btn btn-danger">Calcelar</a>
 					</div>
 
 					
