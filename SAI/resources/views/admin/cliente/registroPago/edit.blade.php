@@ -20,7 +20,7 @@
 	{{-- expr --}}
 	<section class="container-fluid">
 		<div class="row">
-			<div class="col-sm-10 offset-1">
+			<div class="col-sm-12">
 				{!! Form::open(['route' => ['registroPago.update',$registroPago], 'method' => 'PUT']) !!}
 					
 					<div class="form-group">

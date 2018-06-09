@@ -194,4 +194,79 @@ class RegistroPagoController extends Controller
         flash("La eliminación del registro #". $registroPago->id." fue exitosa")->success();
         return redirect()->route('registroPago.index',['id'=>$registroPago->reg_fk_venta]);
     }
+
+
+    public function cargarArchivo(){
+        //dd('ddd');
+        return view('admin.cliente.registroPago.cargarArchivo');
+    }
+    public function ImportarExcel(Request $request){
+
+        //dd($request->all());
+
+        $file = $request->file('imagen');        
+        $name = 'indatechC.A._' . time() . '.' . $request->file('imagen')->getClientOriginalExtension();
+        $path = public_path() . '/registroPago/';
+        $file->move($path,$name);
+
+
+        //$path = public_path() . '/registroPago/';
+        //$name = "registroPago1.xlsx";
+        //dd($columnas);
+        \Excel::selectSheets('registro')->load($path.$name, function($archivo){
+
+            //selecciono las columnas que necesito
+            $columnas = array('fecha_pagado','monto','moneda','concepto','forma','numero_referencia','banco_origen','banco_destino','numero_venta');
+
+            //agarro los resultados..
+            $resultados = $archivo->get($columnas);
+            //dd($resultados->all());
+            $registroPago = new RegistroPago(); 
+
+            $registroPago->reg_fecha_pagado =   $resultados[0]->fecha_pagado;
+            $registroPago->reg_monto =   $resultados[0]->monto;
+            $registroPago->reg_moneda =   $resultados[0]->moneda;
+            $registroPago->reg_concepto =   $resultados[0]->concepto;
+            $registroPago->reg_forma =   $resultados[0]->forma;
+            $registroPago->reg_numero_referencia =   $resultados[0]->numero_referencia;
+            $banco = Banco::whereban_nombre($resultados[0]->banco_origen)->get();
+            $registroPago->reg_fk_banco_origen =   $banco[0]->id;
+            $banco = Banco::whereban_nombre($resultados[0]->banco_destino)->get();
+            $registroPago->reg_fk_banco_destino =   $banco[0]->id;
+            $registroPago->reg_fk_venta =   $resultados[0]->numero_venta;
+
+
+
+            $registroPago->save();
+            flash('Se ha cargado el pago con exito desde el archivo.')->success();
+            //dd($registroPago);
+            /*echo    $resultados[0]->fecha_pagado." --- ".
+                    $resultados[0]->monto." --- ".
+                    $resultados[0]->moneda." --- ".
+                    $resultados[0]->concepto." --- ".
+                    $resultados[0]->forma." --- ".
+                    $resultados[0]->numero_referencia." --- ".
+                    $resultados[0]->banco_origen." --- ".
+                    $resultados[0]->banco_destino." --- ".
+                    $resultados[0]->numero_venta."<br>";
+            foreach ($resultados as $resultado) {
+                echo    $resultado->fecha_pagado."<br>";
+                        /*$resultado->monto." --- ".
+                        $resultado->moneda." --- ".
+                        $resultado->concepto." --- ".
+                        $resultado->forma." --- ".
+                        $resultado->numero_referencia." --- ".
+                        $resultado->banco_origen." --- ".
+                        $resultado->banco_destino." --- ".
+                        $resultado->numero_venta."<br>"
+                ;
+                //break;//ejecuto este codigo una sola vez y lo rompo
+            }*/
+        })->get();
+
+        return redirect()->route('registroPago.listarRegistroPago',0);
+        //return redirect()->route('venta.index');    
+    }
+
+
 }

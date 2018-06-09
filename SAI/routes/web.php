@@ -681,4 +681,14 @@ Route::post('logout', 'Auth\LoginController@logout')->name('logout')->middleware
 Route::get('/ImportarExcel',[
 		'uses'	=> 'ExcelController@ImportarExcel',
 		'as'	=> 'ImportarExcel'
-	]);
+]);
+
+
+Route::get('/registroPago/cargarArchivo',[
+		'uses'	=> 'registroPagoController@cargarArchivo',
+		'as'	=> 'registroPago.cargarArchivo'
+])->middleware('auth');
+Route::post('/registroPago/importarExcel',[
+		'uses'	=> 'registroPagoController@importarExcel',
+		'as'	=> 'registroPago.importarExcel'
+])->middleware('auth');
