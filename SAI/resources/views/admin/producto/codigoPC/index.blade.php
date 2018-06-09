@@ -37,7 +37,7 @@
 				      <th>Tipo</th>
 				      <th>Ubicación</th>
 				      <th>Componentes</th>
-				      <th>Disponible</th>
+				      {{--<th>Disponible</th>--}}
 
 				    </tr>
 				  </thead>
@@ -55,7 +55,7 @@
 					      		{{ $componente->producto_articulo->pro_art_capacidad." ".$componente->producto_articulo->unidadMedida->uni_medida." / " }}
 					      	@endforeach
 					  	  </td>	
-					  	  <td>
+					  	  {{--  <td>
 					  	  	@if (count($codigoPC->Solicitudes) === 0 && count($codigoPC->Ventas) === 0  )
 					  	  		<a href="#" class="btn btn-success" title="Disponible">
 					      		<span class="class glyphicon glyphicon-ok"></span>
@@ -65,7 +65,7 @@
 					      		<span class="class glyphicon glyphicon-ban-circle"></span>
 					      		</a>
 					  	  	@endif
-					  	  </td>
+					  	  </td>--}}
 					      <td>
 					      	<a href="{{ route('codigoPC.edit', $codigoPC->id) }}" class="btn btn-warning">
 					      		<span class="class glyphicon glyphicon-wrench"></span>
