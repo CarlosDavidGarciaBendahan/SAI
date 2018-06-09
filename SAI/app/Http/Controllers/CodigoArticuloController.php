@@ -141,9 +141,17 @@ class CodigoArticuloController extends Controller
             $codigoArticulo = codigoArticulo::find($id);
             if ($codigoArticulo !== null) {
 
-                $lote = Lote::orderBy('id','ASC')->pluck('lot_nombre','id');
+                    //verifico si esta disponible
+                    //SI esta disponible entonces puedo modificarlo
+                    if($this->disponibilidadArticulo($codigoArticulo)){
+                        $lote = Lote::orderBy('id','ASC')->pluck('lot_nombre','id');
 
-                return view("admin.producto.codigoArticulo.edit")->with(compact('codigoArticulo','lote'));
+                        return view("admin.producto.codigoArticulo.edit")->with(compact('codigoArticulo','lote'));
+                    }else{
+                        flash("El artículo '' ".$codigoArticulo->cod_art_codigo." '' no está disponible. No puede ser modificado")->error();
+                        return redirect()->route('codigoArticulo.index');
+                    }
+                
             }else{  
                 flash('No hay ningun registro en la Base de Datos del objeto buscado.')->error();
                 return redirect()->route('producto_articulo.index');
@@ -170,15 +178,23 @@ class CodigoArticuloController extends Controller
             $codigoArticulo = codigoArticulo::find($id);
 
             if ($codigoArticulo !== null) {
-                $codigoArticulo->cod_art_fk_lote = $request->cod_art_fk_lote;
-                $codigoArticulo->cod_art_estado = $request->cod_art_estado;
+                //verifico si esta disponible
+                    //SI esta disponible entonces puedo modificarlo
+                    if($this->disponibilidadArticulo($codigoArticulo)){
+                        $codigoArticulo->cod_art_fk_lote = $request->cod_art_fk_lote;
+                        $codigoArticulo->cod_art_estado = $request->cod_art_estado;
 
-                $codigoArticulo->save();
+                        $codigoArticulo->save();
 
-                //dd($request->all());
+                        //dd($request->all());
 
-                flash("Modificación del artículo'' ".$codigoArticulo->cod_art_codigo." '' exitosa")->success();
-                return redirect()->route('codigoArticulo.index');
+                        flash("Modificación del artículo'' ".$codigoArticulo->cod_art_codigo." '' exitosa")->success();
+                        return redirect()->route('codigoArticulo.index');             
+                    }else{
+                        flash("El artículo '' ".$codigoArticulo->cod_art_codigo." '' no está disponible. No puede ser modificado")->error();
+                        return redirect()->route('codigoArticulo.index');
+                    }
+                
             }else{  
                 flash('No hay ningun registro en la Base de Datos del objeto buscado.')->error();
                 return redirect()->route('producto_articulo.index');

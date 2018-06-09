@@ -130,25 +130,27 @@ class CodigoPCController extends Controller
         if (Auth::user()->rol->rol_rol === 'Administrador' || Auth::user()->rol->rol_rol === 'Encargado'){
             $codigoPC = CodigoPC::find($id);
 
-            //verifico si esta disponible
-            //SI esta disponible entonces puedo modificarlo
-            if($this->disponibilidadPC($codigoPC)){
+            
                 if ($codigoPC !== null) {
-                    $lote = Lote::orderBy('id','ASC')->pluck('lot_nombre','id');
+                    //verifico si esta disponible
+                    //SI esta disponible entonces puedo modificarlo
+                    if($this->disponibilidadPC($codigoPC)){
+                        $lote = Lote::orderBy('id','ASC')->pluck('lot_nombre','id');
 
-                    $codigosArticulo = CodigoArticulo::orderBy('cod_art_fk_pc','ASC')->paginate(5);
+                            $codigosArticulo = CodigoArticulo::orderBy('cod_art_fk_pc','ASC')->paginate(5);
 
 
-                    return view("admin.producto.codigoPC.edit")->with(compact('codigoPC','lote','codigosArticulo'));
+                            return view("admin.producto.codigoPC.edit")->with(compact('codigoPC','lote','codigosArticulo'));
+                    }else{
+                        flash("El computador '' ".$codigoPC->cod_pc_codigo." '' no está disponible. No puede ser modificado")->error();
+                        return redirect()->route('codigoPC.index');
+                    }
+                    
 
                 }else{  
                     flash('No hay ningun registro en la Base de Datos del objeto buscado.')->error();
                     return redirect()->route('codigoPC.index');
                 }
-            }else{
-                flash("El computador '' ".$codigoPC->cod_pc_codigo." '' no está disponible. No puede ser modificado")->error();
-                return redirect()->route('codigoPC.index');
-            }
             
         }else{
 
