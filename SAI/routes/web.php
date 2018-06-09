@@ -678,3 +678,7 @@ Route::post('logout', 'Auth\LoginController@logout')->name('logout')->middleware
 
 
 
+Route::get('/ImportarExcel',[
+		'uses'	=> 'ExcelController@ImportarExcel',
+		'as'	=> 'ImportarExcel'
+	]);
