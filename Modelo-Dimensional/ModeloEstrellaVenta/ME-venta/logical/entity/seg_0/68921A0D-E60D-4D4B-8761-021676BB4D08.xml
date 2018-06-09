@@ -15,9 +15,9 @@
 <minVolumes>0</minVolumes>
 <normalForm>Third</normalForm>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
-<Attribute name="ID" id="1257E0D5-3D6D-4CC2-0A9F-05B4170A310E">
+<Attribute name="date_init" id="B6CA7C25-224C-29FE-5394-30061528B37A">
 <createdBy>Carlos</createdBy>
-<createdTime>2018-05-25 11:49:16 UTC</createdTime>
+<createdTime>2018-06-09 16:13:36 UTC</createdTime>
 <ownerDesignName>ME-venta</ownerDesignName>
 <engineerTo>
 <item key="251BA8E6-B170-84CB-FFBB-BADB899C537C" value="true"/>
@@ -25,9 +25,20 @@
 <use>0</use>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
-<Attribute name="AÑO" id="9E355EEF-DE31-2CBE-090B-5AE6D24C2C46">
+<Attribute name="day_secuence" id="1537BE6D-5534-257F-8796-6FC09DA87EB7">
 <createdBy>Carlos</createdBy>
-<createdTime>2018-05-25 11:49:21 UTC</createdTime>
+<createdTime>2018-06-09 16:13:37 UTC</createdTime>
+<ownerDesignName>ME-venta</ownerDesignName>
+<engineerTo>
+<item key="251BA8E6-B170-84CB-FFBB-BADB899C537C" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="date_id" id="6EA8CAA0-8276-7E7F-FC3D-FFA81E20892D">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-06-09 16:13:37 UTC</createdTime>
 <ownerDesignName>ME-venta</ownerDesignName>
 <engineerTo>
 <item key="251BA8E6-B170-84CB-FFBB-BADB899C537C" value="true"/>
@@ -35,73 +46,223 @@
 <use>0</use>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
-<Attribute name="SEMESTRE" id="C60AC1BD-A78B-3D11-E748-D24325DCC68F">
+<Attribute name="day_in_month" id="F4597112-E8A8-95FC-BAEA-F0F34BB65713">
 <createdBy>Carlos</createdBy>
-<createdTime>2018-05-25 11:49:35 UTC</createdTime>
+<createdTime>2018-06-09 16:13:37 UTC</createdTime>
 <ownerDesignName>ME-venta</ownerDesignName>
 <engineerTo>
 <item key="251BA8E6-B170-84CB-FFBB-BADB899C537C" value="true"/>
 </engineerTo>
+<nullsAllowed>true</nullsAllowed>
 <use>0</use>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
-<Attribute name="CUATRIMESTRE" id="6D2CC453-24BA-5819-5483-3C0C9DC67410">
+<Attribute name="day_in_year" id="3A285D0F-7C56-1F32-6CA1-FBBEA5573917">
 <createdBy>Carlos</createdBy>
-<createdTime>2018-05-25 11:49:43 UTC</createdTime>
+<createdTime>2018-06-09 16:13:38 UTC</createdTime>
 <ownerDesignName>ME-venta</ownerDesignName>
 <engineerTo>
 <item key="251BA8E6-B170-84CB-FFBB-BADB899C537C" value="true"/>
 </engineerTo>
+<nullsAllowed>true</nullsAllowed>
 <use>0</use>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
-<Attribute name="TRIMESTRE" id="7E94E53F-481C-A965-7292-1C0836BB2275">
+<Attribute name="week" id="0C5E7C91-FDC5-F9F6-6094-D09E1B719A59">
 <createdBy>Carlos</createdBy>
-<createdTime>2018-05-25 11:49:52 UTC</createdTime>
+<createdTime>2018-06-09 16:13:38 UTC</createdTime>
 <ownerDesignName>ME-venta</ownerDesignName>
 <engineerTo>
 <item key="251BA8E6-B170-84CB-FFBB-BADB899C537C" value="true"/>
 </engineerTo>
+<nullsAllowed>true</nullsAllowed>
 <use>0</use>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
-<Attribute name="BIMESTRE" id="F965C0B3-08E0-BC75-5439-FD4F32DCAC1A">
+<Attribute name="month" id="B99D1B24-3E14-67C8-7187-B5E2BAF487E2">
 <createdBy>Carlos</createdBy>
-<createdTime>2018-05-25 11:50:01 UTC</createdTime>
+<createdTime>2018-06-09 16:13:38 UTC</createdTime>
 <ownerDesignName>ME-venta</ownerDesignName>
 <engineerTo>
 <item key="251BA8E6-B170-84CB-FFBB-BADB899C537C" value="true"/>
 </engineerTo>
+<nullsAllowed>true</nullsAllowed>
 <use>0</use>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
-<Attribute name="MES" id="38746D2A-7A66-DF91-23F7-68A47A3D3E9C">
+<Attribute name="year" id="3F0C897F-AA03-B864-D77E-5810FAFED610">
 <createdBy>Carlos</createdBy>
-<createdTime>2018-05-25 11:50:08 UTC</createdTime>
+<createdTime>2018-06-09 16:13:38 UTC</createdTime>
 <ownerDesignName>ME-venta</ownerDesignName>
 <engineerTo>
 <item key="251BA8E6-B170-84CB-FFBB-BADB899C537C" value="true"/>
 </engineerTo>
+<nullsAllowed>true</nullsAllowed>
 <use>0</use>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
-<Attribute name="SEMANA" id="09DD55BB-077C-9F80-659A-1220A90F7EB5">
+<Attribute name="date_int" id="BF0C7A35-29B4-2D7F-6218-0236E62D7300">
 <createdBy>Carlos</createdBy>
-<createdTime>2018-05-25 11:50:19 UTC</createdTime>
+<createdTime>2018-06-09 16:13:38 UTC</createdTime>
 <ownerDesignName>ME-venta</ownerDesignName>
 <engineerTo>
 <item key="251BA8E6-B170-84CB-FFBB-BADB899C537C" value="true"/>
 </engineerTo>
+<nullsAllowed>true</nullsAllowed>
 <use>0</use>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
-<Attribute name="DIA" id="F14094FA-0E20-8323-163B-5D396807E141">
+<Attribute name="yearmonth" id="25EC8913-740F-FAB6-C05A-4BEC40E856E2">
 <createdBy>Carlos</createdBy>
-<createdTime>2018-05-25 11:50:24 UTC</createdTime>
+<createdTime>2018-06-09 16:13:39 UTC</createdTime>
 <ownerDesignName>ME-venta</ownerDesignName>
 <engineerTo>
 <item key="251BA8E6-B170-84CB-FFBB-BADB899C537C" value="true"/>
 </engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="quarter" id="5B78E0A9-329C-93BA-6B82-197828894FC6">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-06-09 16:13:39 UTC</createdTime>
+<ownerDesignName>ME-venta</ownerDesignName>
+<engineerTo>
+<item key="251BA8E6-B170-84CB-FFBB-BADB899C537C" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="date" id="3A3EF24D-002E-4DC2-A0A5-F574E24B5B79">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-06-09 16:13:39 UTC</createdTime>
+<ownerDesignName>ME-venta</ownerDesignName>
+<engineerTo>
+<item key="251BA8E6-B170-84CB-FFBB-BADB899C537C" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="day_in_week" id="41B33452-51B2-31ED-FEC7-0293319AC30C">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-06-09 16:13:39 UTC</createdTime>
+<ownerDesignName>ME-venta</ownerDesignName>
+<engineerTo>
+<item key="251BA8E6-B170-84CB-FFBB-BADB899C537C" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="quarter_desc" id="AE164A48-50A4-9A8E-8CE3-D42C238B2C7F">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-06-09 16:13:39 UTC</createdTime>
+<ownerDesignName>ME-venta</ownerDesignName>
+<engineerTo>
+<item key="251BA8E6-B170-84CB-FFBB-BADB899C537C" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="quarter_desc_long" id="7C69546A-6ED4-390B-5000-5644E193D6D2">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-06-09 16:13:40 UTC</createdTime>
+<ownerDesignName>ME-venta</ownerDesignName>
+<engineerTo>
+<item key="251BA8E6-B170-84CB-FFBB-BADB899C537C" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="week_desc" id="B324413A-529B-533F-18AF-7FABA45293DC">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-06-09 16:13:40 UTC</createdTime>
+<ownerDesignName>ME-venta</ownerDesignName>
+<engineerTo>
+<item key="251BA8E6-B170-84CB-FFBB-BADB899C537C" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="quarter_short" id="A4822576-B08A-805D-2FEA-C0721711CD37">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-06-09 16:13:40 UTC</createdTime>
+<ownerDesignName>ME-venta</ownerDesignName>
+<engineerTo>
+<item key="251BA8E6-B170-84CB-FFBB-BADB899C537C" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="quarter_short_year" id="71EDDC16-4C06-FE6C-80D2-FD0C45C17722">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-06-09 16:13:40 UTC</createdTime>
+<ownerDesignName>ME-venta</ownerDesignName>
+<engineerTo>
+<item key="251BA8E6-B170-84CB-FFBB-BADB899C537C" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="day_desc" id="5B1D1A3E-D58F-1E14-3AB6-A01814957E21">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-06-09 16:13:41 UTC</createdTime>
+<ownerDesignName>ME-venta</ownerDesignName>
+<engineerTo>
+<item key="251BA8E6-B170-84CB-FFBB-BADB899C537C" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="month_desc" id="7D92BD5A-B810-3687-1C39-7226F830D245">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-06-09 16:13:41 UTC</createdTime>
+<ownerDesignName>ME-venta</ownerDesignName>
+<engineerTo>
+<item key="251BA8E6-B170-84CB-FFBB-BADB899C537C" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="date_desc_long" id="EE7F0ACC-E463-7D07-AECF-3C03E6156B5E">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-06-09 16:13:42 UTC</createdTime>
+<ownerDesignName>ME-venta</ownerDesignName>
+<engineerTo>
+<item key="251BA8E6-B170-84CB-FFBB-BADB899C537C" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="mes_desc_long" id="E708B9B8-6865-3E87-B7D3-3C75F7FCCD1C">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-06-09 16:13:42 UTC</createdTime>
+<ownerDesignName>ME-venta</ownerDesignName>
+<engineerTo>
+<item key="251BA8E6-B170-84CB-FFBB-BADB899C537C" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="month_year_desc" id="CCC7BC6E-1177-3121-F683-B45F605FAB92">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-06-09 16:13:42 UTC</createdTime>
+<ownerDesignName>ME-venta</ownerDesignName>
+<engineerTo>
+<item key="251BA8E6-B170-84CB-FFBB-BADB899C537C" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
 <use>0</use>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
@@ -116,7 +277,7 @@
 </engineerTo>
 <pk>true</pk>
 <usedAttributes>
-<attributeRef>1257E0D5-3D6D-4CC2-0A9F-05B4170A310E</attributeRef>
+<attributeRef>6EA8CAA0-8276-7E7F-FC3D-FFA81E20892D</attributeRef>
 </usedAttributes>
 </identifier>
 </identifiers>

@@ -51,18 +51,6 @@
 <use>0</use>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
-<Attribute name="ID3" id="B8E4D762-6E26-E96A-FF4B-B1EFA7F7D980">
-<createdBy>Carlos</createdBy>
-<createdTime>2018-05-25 11:49:20 UTC</createdTime>
-<generatorID>C2EEF5D4-BA43-F4F4-ECCF-4C7F1CEF5B86</generatorID>
-<ownerDesignName>ME-venta</ownerDesignName>
-<engineerTo>
-<item key="251BA8E6-B170-84CB-FFBB-BADB899C537C" value="true"/>
-</engineerTo>
-<referedAttribute>1257E0D5-3D6D-4CC2-0A9F-05B4170A310E</referedAttribute>
-<use>0</use>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-</Attribute>
 <Attribute name="ID4" id="71B926C9-9CA6-F365-B095-926E7B2A78C4">
 <createdBy>Carlos</createdBy>
 <createdTime>2018-05-25 11:50:49 UTC</createdTime>
@@ -205,6 +193,18 @@
 <item key="251BA8E6-B170-84CB-FFBB-BADB899C537C" value="true"/>
 </engineerTo>
 <referedAttribute>DDE95FFD-90EE-EFDE-E948-FDE3777BEA0A</referedAttribute>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="date_id" id="0E7D11C7-BC28-FB59-10BE-098548EBE842">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-06-09 16:20:45 UTC</createdTime>
+<generatorID>C2EEF5D4-BA43-F4F4-ECCF-4C7F1CEF5B86</generatorID>
+<ownerDesignName>ME-venta</ownerDesignName>
+<engineerTo>
+<item key="251BA8E6-B170-84CB-FFBB-BADB899C537C" value="true"/>
+</engineerTo>
+<referedAttribute>6EA8CAA0-8276-7E7F-FC3D-FFA81E20892D</referedAttribute>
 <use>0</use>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
