@@ -81,11 +81,15 @@
 						<div class="col-sm-12">
 							{!! Form::label('x','DATOS ESPECIFICOS DEL PRODUCTO') !!}
 						</div>
-						<div class="col-sm-4">
+						<div class="col-sm-6">
 							{!! Form::label('cod_pc','Código especifico') !!}
 							{!! Form::text('cod_pc_codigo',$codigoPC->cod_pc_codigo,['class'=> 'form-control', 'placeholder'=>'B208802', 'required', 'readonly'=>'true']) !!}
 						</div>
-						<div class="col-sm-4">
+						<div class="col-sm-6">
+							{!! Form::label('pro_com_precio','Precio en dolares') !!}
+							{!! Form::text('cod_pc_costo',$codigoPC->cod_pc_costo,['class'=> 'form-control', 'title'=>'Solo números de 0-9,max: 10 con 2 decimales', 'placeholder'=>'1542.25', 'required', 'maxlength' => '10', 'pattern'=>'[0-9]+[.]?[0-9]?[0-9]?', 'readonly'=>'true']) !!}
+						</div>
+						<div class="col-sm-6">
 							{!! Form::label('cod_pc_fk_lote','Estado del producto') !!}
 							@if ($codigoPC->cod_pc_estado === 'B')
 								{!! Form::text('cod_pc_estado',"Bueno" ,['class'=> 'form-control', 'placeholder'=>'B208802', 'required', 'readonly'=>'true']) !!}
@@ -93,7 +97,7 @@
 								{!! Form::text('cod_pc_estado',"Malo" ,['class'=> 'form-control', 'placeholder'=>'B208802', 'required', 'readonly'=>'true']) !!}
 							@endif
 						</div>
-						<div class="col-sm-4">
+						<div class="col-sm-6">
 							{!! Form::label('cod_pc_fk_lote','Lote del computador') !!}
 							{!! Form::text('cod_pc_estado',$codigoPC->lote->lot_nombre ,['class'=> 'form-control', 'placeholder'=>'B208802', 'required', 'readonly'=>'true']) !!}
 						</div>

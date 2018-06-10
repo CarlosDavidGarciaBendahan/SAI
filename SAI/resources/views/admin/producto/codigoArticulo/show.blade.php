@@ -84,11 +84,15 @@
 						<div class="col-sm-12">
 							{!! Form::label('x','DATOS ESPECIFICOS DEL PRODUCTO') !!}
 						</div>
-						<div class="col-sm-4">
+						<div class="col-sm-6">
 							{!! Form::label('cod_pc','Código especifico') !!}
 							{!! Form::text('cod_pc_codigo',$codigoArticulo->cod_art_codigo,['class'=> 'form-control', 'placeholder'=>'B208802', 'required', 'readonly'=>'true']) !!}
 						</div>
-						<div class="col-sm-4">
+						<div class="col-sm-6">
+							{!! Form::label('pro_com_precio','Costo en dolares') !!}
+							{!! Form::text('cod_art_costo',$codigoArticulo->cod_art_costo,['class'=> 'form-control', 'title'=>'Solo números de 0-9,max: 10 con 2 decimales', 'placeholder'=>'1542.25', 'required', 'maxlength' => '10', 'pattern'=>'[0-9]+[.]?[0-9]?[0-9]?', 'readonly'=>'true']) !!}
+						</div>
+						<div class="col-sm-6">
 							{!! Form::label('cod_art_fk_lote','Estado del producto') !!}
 							@if ($codigoArticulo->cod_art_estado === 'B')
 								{!! Form::text('cod_art_estado',"Bueno" ,['class'=> 'form-control', 'placeholder'=>'B208802', 'required', 'readonly'=>'true']) !!}
@@ -96,7 +100,7 @@
 								{!! Form::text('cod_art_estado',"Malo" ,['class'=> 'form-control', 'placeholder'=>'B208802', 'required', 'readonly'=>'true']) !!}
 							@endif
 						</div>
-						<div class="col-sm-4">
+						<div class="col-sm-6">
 							{!! Form::label('cod_art_fk_lote','Lote del computador') !!}
 							{!! Form::text('cod_art_estado',$codigoArticulo->lote->lot_nombre ,['class'=> 'form-control', 'placeholder'=>'B208802', 'required', 'readonly'=>'true']) !!}
 						</div>

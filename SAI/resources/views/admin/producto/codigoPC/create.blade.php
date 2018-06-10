@@ -48,11 +48,22 @@
 
 						<div class="codigoPC">
 							<label class='col-sm'>Códigos</label>
+
 							<input class='form-control col-sm-9'  title="Cantidad de caracteres max: 100" maxlength="100" type='text' name='codigosPC[]' placeholder='B203040' required='true'>
+
 							<select class='form-control input-sm col-sm-2' name='estado[]' id='tipo_producto'>
 									<option value='B'>Bueno</option>
 									<option value='M'>Malo</option>
 							</select>
+
+							{!! Form::label('cod_pc_costo','Costo en dolares') !!}
+							<input class='form-control col-sm-9'  title="Solo números de 0-9,max: 10 con 2 decimales" maxlength="10" type='text' name='costo[]' placeholder='1542.25' required='true' pattern="[0-9]+[.]?[0-9]?[0-9]?">
+
+							{{--  {!! Form::text('costo[]',null,['class'=> 'form-control','title'=>'Solo números de 0-9,max: 10 con 2 decimales', 'placeholder'=>'1542.25', 'required', 'maxlength' => '10', 'pattern'=>'[0-9]+[.]?[0-9]?[0-9]?']) !!} --}}
+						
+
+
+
 						</div>
 
 

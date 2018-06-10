@@ -62,6 +62,7 @@ class CodigoPCController extends Controller
 
                     $codigoPC->cod_pc_codigo = strtoupper($request->codigosPC[$i]);
                     $codigoPC->cod_pc_estado = $request->estado[$i];
+                    $codigoPC->cod_pc_costo = $request->costo[$i];
                     //$codigoPC->cod_pc_fk_producto_computador = $request->cod_pc_fk_producto_computador;
                     if (!$this->Exist($codigoPC->cod_pc_codigo)) {
                         $codigoPC->save();
@@ -180,6 +181,7 @@ class CodigoPCController extends Controller
                 $codigoPC->cod_pc_fk_lote = $request->cod_pc_fk_lote;
                 $codigoPC->cod_pc_estado = $request->cod_pc_estado;
 
+                $codigoPC->cod_pc_costo = $request->cod_pc_costo;
                 $codigoPC->save();
 
                 //dd($request->all());

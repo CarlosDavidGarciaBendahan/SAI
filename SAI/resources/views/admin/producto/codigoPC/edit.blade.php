@@ -85,6 +85,11 @@
 							{!! Form::label('cod_pc_fk_lote','Estado del producto') !!}
 							{!! Form::select('cod_pc_estado',['B' => 'Bueno','M'=>'Malo'], $codigoPC->cod_pc_estado, ['class'=>'form-control', 'placeholder'=>'', 'required'] ) !!}
 						</div>
+
+						<div class="form-group ">
+							{!! Form::label('pro_com_precio','Costo en dolares') !!}
+							{!! Form::text('cod_pc_costo',$codigoPC->cod_pc_costo,['class'=> 'form-control', 'title'=>'Solo números de 0-9,max: 10 con 2 decimales', 'placeholder'=>'1542.25', 'required', 'maxlength' => '10', 'pattern'=>'[0-9]+[.]?[0-9]?[0-9]?']) !!}
+						</div>
 						
 				<div class="form-group ">
 					{!! Form::label('cod_pc_fk_lote','Listado de los articulos') !!}

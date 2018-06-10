@@ -54,6 +54,8 @@
 									<option value='B'>Bueno</option>
 									<option value='M'>Malo</option>
 							</select>
+							{!! Form::label('cod_pc_costo','Costo') !!}
+							<input class='form-control col-sm-9'  title="Solo números de 0-9,max: 10 con 2 decimales" maxlength="10" type='text' name='costo[]' placeholder='1542.25' required='true' pattern="[0-9]+[.]?[0-9]?[0-9]?">
 						</div>
 					<div class="form-group col-sm-12">
 						{!! Form::submit('Registrar',['class'=>'btn btn-primary']) !!}

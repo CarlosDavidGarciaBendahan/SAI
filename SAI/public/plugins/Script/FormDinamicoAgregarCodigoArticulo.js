@@ -17,6 +17,8 @@
 								"<option value='B'>Bueno</option>"+
 								"<option value='M'>Malo</option>"+
 						"</select>"+
+"<input class='form-control col-sm-9'  title='Solo números de 0-9,max: 10 con 2 decimales' maxlength='10' type='text' name='costo[]' placeholder='1542.25' required='true' pattern='[0-9]+[.]?[0-9]?[0-9]?'>"+						
+
 						" <a href='' class='remove btn btn-danger col-sm-1' > <span class='glyphicon glyphicon-remove-circle'></span></a>" +
 						"</div>");
 					//contador++;

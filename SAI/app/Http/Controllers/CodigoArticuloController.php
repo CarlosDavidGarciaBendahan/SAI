@@ -69,6 +69,7 @@ class CodigoArticuloController extends Controller
 
                     $codigoArticulo->cod_art_codigo = strtoupper($request->codigosArticulo[$i]);
                     $codigoArticulo->cod_art_estado = $request->estado[$i];
+                    $codigoArticulo->cod_art_costo = $request->costo[$i];
                     $codigoArticulo->cod_art_fk_pc  = null;
                     //$codigoArticulo->cod_pc_fk_producto_articulo = $request->cod_pc_fk_producto_articulo;
                     if (!$this->Exist($codigoArticulo->cod_art_codigo)) {
@@ -183,6 +184,7 @@ class CodigoArticuloController extends Controller
                     if($this->disponibilidadArticulo($codigoArticulo)){
                         $codigoArticulo->cod_art_fk_lote = $request->cod_art_fk_lote;
                         $codigoArticulo->cod_art_estado = $request->cod_art_estado;
+                        $codigoArticulo->cod_art_costo = $request->cod_art_costo;
 
                         $codigoArticulo->save();
 

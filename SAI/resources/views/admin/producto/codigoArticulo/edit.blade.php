@@ -86,6 +86,10 @@
 							{!! Form::select('cod_art_estado',['B' => 'Bueno','M'=>'Malo'], $codigoArticulo->cod_art_estado, ['class'=>'form-control', 'placeholder'=>'', 'required'] ) !!}
 						</div>
 
+						<div class="form-group ">
+							{!! Form::label('pro_com_precio','Costo en dolares') !!}
+							{!! Form::text('cod_art_costo',$codigoArticulo->cod_art_costo,['class'=> 'form-control', 'title'=>'Solo números de 0-9,max: 10 con 2 decimales', 'placeholder'=>'1542.25', 'required', 'maxlength' => '10', 'pattern'=>'[0-9]+[.]?[0-9]?[0-9]?']) !!}
+						</div>
 						@if ($codigoArticulo->codigoPC !== null)
 							<div class="form-group ">
 								{!! Form::label('cod_art_fk_lote','Incorporado al computador con código') !!}
