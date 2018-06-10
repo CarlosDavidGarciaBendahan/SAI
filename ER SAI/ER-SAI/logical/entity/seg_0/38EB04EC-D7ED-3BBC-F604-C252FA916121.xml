@@ -51,6 +51,16 @@
 <use>0</use>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
+<Attribute name="precio_unitario" id="D30F228C-BA45-F58D-C0A8-F84C14F7E2A9">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-06-10 11:19:13 UTC</createdTime>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
 </attributes>
 <identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
 <identifier id="C4D94DC6-03DC-7B24-2668-63F88C17C504" name="Articulo_Venta PK">

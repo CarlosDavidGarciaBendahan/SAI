@@ -19,6 +19,7 @@ class CreateTableCodigopc extends Migration
             $table->enum('cod_pc_estado',['B','M'])->default('B');
             $table->integer('cod_pc_fk_producto_computador')->unsigned()->nullable(false);
             $table->integer('cod_pc_fk_lote')->unsigned()->nullable(false);
+            $table->float('cod_pc_costo',9,2)->nullable(false);
             $table->timestamps();
 
             $table->unique('cod_pc_codigo','CODIGOPC_UNIQUE_cod_pc_codigo');

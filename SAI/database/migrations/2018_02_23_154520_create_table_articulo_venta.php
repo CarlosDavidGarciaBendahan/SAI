@@ -17,6 +17,7 @@ class CreateTableArticuloVenta extends Migration
             //$table->increments('id');
             $table->integer('art_ven_fk_codigoarticulo')->unsigned()->nullable(false);
             $table->integer('art_ven_fk_venta')->unsigned()->nullable(false);
+            $table->float('precio_unitario',9,2)->nullable(false);
             $table->timestamps();
 
 

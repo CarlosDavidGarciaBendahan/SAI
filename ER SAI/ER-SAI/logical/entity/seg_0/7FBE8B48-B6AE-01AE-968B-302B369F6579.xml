@@ -45,6 +45,16 @@
 <use>0</use>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
+<Attribute name="COD_ART_costo" id="56CCE8E9-290B-FA86-5409-0A39A67506CE">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-06-10 11:17:24 UTC</createdTime>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
 <Attribute name="id1" id="0F1CE333-7AE7-A9BB-43B0-B7D4D673397F">
 <createdBy>Carlos</createdBy>
 <createdTime>2018-02-22 13:23:46 UTC</createdTime>

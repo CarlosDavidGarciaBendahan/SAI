@@ -20,6 +20,7 @@ class CreateTableCodigoarticulo extends Migration
             $table->integer('cod_art_fk_producto_articulo')->unsigned()->nullable(true);
             $table->integer('cod_art_fk_lote')->unsigned()->nullable(false);
             $table->integer('cod_art_fk_pc')->unsigned()->nullable(true);
+            $table->float('cod_art_costo',9,2)->nullable(false);
             $table->timestamps();
 
             $table->unique('cod_art_codigo','CODIGOARTICULO_UNIQUE_cod_art_codigo');

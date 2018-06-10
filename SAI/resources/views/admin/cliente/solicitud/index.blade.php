@@ -19,9 +19,17 @@
 	<section class="container-fluid">
 
 		<div class="row">
-			<div class="col-sm-8 offset-2">
-				 
-				<a href="{{ route('solicitud.listarNotas',0) }}" class="btn btn-info">Registrar nueva solicitud</a>
+			<div class="col-sm-12">
+				<div class="col-sm-10">
+					<a href="{{ route('solicitud.listarNotas',0) }}" class="btn btn-info">Registrar nueva solicitud</a>
+				</div> 
+
+			<div class="col-sm-2">
+				<a href="{{ route('registroPago.cargarArchivo') }}" class="btn btn-info" title="Cargar archivo Excel de registro pago">
+					<span class="fa fa-file-excel-o"></span>
+				</a>
+				{!! Form::label('venta','Cargar archivo',['class'=> ' col-sm']) !!}
+			</div>
 				<table class="table table-inverse">
 				  <thead>
 				    <tr>

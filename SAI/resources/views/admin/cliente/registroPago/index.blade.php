@@ -19,15 +19,18 @@
 
 	<section class="container-fluid">
 		<div>
-			<div class="col-sm-12">
+			<div class="col-sm-10">
 				<a href="{{ route('venta.index') }}" class="btn btn-info" title="Lista de ventas">
 							<span class="fa fa-bars"></span>
 				</a>
 				{!! Form::label('venta','Registrar pago de una venta.',['class'=> ' col-sm']) !!}
 				
 			</div>
-			<div class="col-sm-12">
-				<a href="{{ route('registroPago.cargarArchivo') }}" class="btn btn-info" title="Cargar archivo Excel de registro pago">Cargar registro desde archivo</a>
+			<div class="col-sm-2">
+				<a href="{{ route('registroPago.cargarArchivo') }}" class="btn btn-info" title="Cargar archivo Excel de registro pago">
+					<span class="fa fa-file-excel-o"></span>
+				</a>
+				{!! Form::label('venta','Cargar archivo',['class'=> ' col-sm']) !!}
 			</div>
 
 		</div>

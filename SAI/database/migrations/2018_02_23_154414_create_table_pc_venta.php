@@ -17,6 +17,7 @@ class CreateTablePcVenta extends Migration
             //$table->increments('id');
             $table->integer('pc_ven_fk_codigopc')->unsigned()->nullable(false);
             $table->integer('pc_ven_fk_venta')->unsigned()->nullable(false);
+            $table->float('precio_unitario',9,2)->nullable(false);
             $table->timestamps();
 
 
