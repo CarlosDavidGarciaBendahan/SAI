@@ -16,6 +16,8 @@ use Illuminate\Support\Facades\DB;
 use App\http\Controllers\CodigoPCController;
 use App\http\Controllers\CodigoArticuloController;
 use App\FuenteVenta;
+use App\PC_Venta;
+use App\Articulo_Venta;
 
 class VentaController extends Controller
 {
@@ -112,6 +114,8 @@ class VentaController extends Controller
                 $codigoPC = CodigoPC::find($id);
 
                 $venta->ven_monto_total = $venta->ven_monto_total + $codigoPC->Producto_Computador->pro_com_precio;
+
+
             }
         }
         if ($request->codigoArticulo !== null) {
@@ -135,9 +139,47 @@ class VentaController extends Controller
 
         $venta->save();
 
+        //ANTES SIN PRECIO UNITARIO GUARDADO
 
-        $venta->VentaPCs()->sync($request->codigoPC);
-        $venta->VentaArticulos()->sync($request->codigoArticulo);
+        //$venta->VentaPCs()->sync($request->codigoPC);
+        //$venta->VentaArticulos()->sync($request->codigoArticulo);
+
+        //PARA REGISTRAR PRECIO UNITARIO
+        if ($request->codigoPC !== null) {
+            foreach ($request->codigoPC as $id ) {
+                $codigoPC = CodigoPC::find($id);
+
+                $pc_venta = new pc_venta();
+                $pc_venta->pc_ven_fk_venta = $venta->id;
+                $pc_venta->pc_ven_fk_codigopc = $codigoPC->id;
+                $pc_venta->precio_unitario = $codigoPC->Producto_Computador->pro_com_precio;
+                DB::table('pc_venta')->insert([
+                    'pc_ven_fk_venta'   =>$venta->id,
+                    'pc_ven_fk_codigopc'=>$codigoPC->id,
+                    'precio_unitario'   =>$codigoPC->Producto_Computador->pro_com_precio
+                ]);
+                //$pc_venta->save();
+
+            }
+        }
+        if ($request->codigoArticulo !== null) {
+            
+            foreach ($request->codigoArticulo as $id ) {
+                $codigoArticulo = codigoArticulo::find($id);
+
+                $articulo_venta = new articulo_venta();
+                $articulo_venta->art_ven_fk_venta = $venta->id;
+                $articulo_venta->art_ven_fk_codigoarticulo = $codigoArticulo->id;
+                $articulo_venta->precio_unitario = $codigoArticulo->Producto_Articulo->pro_art_precio;
+                DB::table('articulo_venta')->insert([
+                    'art_ven_fk_venta'          =>$venta->id,
+                    'art_ven_fk_codigoarticulo' =>$codigoArticulo->id,
+                    'precio_unitario'           =>$codigoArticulo->Producto_Articulo->pro_art_precio
+                ]);
+                //$articulo_venta->save();
+            }
+        }
+        
 
         flash("Se ha creado exitosamente la venta #".$venta->id)->success();
         return redirect()->route('venta.index');
