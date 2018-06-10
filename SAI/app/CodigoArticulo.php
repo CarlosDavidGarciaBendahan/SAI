@@ -27,7 +27,7 @@ class CodigoArticulo extends Model
     protected $fillable = [
     	'id','cod_art_codigo','cod_art_estado',
     	'cod_art_fk_producto_articulo','cod_art_fk_lote',
-    	'cod_art_fk_codigopc'
+    	'cod_art_fk_codigopc','cod_art_costo'
     ];
 
     public function Producto_Articulo(){
@@ -52,5 +52,10 @@ class CodigoArticulo extends Model
 
     public function Ventas(){
         return $this->belongsToMany('App\Venta','articulo_venta','art_ven_fk_codigoarticulo','art_ven_fk_venta');
+    }
+
+    //Referencia hacia la tabla N a M ebtre Venta y codigo arrticulo
+    public function articulo_venta(){
+        return $this->hasMany('App\articulo_venta','art_ven_fk_codigoarticulo','id');
     }
 }

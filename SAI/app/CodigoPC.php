@@ -26,7 +26,7 @@ class CodigoPC extends Model
 
     protected $fillable = [
     	'id','cod_pc_codigo','cod_pc_estado',
-    	'cod_pc_fk_producto_computador','cod_pc_fk_lote'
+    	'cod_pc_fk_producto_computador','cod_pc_fk_lote','cod_pc_costo'
     ];
 
 
@@ -52,5 +52,14 @@ class CodigoPC extends Model
     public function Ventas(){
         return $this->belongsToMany('App\Venta','pc_venta','pc_ven_fk_codigopc','pc_ven_fk_venta');
     }
+
+
+    //Referencia hacia la tabla N a M ebtre Venta y CodigoPC
+    public function pc_venta(){
+        return $this->hasMany('App\pc_venta','pc_ven_fk_codigopc','id');
+    }
+
+
+
 
 }
