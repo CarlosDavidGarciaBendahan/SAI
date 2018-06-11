@@ -27,7 +27,8 @@ class Venta extends Model
     protected $fillable = [
     	'id','ven_fecha_compra','ven_monto_total',
     	'ven_moneda','ven_eliminada','ven_fk_cliente_natural',
-    	'ven_fk_cliente_juridico','ven_porcentaje_descuento','ven_fk_fuenteventa'
+    	'ven_fk_cliente_juridico','ven_porcentaje_descuento','ven_fk_fuenteventa',
+        'ven_fk_presupuesto'
     ];
 
 
@@ -59,4 +60,7 @@ class Venta extends Model
         return $this->belongsTo('App\FuenteVenta','ven_fk_fuenteventa','id');
     }
 
+    public function Presupuesto(){
+        return $this->belongsTo('App\Presupuesto','ven_fk_presupuesto','id');
+    }
 }

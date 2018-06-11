@@ -49,4 +49,8 @@ class Presupuesto extends Model
     public function Historicos_Falta_Stock(){
         return $this->hasMany('App\Historico_Falta_Stock','fk_presupuesto','id');
     }
+
+    public function Venta(){
+        return $this->hasOne('App\Venta','ven_fk_presupuesto','id');
+    }
 }

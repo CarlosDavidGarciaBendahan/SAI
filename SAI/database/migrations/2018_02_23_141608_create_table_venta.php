@@ -23,6 +23,7 @@ class CreateTableVenta extends Migration
             $table->integer('ven_fk_cliente_natural')->unsigned()->nullable(true);
             $table->integer('ven_fk_cliente_juridico')->unsigned()->nullable(true);
             $table->integer('ven_fk_fuenteventa')->unsigned()->nullable(false);
+            $table->integer('ven_fk_presupuesto')->unsigned()->nullable(true);
             $table->timestamps();
         });
     }

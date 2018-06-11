@@ -18,6 +18,7 @@ use App\http\Controllers\CodigoArticuloController;
 use App\FuenteVenta;
 use App\PC_Venta;
 use App\Articulo_Venta;
+use App\Presupuesto;
 
 class VentaController extends Controller
 {
@@ -86,8 +87,8 @@ class VentaController extends Controller
         //dd($codigosPC);
         //dd($clientes_naturales);
         //dd($clientes_juridicos);
-
-        return view('admin.cliente.venta.create')->with(compact('clientes_naturales','clientes_juridicos','fecha','codigosPC','codigosArticulo','fuenteventas'));;
+        $presupuestos = presupuesto::where('pre_eliminado','=','0')->orderby('pre_fecha_solicitud','DESC')->get();
+        return view('admin.cliente.venta.create')->with(compact('clientes_naturales','clientes_juridicos','fecha','codigosPC','codigosArticulo','fuenteventas','presupuestos'));;
     }
 
     /**
@@ -101,7 +102,10 @@ class VentaController extends Controller
         //dd($request->all());
 
         $venta = new Venta($request->all());
-        //dd($venta);
+        dd($venta);
+
+
+
         $venta->ven_monto_total = 0;
         if ($request->tipo_cliente !== null) {
             $venta->ven_fk_cliente_juridico = null;

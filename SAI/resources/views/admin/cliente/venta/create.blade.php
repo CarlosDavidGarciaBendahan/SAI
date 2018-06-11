@@ -18,7 +18,7 @@
 	{{-- expr --}}
 	<section class="container-fluid">
 		<div class="row">
-			<div class="col-sm-8 offset-2">
+			<div class="col-sm-12">
 				{!! Form::open(['route' => 'venta.store', 'method' => 'POST' ]) !!}
 					
 					<div class="form-group col-sm-12"> 
@@ -63,6 +63,19 @@
 
 					<div class="cliente_juridico form-group col-sm-12" id="cliente_juridico">
 						
+					</div>
+
+					<div class="form-group col-sm-12"> 
+						
+						{!! Form::label('codigoArticulo','Presupuesto') !!}
+
+						
+						<select class="form-control col-sm input-sm " name="ven_fk_presupuesto"  >
+								<option value="" > Seleccionar presupuesto</option>
+								@foreach ($presupuestos as $presupuesto)
+									<option value="{{ $presupuesto->id }}"> {{"Presupuesto #".$presupuesto->id." solicitado: ".date("d/m/Y", strtotime($presupuesto->pre_fecha_solicitud))." aprobado: ".date("d/m/Y", strtotime($presupuesto->pre_fecha_aprobado))}}</option>
+								@endforeach
+						</select>
 					</div>
 
 					<div class="form-group col-sm-12"> 
@@ -114,9 +127,9 @@
 @section('scripts')
 	<script src = "{{ asset('plugins/Script/ChosenMultipleSelectorAll.js') }}"></script>
 	<script src = "{{ asset('plugins/Script/check.js') }}"></script>
-	<!--<script src = "{{ asset('plugins/Script/ObtenerDatosEmpresa.js') }}"></script>-->
+	<!--<script src = "{{ asset('plugins/Script/ObtenerDatosEmpresa.js') }}"></script>
 	<script src = "{{ asset('plugins/Script/ObtenerDatosClienteNatural.js') }}"></script>
-	<script src = "{{ asset('plugins/Script/ObtenerDatosClienteJuridico.js') }}"></script>
+	<script src = "{{ asset('plugins/Script/ObtenerDatosClienteJuridico.js') }}"></script>-->
 	<!--<script src = "{{ asset('plugins/Script/ObtenerDatosProductoComputador.js') }}"></script>-->
 	<!--<script src = "{{ asset('plugins/Script/ObtenerDatosProductoArticulo.js') }}"></script>-->
 	<script src = "{{ asset('plugins/Script/ChosenMultipleSelector.js') }}"></script>
