@@ -134,9 +134,19 @@
 <use>0</use>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
-<Attribute name="PRECIO_UNITARIO_PRODUCTO" id="A1F35B63-B381-6B2E-6877-E30739829576">
+<Attribute name="PRECIO_UNITARIO_PRODUCTO_DOLAR" id="A1F35B63-B381-6B2E-6877-E30739829576">
 <createdBy>Carlos</createdBy>
 <createdTime>2018-05-25 12:08:44 UTC</createdTime>
+<ownerDesignName>ME-venta</ownerDesignName>
+<engineerTo>
+<item key="251BA8E6-B170-84CB-FFBB-BADB899C537C" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="PRECIO_UNITARIO_PRODUCTO_BOLIVAR" id="7658BB71-C7F4-F96C-312F-DEF29D926F26">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-06-10 16:03:21 UTC</createdTime>
 <ownerDesignName>ME-venta</ownerDesignName>
 <engineerTo>
 <item key="251BA8E6-B170-84CB-FFBB-BADB899C537C" value="true"/>
@@ -164,7 +174,7 @@
 <use>0</use>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
-<Attribute name="SUBTOTAL" id="6F0BA766-27AE-7ED0-4D00-D4402110F1AE">
+<Attribute name="SUBTOTAL_DOLAR" id="6F0BA766-27AE-7ED0-4D00-D4402110F1AE">
 <createdBy>Carlos</createdBy>
 <createdTime>2018-05-25 12:11:14 UTC</createdTime>
 <ownerDesignName>ME-venta</ownerDesignName>
@@ -174,9 +184,49 @@
 <use>0</use>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
-<Attribute name="TOTAL" id="4B4FFCF4-99F3-37BA-C0A9-0D878D5D11C6">
+<Attribute name="SUBTOTAL_BOLIVAR" id="6BFF6470-B18C-825F-1F71-FF9EC16AD156">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-06-10 16:04:51 UTC</createdTime>
+<ownerDesignName>ME-venta</ownerDesignName>
+<engineerTo>
+<item key="251BA8E6-B170-84CB-FFBB-BADB899C537C" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="TOTAL_DOLAR" id="4B4FFCF4-99F3-37BA-C0A9-0D878D5D11C6">
 <createdBy>Carlos</createdBy>
 <createdTime>2018-05-25 12:11:28 UTC</createdTime>
+<ownerDesignName>ME-venta</ownerDesignName>
+<engineerTo>
+<item key="251BA8E6-B170-84CB-FFBB-BADB899C537C" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="TOTAL_BOLIVAR" id="3C433F38-65F6-D879-AA2C-8CFF5850AE8D">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-06-10 16:05:08 UTC</createdTime>
+<ownerDesignName>ME-venta</ownerDesignName>
+<engineerTo>
+<item key="251BA8E6-B170-84CB-FFBB-BADB899C537C" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="COSTO_PRODUCTO_DOLAR" id="BCFE15BB-2656-0E92-D31B-BD6A8D0B8077">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-06-10 16:06:54 UTC</createdTime>
+<ownerDesignName>ME-venta</ownerDesignName>
+<engineerTo>
+<item key="251BA8E6-B170-84CB-FFBB-BADB899C537C" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="COSTO_PRODUCTO_BOLIVAR" id="8B6D235F-CAA1-B2E9-F6AB-3E832FC897CC">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-06-10 16:07:11 UTC</createdTime>
 <ownerDesignName>ME-venta</ownerDesignName>
 <engineerTo>
 <item key="251BA8E6-B170-84CB-FFBB-BADB899C537C" value="true"/>

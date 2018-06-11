@@ -45,7 +45,17 @@
 <use>0</use>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
-<Attribute name="SUBTOTAL" id="95445D90-DA07-34BE-50E1-26952070541B">
+<Attribute name="ELIMINADO" id="2CC7C6B4-7297-DF40-3750-CF1C5A9FA7D2">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-06-10 23:51:01 UTC</createdTime>
+<ownerDesignName>ME-venta</ownerDesignName>
+<engineerTo>
+<item key="251BA8E6-B170-84CB-FFBB-BADB899C537C" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="SUBTOTAL_DOLAR" id="95445D90-DA07-34BE-50E1-26952070541B">
 <createdBy>Carlos</createdBy>
 <createdTime>2018-05-25 11:47:56 UTC</createdTime>
 <ownerDesignName>ME-venta</ownerDesignName>
@@ -55,7 +65,7 @@
 <use>0</use>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
-<Attribute name="TOTAL" id="550AD36A-02BF-DDB7-C24F-531CB308F168">
+<Attribute name="TOTAL_DOLAR" id="550AD36A-02BF-DDB7-C24F-531CB308F168">
 <createdBy>Carlos</createdBy>
 <createdTime>2018-05-25 11:48:27 UTC</createdTime>
 <ownerDesignName>ME-venta</ownerDesignName>
