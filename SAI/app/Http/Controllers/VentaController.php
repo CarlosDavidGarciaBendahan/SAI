@@ -102,7 +102,7 @@ class VentaController extends Controller
         //dd($request->all());
 
         $venta = new Venta($request->all());
-        dd($venta);
+        //dd($venta);
 
 
 
