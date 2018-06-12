@@ -15,6 +15,137 @@
 <minVolumes>0</minVolumes>
 <normalForm>Third</normalForm>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="ID_VENTA" id="C761237F-0367-3462-58A5-160263DA9850">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-06-12 13:34:40 UTC</createdTime>
+<ownerDesignName>ME-venta</ownerDesignName>
+<engineerTo>
+<item key="251BA8E6-B170-84CB-FFBB-BADB899C537C" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="ID_TIME" id="21151C24-C108-F020-8953-7F89D01D2D2A">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-05-25 12:07:53 UTC</createdTime>
+<ownerDesignName>ME-venta</ownerDesignName>
+<engineerTo>
+<item key="251BA8E6-B170-84CB-FFBB-BADB899C537C" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="ID_CLIENTE" id="F1EAE37E-2CFE-07A1-C348-56388625D2F5">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-05-25 12:07:07 UTC</createdTime>
+<ownerDesignName>ME-venta</ownerDesignName>
+<engineerTo>
+<item key="251BA8E6-B170-84CB-FFBB-BADB899C537C" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="ID_PRODUCTO" id="E3F4DF90-36CA-A3D2-5E7F-568FAC99C898">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-05-25 12:06:43 UTC</createdTime>
+<ownerDesignName>ME-venta</ownerDesignName>
+<engineerTo>
+<item key="251BA8E6-B170-84CB-FFBB-BADB899C537C" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="ID_COTIZACION" id="26EF8767-45E7-DC34-87A3-ED579E1563F3">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-05-29 11:49:16 UTC</createdTime>
+<ownerDesignName>ME-venta</ownerDesignName>
+<engineerTo>
+<item key="251BA8E6-B170-84CB-FFBB-BADB899C537C" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="ID_FUENTE_VENTA" id="1FAC8AC3-9904-EDEF-7B41-9FF1C28EB85E">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-05-25 12:07:30 UTC</createdTime>
+<ownerDesignName>ME-venta</ownerDesignName>
+<engineerTo>
+<item key="251BA8E6-B170-84CB-FFBB-BADB899C537C" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="ID_PRESUPUESTO" id="B44629F1-25F4-43EC-A0F2-734BEA00A4DC">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-05-25 12:07:14 UTC</createdTime>
+<ownerDesignName>ME-venta</ownerDesignName>
+<engineerTo>
+<item key="251BA8E6-B170-84CB-FFBB-BADB899C537C" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="NUMERO_VENTA" id="2FFF28F2-098D-354B-B1AB-27F1D00E1C45">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-06-12 13:45:49 UTC</createdTime>
+<ownerDesignName>ME-venta</ownerDesignName>
+<engineerTo>
+<item key="251BA8E6-B170-84CB-FFBB-BADB899C537C" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="PRECIO_UNITARIO_DOLAR" id="A1F35B63-B381-6B2E-6877-E30739829576">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-05-25 12:08:44 UTC</createdTime>
+<ownerDesignName>ME-venta</ownerDesignName>
+<engineerTo>
+<item key="251BA8E6-B170-84CB-FFBB-BADB899C537C" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="COSTO_DOLAR" id="BCFE15BB-2656-0E92-D31B-BD6A8D0B8077">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-06-10 16:06:54 UTC</createdTime>
+<ownerDesignName>ME-venta</ownerDesignName>
+<engineerTo>
+<item key="251BA8E6-B170-84CB-FFBB-BADB899C537C" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="MONTO_TOTAL_DOLAR_SIN_IVA" id="E12916E2-F7F7-844B-FA69-26E7E962CB3E">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-06-12 11:25:23 UTC</createdTime>
+<ownerDesignName>ME-venta</ownerDesignName>
+<engineerTo>
+<item key="251BA8E6-B170-84CB-FFBB-BADB899C537C" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="PORCENTAJE_DESCUENTO" id="CF6DE587-2280-648D-715E-416CF35F40D9">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-06-12 11:25:08 UTC</createdTime>
+<ownerDesignName>ME-venta</ownerDesignName>
+<engineerTo>
+<item key="251BA8E6-B170-84CB-FFBB-BADB899C537C" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="VENTA_ELIMINADA" id="7E02EE91-29AE-1205-4541-3D5BA84BDB9C">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-06-12 13:48:25 UTC</createdTime>
+<ownerDesignName>ME-venta</ownerDesignName>
+<engineerTo>
+<item key="251BA8E6-B170-84CB-FFBB-BADB899C537C" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
 <Attribute name="ID" id="CCEA6CB0-D987-9DF7-3230-00D8CB405756">
 <createdBy>Carlos</createdBy>
 <createdTime>2018-05-25 11:43:46 UTC</createdTime>
@@ -63,88 +194,7 @@
 <use>0</use>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
-<Attribute name="ID_PRODUCTO" id="E3F4DF90-36CA-A3D2-5E7F-568FAC99C898">
-<createdBy>Carlos</createdBy>
-<createdTime>2018-05-25 12:06:43 UTC</createdTime>
-<ownerDesignName>ME-venta</ownerDesignName>
-<engineerTo>
-<item key="251BA8E6-B170-84CB-FFBB-BADB899C537C" value="true"/>
-</engineerTo>
-<use>0</use>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-</Attribute>
-<Attribute name="ID_CLIENTE" id="F1EAE37E-2CFE-07A1-C348-56388625D2F5">
-<createdBy>Carlos</createdBy>
-<createdTime>2018-05-25 12:07:07 UTC</createdTime>
-<ownerDesignName>ME-venta</ownerDesignName>
-<engineerTo>
-<item key="251BA8E6-B170-84CB-FFBB-BADB899C537C" value="true"/>
-</engineerTo>
-<use>0</use>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-</Attribute>
-<Attribute name="ID_PRESUPUESTO" id="B44629F1-25F4-43EC-A0F2-734BEA00A4DC">
-<createdBy>Carlos</createdBy>
-<createdTime>2018-05-25 12:07:14 UTC</createdTime>
-<ownerDesignName>ME-venta</ownerDesignName>
-<engineerTo>
-<item key="251BA8E6-B170-84CB-FFBB-BADB899C537C" value="true"/>
-</engineerTo>
-<use>0</use>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-</Attribute>
-<Attribute name="ID_FUENTE_VENTA" id="1FAC8AC3-9904-EDEF-7B41-9FF1C28EB85E">
-<createdBy>Carlos</createdBy>
-<createdTime>2018-05-25 12:07:30 UTC</createdTime>
-<ownerDesignName>ME-venta</ownerDesignName>
-<engineerTo>
-<item key="251BA8E6-B170-84CB-FFBB-BADB899C537C" value="true"/>
-</engineerTo>
-<nullsAllowed>true</nullsAllowed>
-<use>0</use>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-</Attribute>
-<Attribute name="ID_COTIZACION" id="26EF8767-45E7-DC34-87A3-ED579E1563F3">
-<createdBy>Carlos</createdBy>
-<createdTime>2018-05-29 11:49:16 UTC</createdTime>
-<ownerDesignName>ME-venta</ownerDesignName>
-<engineerTo>
-<item key="251BA8E6-B170-84CB-FFBB-BADB899C537C" value="true"/>
-</engineerTo>
-<use>0</use>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-</Attribute>
-<Attribute name="ID_TIEMPO" id="21151C24-C108-F020-8953-7F89D01D2D2A">
-<createdBy>Carlos</createdBy>
-<createdTime>2018-05-25 12:07:53 UTC</createdTime>
-<ownerDesignName>ME-venta</ownerDesignName>
-<engineerTo>
-<item key="251BA8E6-B170-84CB-FFBB-BADB899C537C" value="true"/>
-</engineerTo>
-<use>0</use>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-</Attribute>
-<Attribute name="CANTIDAD_PRODUCTO" id="E30896DD-2DFC-8829-A23E-BB83380809A2">
-<createdBy>Carlos</createdBy>
-<createdTime>2018-05-25 12:10:07 UTC</createdTime>
-<ownerDesignName>ME-venta</ownerDesignName>
-<engineerTo>
-<item key="251BA8E6-B170-84CB-FFBB-BADB899C537C" value="true"/>
-</engineerTo>
-<use>0</use>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-</Attribute>
-<Attribute name="PRECIO_UNITARIO_PRODUCTO_DOLAR" id="A1F35B63-B381-6B2E-6877-E30739829576">
-<createdBy>Carlos</createdBy>
-<createdTime>2018-05-25 12:08:44 UTC</createdTime>
-<ownerDesignName>ME-venta</ownerDesignName>
-<engineerTo>
-<item key="251BA8E6-B170-84CB-FFBB-BADB899C537C" value="true"/>
-</engineerTo>
-<use>0</use>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-</Attribute>
-<Attribute name="PRECIO_UNITARIO_PRODUCTO_BOLIVAR" id="7658BB71-C7F4-F96C-312F-DEF29D926F26">
+<Attribute name="PRECIO_UNITARIO_BOLIVAR" id="7658BB71-C7F4-F96C-312F-DEF29D926F26">
 <createdBy>Carlos</createdBy>
 <createdTime>2018-06-10 16:03:21 UTC</createdTime>
 <ownerDesignName>ME-venta</ownerDesignName>
@@ -164,19 +214,9 @@
 <use>0</use>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
-<Attribute name="VALOR_IVA" id="487FBB20-F92B-E0D1-EFAC-8C22F10C023E">
+<Attribute name="VALOR_IVA_BOLIVAR" id="487FBB20-F92B-E0D1-EFAC-8C22F10C023E">
 <createdBy>Carlos</createdBy>
 <createdTime>2018-05-25 12:10:52 UTC</createdTime>
-<ownerDesignName>ME-venta</ownerDesignName>
-<engineerTo>
-<item key="251BA8E6-B170-84CB-FFBB-BADB899C537C" value="true"/>
-</engineerTo>
-<use>0</use>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-</Attribute>
-<Attribute name="SUBTOTAL_DOLAR" id="6F0BA766-27AE-7ED0-4D00-D4402110F1AE">
-<createdBy>Carlos</createdBy>
-<createdTime>2018-05-25 12:11:14 UTC</createdTime>
 <ownerDesignName>ME-venta</ownerDesignName>
 <engineerTo>
 <item key="251BA8E6-B170-84CB-FFBB-BADB899C537C" value="true"/>
@@ -194,29 +234,9 @@
 <use>0</use>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
-<Attribute name="TOTAL_DOLAR" id="4B4FFCF4-99F3-37BA-C0A9-0D878D5D11C6">
-<createdBy>Carlos</createdBy>
-<createdTime>2018-05-25 12:11:28 UTC</createdTime>
-<ownerDesignName>ME-venta</ownerDesignName>
-<engineerTo>
-<item key="251BA8E6-B170-84CB-FFBB-BADB899C537C" value="true"/>
-</engineerTo>
-<use>0</use>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-</Attribute>
 <Attribute name="TOTAL_BOLIVAR" id="3C433F38-65F6-D879-AA2C-8CFF5850AE8D">
 <createdBy>Carlos</createdBy>
 <createdTime>2018-06-10 16:05:08 UTC</createdTime>
-<ownerDesignName>ME-venta</ownerDesignName>
-<engineerTo>
-<item key="251BA8E6-B170-84CB-FFBB-BADB899C537C" value="true"/>
-</engineerTo>
-<use>0</use>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-</Attribute>
-<Attribute name="COSTO_PRODUCTO_DOLAR" id="BCFE15BB-2656-0E92-D31B-BD6A8D0B8077">
-<createdBy>Carlos</createdBy>
-<createdTime>2018-06-10 16:06:54 UTC</createdTime>
 <ownerDesignName>ME-venta</ownerDesignName>
 <engineerTo>
 <item key="251BA8E6-B170-84CB-FFBB-BADB899C537C" value="true"/>
@@ -259,4 +279,18 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
 </attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="01F56AA0-6E66-1849-5C40-DC88A1E1F871" name="VENTA PK">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-06-12 13:34:45 UTC</createdTime>
+<ownerDesignName>ME-venta</ownerDesignName>
+<engineerTo>
+<item key="251BA8E6-B170-84CB-FFBB-BADB899C537C" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>C761237F-0367-3462-58A5-160263DA9850</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
 </Entity>

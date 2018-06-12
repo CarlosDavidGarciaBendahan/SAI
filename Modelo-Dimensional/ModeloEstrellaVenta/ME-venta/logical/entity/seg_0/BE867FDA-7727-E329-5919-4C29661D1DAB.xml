@@ -1,5 +1,5 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="BE867FDA-7727-E329-5919-4C29661D1DAB" name="PRESUPUESTO">
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="BE867FDA-7727-E329-5919-4C29661D1DAB" name="DIM_PRESUPUESTO">
 <createdBy>Carlos</createdBy>
 <createdTime>2018-05-25 11:39:28 UTC</createdTime>
 <ownerDesignName>ME-venta</ownerDesignName>
@@ -87,15 +87,15 @@
 <use>0</use>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
-<Attribute name="ID_PRODUCTO" id="52A492A2-1D84-6DC3-5D58-E6561E61B115">
+<Attribute name="ID_VENTA" id="F1407B08-00A6-1D93-A3BA-2DFE8B49C717">
 <createdBy>Carlos</createdBy>
-<createdTime>2018-05-25 12:51:51 UTC</createdTime>
-<generatorID>9BFDA518-A9ED-FAB8-27BB-93953A86F088</generatorID>
+<createdTime>2018-06-12 13:34:58 UTC</createdTime>
+<generatorID>DD6B22C3-5A7C-5576-FA73-DDFF17BAA906</generatorID>
 <ownerDesignName>ME-venta</ownerDesignName>
 <engineerTo>
 <item key="251BA8E6-B170-84CB-FFBB-BADB899C537C" value="true"/>
 </engineerTo>
-<referedAttribute>736470C3-BBF6-C7DE-E067-00B6FDAD3370</referedAttribute>
+<referedAttribute>C761237F-0367-3462-58A5-160263DA9850</referedAttribute>
 <use>0</use>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>

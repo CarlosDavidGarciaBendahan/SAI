@@ -1,5 +1,5 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="E4483C22-9395-727A-1D56-2DEBC6D62271" name="PRODUCTO">
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="E4483C22-9395-727A-1D56-2DEBC6D62271" name="DIM_PRODUCTO">
 <createdBy>Carlos</createdBy>
 <createdTime>2018-05-25 11:38:06 UTC</createdTime>
 <ownerDesignName>ME-venta</ownerDesignName>
@@ -28,6 +28,16 @@
 <Attribute name="CODIGO" id="85D74BB8-8AEC-8438-B509-B1953152F778">
 <createdBy>Carlos</createdBy>
 <createdTime>2018-05-25 11:45:13 UTC</createdTime>
+<ownerDesignName>ME-venta</ownerDesignName>
+<engineerTo>
+<item key="251BA8E6-B170-84CB-FFBB-BADB899C537C" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="CODIGO_GENERAL" id="B8C6E2D6-4D2F-4739-6858-5349E5A8CCCD">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-06-11 10:51:52 UTC</createdTime>
 <ownerDesignName>ME-venta</ownerDesignName>
 <engineerTo>
 <item key="251BA8E6-B170-84CB-FFBB-BADB899C537C" value="true"/>
@@ -95,27 +105,15 @@
 <use>0</use>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
-<Attribute name="ID_PRESUPUESTO" id="2480EB1F-8CDA-4F22-044D-DB0274EC0806">
+<Attribute name="ID_VENTA" id="CE22E82A-1347-3525-FD0F-374CD91FDD98">
 <createdBy>Carlos</createdBy>
-<createdTime>2018-05-25 12:51:57 UTC</createdTime>
-<generatorID>FC2547CC-A86C-E663-2531-12B1EC72B3E9</generatorID>
+<createdTime>2018-06-12 13:34:58 UTC</createdTime>
+<generatorID>5309B65B-B260-1C5B-6C38-FF6C6EE19EC9</generatorID>
 <ownerDesignName>ME-venta</ownerDesignName>
 <engineerTo>
 <item key="251BA8E6-B170-84CB-FFBB-BADB899C537C" value="true"/>
 </engineerTo>
-<referedAttribute>F3D6BC86-3AE4-FEA1-798C-9938CF66C304</referedAttribute>
-<use>0</use>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-</Attribute>
-<Attribute name="ID_PRODUCTO" id="90762490-E93B-EFE6-36C0-EA94CBF075D9">
-<createdBy>Carlos</createdBy>
-<createdTime>2018-05-25 12:51:57 UTC</createdTime>
-<generatorID>FC2547CC-A86C-E663-2531-12B1EC72B3E9</generatorID>
-<ownerDesignName>ME-venta</ownerDesignName>
-<engineerTo>
-<item key="251BA8E6-B170-84CB-FFBB-BADB899C537C" value="true"/>
-</engineerTo>
-<referedAttribute>736470C3-BBF6-C7DE-E067-00B6FDAD3370</referedAttribute>
+<referedAttribute>C761237F-0367-3462-58A5-160263DA9850</referedAttribute>
 <use>0</use>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>

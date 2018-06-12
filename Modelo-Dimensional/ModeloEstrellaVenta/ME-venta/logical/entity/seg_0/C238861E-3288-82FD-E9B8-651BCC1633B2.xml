@@ -1,5 +1,5 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="C238861E-3288-82FD-E9B8-651BCC1633B2" name="FUENTE_VENTA">
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="C238861E-3288-82FD-E9B8-651BCC1633B2" name="DIM_FUENTE_VENTA">
 <createdBy>Carlos</createdBy>
 <createdTime>2018-05-25 11:38:15 UTC</createdTime>
 <ownerDesignName>ME-venta</ownerDesignName>
@@ -42,6 +42,18 @@
 <engineerTo>
 <item key="251BA8E6-B170-84CB-FFBB-BADB899C537C" value="true"/>
 </engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="ID_VENTA" id="29D5A7E0-9D1C-D372-2D5D-8426252BB8AA">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-06-12 13:34:58 UTC</createdTime>
+<generatorID>4F3D73E0-11AD-033D-49FA-1D874C47A632</generatorID>
+<ownerDesignName>ME-venta</ownerDesignName>
+<engineerTo>
+<item key="251BA8E6-B170-84CB-FFBB-BADB899C537C" value="true"/>
+</engineerTo>
+<referedAttribute>C761237F-0367-3462-58A5-160263DA9850</referedAttribute>
 <use>0</use>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>

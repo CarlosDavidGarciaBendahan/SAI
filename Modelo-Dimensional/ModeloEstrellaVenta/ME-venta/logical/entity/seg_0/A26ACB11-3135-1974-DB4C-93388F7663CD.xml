@@ -1,5 +1,5 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="A26ACB11-3135-1974-DB4C-93388F7663CD" name="HISTORICO_PRESUPUESTO_FALTA_STOCK">
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="A26ACB11-3135-1974-DB4C-93388F7663CD" name="DIM_HISTORICO_PRESUPUESTO_FALTA_STOCK">
 <createdBy>Carlos</createdBy>
 <createdTime>2018-05-25 12:35:42 UTC</createdTime>
 <ownerDesignName>ME-venta</ownerDesignName>
@@ -25,9 +25,59 @@
 <use>0</use>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
-<Attribute name="ID_PRODUCTO" id="736470C3-BBF6-C7DE-E067-00B6FDAD3370">
+<Attribute name="CODIGO_PRODUCTO" id="736470C3-BBF6-C7DE-E067-00B6FDAD3370">
 <createdBy>Carlos</createdBy>
 <createdTime>2018-05-25 12:36:38 UTC</createdTime>
+<ownerDesignName>ME-venta</ownerDesignName>
+<engineerTo>
+<item key="251BA8E6-B170-84CB-FFBB-BADB899C537C" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="MARCA" id="58B41527-6A48-CE48-F24B-8F23D78DC09D">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-06-11 13:40:58 UTC</createdTime>
+<ownerDesignName>ME-venta</ownerDesignName>
+<engineerTo>
+<item key="251BA8E6-B170-84CB-FFBB-BADB899C537C" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="MODELO" id="492E4E28-4B07-951E-83A9-4DBD600D0941">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-06-11 13:41:09 UTC</createdTime>
+<ownerDesignName>ME-venta</ownerDesignName>
+<engineerTo>
+<item key="251BA8E6-B170-84CB-FFBB-BADB899C537C" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="TIPO" id="84B44EB8-B7F8-1179-D200-EE5D5C97D9AC">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-06-11 13:41:19 UTC</createdTime>
+<ownerDesignName>ME-venta</ownerDesignName>
+<engineerTo>
+<item key="251BA8E6-B170-84CB-FFBB-BADB899C537C" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="CAPACIDAD" id="B1FAFC25-C47A-9138-5810-7E1B5E94ED16">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-06-11 13:41:36 UTC</createdTime>
+<ownerDesignName>ME-venta</ownerDesignName>
+<engineerTo>
+<item key="251BA8E6-B170-84CB-FFBB-BADB899C537C" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="UNIDAD_MEDIDA" id="A29F346D-CF08-E3A4-470D-C0A39D67B555">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-06-11 13:41:48 UTC</createdTime>
 <ownerDesignName>ME-venta</ownerDesignName>
 <engineerTo>
 <item key="251BA8E6-B170-84CB-FFBB-BADB899C537C" value="true"/>
@@ -55,13 +105,24 @@
 <use>0</use>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
-<Attribute name="TOTAL" id="19944B38-2655-BE04-49C3-F95189F032FB">
+<Attribute name="TOTAL_PERDIDO_DOLAR" id="19944B38-2655-BE04-49C3-F95189F032FB">
 <createdBy>Carlos</createdBy>
 <createdTime>2018-05-25 12:51:16 UTC</createdTime>
 <ownerDesignName>ME-venta</ownerDesignName>
 <engineerTo>
 <item key="251BA8E6-B170-84CB-FFBB-BADB899C537C" value="true"/>
 </engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="TOTAL_PERDIDO_BOLIVAR" id="9D772A5A-55A1-2E56-9385-A509357EB675">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-06-11 11:14:36 UTC</createdTime>
+<ownerDesignName>ME-venta</ownerDesignName>
+<engineerTo>
+<item key="251BA8E6-B170-84CB-FFBB-BADB899C537C" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
 <use>0</use>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
@@ -87,18 +148,6 @@
 <use>0</use>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
-<Attribute name="ID1" id="674A3F04-4E20-0601-0320-36D90B779556">
-<createdBy>Carlos</createdBy>
-<createdTime>2018-05-25 12:51:54 UTC</createdTime>
-<generatorID>FC2547CC-A86C-E663-2531-12B1EC72B3E9</generatorID>
-<ownerDesignName>ME-venta</ownerDesignName>
-<engineerTo>
-<item key="251BA8E6-B170-84CB-FFBB-BADB899C537C" value="true"/>
-</engineerTo>
-<referedAttribute>CCC20BAA-3C8F-5A6E-4DB7-41EC1D2CD038</referedAttribute>
-<use>0</use>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-</Attribute>
 </attributes>
 <identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
 <identifier id="5BCC9428-37AD-53A2-24B0-80C2479F8D39" name="HISTORICO_PRESUPUESTO_FALTA_STOCK PK">
@@ -111,7 +160,6 @@
 <pk>true</pk>
 <usedAttributes>
 <attributeRef>F3D6BC86-3AE4-FEA1-798C-9938CF66C304</attributeRef>
-<attributeRef>736470C3-BBF6-C7DE-E067-00B6FDAD3370</attributeRef>
 </usedAttributes>
 </identifier>
 </identifiers>
