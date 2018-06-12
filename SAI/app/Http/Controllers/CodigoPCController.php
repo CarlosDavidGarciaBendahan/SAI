@@ -274,7 +274,7 @@ class CodigoPCController extends Controller
                 }
             }
         }
-
+        //dd($ultimaSolicitudAprobada);
         foreach ($codigoPC->SolicitudesEntregadas as  $solicitud) {
             if($solicitud->sol_aprobado === 'S'){ //si la solicitud esta aprobada, se toma en cuenta.
                 if ($ultimaSolicitudEntragadoAprobada === null) {//guardo la primare solicitud aprobada.
@@ -287,7 +287,7 @@ class CodigoPCController extends Controller
                 }
             }
         }
-        
+        //dd($ultimaSolicitudEntragadoAprobada);
         //dd($this->VerificarFechas($ultimaVenta,$ultimaSolicitudAprobada,$ultimaSolicitudEntragadoAprobada));
         return ($this->VerificarFechas($ultimaVenta,$ultimaSolicitudAprobada,$ultimaSolicitudEntragadoAprobada));
     }
