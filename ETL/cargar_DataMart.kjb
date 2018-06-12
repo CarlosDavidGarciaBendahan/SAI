@@ -358,16 +358,6 @@
       <yloc>144</yloc>
     </entry>
     <entry>
-      <name>Success</name>
-      <description/>
-      <type>SUCCESS</type>
-      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>704</xloc>
-      <yloc>144</yloc>
-    </entry>
-    <entry>
       <name>LIMPIAR DIMENSIONES</name>
       <description/>
       <type>SQL</type>
@@ -377,7 +367,8 @@ DELETE FROM DIM_FUENTE_VENTA;
 DELETE FROM DIM_PRODUCTO;
 DELETE FROM DIM_CLIENTE;
 DELETE FROM DIM_HISTORICO_FALTA_STOCK;
-DELETE FROM DIM_PRESUPUESTO;</sql>
+DELETE FROM DIM_PRESUPUESTO;
+DELETE FROM FACT_VENTA;</sql>
       <useVariableSubstitution>F</useVariableSubstitution>
       <sqlfromfile>F</sqlfromfile>
       <sqlfilename/>
@@ -431,8 +422,81 @@ DELETE FROM DIM_PRESUPUESTO;</sql>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>432</xloc>
-      <yloc>368</yloc>
+      <xloc>512</xloc>
+      <yloc>384</yloc>
+    </entry>
+    <entry>
+      <name>CARGAR_FACT_VENTA</name>
+      <description/>
+      <type>TRANS</type>
+      <specification_method>filename</specification_method>
+      <trans_object_id/>
+      <filename>${Internal.Entry.Current.Directory}/extraccion_fact_venta.ktr</filename>
+      <transname/>
+      <arg_from_previous>N</arg_from_previous>
+      <params_from_previous>N</params_from_previous>
+      <exec_per_row>N</exec_per_row>
+      <clear_rows>N</clear_rows>
+      <clear_files>N</clear_files>
+      <set_logfile>N</set_logfile>
+      <logfile/>
+      <logext/>
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <loglevel>Basic</loglevel>
+      <cluster>N</cluster>
+      <slave_server_name/>
+      <set_append_logfile>N</set_append_logfile>
+      <wait_until_finished>Y</wait_until_finished>
+      <follow_abort_remote>N</follow_abort_remote>
+      <create_parent_folder>N</create_parent_folder>
+      <logging_remote_work>N</logging_remote_work>
+      <run_configuration>Pentaho local</run_configuration>
+      <parameters>
+        <pass_all_parameters>Y</pass_all_parameters>
+      </parameters>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>592</xloc>
+      <yloc>144</yloc>
+    </entry>
+    <entry>
+      <name>ACTUALIZAR_FACT</name>
+      <description/>
+      <type>SQL</type>
+      <sql>update fact_venta  
+	set precio_unitario_bolivar = precio_unitario * (select cotizacion from dim_cotizacion where id = id_cotizacion);
+
+update fact_venta  
+	set valor_iva_bolivar = precio_unitario_bolivar*(porcentaje_iva/100);
+
+update fact_venta  
+	set subtotal_bolivar =precio_unitario_bolivar, total_bolivar= precio_unitario_bolivar + valor_iva_bolivar;
+		
+update fact_venta  
+	set costo_producto_bolivar = costo_producto * (select cotizacion from dim_cotizacion where id = id_cotizacion);
+</sql>
+      <useVariableSubstitution>F</useVariableSubstitution>
+      <sqlfromfile>F</sqlfromfile>
+      <sqlfilename/>
+      <sendOneStatement>F</sendOneStatement>
+      <connection>DataMart</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>720</xloc>
+      <yloc>144</yloc>
+    </entry>
+    <entry>
+      <name>Success</name>
+      <description/>
+      <type>SUCCESS</type>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>832</xloc>
+      <yloc>144</yloc>
     </entry>
   </entries>
   <hops>
@@ -455,15 +519,6 @@ DELETE FROM DIM_PRESUPUESTO;</sql>
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>CARGAR DIMENSIONES</from>
-      <to>Success</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
       <from>LIMPIAR DIMENSIONES</from>
       <to>Abort job</to>
       <from_nr>0</from_nr>
@@ -474,6 +529,51 @@ DELETE FROM DIM_PRESUPUESTO;</sql>
     </hop>
     <hop>
       <from>CARGAR DIMENSIONES</from>
+      <to>Abort job</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>CARGAR DIMENSIONES</from>
+      <to>CARGAR_FACT_VENTA</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>CARGAR_FACT_VENTA</from>
+      <to>ACTUALIZAR_FACT</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>CARGAR_FACT_VENTA</from>
+      <to>Abort job</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>ACTUALIZAR_FACT</from>
+      <to>Success</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>ACTUALIZAR_FACT</from>
       <to>Abort job</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
