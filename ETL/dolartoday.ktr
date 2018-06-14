@@ -493,11 +493,6 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Select values</from>
-      <to>carga_cotizacion</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
       <from>ID_Cotizacion</from>
       <to>Split Fields</to>
       <enabled>Y</enabled>
@@ -510,6 +505,16 @@
     <hop>
       <from>Concat Fields</from>
       <to>Select values</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Select values</from>
+      <to>lookup fecha cotizacion</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>lookup fecha cotizacion</from>
+      <to>carga_cotizacion</to>
       <enabled>Y</enabled>
     </hop>
   </order>
@@ -755,27 +760,21 @@
     <fields>
       <field>
         <name>ID</name>
-        <rename/>
       </field>
       <field>
         <name>fecha_cotizacion</name>
-        <rename/>
       </field>
       <field>
         <name>DolarToday</name>
-        <rename/>
       </field>
       <field>
         <name>motnh</name>
-        <rename/>
       </field>
       <field>
         <name>day</name>
-        <rename/>
       </field>
       <field>
         <name>year</name>
-        <rename/>
       </field>
       <select_unspecified>N</select_unspecified>
       <remove>
@@ -966,6 +965,53 @@
     <GUI>
       <xloc>624</xloc>
       <yloc>112</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>lookup fecha cotizacion</name>
+    <type>DBLookup</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>DataMart</connection>
+    <cache>N</cache>
+    <cache_load_all>N</cache_load_all>
+    <cache_size>0</cache_size>
+    <lookup>
+      <schema/>
+      <table>dim_time</table>
+      <orderby/>
+      <fail_on_multiple>N</fail_on_multiple>
+      <eat_row_on_failure>N</eat_row_on_failure>
+      <key>
+        <name>fecha_cotizacion</name>
+        <field>date_id</field>
+        <condition>=</condition>
+        <name2/>
+      </key>
+      <value>
+        <name>day_secuence</name>
+        <rename>id_time_fecha_cotizacion</rename>
+        <default/>
+        <type>Date</type>
+      </value>
+    </lookup>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>480</xloc>
+      <yloc>224</yloc>
       <draw>Y</draw>
     </GUI>
   </step>

@@ -340,7 +340,7 @@
       <draw>Y</draw>
       <nr>0</nr>
       <xloc>176</xloc>
-      <yloc>320</yloc>
+      <yloc>352</yloc>
     </entry>
     <entry>
       <name>dim_producto</name>
@@ -375,8 +375,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>464</xloc>
-      <yloc>112</yloc>
+      <xloc>320</xloc>
+      <yloc>144</yloc>
     </entry>
     <entry>
       <name>dim_presupuesto</name>
@@ -411,8 +411,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>464</xloc>
-      <yloc>208</yloc>
+      <xloc>320</xloc>
+      <yloc>432</yloc>
     </entry>
     <entry>
       <name>dim_historico_falta_stock</name>
@@ -447,8 +447,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>464</xloc>
-      <yloc>288</yloc>
+      <xloc>448</xloc>
+      <yloc>432</yloc>
     </entry>
     <entry>
       <name>dim_fuente_venta</name>
@@ -483,8 +483,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>464</xloc>
-      <yloc>384</yloc>
+      <xloc>320</xloc>
+      <yloc>208</yloc>
     </entry>
     <entry>
       <name>dim_cliente</name>
@@ -519,8 +519,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>464</xloc>
-      <yloc>464</yloc>
+      <xloc>320</xloc>
+      <yloc>288</yloc>
     </entry>
     <entry>
       <name>dim_cotizacion</name>
@@ -555,8 +555,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>464</xloc>
-      <yloc>544</yloc>
+      <xloc>320</xloc>
+      <yloc>352</yloc>
     </entry>
     <entry>
       <name>Success</name>
@@ -570,6 +570,78 @@
     </entry>
   </entries>
   <hops>
+    <hop>
+      <from>START</from>
+      <to>dim_time</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>Y</unconditional>
+    </hop>
+    <hop>
+      <from>START</from>
+      <to>dim_fuente_venta</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>Y</unconditional>
+    </hop>
+    <hop>
+      <from>START</from>
+      <to>dim_producto</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>Y</unconditional>
+    </hop>
+    <hop>
+      <from>dim_fuente_venta</from>
+      <to>Success</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>dim_producto</from>
+      <to>Success</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>dim_time</from>
+      <to>dim_presupuesto</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>dim_time</from>
+      <to>dim_cotizacion</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>dim_time</from>
+      <to>dim_cliente</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
     <hop>
       <from>dim_cotizacion</from>
       <to>Success</to>
@@ -589,8 +661,8 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>dim_fuente_venta</from>
-      <to>Success</to>
+      <from>dim_presupuesto</from>
+      <to>dim_historico_falta_stock</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -600,87 +672,6 @@
     <hop>
       <from>dim_historico_falta_stock</from>
       <to>Success</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>dim_presupuesto</from>
-      <to>Success</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>dim_producto</from>
-      <to>Success</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>START</from>
-      <to>dim_time</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>Y</unconditional>
-    </hop>
-    <hop>
-      <from>dim_time</from>
-      <to>dim_producto</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>dim_time</from>
-      <to>dim_presupuesto</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>dim_time</from>
-      <to>dim_historico_falta_stock</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>dim_time</from>
-      <to>dim_fuente_venta</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>dim_time</from>
-      <to>dim_cliente</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>dim_time</from>
-      <to>dim_cotizacion</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>

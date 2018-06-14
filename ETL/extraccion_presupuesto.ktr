@@ -430,7 +430,7 @@
     <created_date>2018/06/11 06:01:46.851</created_date>
     <modified_user>-</modified_user>
     <modified_date>2018/06/11 06:01:46.851</modified_date>
-    <key_for_session_key/>
+    <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
   <notepads>
@@ -540,6 +540,16 @@
   <order>
     <hop>
       <from>Table input</from>
+      <to>lookup fecha aprobado</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>lookup fecha aprobado</from>
+      <to>lookup fecha solicitud</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>lookup fecha solicitud</from>
       <to>Table output</to>
       <enabled>Y</enabled>
     </hop>
@@ -622,6 +632,100 @@ FROM presupuesto
     <GUI>
       <xloc>240</xloc>
       <yloc>128</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>lookup fecha aprobado</name>
+    <type>DBLookup</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>DataMart</connection>
+    <cache>N</cache>
+    <cache_load_all>N</cache_load_all>
+    <cache_size>0</cache_size>
+    <lookup>
+      <schema/>
+      <table>dim_time</table>
+      <orderby/>
+      <fail_on_multiple>N</fail_on_multiple>
+      <eat_row_on_failure>N</eat_row_on_failure>
+      <key>
+        <name>pre_fecha_aprobado</name>
+        <field>date_id</field>
+        <condition>=</condition>
+        <name2/>
+      </key>
+      <value>
+        <name>day_secuence</name>
+        <rename>id_time_fecha_aprobado</rename>
+        <default/>
+        <type>Date</type>
+      </value>
+    </lookup>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>80</xloc>
+      <yloc>240</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>lookup fecha solicitud</name>
+    <type>DBLookup</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>DataMart</connection>
+    <cache>N</cache>
+    <cache_load_all>N</cache_load_all>
+    <cache_size>0</cache_size>
+    <lookup>
+      <schema/>
+      <table>dim_time</table>
+      <orderby/>
+      <fail_on_multiple>N</fail_on_multiple>
+      <eat_row_on_failure>N</eat_row_on_failure>
+      <key>
+        <name>pre_fecha_solicitud</name>
+        <field>date_id</field>
+        <condition>=</condition>
+        <name2/>
+      </key>
+      <value>
+        <name>day_secuence</name>
+        <rename>id_time_fecha_solicitud</rename>
+        <default/>
+        <type>Date</type>
+      </value>
+    </lookup>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>240</xloc>
+      <yloc>240</yloc>
       <draw>Y</draw>
     </GUI>
   </step>

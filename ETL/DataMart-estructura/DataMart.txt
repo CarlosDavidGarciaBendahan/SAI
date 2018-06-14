@@ -1,0 +1,175 @@
+
+	delete from fact_venta;
+	delete from dim_cliente;
+	delete from dim_fuente_venta;
+	delete from dim_producto;
+	delete from dim_presupuesto;
+	delete from dim_historico_falta_stock;
+	delete from dim_cotizacion;
+	delete from dim_time;
+
+	drop table fact_venta;
+	drop table dim_cliente;
+	drop table dim_fuente_venta;
+	drop table dim_producto;
+	drop table dim_presupuesto;
+	drop table dim_historico_falta_stock;
+	drop table dim_cotizacion;
+	drop table dim_time;
+
+
+
+
+	CREATE TABLE "public".dim_time
+	(
+	  date_init 		DATE
+	, day_secuence 		DOUBLE PRECISION  PRIMARY KEY
+	, date_id 			DATE
+	, day_in_month 		DOUBLE PRECISION
+	, day_in_year 		DOUBLE PRECISION
+	, week 				DOUBLE PRECISION
+	, "month" 			DOUBLE PRECISION
+	, "year" 			DOUBLE PRECISION
+	, date_int 			DOUBLE PRECISION
+	, yearmonth 		TEXT
+	, quarter 			TEXT
+	, "date" 			DATE
+	, day_in_week 		DOUBLE PRECISION
+	, quarter_desc 		TEXT
+	, quarter_desc_long TEXT
+	, week_desc 		TEXT
+	, quarter_short 	TEXT
+	, quarter_shor_year TEXT
+	, day_desc 			TEXT
+	, month_desc 		TEXT
+	, date_desc_long 	TEXT
+	, mes_desc_long 	TEXT
+	, month_year_desc 	TEXT
+	);
+
+
+	CREATE TABLE "public".dim_producto
+	(
+	  id 				DOUBLE PRECISION PRIMARY KEY
+	, id_bd_relacional 	INTEGER
+	, codigo 			VARCHAR(255)
+	, descripcion 		VARCHAR(255)
+	, marca 			VARCHAR(20)
+	, modelo 			VARCHAR(20)
+	, tipo 				VARCHAR(20)
+	, capacidad 		DOUBLE PRECISION
+	, unidad_medida 	VARCHAR(10)
+	, codigo_general 	VARCHAR(100)
+
+	);
+
+	CREATE TABLE "public".dim_fuente_venta
+	(
+	  id 			DOUBLE PRECISION		PRIMARY KEY
+	, nombre 		VARCHAR(25)
+	, descripcion 	VARCHAR(50)
+	);
+
+	CREATE TABLE dim_historico_falta_stock
+	(
+	  id_historico 			DOUBLE PRECISION		PRIMARY KEY
+	, id_presupuesto 		DOUBLE PRECISION		/*----  FK   */
+	/*, id_producto 			DOUBLE PRECISION		----  FK   */
+	, cantidad_faltante 	INTEGER
+	, cotizacion_dolar 		DOUBLE PRECISION
+	, precio_unitario_dolar DOUBLE PRECISION
+	, total_perdido_dolar 	DOUBLE PRECISION
+	, total_perdido_bolivar DOUBLE PRECISION
+	, codigo_general 		VARCHAR(100)
+	, marca 				VARCHAR(20)
+	, modelo 				VARCHAR(20)
+	, tipo 					VARCHAR(20)
+	, capacidad 			DOUBLE PRECISION
+	, unidad_medida 		VARCHAR(10)
+	);
+
+	CREATE TABLE dim_cliente
+	(
+	  id 								DOUBLE PRECISION 	PRIMARY KEY
+	, id_bd_relacional 					INTEGER
+	, nombre 							VARCHAR(100)
+	, codigo_identificacion 			VARCHAR(25)
+	, tipo 								VARCHAR(10)
+	, direccion 						VARCHAR(250)
+	, parroquia 						VARCHAR(50)
+	, municipio 						VARCHAR(50)
+	, estado 							VARCHAR(50)
+	, fecha_registro 					DATE
+	, fecha_primera_compra 				DATE
+	, id_time_fecha_registro			DOUBLE PRECISION	/*----  FK   */
+	, id_time_fecha_primera_compra 		DOUBLE PRECISION	/*----  FK   */
+
+	);
+
+	CREATE TABLE "public".dim_cotizacion
+	(
+	  id 						DOUBLE PRECISION	PRIMARY KEY
+	, fecha_cotizacion 			DATE
+	, cotizacion 				DOUBLE PRECISION
+	, id_time_fecha_cotizacion	DOUBLE PRECISION	/*----  FK   */
+	);
+
+	CREATE TABLE dim_presupuesto
+	(
+	  id 						DOUBLE PRECISION 	PRIMARY KEY
+	, pre_fecha_solicitud 		DATE
+	, pre_fecha_aprobado 		DATE
+	, pre_subtotal 				DOUBLE PRECISION
+	, pre_eliminado 			INTEGER
+	, id_time_fecha_aprobado 	DOUBLE PRECISION	/*----  FK   */
+	, id_time_fecha_solicitud 	DOUBLE PRECISION	/*----  FK   */
+	);
+
+
+
+
+	ALTER TABLE dim_cliente 				ADD CONSTRAINT dim_cliente_FK_id_time_fecha_registro 		FOREIGN KEY (id_time_fecha_registro) 		REFERENCES DIM_TIME (DAY_SECUENCE);
+	ALTER TABLE dim_cliente 				ADD CONSTRAINT dim_cliente_FK_id_time_fecha_primera_compra 	FOREIGN KEY (id_time_fecha_primera_compra) 	REFERENCES DIM_TIME (DAY_SECUENCE);
+
+	ALTER TABLE dim_cotizacion 				ADD CONSTRAINT dim_cotizacion_FK_id_time_fecha_cotizacion 	FOREIGN KEY (id_time_fecha_cotizacion) 		REFERENCES DIM_TIME (DAY_SECUENCE);
+
+	ALTER TABLE dim_presupuesto 			ADD CONSTRAINT dim_presupuesto_FK_id_time_fecha_aprobado 	FOREIGN KEY (id_time_fecha_aprobado) 		REFERENCES DIM_TIME (DAY_SECUENCE);
+	ALTER TABLE dim_presupuesto 			ADD CONSTRAINT dim_presupuesto_FK_id_time_fecha_solicitud 	FOREIGN KEY (id_time_fecha_solicitud) 		REFERENCES DIM_TIME (DAY_SECUENCE);
+
+	ALTER TABLE dim_historico_falta_stock 	ADD CONSTRAINT dim_historico_falta_stock_FK_id_presupuesto 	FOREIGN KEY (id_presupuesto) 				REFERENCES DIM_PRESUPUESTO (id);
+	/*ALTER TABLE dim_historico_falta_stock 	ADD CONSTRAINT dim_historico_falta_stock_FK_id_producto 	FOREIGN KEY (id_producto) 					REFERENCES DIM_PRODUCTO (id);
+	*/
+
+
+
+
+
+	CREATE TABLE "public".fact_venta
+	(
+	  ID_VENTA 					DOUBLE PRECISION	PRIMARY KEY
+	, ID_TIME 					DOUBLE PRECISION	/*   FK   */
+	, ID_CLIENTE 				DOUBLE PRECISION	/*   FK   */
+	, ID_PRODUCTO 				DOUBLE PRECISION	/*   FK   */
+	, ID_COTIZACION 			DOUBLE PRECISION	/*   FK   */
+	, ID_FUENTE_VENTA 			INTEGER				/*   FK   */
+	, ID_PRESUPUESTO 			INTEGER				/*   FK   */
+	, numero_venta 				INTEGER
+	, precio_unitario 			NUMERIC(16, 2)
+	, costo_producto 			NUMERIC(16, 2)
+	, ven_monto_total_sin_iva 	NUMERIC(16, 2)
+	, ven_porcentaje_descuento 	SMALLINT
+	, ven_eliminada 			SMALLINT
+	, precio_unitario_bolivar 	DOUBLE PRECISION
+	, porcentaje_iva 			DOUBLE PRECISION
+	, valor_iva_bolivar 		DOUBLE PRECISION
+	, subtotal_bolivar 			DOUBLE PRECISION
+	, total_bolivar 			DOUBLE PRECISION
+	, costo_producto_bolivar 	DOUBLE PRECISION
+	);
+
+	ALTER TABLE fact_venta 	ADD CONSTRAINT fact_venta_FK_ID_TIME 			FOREIGN KEY (ID_TIME) 			REFERENCES DIM_TIME (DAY_SECUENCE);
+	ALTER TABLE fact_venta 	ADD CONSTRAINT fact_venta_FK_ID_CLIENTE 		FOREIGN KEY (ID_CLIENTE) 		REFERENCES DIM_CLIENTE (id);
+	ALTER TABLE fact_venta 	ADD CONSTRAINT fact_venta_FK_ID_PRODUCTO 		FOREIGN KEY (ID_PRODUCTO) 		REFERENCES DIM_PRODUCTO (id);
+	ALTER TABLE fact_venta 	ADD CONSTRAINT fact_venta_FK_ID_COTIZACION 		FOREIGN KEY (ID_COTIZACION) 	REFERENCES DIM_COTIZACION (id);
+	ALTER TABLE fact_venta 	ADD CONSTRAINT fact_venta_FK_ID_FUENTE_VENTA 	FOREIGN KEY (ID_FUENTE_VENTA) 	REFERENCES DIM_FUENTE_VENTA (id);
+	ALTER TABLE fact_venta 	ADD CONSTRAINT fact_venta_FK_ID_PRESUPUESTO 	FOREIGN KEY (ID_PRESUPUESTO) 	REFERENCES DIM_PRESUPUESTO (id);
