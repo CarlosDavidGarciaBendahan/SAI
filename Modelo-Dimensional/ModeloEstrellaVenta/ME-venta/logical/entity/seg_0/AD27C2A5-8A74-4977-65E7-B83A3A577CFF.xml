@@ -57,6 +57,16 @@
 <use>0</use>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
+<Attribute name="ID_TIME_FECHA_COTIZACION" id="771E3550-AFA3-7560-5DA4-A76959050C61">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-06-14 12:42:55 UTC</createdTime>
+<ownerDesignName>ME-venta</ownerDesignName>
+<engineerTo>
+<item key="251BA8E6-B170-84CB-FFBB-BADB899C537C" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
 </attributes>
 <identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
 <identifier id="1D97E72C-322F-640E-0350-AA5D699AA11C" name="COTIZACION PK">

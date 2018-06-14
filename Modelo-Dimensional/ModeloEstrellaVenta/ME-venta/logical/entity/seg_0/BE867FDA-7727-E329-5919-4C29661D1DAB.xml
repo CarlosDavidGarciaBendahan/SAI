@@ -35,9 +35,29 @@
 <use>0</use>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
+<Attribute name="ID_TIME_FECHA_SOLICITUD" id="0D1582F8-2C71-ECD0-9DE8-1C0A2FCAAE85">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-06-14 12:39:58 UTC</createdTime>
+<ownerDesignName>ME-venta</ownerDesignName>
+<engineerTo>
+<item key="251BA8E6-B170-84CB-FFBB-BADB899C537C" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
 <Attribute name="FECHA_APROBADO" id="4A09F024-5AA1-9D3F-9686-90C59056A457">
 <createdBy>Carlos</createdBy>
 <createdTime>2018-05-25 11:47:46 UTC</createdTime>
+<ownerDesignName>ME-venta</ownerDesignName>
+<engineerTo>
+<item key="251BA8E6-B170-84CB-FFBB-BADB899C537C" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="ID_TIME_FECHA_APROBADO" id="712F105A-BBCC-6D00-9524-E961BDCF89E9">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-06-14 12:40:19 UTC</createdTime>
 <ownerDesignName>ME-venta</ownerDesignName>
 <engineerTo>
 <item key="251BA8E6-B170-84CB-FFBB-BADB899C537C" value="true"/>

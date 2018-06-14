@@ -105,9 +105,29 @@
 <use>0</use>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
+<Attribute name="ID_TIME_REGISTRO" id="1E51910E-4040-B35E-5ED1-33BF236A270B">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-06-14 12:38:50 UTC</createdTime>
+<ownerDesignName>ME-venta</ownerDesignName>
+<engineerTo>
+<item key="251BA8E6-B170-84CB-FFBB-BADB899C537C" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
 <Attribute name="FECHA_PRIMERA_COMPRA" id="4E3D029B-B25E-6568-DC23-BA39ECBE9492">
 <createdBy>Carlos</createdBy>
 <createdTime>2018-05-25 12:57:53 UTC</createdTime>
+<ownerDesignName>ME-venta</ownerDesignName>
+<engineerTo>
+<item key="251BA8E6-B170-84CB-FFBB-BADB899C537C" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="ID_TIME_PRIMERA_COMPRA" id="C78035D9-9018-F8DE-6DB8-3617A4AFDFE2">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-06-14 12:39:09 UTC</createdTime>
 <ownerDesignName>ME-venta</ownerDesignName>
 <engineerTo>
 <item key="251BA8E6-B170-84CB-FFBB-BADB899C537C" value="true"/>
