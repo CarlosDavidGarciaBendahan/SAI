@@ -11,7 +11,7 @@ LANGUAGE language_name;
 
 
 
-
+/*			INSERT 			*/
 
 CREATE FUNCTION insert_into_table_cliente(nombre varchar(30),apellido varchar(30), cedula bigint)
  RETURNS void AS $$
@@ -19,3 +19,28 @@ BEGIN
 		insert into cliente(nombre,apellido,cedula) values(nombre,apellido,cedula);
 END; $$
 LANGUAGE PLPGSQL;
+
+/*		DATOS INSERTADOS EN CLIENTE*/
+select insert_into_table_cliente('carlos','garcia',20748171);
+select insert_into_table_cliente('carlos','garcia',20748172);
+select insert_into_table_cliente('carlos','garcia',20748173);
+select insert_into_table_cliente('carlos','garcia',20748174);
+/*		FIN 	DATOS INSERTADOS EN CLIENTE*/
+
+
+
+/*			UPDATE 			*/
+CREATE FUNCTION update_table_cliente(nom varchar(30),ape varchar(30), ci bigint)
+RETURNS void AS $$
+BEGIN
+		update cliente set nombre=nom,apellido=ape where cedula = ci;
+		
+END; $$
+LANGUAGE PLPGSQL;
+
+/*		update clientes*/
+select update_table_cliente('carlos1','garcia1',20748171);
+select update_table_cliente('carlos2','garcia2',20748172);
+select update_table_cliente('carlos3','garcia3',20748173);
+select update_table_cliente('carlos4','garcia4',20748174);
+/*		update clientes*/
