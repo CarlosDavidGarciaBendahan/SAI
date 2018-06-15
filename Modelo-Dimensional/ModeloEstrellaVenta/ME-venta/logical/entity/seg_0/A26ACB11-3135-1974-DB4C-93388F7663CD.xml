@@ -25,16 +25,6 @@
 <use>0</use>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
-<Attribute name="ID_PRODUCTO" id="E6C790E7-2F7D-08DD-EE81-120C025C3CB8">
-<createdBy>Carlos</createdBy>
-<createdTime>2018-06-14 12:04:53 UTC</createdTime>
-<ownerDesignName>ME-venta</ownerDesignName>
-<engineerTo>
-<item key="251BA8E6-B170-84CB-FFBB-BADB899C537C" value="true"/>
-</engineerTo>
-<use>0</use>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-</Attribute>
 <Attribute name="CANTIDAD_FALTANTE" id="577A20F8-D590-A3F9-4F2C-11D50C0941E0">
 <createdBy>Carlos</createdBy>
 <createdTime>2018-05-25 12:36:47 UTC</createdTime>

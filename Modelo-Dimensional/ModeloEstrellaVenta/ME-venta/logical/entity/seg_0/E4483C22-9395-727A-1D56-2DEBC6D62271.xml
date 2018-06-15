@@ -117,18 +117,6 @@
 <use>0</use>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
-<Attribute name="ID_PRESUPUESTO" id="759016CB-038F-5396-5150-51C7226D9A1F">
-<createdBy>Carlos</createdBy>
-<createdTime>2018-06-14 12:02:12 UTC</createdTime>
-<generatorID>87A67CF4-FA28-B77D-35EE-1A3A8CCA8167</generatorID>
-<ownerDesignName>ME-venta</ownerDesignName>
-<engineerTo>
-<item key="251BA8E6-B170-84CB-FFBB-BADB899C537C" value="true"/>
-</engineerTo>
-<referedAttribute>F3D6BC86-3AE4-FEA1-798C-9938CF66C304</referedAttribute>
-<use>0</use>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-</Attribute>
 </attributes>
 <identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
 <identifier id="A3DE23DC-E985-DD13-09BE-C6853BEA40FC" name="PRODUCTO PK">
