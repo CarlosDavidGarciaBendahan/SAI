@@ -1,19 +1,18 @@
-
-	delete from fact_venta;
-	delete from dim_cliente;
-	delete from dim_fuente_venta;
-	delete from dim_producto;
-	delete from dim_presupuesto;
-	delete from dim_historico_falta_stock;
-	delete from dim_cotizacion;
-	delete from dim_time;
+delete from fact_venta;
+delete from dim_fuente_venta;
+delete from dim_producto;
+delete from dim_historico_falta_stock;
+delete from dim_presupuesto;
+delete from dim_cliente;
+delete from dim_cotizacion;
+delete from dim_time;
 
 	drop table fact_venta;
 	drop table dim_cliente;
 	drop table dim_fuente_venta;
 	drop table dim_producto;
-	drop table dim_presupuesto;
 	drop table dim_historico_falta_stock;
+	drop table dim_presupuesto;
 	drop table dim_cotizacion;
 	drop table dim_time;
 
@@ -173,3 +172,16 @@
 	ALTER TABLE fact_venta 	ADD CONSTRAINT fact_venta_FK_ID_COTIZACION 		FOREIGN KEY (ID_COTIZACION) 	REFERENCES DIM_COTIZACION (id);
 	ALTER TABLE fact_venta 	ADD CONSTRAINT fact_venta_FK_ID_FUENTE_VENTA 	FOREIGN KEY (ID_FUENTE_VENTA) 	REFERENCES DIM_FUENTE_VENTA (id);
 	ALTER TABLE fact_venta 	ADD CONSTRAINT fact_venta_FK_ID_PRESUPUESTO 	FOREIGN KEY (ID_PRESUPUESTO) 	REFERENCES DIM_PRESUPUESTO (id);
+
+
+drop table ingresos_mes_proximo;
+CREATE TABLE "public".ingresos_mes_proximo
+(
+  precio_unitario 			NUMERIC(18, 2)
+, ven_monto_total_sin_iva 	NUMERIC(18, 2)
+, ven_porcentaje_descuento 	SMALLINT
+, fecha_prox 				DATE
+, id_time 					DOUBLE PRECISION
+);
+
+	ALTER TABLE ingresos_mes_proximo ADD CONSTRAINT ingresos_mes_proximo_FK_ID_TIME 	FOREIGN KEY (ID_TIME) 	REFERENCES DIM_TIME (DAY_SECUENCE);

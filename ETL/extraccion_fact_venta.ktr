@@ -605,8 +605,8 @@
     </hop>
   </order>
   <step>
-    <name>Table input venta</name>
-    <type>TableInput</type>
+    <name> lookup DIM_FUENTE_VENTA</name>
+    <type>DBLookup</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -615,40 +615,29 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <connection>prueba</connection>
-    <sql>SELECT
-
-  v.id as ven_id, v.ven_fecha_compra, v.ven_monto_total, v.ven_moneda, v.ven_porcentaje_descuento, v.ven_eliminada
-, (select cli_nat_identificador||'-'||cli_nat_cedula from cliente_natural where id = v.ven_fk_cliente_natural) as cedula
-, (select cli_jur_identificador||'-'||cli_jur_rif from cliente_juridico where id = v.ven_fk_cliente_juridico) as rif
-, v.ven_fk_cliente_juridico , v.ven_fk_cliente_natural, v.ven_fk_fuenteventa, v.ven_fk_presupuesto
-, cpc.cod_pc_codigo as codigo_producto, cpc.id as id_producto, pcv.precio_unitario, cpc.cod_pc_costo as costo_producto
-
-
-FROM venta v, pc_venta pcv, codigopc cpc
-WHERE v.id = pcv.pc_ven_fk_venta and cpc.id = pcv.pc_ven_fk_codigopc
-
-UNION
-
-SELECT
-
-  v.id as ven_id, v.ven_fecha_compra, v.ven_monto_total, v.ven_moneda, v.ven_porcentaje_descuento, v.ven_eliminada
-, (select cli_nat_identificador||'-'||cli_nat_cedula from cliente_natural where id = v.ven_fk_cliente_natural) as cedula
-, (select cli_jur_identificador||'-'||cli_jur_rif from cliente_juridico where id = v.ven_fk_cliente_juridico) as rif
-, v.ven_fk_cliente_juridico , v.ven_fk_cliente_natural, v.ven_fk_fuenteventa, v.ven_fk_presupuesto
-, ca.cod_art_codigo as codigo_producto, ca.id as id_producto, av.precio_unitario, ca.cod_art_costo as costo_producto
-
-
-FROM venta v, articulo_venta av, codigoarticulo ca
-WHERE v.id = av.art_ven_fk_venta and ca.id = av.art_ven_fk_codigoarticulo
-
-
-</sql>
-    <limit>0</limit>
-    <lookup/>
-    <execute_each_row>N</execute_each_row>
-    <variables_active>N</variables_active>
-    <lazy_conversion_active>N</lazy_conversion_active>
+    <connection>DataMart</connection>
+    <cache>N</cache>
+    <cache_load_all>N</cache_load_all>
+    <cache_size>0</cache_size>
+    <lookup>
+      <schema/>
+      <table>dim_fuente_venta</table>
+      <orderby/>
+      <fail_on_multiple>N</fail_on_multiple>
+      <eat_row_on_failure>N</eat_row_on_failure>
+      <key>
+        <name>ven_fk_fuenteventa</name>
+        <field>id</field>
+        <condition>=</condition>
+        <name2/>
+      </key>
+      <value>
+        <name>id</name>
+        <rename>ID_FUENTE_VENTA</rename>
+        <default/>
+        <type>Number</type>
+      </value>
+    </lookup>
     <cluster_schema/>
     <remotesteps>
       <input>
@@ -657,8 +646,241 @@ WHERE v.id = av.art_ven_fk_venta and ca.id = av.art_ven_fk_codigoarticulo
       </output>
     </remotesteps>
     <GUI>
-      <xloc>48</xloc>
+      <xloc>336</xloc>
+      <yloc>176</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Add sequence</name>
+    <type>Sequence</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <valuename>ID_VENTA</valuename>
+    <use_database>N</use_database>
+    <connection/>
+    <schema/>
+    <seqname>SEQ_</seqname>
+    <use_counter>Y</use_counter>
+    <counter_name/>
+    <start_at>1</start_at>
+    <increment_by>1</increment_by>
+    <max_value>999999999</max_value>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>656</xloc>
+      <yloc>176</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Calculator</name>
+    <type>Calculator</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <calculation>
+      <field_name>precio_unitario_bolivar</field_name>
+      <calc_type>CONSTANT</calc_type>
+      <field_a>0</field_a>
+      <field_b/>
+      <field_c/>
+      <value_type>BigNumber</value_type>
+      <value_length>-1</value_length>
+      <value_precision>-1</value_precision>
+      <remove>N</remove>
+      <conversion_mask>#,##0.###</conversion_mask>
+      <decimal_symbol/>
+      <grouping_symbol/>
+      <currency_symbol/>
+    </calculation>
+    <calculation>
+      <field_name>porcentaje_iva</field_name>
+      <calc_type>CONSTANT</calc_type>
+      <field_a>12</field_a>
+      <field_b/>
+      <field_c/>
+      <value_type>Number</value_type>
+      <value_length>-1</value_length>
+      <value_precision>-1</value_precision>
+      <remove>N</remove>
+      <conversion_mask>#</conversion_mask>
+      <decimal_symbol/>
+      <grouping_symbol/>
+      <currency_symbol/>
+    </calculation>
+    <calculation>
+      <field_name>valor_iva_bolivar</field_name>
+      <calc_type>CONSTANT</calc_type>
+      <field_a>0</field_a>
+      <field_b/>
+      <field_c/>
+      <value_type>BigNumber</value_type>
+      <value_length>-1</value_length>
+      <value_precision>-1</value_precision>
+      <remove>N</remove>
+      <conversion_mask>#,##0.###</conversion_mask>
+      <decimal_symbol/>
+      <grouping_symbol/>
+      <currency_symbol/>
+    </calculation>
+    <calculation>
+      <field_name>subtotal_bolivar</field_name>
+      <calc_type>CONSTANT</calc_type>
+      <field_a>0</field_a>
+      <field_b/>
+      <field_c/>
+      <value_type>BigNumber</value_type>
+      <value_length>-1</value_length>
+      <value_precision>-1</value_precision>
+      <remove>N</remove>
+      <conversion_mask>#,##0.###</conversion_mask>
+      <decimal_symbol/>
+      <grouping_symbol/>
+      <currency_symbol/>
+    </calculation>
+    <calculation>
+      <field_name>total_bolivar</field_name>
+      <calc_type>CONSTANT</calc_type>
+      <field_a>0</field_a>
+      <field_b/>
+      <field_c/>
+      <value_type>BigNumber</value_type>
+      <value_length>-1</value_length>
+      <value_precision>-1</value_precision>
+      <remove>N</remove>
+      <conversion_mask>#,##0.###</conversion_mask>
+      <decimal_symbol/>
+      <grouping_symbol/>
+      <currency_symbol/>
+    </calculation>
+    <calculation>
+      <field_name>costo_producto_bolivar</field_name>
+      <calc_type>CONSTANT</calc_type>
+      <field_a>0</field_a>
+      <field_b/>
+      <field_c/>
+      <value_type>BigNumber</value_type>
+      <value_length>-1</value_length>
+      <value_precision>-1</value_precision>
+      <remove>N</remove>
+      <conversion_mask>#,##0.###</conversion_mask>
+      <decimal_symbol/>
+      <grouping_symbol/>
+      <currency_symbol/>
+    </calculation>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>784</xloc>
       <yloc>80</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Concat rif cedula</name>
+    <type>ConcatFields</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <separator/>
+    <enclosure>"</enclosure>
+    <enclosure_forced>N</enclosure_forced>
+    <enclosure_fix_disabled>N</enclosure_fix_disabled>
+    <header>N</header>
+    <footer>N</footer>
+    <format>DOS</format>
+    <compression>None</compression>
+    <encoding/>
+    <endedLine/>
+    <fileNameInField>N</fileNameInField>
+    <fileNameField/>
+    <create_parent_folder>Y</create_parent_folder>
+    <file>
+      <name>file</name>
+      <servlet_output>N</servlet_output>
+      <do_not_open_new_file_init>Y</do_not_open_new_file_init>
+      <extention>txt</extention>
+      <append>N</append>
+      <split>N</split>
+      <haspartno>N</haspartno>
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <SpecifyFormat>N</SpecifyFormat>
+      <date_time_format/>
+      <add_to_result_filenames>Y</add_to_result_filenames>
+      <pad>N</pad>
+      <fast_dump>N</fast_dump>
+      <splitevery>0</splitevery>
+    </file>
+    <fields>
+      <field>
+        <name>cedula</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>rif</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+    </fields>
+    <ConcatFields>
+      <targetFieldName>codigo_identificacion</targetFieldName>
+      <targetFieldLength>0</targetFieldLength>
+      <removeSelectedFields>N</removeSelectedFields>
+    </ConcatFields>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>192</xloc>
+      <yloc>176</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -676,67 +898,51 @@ WHERE v.id = av.art_ven_fk_venta and ca.id = av.art_ven_fk_codigoarticulo
     <fields>
       <field>
         <name>ven_id</name>
-        <rename/>
       </field>
       <field>
         <name>ven_fecha_compra</name>
-        <rename/>
       </field>
       <field>
         <name>ven_monto_total</name>
-        <rename/>
       </field>
       <field>
         <name>ven_moneda</name>
-        <rename/>
       </field>
       <field>
         <name>ven_porcentaje_descuento</name>
-        <rename/>
       </field>
       <field>
         <name>ven_eliminada</name>
-        <rename/>
       </field>
       <field>
         <name>cedula</name>
-        <rename/>
       </field>
       <field>
         <name>rif</name>
-        <rename/>
       </field>
       <field>
         <name>ven_fk_cliente_juridico</name>
-        <rename/>
       </field>
       <field>
         <name>ven_fk_cliente_natural</name>
-        <rename/>
       </field>
       <field>
         <name>ven_fk_fuenteventa</name>
-        <rename/>
       </field>
       <field>
         <name>ven_fk_presupuesto</name>
-        <rename/>
       </field>
       <field>
         <name>codigo_producto</name>
-        <rename/>
       </field>
       <field>
         <name>id_producto</name>
-        <rename/>
       </field>
       <field>
         <name>precio_unitario</name>
-        <rename/>
       </field>
       <field>
         <name>costo_producto</name>
-        <rename/>
       </field>
       <select_unspecified>N</select_unspecified>
       <meta>
@@ -1026,373 +1232,6 @@ WHERE v.id = av.art_ven_fk_venta and ca.id = av.art_ven_fk_codigoarticulo
     </GUI>
   </step>
   <step>
-    <name>lookup DIM_TIME</name>
-    <type>DBLookup</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <connection>DataMart</connection>
-    <cache>N</cache>
-    <cache_load_all>N</cache_load_all>
-    <cache_size>0</cache_size>
-    <lookup>
-      <schema/>
-      <table>dim_time</table>
-      <orderby/>
-      <fail_on_multiple>N</fail_on_multiple>
-      <eat_row_on_failure>N</eat_row_on_failure>
-      <key>
-        <name>ven_fecha_compra</name>
-        <field>date_id</field>
-        <condition>=</condition>
-        <name2/>
-      </key>
-      <value>
-        <name>day_secuence</name>
-        <rename>ID_TIME</rename>
-        <default/>
-        <type>Number</type>
-      </value>
-    </lookup>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>192</xloc>
-      <yloc>80</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>lookup DIM_COTIZACION</name>
-    <type>DBLookup</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <connection>DataMart</connection>
-    <cache>N</cache>
-    <cache_load_all>N</cache_load_all>
-    <cache_size>0</cache_size>
-    <lookup>
-      <schema/>
-      <table>dim_cotizacion</table>
-      <orderby/>
-      <fail_on_multiple>N</fail_on_multiple>
-      <eat_row_on_failure>N</eat_row_on_failure>
-      <key>
-        <name>ven_fecha_compra</name>
-        <field>fecha_cotizacion</field>
-        <condition>=</condition>
-        <name2/>
-      </key>
-      <value>
-        <name>id</name>
-        <rename>ID_COTIZACION</rename>
-        <default/>
-        <type>Number</type>
-      </value>
-    </lookup>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>336</xloc>
-      <yloc>80</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name> lookup DIM_FUENTE_VENTA</name>
-    <type>DBLookup</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <connection>DataMart</connection>
-    <cache>N</cache>
-    <cache_load_all>N</cache_load_all>
-    <cache_size>0</cache_size>
-    <lookup>
-      <schema/>
-      <table>dim_fuente_venta</table>
-      <orderby/>
-      <fail_on_multiple>N</fail_on_multiple>
-      <eat_row_on_failure>N</eat_row_on_failure>
-      <key>
-        <name>ven_fk_fuenteventa</name>
-        <field>id</field>
-        <condition>=</condition>
-        <name2/>
-      </key>
-      <value>
-        <name>id</name>
-        <rename>ID_FUENTE_VENTA</rename>
-        <default/>
-        <type>Number</type>
-      </value>
-    </lookup>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>336</xloc>
-      <yloc>176</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>lookup DIM_CLIENTE</name>
-    <type>DBLookup</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <connection>DataMart</connection>
-    <cache>N</cache>
-    <cache_load_all>N</cache_load_all>
-    <cache_size>0</cache_size>
-    <lookup>
-      <schema/>
-      <table>dim_cliente</table>
-      <orderby/>
-      <fail_on_multiple>N</fail_on_multiple>
-      <eat_row_on_failure>N</eat_row_on_failure>
-      <key>
-        <name>codigo_identificacion</name>
-        <field>codigo_identificacion</field>
-        <condition>=</condition>
-        <name2/>
-      </key>
-      <value>
-        <name>id</name>
-        <rename>ID_CLIENTE</rename>
-        <default/>
-        <type>Number</type>
-      </value>
-    </lookup>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>496</xloc>
-      <yloc>176</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Concat rif cedula</name>
-    <type>ConcatFields</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <separator/>
-    <enclosure>"</enclosure>
-    <enclosure_forced>N</enclosure_forced>
-    <enclosure_fix_disabled>N</enclosure_fix_disabled>
-    <header>N</header>
-    <footer>N</footer>
-    <format>DOS</format>
-    <compression>None</compression>
-    <encoding/>
-    <endedLine/>
-    <fileNameInField>N</fileNameInField>
-    <fileNameField/>
-    <create_parent_folder>Y</create_parent_folder>
-    <file>
-      <name>file</name>
-      <servlet_output>N</servlet_output>
-      <do_not_open_new_file_init>N</do_not_open_new_file_init>
-      <extention>txt</extention>
-      <append>N</append>
-      <split>N</split>
-      <haspartno>N</haspartno>
-      <add_date>N</add_date>
-      <add_time>N</add_time>
-      <SpecifyFormat>N</SpecifyFormat>
-      <date_time_format/>
-      <add_to_result_filenames>Y</add_to_result_filenames>
-      <pad>N</pad>
-      <fast_dump>N</fast_dump>
-      <splitevery>0</splitevery>
-    </file>
-    <fields>
-      <field>
-        <name>cedula</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <trim_type>none</trim_type>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-      <field>
-        <name>rif</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <trim_type>none</trim_type>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-    </fields>
-    <ConcatFields>
-      <targetFieldName>codigo_identificacion</targetFieldName>
-      <targetFieldLength>0</targetFieldLength>
-      <removeSelectedFields>N</removeSelectedFields>
-    </ConcatFields>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>192</xloc>
-      <yloc>176</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>lookup DIM_PRODUCTO</name>
-    <type>DBLookup</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <connection>DataMart</connection>
-    <cache>N</cache>
-    <cache_load_all>N</cache_load_all>
-    <cache_size>0</cache_size>
-    <lookup>
-      <schema/>
-      <table>dim_producto</table>
-      <orderby/>
-      <fail_on_multiple>N</fail_on_multiple>
-      <eat_row_on_failure>N</eat_row_on_failure>
-      <key>
-        <name>codigo_producto</name>
-        <field>codigo</field>
-        <condition>=</condition>
-        <name2/>
-      </key>
-      <value>
-        <name>id</name>
-        <rename>ID_PRODUCTO</rename>
-        <default/>
-        <type>Number</type>
-      </value>
-    </lookup>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>496</xloc>
-      <yloc>80</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>lookup DIM_PRESUPUESTO</name>
-    <type>DBLookup</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <connection>DataMart</connection>
-    <cache>N</cache>
-    <cache_load_all>N</cache_load_all>
-    <cache_size>0</cache_size>
-    <lookup>
-      <schema/>
-      <table>dim_presupuesto</table>
-      <orderby/>
-      <fail_on_multiple>N</fail_on_multiple>
-      <eat_row_on_failure>N</eat_row_on_failure>
-      <key>
-        <name>ven_fk_presupuesto</name>
-        <field>id</field>
-        <condition>=</condition>
-        <name2/>
-      </key>
-      <value>
-        <name>id</name>
-        <rename>ID_PRESUPUESTO</rename>
-        <default/>
-        <type>Number</type>
-      </value>
-    </lookup>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>656</xloc>
-      <yloc>80</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
     <name>Select values 2</name>
     <type>SelectValues</type>
     <description/>
@@ -1406,99 +1245,75 @@ WHERE v.id = av.art_ven_fk_venta and ca.id = av.art_ven_fk_codigoarticulo
     <fields>
       <field>
         <name>ID_VENTA</name>
-        <rename/>
       </field>
       <field>
         <name>ID_TIME</name>
-        <rename/>
       </field>
       <field>
         <name>ID_CLIENTE</name>
-        <rename/>
       </field>
       <field>
         <name>ID_PRODUCTO</name>
-        <rename/>
       </field>
       <field>
         <name>ID_COTIZACION</name>
-        <rename/>
       </field>
       <field>
         <name>ID_FUENTE_VENTA</name>
-        <rename/>
       </field>
       <field>
         <name>ID_PRESUPUESTO</name>
-        <rename/>
       </field>
       <field>
         <name>ven_id</name>
-        <rename/>
       </field>
       <field>
         <name>precio_unitario</name>
-        <rename/>
       </field>
       <field>
         <name>costo_producto</name>
-        <rename/>
       </field>
       <field>
         <name>ven_fecha_compra</name>
-        <rename/>
       </field>
       <field>
         <name>ven_monto_total_sin_iva</name>
-        <rename/>
       </field>
       <field>
         <name>ven_moneda</name>
-        <rename/>
       </field>
       <field>
         <name>ven_porcentaje_descuento</name>
-        <rename/>
       </field>
       <field>
         <name>ven_eliminada</name>
-        <rename/>
       </field>
       <field>
         <name>cedula</name>
-        <rename/>
       </field>
       <field>
         <name>rif</name>
-        <rename/>
       </field>
       <field>
         <name>ven_fk_cliente_juridico</name>
-        <rename/>
       </field>
       <field>
         <name>ven_fk_cliente_natural</name>
-        <rename/>
       </field>
       <field>
         <name>ven_fk_fuenteventa</name>
-        <rename/>
       </field>
       <field>
         <name>ven_fk_presupuesto</name>
-        <rename/>
       </field>
       <field>
         <name>codigo_producto</name>
-        <rename/>
       </field>
       <field>
         <name>id_producto_bd_relacional</name>
-        <rename/>
       </field>
       <field>
         <name>codigo_identificacion</name>
-        <rename/>
       </field>
       <select_unspecified>N</select_unspecified>
       <remove>
@@ -1566,197 +1381,6 @@ WHERE v.id = av.art_ven_fk_venta and ca.id = av.art_ven_fk_codigoarticulo
     </GUI>
   </step>
   <step>
-    <name>Add sequence</name>
-    <type>Sequence</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <valuename>ID_VENTA</valuename>
-    <use_database>N</use_database>
-    <connection/>
-    <schema/>
-    <seqname>SEQ_</seqname>
-    <use_counter>Y</use_counter>
-    <counter_name/>
-    <start_at>1</start_at>
-    <increment_by>1</increment_by>
-    <max_value>999999999</max_value>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>656</xloc>
-      <yloc>176</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Calculator</name>
-    <type>Calculator</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <calculation>
-      <field_name>precio_unitario_bolivar</field_name>
-      <calc_type>CONSTANT</calc_type>
-      <field_a>0</field_a>
-      <field_b/>
-      <field_c/>
-      <value_type>BigNumber</value_type>
-      <value_length>-1</value_length>
-      <value_precision>-1</value_precision>
-      <remove>N</remove>
-      <conversion_mask>#,##0.###</conversion_mask>
-      <decimal_symbol/>
-      <grouping_symbol/>
-      <currency_symbol/>
-    </calculation>
-    <calculation>
-      <field_name>porcentaje_iva</field_name>
-      <calc_type>CONSTANT</calc_type>
-      <field_a>12</field_a>
-      <field_b/>
-      <field_c/>
-      <value_type>Number</value_type>
-      <value_length>-1</value_length>
-      <value_precision>-1</value_precision>
-      <remove>N</remove>
-      <conversion_mask>#</conversion_mask>
-      <decimal_symbol/>
-      <grouping_symbol/>
-      <currency_symbol/>
-    </calculation>
-    <calculation>
-      <field_name>valor_iva_bolivar</field_name>
-      <calc_type>CONSTANT</calc_type>
-      <field_a>0</field_a>
-      <field_b/>
-      <field_c/>
-      <value_type>BigNumber</value_type>
-      <value_length>-1</value_length>
-      <value_precision>-1</value_precision>
-      <remove>N</remove>
-      <conversion_mask>#,##0.###</conversion_mask>
-      <decimal_symbol/>
-      <grouping_symbol/>
-      <currency_symbol/>
-    </calculation>
-    <calculation>
-      <field_name>subtotal_bolivar</field_name>
-      <calc_type>CONSTANT</calc_type>
-      <field_a>0</field_a>
-      <field_b/>
-      <field_c/>
-      <value_type>BigNumber</value_type>
-      <value_length>-1</value_length>
-      <value_precision>-1</value_precision>
-      <remove>N</remove>
-      <conversion_mask>#,##0.###</conversion_mask>
-      <decimal_symbol/>
-      <grouping_symbol/>
-      <currency_symbol/>
-    </calculation>
-    <calculation>
-      <field_name>total_bolivar</field_name>
-      <calc_type>CONSTANT</calc_type>
-      <field_a>0</field_a>
-      <field_b/>
-      <field_c/>
-      <value_type>BigNumber</value_type>
-      <value_length>-1</value_length>
-      <value_precision>-1</value_precision>
-      <remove>N</remove>
-      <conversion_mask>#,##0.###</conversion_mask>
-      <decimal_symbol/>
-      <grouping_symbol/>
-      <currency_symbol/>
-    </calculation>
-    <calculation>
-      <field_name>costo_producto_bolivar</field_name>
-      <calc_type>CONSTANT</calc_type>
-      <field_a>0</field_a>
-      <field_b/>
-      <field_c/>
-      <value_type>BigNumber</value_type>
-      <value_length>-1</value_length>
-      <value_precision>-1</value_precision>
-      <remove>N</remove>
-      <conversion_mask>#,##0.###</conversion_mask>
-      <decimal_symbol/>
-      <grouping_symbol/>
-      <currency_symbol/>
-    </calculation>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>784</xloc>
-      <yloc>80</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Table output</name>
-    <type>TableOutput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <connection>DataMart</connection>
-    <schema>public</schema>
-    <table>fact_venta</table>
-    <commit>1000</commit>
-    <truncate>N</truncate>
-    <ignore_errors>N</ignore_errors>
-    <use_batch>Y</use_batch>
-    <specify_fields>N</specify_fields>
-    <partitioning_enabled>N</partitioning_enabled>
-    <partitioning_field/>
-    <partitioning_daily>N</partitioning_daily>
-    <partitioning_monthly>Y</partitioning_monthly>
-    <tablename_in_field>N</tablename_in_field>
-    <tablename_field/>
-    <tablename_in_table>Y</tablename_in_table>
-    <return_keys>N</return_keys>
-    <return_field/>
-    <fields>
-    </fields>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>896</xloc>
-      <yloc>176</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
     <name>Select values 3</name>
     <type>SelectValues</type>
     <description/>
@@ -1770,79 +1394,60 @@ WHERE v.id = av.art_ven_fk_venta and ca.id = av.art_ven_fk_codigoarticulo
     <fields>
       <field>
         <name>ID_VENTA</name>
-        <rename/>
       </field>
       <field>
         <name>ID_TIME</name>
-        <rename/>
       </field>
       <field>
         <name>ID_CLIENTE</name>
-        <rename/>
       </field>
       <field>
         <name>ID_PRODUCTO</name>
-        <rename/>
       </field>
       <field>
         <name>ID_COTIZACION</name>
-        <rename/>
       </field>
       <field>
         <name>ID_FUENTE_VENTA</name>
-        <rename/>
       </field>
       <field>
         <name>ID_PRESUPUESTO</name>
-        <rename/>
       </field>
       <field>
         <name>numero_venta</name>
-        <rename/>
       </field>
       <field>
         <name>precio_unitario</name>
-        <rename/>
       </field>
       <field>
         <name>costo_producto</name>
-        <rename/>
       </field>
       <field>
         <name>ven_monto_total_sin_iva</name>
-        <rename/>
       </field>
       <field>
         <name>ven_porcentaje_descuento</name>
-        <rename/>
       </field>
       <field>
         <name>ven_eliminada</name>
-        <rename/>
       </field>
       <field>
         <name>precio_unitario_bolivar</name>
-        <rename/>
       </field>
       <field>
         <name>porcentaje_iva</name>
-        <rename/>
       </field>
       <field>
         <name>valor_iva_bolivar</name>
-        <rename/>
       </field>
       <field>
         <name>subtotal_bolivar</name>
-        <rename/>
       </field>
       <field>
         <name>total_bolivar</name>
-        <rename/>
       </field>
       <field>
         <name>costo_producto_bolivar</name>
-        <rename/>
       </field>
       <select_unspecified>N</select_unspecified>
       <meta>
@@ -2178,6 +1783,342 @@ WHERE v.id = av.art_ven_fk_venta and ca.id = av.art_ven_fk_codigoarticulo
     </remotesteps>
     <GUI>
       <xloc>896</xloc>
+      <yloc>80</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Table input venta</name>
+    <type>TableInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>prueba</connection>
+    <sql>SELECT
+
+  v.id as ven_id, v.ven_fecha_compra, v.ven_monto_total, v.ven_moneda, v.ven_porcentaje_descuento, v.ven_eliminada
+, (select cli_nat_identificador||'-'||cli_nat_cedula from cliente_natural where id = v.ven_fk_cliente_natural) as cedula
+, (select cli_jur_identificador||'-'||cli_jur_rif from cliente_juridico where id = v.ven_fk_cliente_juridico) as rif
+, v.ven_fk_cliente_juridico , v.ven_fk_cliente_natural, v.ven_fk_fuenteventa, v.ven_fk_presupuesto
+, cpc.cod_pc_codigo as codigo_producto, cpc.id as id_producto, pcv.precio_unitario, cpc.cod_pc_costo as costo_producto
+
+
+FROM venta v, pc_venta pcv, codigopc cpc
+WHERE v.id = pcv.pc_ven_fk_venta and cpc.id = pcv.pc_ven_fk_codigopc
+
+UNION
+
+SELECT
+
+  v.id as ven_id, v.ven_fecha_compra, v.ven_monto_total, v.ven_moneda, v.ven_porcentaje_descuento, v.ven_eliminada
+, (select cli_nat_identificador||'-'||cli_nat_cedula from cliente_natural where id = v.ven_fk_cliente_natural) as cedula
+, (select cli_jur_identificador||'-'||cli_jur_rif from cliente_juridico where id = v.ven_fk_cliente_juridico) as rif
+, v.ven_fk_cliente_juridico , v.ven_fk_cliente_natural, v.ven_fk_fuenteventa, v.ven_fk_presupuesto
+, ca.cod_art_codigo as codigo_producto, ca.id as id_producto, av.precio_unitario, ca.cod_art_costo as costo_producto
+
+
+FROM venta v, articulo_venta av, codigoarticulo ca
+WHERE v.id = av.art_ven_fk_venta and ca.id = av.art_ven_fk_codigoarticulo
+
+
+</sql>
+    <limit>0</limit>
+    <lookup/>
+    <execute_each_row>N</execute_each_row>
+    <variables_active>N</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>48</xloc>
+      <yloc>80</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Table output</name>
+    <type>TableOutput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>DataMart</connection>
+    <schema>public</schema>
+    <table>fact_venta</table>
+    <commit>1000</commit>
+    <truncate>N</truncate>
+    <ignore_errors>N</ignore_errors>
+    <use_batch>Y</use_batch>
+    <specify_fields>N</specify_fields>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field/>
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_field/>
+    <tablename_in_table>Y</tablename_in_table>
+    <return_keys>N</return_keys>
+    <return_field/>
+    <fields>
+    </fields>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>896</xloc>
+      <yloc>272</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>lookup DIM_CLIENTE</name>
+    <type>DBLookup</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>DataMart</connection>
+    <cache>N</cache>
+    <cache_load_all>N</cache_load_all>
+    <cache_size>0</cache_size>
+    <lookup>
+      <schema/>
+      <table>dim_cliente</table>
+      <orderby/>
+      <fail_on_multiple>N</fail_on_multiple>
+      <eat_row_on_failure>N</eat_row_on_failure>
+      <key>
+        <name>codigo_identificacion</name>
+        <field>codigo_identificacion</field>
+        <condition>=</condition>
+        <name2/>
+      </key>
+      <value>
+        <name>id</name>
+        <rename>ID_CLIENTE</rename>
+        <default/>
+        <type>Number</type>
+      </value>
+    </lookup>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>496</xloc>
+      <yloc>176</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>lookup DIM_COTIZACION</name>
+    <type>DBLookup</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>DataMart</connection>
+    <cache>N</cache>
+    <cache_load_all>N</cache_load_all>
+    <cache_size>0</cache_size>
+    <lookup>
+      <schema/>
+      <table>dim_cotizacion</table>
+      <orderby/>
+      <fail_on_multiple>N</fail_on_multiple>
+      <eat_row_on_failure>N</eat_row_on_failure>
+      <key>
+        <name>ven_fecha_compra</name>
+        <field>fecha_cotizacion</field>
+        <condition>=</condition>
+        <name2/>
+      </key>
+      <value>
+        <name>id</name>
+        <rename>ID_COTIZACION</rename>
+        <default/>
+        <type>Number</type>
+      </value>
+    </lookup>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>336</xloc>
+      <yloc>80</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>lookup DIM_PRESUPUESTO</name>
+    <type>DBLookup</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>DataMart</connection>
+    <cache>N</cache>
+    <cache_load_all>N</cache_load_all>
+    <cache_size>0</cache_size>
+    <lookup>
+      <schema/>
+      <table>dim_presupuesto</table>
+      <orderby/>
+      <fail_on_multiple>N</fail_on_multiple>
+      <eat_row_on_failure>N</eat_row_on_failure>
+      <key>
+        <name>ven_fk_presupuesto</name>
+        <field>id</field>
+        <condition>=</condition>
+        <name2/>
+      </key>
+      <value>
+        <name>id</name>
+        <rename>ID_PRESUPUESTO</rename>
+        <default/>
+        <type>Number</type>
+      </value>
+    </lookup>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>656</xloc>
+      <yloc>80</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>lookup DIM_PRODUCTO</name>
+    <type>DBLookup</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>DataMart</connection>
+    <cache>N</cache>
+    <cache_load_all>N</cache_load_all>
+    <cache_size>0</cache_size>
+    <lookup>
+      <schema/>
+      <table>dim_producto</table>
+      <orderby/>
+      <fail_on_multiple>N</fail_on_multiple>
+      <eat_row_on_failure>N</eat_row_on_failure>
+      <key>
+        <name>codigo_producto</name>
+        <field>codigo</field>
+        <condition>=</condition>
+        <name2/>
+      </key>
+      <value>
+        <name>id</name>
+        <rename>ID_PRODUCTO</rename>
+        <default/>
+        <type>Number</type>
+      </value>
+    </lookup>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>496</xloc>
+      <yloc>80</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>lookup DIM_TIME</name>
+    <type>DBLookup</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>DataMart</connection>
+    <cache>N</cache>
+    <cache_load_all>N</cache_load_all>
+    <cache_size>0</cache_size>
+    <lookup>
+      <schema/>
+      <table>dim_time</table>
+      <orderby/>
+      <fail_on_multiple>N</fail_on_multiple>
+      <eat_row_on_failure>N</eat_row_on_failure>
+      <key>
+        <name>ven_fecha_compra</name>
+        <field>date_id</field>
+        <condition>=</condition>
+        <name2/>
+      </key>
+      <value>
+        <name>day_secuence</name>
+        <rename>ID_TIME</rename>
+        <default/>
+        <type>Number</type>
+      </value>
+    </lookup>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>192</xloc>
       <yloc>80</yloc>
       <draw>Y</draw>
     </GUI>
