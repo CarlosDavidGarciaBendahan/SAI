@@ -1,0 +1,21 @@
+
+
+ESTRUCTURA BASICA DE UN CODIGO   pg/SQL
+
+CREATE FUNCTION function_name(p1 type, p2 type)
+ RETURNS type AS
+BEGIN
+ -- logic
+END;
+LANGUAGE language_name;
+
+
+
+
+
+CREATE FUNCTION insert_into_table_cliente(nombre varchar(30),apellido varchar(30), cedula bigint)
+ RETURNS void AS $$
+BEGIN
+		insert into cliente(nombre,apellido,cedula) values(nombre,apellido,cedula);
+END; $$
+LANGUAGE PLPGSQL;
