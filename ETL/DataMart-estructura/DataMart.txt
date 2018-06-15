@@ -183,5 +183,3 @@ CREATE TABLE "public".ingresos_mes_proximo
 , fecha_prox 				DATE
 , id_time 					DOUBLE PRECISION
 );
-
-	ALTER TABLE ingresos_mes_proximo ADD CONSTRAINT ingresos_mes_proximo_FK_ID_TIME 	FOREIGN KEY (ID_TIME) 	REFERENCES DIM_TIME (DAY_SECUENCE);
