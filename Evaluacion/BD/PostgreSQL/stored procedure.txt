@@ -44,3 +44,28 @@ select update_table_cliente('carlos2','garcia2',20748172);
 select update_table_cliente('carlos3','garcia3',20748173);
 select update_table_cliente('carlos4','garcia4',20748174);
 /*		update clientes*/
+
+
+
+/*		eliminar clientes*/
+CREATE FUNCTION delete_table_cliente(ci bigint)
+RETURNS void AS $$
+BEGIN
+		delete from cliente where cedula = ci;
+		
+END; $$
+LANGUAGE PLPGSQL;
+
+
+
+/*				SELESCT 		*/
+CREATE OR REPLACE FUNCTION select_table_cliente
+   ( IN ci bigint, OUT nom varchar(30), OUT ape varchar(30),OUT i integer ) RETURNS setof record AS
+$BODY$
+begin
+ 
+   return query select  nombre, apellido,id from cliente where cedula = ci;
+ 
+end;
+$BODY$
+LANGUAGE PLPGSQL;
