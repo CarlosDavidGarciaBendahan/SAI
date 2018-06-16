@@ -11,14 +11,52 @@ LANGUAGE language_name;
 
 
 
-/*			INSERT 			*/
-
-CREATE FUNCTION insert_into_table_cliente(nombre varchar(30),apellido varchar(30), cedula bigint)
+/*******************************************			INSERT 			********************************************/
+/******************    CLIENTE    **********************/
+CREATE OR REPLACE FUNCTION insert_into_table_cliente(nombre varchar(30),apellido varchar(30), cedula bigint)
  RETURNS void AS $$
 BEGIN
 		insert into cliente(nombre,apellido,cedula) values(nombre,apellido,cedula);
 END; $$
 LANGUAGE PLPGSQL;
+
+/******************    TIENDA    **********************/
+CREATE OR REPLACE FUNCTION insert_into_table_tienda(nombre varchar(30),rif varchar(15))
+ RETURNS void AS $$
+BEGIN
+		insert into tienda(nombre,rif) values(nombre,rif);
+END; $$
+LANGUAGE PLPGSQL;
+
+/******************    PRODUCTO    **********************/
+CREATE OR REPLACE FUNCTION insert_into_table_producto(descripcion varchar(30),codigo varchar(30), precio bigint)
+ RETURNS void AS $$
+BEGIN
+		insert into producto(descripcion,codigo,precio) values(descripcion,codigo,precio);
+END; $$
+LANGUAGE PLPGSQL;
+
+/******************    COMPRA    **********************/
+CREATE OR REPLACE FUNCTION insert_into_table_compra(observacion varchar(30),fecha date, ci bigint)
+ RETURNS void AS $$
+BEGIN
+		insert into compra(observacion,fecha,fk_cliente) values(observacion,fecha,(select id from cliente where cedula = ci));
+END; $$
+LANGUAGE PLPGSQL;
+
+/******************    DETALLE    **********************/
+CREATE OR REPLACE FUNCTION insert_into_table_detalle(cantidad bigint,fk_compra int,cod_producto varchar(30))
+ RETURNS void AS $$
+BEGIN
+		insert into detalle(precio,cantidad,fk_compra,fk_producto) values((select precio from producto where codigo = cod_producto),cantidad,fk_compra,(select id from producto where codigo = cod_producto));
+END; $$
+LANGUAGE PLPGSQL;
+/*******************************************			INSERT 			********************************************/
+
+
+
+
+
 
 /*		DATOS INSERTADOS EN CLIENTE*/
 select insert_into_table_cliente('carlos','garcia',20748171);
@@ -26,10 +64,14 @@ select insert_into_table_cliente('carlos','garcia',20748172);
 select insert_into_table_cliente('carlos','garcia',20748173);
 select insert_into_table_cliente('carlos','garcia',20748174);
 /*		FIN 	DATOS INSERTADOS EN CLIENTE*/
+select insert_into_table_tienda('tienda de mascotas','J-10101010');
+select insert_into_table_producto('producto de limpieza','PL01',111);
+select insert_into_table_compra('no hay observaciones','2018-6-16',20748171);
+select insert_into_table_detalle(5,1,'PL01');
 
 
-
-/*			UPDATE 			*/
+/***************************************			UPDATE 			***********************************/
+/************************       CLIENTE     *******************/
 CREATE FUNCTION update_table_cliente(nom varchar(30),ape varchar(30), ci bigint)
 RETURNS void AS $$
 BEGIN
@@ -38,6 +80,24 @@ BEGIN
 END; $$
 LANGUAGE PLPGSQL;
 
+/************************       TIENDA     *******************/
+CREATE FUNCTION update_table_tienda(nom varchar(30),r varchar(15))
+RETURNS void AS $$
+BEGIN
+		update tienda set nombre=nom where rif = r;
+		
+END; $$
+LANGUAGE PLPGSQL;
+/************************        PRODUCTO    *******************/
+CREATE FUNCTION update_table_producto(des varchar(30),cod varchar(30), pre bigint)
+RETURNS void AS $$
+BEGIN
+		update producto set descripcion=des,precio=pre where codigo = cod;
+		
+END; $$
+LANGUAGE PLPGSQL;
+
+/***************************************			UPDATE 			***********************************/
 /*		update clientes*/
 select update_table_cliente('carlos1','garcia1',20748171);
 select update_table_cliente('carlos2','garcia2',20748172);
@@ -46,16 +106,54 @@ select update_table_cliente('carlos4','garcia4',20748174);
 /*		update clientes*/
 
 
-
-/*		eliminar clientes*/
-CREATE FUNCTION delete_table_cliente(ci bigint)
+/*******************************************        DELETE    ***************************************/
+/***************		eliminar clientes*/
+CREATE OR REPLACE FUNCTION delete_table_cliente(ci bigint)
 RETURNS void AS $$
 BEGIN
 		delete from cliente where cedula = ci;
 		
 END; $$
 LANGUAGE PLPGSQL;
+/***************		eliminar TIENDA*/
+CREATE OR REPLACE FUNCTION delete_table_tienda(r varchar(15))
+RETURNS void AS $$
+BEGIN
+		delete from tienda where rif = r;
+		
+END; $$
+LANGUAGE PLPGSQL;
+/***************		eliminar DETALLE*/
+CREATE OR REPLACE FUNCTION delete_table_detalle(compra int)
+RETURNS void AS $$
+BEGIN
+		delete from detalle where fk_compra = compra;
+		
+END; $$
+LANGUAGE PLPGSQL;
+/***************		eliminar COMPRA*/
+CREATE OR REPLACE FUNCTION delete_table_compra(cod integer)
+RETURNS void AS $$
+BEGIN
+		delete from compra where id = cod;
+		
+END; $$
+LANGUAGE PLPGSQL;
+/***************		eliminar PRODUCTO*/
+CREATE OR REPLACE FUNCTION delete_table_producto(cod varchar(30))
+RETURNS void AS $$
+BEGIN
+		delete from producto where codigo = cod;
+		
+END; $$
+LANGUAGE PLPGSQL;
+/*******************************************        DELETE    ***************************************/
 
+
+select insert_into_table_tienda('tienda de mascotas','J-10101010');
+select insert_into_table_producto('producto de limpieza','PL01',111);
+select insert_into_table_compra('no hay observaciones','2018-6-16',20748171);
+select insert_into_table_detalle(5,1,'PL01');
 
 
 /*				SELESCT 		*/
