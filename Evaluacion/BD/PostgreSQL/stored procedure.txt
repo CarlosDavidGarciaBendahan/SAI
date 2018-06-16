@@ -69,3 +69,5 @@ begin
 end;
 $BODY$
 LANGUAGE PLPGSQL;
+
+select select_table_cliente(20748171)
