@@ -1,0 +1,70 @@
+drop table cliente;
+drop table tienda;
+drop table producto;
+drop table compra;
+drop table detalle;
+
+/* EN ORACLE NO SE MANEJE UN TIPO DE DATO AUTO INCREMENTAL COMO EN POSTGRESQL 'serial' 	
+QUE TE DEFINI LA VARIABLE COMO INT Y AUTOINCREMENTAL
+ EN MySQL TAMBIEN EXISTE UN TIPO DE DATO 'auto_increment' PARA HACER ESTO*/
+drop sequence  sec_cliente;
+drop sequence  sec_tienda;
+drop sequence  sec_producto;
+drop sequence  sec_compra;
+drop sequence  sec_detalle;
+
+
+CREATE SEQUENCE sec_cliente
+START WITH 1
+INCREMENT BY 1;
+CREATE SEQUENCE sec_tienda
+START WITH 1
+INCREMENT BY 1;
+CREATE SEQUENCE sec_producto
+START WITH 1
+INCREMENT BY 1;
+CREATE SEQUENCE sec_compra
+START WITH 1
+INCREMENT BY 1;
+CREATE SEQUENCE sec_detalle
+START WITH 1
+INCREMENT BY 1;
+
+
+CREATE TABLE cliente (
+	id 			int 		 	PRIMARY KEY,
+	nombre 		VARCHAR(30) 	NOT NULL,
+	apellido 	VARCHAR(30) 	NOT NULL,
+	cedula 		float/*bigint*/ 			NOT NULL 	UNIQUE
+);
+
+CREATE TABLE tienda (
+	id 			int 		 	PRIMARY KEY,
+	nombre 		VARCHAR(30) 	NOT NULL,
+	rif			VARCHAR(15)		NOT NULL UNIQUE
+);
+
+
+
+CREATE TABLE producto (
+	id 					int 		 	PRIMARY KEY,
+	descripcion 		VARCHAR(30) 	NOT NULL,
+	precio 				float/*bigint*/ 			NOT NULL,
+	codigo				VARCHAR(30)		NOT NULL 	UNIQUE
+);
+
+CREATE TABLE compra (
+	id 					int 		 	PRIMARY KEY,
+	observacion 		VARCHAR(30) 	NOT NULL,
+	fecha				DATE			NOT NULL,
+	fk_cliente			INT 			NOT NULL	/* FK  */		
+);
+
+
+CREATE TABLE detalle (
+	id 					int 		 	PRIMARY KEY,
+	cantidad			float/*bigint*/ 			NOT NULL,
+	precio 				float/*bigint*/ 			NOT NULL,
+	fk_compra			INT 			NOT NULL,   /* fk */
+	fk_producto			INT 			NOT NULL	/* fk */
+);

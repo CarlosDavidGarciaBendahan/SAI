@@ -31,67 +31,70 @@
 				@endif
 				{!! Form::open(['route' => ['codigoPC.update',$codigoPC], 'method' => 'PUT']) !!}
 					
-						
-						<div class="form-group ">
-							{!! Form::label('cod_pc_fk_producto_computador','Descripcion del producto') !!}
-							{!! Form::text('codigo',$codigoPC->Producto_Computador->pro_com_descripcion,['class'=> 'form-control', 'placeholder'=>'B208802', 'required', 'readonly'=>'true']) !!}
-							{!! Form::text('cod_pc_fk_producto_computador',$codigoPC->Producto_Computador->id,['class'=> 'form-control hidden', 'readonly'=>'true', 'required']) !!}
-						</div>
-						<div class="form-group ">
+						<div class="row">
+							<div class="col-sm-6">
+								<div class="form-group ">
+									{!! Form::label('cod_pc_fk_producto_computador','Descripcion del producto') !!}
+									{!! Form::text('codigo',$codigoPC->Producto_Computador->pro_com_descripcion,['class'=> 'form-control', 'placeholder'=>'B208802', 'required', 'readonly'=>'true']) !!}
+									{!! Form::text('cod_pc_fk_producto_computador',$codigoPC->Producto_Computador->id,['class'=> 'form-control hidden', 'readonly'=>'true', 'required']) !!}
+								</div>
+								<div class="form-group ">
 
-							{!! Form::label('cod_pc_fk_producto_computador','Codigo general del producto') !!}
-							{!! Form::text('codigo',$codigoPC->Producto_Computador->pro_com_codigo,['class'=> 'form-control', 'placeholder'=>'B208802', 'required', 'readonly'=>'true']) !!}
-						</div>
+									{!! Form::label('cod_pc_fk_producto_computador','Codigo general del producto') !!}
+									{!! Form::text('codigo',$codigoPC->Producto_Computador->pro_com_codigo,['class'=> 'form-control', 'placeholder'=>'B208802', 'required', 'readonly'=>'true']) !!}
+								</div>
 
-						<div class="form-group ">
+								<div class="form-group ">
 
-							{!! Form::label('cod_pc_fk_producto_computador','Marca') !!}
-							{!! Form::text('codigo',$codigoPC->producto_computador->modelo->marca->mar_marca ,['class'=> 'form-control', 'placeholder'=>'B208802', 'required', 'readonly'=>'true']) !!}
-						</div>
+									{!! Form::label('cod_pc_fk_producto_computador','Marca') !!}
+									{!! Form::text('codigo',$codigoPC->producto_computador->modelo->marca->mar_marca ,['class'=> 'form-control', 'placeholder'=>'B208802', 'required', 'readonly'=>'true']) !!}
+								</div>
 
-						<div class="form-group ">
+								<div class="form-group ">
 
-							{!! Form::label('cod_pc_fk_producto_computador','Modelo') !!}
-							{!! Form::text('codigo',$codigoPC->producto_computador->modelo->mod_modelo ,['class'=> 'form-control', 'placeholder'=>'B208802', 'required', 'readonly'=>'true']) !!}
-						</div>
+									{!! Form::label('cod_pc_fk_producto_computador','Modelo') !!}
+									{!! Form::text('codigo',$codigoPC->producto_computador->modelo->mod_modelo ,['class'=> 'form-control', 'placeholder'=>'B208802', 'required', 'readonly'=>'true']) !!}
+								</div>
 
-						
-						<div class="form-group ">
+								
+								<div class="form-group ">
 
-							{!! Form::label('cod_pc_fk_producto_computador','Oficina') !!}
-							{!! Form::text('codigo',$codigoPC->producto_computador->sector->oficina->ofi_direccion ,['class'=> 'form-control', 'placeholder'=>'B208802', 'required', 'readonly'=>'true']) !!}
-						</div>
+									{!! Form::label('cod_pc_fk_producto_computador','Oficina') !!}
+									{!! Form::text('codigo',$codigoPC->producto_computador->sector->oficina->ofi_direccion ,['class'=> 'form-control', 'placeholder'=>'B208802', 'required', 'readonly'=>'true']) !!}
+								</div>
 
-						<div class="form-group ">
+								<div class="form-group ">
 
-							{!! Form::label('cod_pc_fk_producto_computador','Sector') !!}
-							{!! Form::text('codigo',$codigoPC->producto_computador->sector->sec_sector ,['class'=> 'form-control', 'placeholder'=>'B208802', 'required', 'readonly'=>'true']) !!}
-						</div>
+									{!! Form::label('cod_pc_fk_producto_computador','Sector') !!}
+									{!! Form::text('codigo',$codigoPC->producto_computador->sector->sec_sector ,['class'=> 'form-control', 'placeholder'=>'B208802', 'required', 'readonly'=>'true']) !!}
+								</div>
 
 
 
-						<div class="form-group ">
-							{!! Form::label('cod_pc','Código especifico') !!}
-							{!! Form::text('cod_pc_codigo',$codigoPC->cod_pc_codigo,['class'=> 'form-control', 'placeholder'=>'B208802', 'required', 'readonly'=>'true']) !!}
-							{!! Form::text('id',$codigoPC->id,['class'=> 'form-control hidden', 'readonly'=>'true', 'required']) !!}
-						</div>
+								<div class="form-group ">
+									{!! Form::label('cod_pc','Código especifico') !!}
+									{!! Form::text('cod_pc_codigo',$codigoPC->cod_pc_codigo,['class'=> 'form-control', 'placeholder'=>'B208802', 'required', 'readonly'=>'true']) !!}
+									{!! Form::text('id',$codigoPC->id,['class'=> 'form-control hidden', 'readonly'=>'true', 'required']) !!}
+								</div>
+							</div>
+							<div class="col-sm-6">
+								
+								<div class="form-group ">
+									{!! Form::label('cod_pc_fk_lote','Lote del computador') !!}
+									{!! Form::select('cod_pc_fk_lote',$lote, $codigoPC->lote->id, ['class'=>'form-control', 'placeholder'=>'', 'required'] ) !!}
+								</div>
 
-						<div class="form-group ">
-							{!! Form::label('cod_pc_fk_lote','Lote del computador') !!}
-							{!! Form::select('cod_pc_fk_lote',$lote, $codigoPC->lote->id, ['class'=>'form-control', 'placeholder'=>'', 'required'] ) !!}
-						</div>
+								<div class="form-group ">
+									{!! Form::label('cod_pc_fk_lote','Estado del producto') !!}
+									{!! Form::select('cod_pc_estado',['B' => 'Bueno','M'=>'Malo'], $codigoPC->cod_pc_estado, ['class'=>'form-control', 'placeholder'=>'', 'required'] ) !!}
+								</div>
 
-						<div class="form-group ">
-							{!! Form::label('cod_pc_fk_lote','Estado del producto') !!}
-							{!! Form::select('cod_pc_estado',['B' => 'Bueno','M'=>'Malo'], $codigoPC->cod_pc_estado, ['class'=>'form-control', 'placeholder'=>'', 'required'] ) !!}
-						</div>
+								<div class="form-group ">
+									{!! Form::label('pro_com_precio','Costo en dolares') !!}
+									{!! Form::text('cod_pc_costo',$codigoPC->cod_pc_costo,['class'=> 'form-control', 'title'=>'Solo números de 0-9,max: 10 con 2 decimales', 'placeholder'=>'1542.25', 'required', 'maxlength' => '10', 'pattern'=>'[0-9]+[.]?[0-9]?[0-9]?']) !!}
+								</div>
 
-						<div class="form-group ">
-							{!! Form::label('pro_com_precio','Costo en dolares') !!}
-							{!! Form::text('cod_pc_costo',$codigoPC->cod_pc_costo,['class'=> 'form-control', 'title'=>'Solo números de 0-9,max: 10 con 2 decimales', 'placeholder'=>'1542.25', 'required', 'maxlength' => '10', 'pattern'=>'[0-9]+[.]?[0-9]?[0-9]?']) !!}
-						</div>
-						
-				<div class="form-group ">
+								<div class="form-group ">
 					{!! Form::label('cod_pc_fk_lote','Listado de los articulos') !!}
 				</div>		
 				<table class="table table-inverse">
@@ -158,6 +161,12 @@
 
 					</table>
 					{{ $codigosArticulo->links() }}
+							</div>
+						</div>
+						
+
+						
+				
 						
 						<!--
 						<div class="form-group">

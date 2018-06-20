@@ -1,0 +1,110 @@
+/*                               AGREGAR                */
+
+DROP PROCEDURE IF EXISTS agregar_cliente;
+DELIMITER  $$
+CREATE PROCEDURE agregar_cliente(
+	IN _nom VARCHAR(30),
+	IN _ape VARCHAR(30),
+	IN _ci  INTEGER(9) )
+BEGIN
+	INSERT INTO cliente (nombre,apellido,cedula) VALUES (_nom,_ape,_ci);
+END $$
+DELIMITER  ;
+
+
+DROP PROCEDURE IF EXISTS agregar_tienda;
+DELIMITER  $$
+CREATE PROCEDURE agregar_tienda(
+	IN nom 	VARCHAR(30),
+	IN r 	VARCHAR(30))
+BEGIN
+	INSERT INTO tienda (nombre,rif) VALUES (nom,r);
+END $$
+DELIMITER  ;
+
+
+DROP PROCEDURE IF EXISTS agregar_producto;
+DELIMITER  $$
+CREATE PROCEDURE agregar_producto(
+	IN des VARCHAR(30),
+	IN pre DOUBLE,
+	IN cod VARCHAR(30) )
+BEGIN
+	INSERT INTO producto (descripcion,precio,codigo) VALUES (des,pre,cod);
+END $$
+DELIMITER  ;
+
+DROP PROCEDURE IF EXISTS agregar_compra;
+DELIMITER  $$
+CREATE PROCEDURE agregar_compra(
+	IN obs VARCHAR(30),
+	IN f date,
+	IN id_cli  INTEGER(9) )
+BEGIN
+	INSERT INTO compra (observacion,fecha,fk_cliente) VALUES (obs,f,id_cli);
+END $$
+DELIMITER  ;
+
+
+DROP PROCEDURE IF EXISTS agregar_detalle;
+DELIMITER  $$
+CREATE PROCEDURE agregar_detalle(
+	IN can  DOUBLE,
+	IN pre 	DOUBLE,
+	IN id_com  integer,
+	IN id_pro  INTEGER(9) )
+BEGIN
+	INSERT INTO detalle (cantidad,precio,fk_compra,fk_producto) VALUES (can,pre,id_com,id_pro);
+END $$
+DELIMITER  ;
+
+
+
+
+/*                               ELIMINAR                 */
+DROP PROCEDURE IF EXISTS eliminar_cliente;
+DELIMITER  $$
+CREATE PROCEDURE eliminar_cliente(IN _ci  INTEGER(9) )
+BEGIN
+	delete from cliente where cedula = _ci;
+END $$
+DELIMITER  ;
+
+
+DROP PROCEDURE IF EXISTS eliminar_tienda;
+DELIMITER  $$
+CREATE PROCEDURE eliminar_tienda(IN r 	VARCHAR(30))
+BEGIN
+	delete from tienda where rif = r;
+END $$
+DELIMITER  ;
+
+
+DROP PROCEDURE IF EXISTS eliminar_producto;
+DELIMITER  $$
+CREATE PROCEDURE eliminar_producto(	IN cod VARCHAR(30) )
+BEGIN
+	delete from producto where codigo = cod;
+END $$
+DELIMITER  ;
+
+DROP PROCEDURE IF EXISTS eliminar_compra;
+DELIMITER  $$
+CREATE PROCEDURE eliminar_compra(IN i integer,	IN id_cli  INTEGER(9) )
+BEGIN
+	delete from compra where id = i and fk_cliente = id_cli;
+END $$
+DELIMITER  ;
+
+
+DROP PROCEDURE IF EXISTS eliminar_detalle;
+DELIMITER  $$
+CREATE PROCEDURE eliminar_detalle(IN id_com  integer )
+BEGIN
+	delete from detalle where fk_compra = id_com;
+END $$
+DELIMITER  ;
+
+
+
+/*                               MODIFICAR                */

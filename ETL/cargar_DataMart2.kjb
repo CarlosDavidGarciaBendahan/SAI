@@ -537,7 +537,7 @@ update fact_venta
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>832</xloc>
+      <xloc>848</xloc>
       <yloc>144</yloc>
     </entry>
   </entries>

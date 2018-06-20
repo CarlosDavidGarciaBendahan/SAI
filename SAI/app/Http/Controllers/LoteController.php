@@ -79,6 +79,7 @@ class LoteController extends Controller
     {
             $lote =  Lote::find($id);
             if ($lote !== null) {
+
                 return view('admin.producto.lote.show')->with(compact('lote'));
             }else{  
                 flash('No hay ningun registro en la Base de Datos del objeto buscado.')->error();

@@ -31,74 +31,84 @@
 				@endif
 				{!! Form::open(['route' => ['codigoArticulo.update',$codigoArticulo], 'method' => 'PUT']) !!}
 					
-						
-						<div class="form-group ">
-							{!! Form::label('cod_art_fk_producto_articulo','Descripcion del producto') !!}
-							{!! Form::text('codigo',$codigoArticulo->producto_articulo->pro_art_descripcion,['class'=> 'form-control', 'placeholder'=>'B208802', 'required', 'readonly'=>'true']) !!}
-							{!! Form::text('cod_art_fk_producto_articulo',$codigoArticulo->producto_articulo->id,['class'=> 'form-control hidden', 'readonly'=>'true', 'required']) !!}
-						</div>
-						<div class="form-group ">
+						<div class="row">
+							<div class="col-sm-6">
+								<div class="form-group ">
+									{!! Form::label('cod_art_fk_producto_articulo','Descripcion del producto') !!}
+									{!! Form::text('codigo',$codigoArticulo->producto_articulo->pro_art_descripcion,['class'=> 'form-control', 'placeholder'=>'B208802', 'required', 'readonly'=>'true']) !!}
+									{!! Form::text('cod_art_fk_producto_articulo',$codigoArticulo->producto_articulo->id,['class'=> 'form-control hidden', 'readonly'=>'true', 'required']) !!}
+								</div>
+								<div class="form-group ">
 
-							{!! Form::label('cod_art_fk_producto_articulo','Codigo general del producto') !!}
-							{!! Form::text('codigo',$codigoArticulo->producto_articulo->pro_art_codigo,['class'=> 'form-control', 'placeholder'=>'B208802', 'required', 'readonly'=>'true']) !!}
-						</div>
+									{!! Form::label('cod_art_fk_producto_articulo','Codigo general del producto') !!}
+									{!! Form::text('codigo',$codigoArticulo->producto_articulo->pro_art_codigo,['class'=> 'form-control', 'placeholder'=>'B208802', 'required', 'readonly'=>'true']) !!}
+								</div>
 
-						<div class="form-group ">
+								<div class="form-group ">
 
-							{!! Form::label('cod_art_fk_producto_articulo','Marca') !!}
-							{!! Form::text('codigo',$codigoArticulo->producto_articulo->modelo->marca->mar_marca ,['class'=> 'form-control', 'placeholder'=>'B208802', 'required', 'readonly'=>'true']) !!}
-						</div>
+									{!! Form::label('cod_art_fk_producto_articulo','Marca') !!}
+									{!! Form::text('codigo',$codigoArticulo->producto_articulo->modelo->marca->mar_marca ,['class'=> 'form-control', 'placeholder'=>'B208802', 'required', 'readonly'=>'true']) !!}
+								</div>
 
-						<div class="form-group ">
+								<div class="form-group ">
 
-							{!! Form::label('cod_art_fk_producto_articulo','Modelo') !!}
-							{!! Form::text('codigo',$codigoArticulo->producto_articulo->modelo->mod_modelo ,['class'=> 'form-control', 'placeholder'=>'B208802', 'required', 'readonly'=>'true']) !!}
-						</div>
+									{!! Form::label('cod_art_fk_producto_articulo','Modelo') !!}
+									{!! Form::text('codigo',$codigoArticulo->producto_articulo->modelo->mod_modelo ,['class'=> 'form-control', 'placeholder'=>'B208802', 'required', 'readonly'=>'true']) !!}
+								</div>
 
-						
-						<div class="form-group ">
+								
+								<div class="form-group ">
 
-							{!! Form::label('cod_art_fk_producto_articulo','Oficina') !!}
-							{!! Form::text('codigo',$codigoArticulo->producto_articulo->sector->oficina->ofi_direccion ,['class'=> 'form-control', 'placeholder'=>'B208802', 'required', 'readonly'=>'true']) !!}
-						</div>
-
-						<div class="form-group ">
-
-							{!! Form::label('cod_art_fk_producto_articulo','Sector') !!}
-							{!! Form::text('codigo',$codigoArticulo->producto_articulo->sector->sec_sector ,['class'=> 'form-control', 'placeholder'=>'B208802', 'required', 'readonly'=>'true']) !!}
-						</div>
-
-
-
-						<div class="form-group ">
-							{!! Form::label('cod_pc','Código especifico') !!}
-							{!! Form::text('cod_art_codigo',$codigoArticulo->cod_art_codigo,['class'=> 'form-control', 'placeholder'=>'B208802', 'required', 'readonly'=>'true']) !!}
-							{!! Form::text('id',$codigoArticulo->id,['class'=> 'form-control hidden', 'readonly'=>'true', 'required']) !!}
-						</div>
-
-						<div class="form-group ">
-							{!! Form::label('cod_art_fk_lote','Lote del computador') !!}
-							{!! Form::select('cod_art_fk_lote',$lote, $codigoArticulo->lote->id, ['class'=>'form-control', 'placeholder'=>'', 'required'] ) !!}
-						</div>
-
-						<div class="form-group ">
-							{!! Form::label('cod_art_fk_lote','Estado del producto') !!}
-							{!! Form::select('cod_art_estado',['B' => 'Bueno','M'=>'Malo'], $codigoArticulo->cod_art_estado, ['class'=>'form-control', 'placeholder'=>'', 'required'] ) !!}
-						</div>
-
-						<div class="form-group ">
-							{!! Form::label('pro_com_precio','Costo en dolares') !!}
-							{!! Form::text('cod_art_costo',$codigoArticulo->cod_art_costo,['class'=> 'form-control', 'title'=>'Solo números de 0-9,max: 10 con 2 decimales', 'placeholder'=>'1542.25', 'required', 'maxlength' => '10', 'pattern'=>'[0-9]+[.]?[0-9]?[0-9]?']) !!}
-						</div>
-						@if ($codigoArticulo->codigoPC !== null)
-							<div class="form-group ">
-								{!! Form::label('cod_art_fk_lote','Incorporado al computador con código') !!}
-								{!! Form::text('cod_art_codigo',$codigoArticulo->codigoPC->cod_pc_codigo,['class'=> 'form-control col-sm-11', 'placeholder'=>'B208802', 'required', 'readonly'=>'true']) !!}
-								<a href="{{ route('codigoArticulo.quitarPC', [$codigoArticulo->id]) }}" onclick="return confirm('Esta seguro de que quiere DESVINCULAR este articulo del computador?')" class="btn btn-warning col-sm-1" title="Desvincular este articulo del computador">
-								      		<span class="class glyphicon glyphicon-link"></span>
-								</a> 
+									{!! Form::label('cod_art_fk_producto_articulo','Oficina') !!}
+									{!! Form::text('codigo',$codigoArticulo->producto_articulo->sector->oficina->ofi_direccion ,['class'=> 'form-control', 'placeholder'=>'B208802', 'required', 'readonly'=>'true']) !!}
+								</div>
 							</div>
-						@endif
+							<div class="col-sm-6">
+								<div class="form-group ">
+
+									{!! Form::label('cod_art_fk_producto_articulo','Sector') !!}
+									{!! Form::text('codigo',$codigoArticulo->producto_articulo->sector->sec_sector ,['class'=> 'form-control', 'placeholder'=>'B208802', 'required', 'readonly'=>'true']) !!}
+								</div>
+
+
+
+								<div class="form-group ">
+									{!! Form::label('cod_pc','Código especifico') !!}
+									{!! Form::text('cod_art_codigo',$codigoArticulo->cod_art_codigo,['class'=> 'form-control', 'placeholder'=>'B208802', 'required', 'readonly'=>'true']) !!}
+									{!! Form::text('id',$codigoArticulo->id,['class'=> 'form-control hidden', 'readonly'=>'true', 'required']) !!}
+								</div>
+
+								<div class="form-group ">
+									{!! Form::label('cod_art_fk_lote','Lote del computador') !!}
+									{!! Form::select('cod_art_fk_lote',$lote, $codigoArticulo->lote->id, ['class'=>'form-control', 'placeholder'=>'', 'required'] ) !!}
+								</div>
+
+								<div class="form-group ">
+									{!! Form::label('cod_art_fk_lote','Estado del producto') !!}
+									{!! Form::select('cod_art_estado',['B' => 'Bueno','M'=>'Malo'], $codigoArticulo->cod_art_estado, ['class'=>'form-control', 'placeholder'=>'', 'required'] ) !!}
+								</div>
+
+								<div class="form-group ">
+									{!! Form::label('pro_com_precio','Costo en dolares') !!}
+									{!! Form::text('cod_art_costo',$codigoArticulo->cod_art_costo,['class'=> 'form-control', 'title'=>'Solo números de 0-9,max: 10 con 2 decimales', 'placeholder'=>'1542.25', 'required', 'maxlength' => '10', 'pattern'=>'[0-9]+[.]?[0-9]?[0-9]?']) !!}
+								</div>
+							</div>
+							<div class="col-sm-6">
+								@if ($codigoArticulo->codigoPC !== null)
+									<div class="form-group ">
+										{!! Form::label('cod_art_fk_lote','Incorporado al computador con código') !!}
+										{!! Form::text('cod_art_codigo',$codigoArticulo->codigoPC->cod_pc_codigo,['class'=> 'form-control col-sm-11', 'placeholder'=>'B208802', 'required', 'readonly'=>'true']) !!}
+										<a href="{{ route('codigoArticulo.quitarPC', [$codigoArticulo->id]) }}" onclick="return confirm('Esta seguro de que quiere DESVINCULAR este articulo del computador?')" class="btn btn-warning col-sm-1" title="Desvincular este articulo del computador">
+										      		<span class="class glyphicon glyphicon-link"></span>
+										</a> 
+									</div>
+								@endif
+							</div>	
+						</div>
+						
+
+						
+						
 						<!--
 						<div class="form-group">
 							{!! Form::submit('Agregar código',['class'=>'btn btn-primary', 'id' => 'add']) !!}
@@ -109,6 +119,7 @@
 						</div>
 						-->
 					<div class="form-group col-sm-12">
+						<br>
 						{!! Form::submit('Editar',['class'=>'btn btn-primary']) !!}
 						<a href="{{ route('codigoArticulo.index') }}" class="btn btn-danger">Calcelar</a>
 					</div>

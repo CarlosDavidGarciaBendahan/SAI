@@ -65,6 +65,8 @@
 						{!! Form::label('password','Clave') !!}
 
 						{!! Form::password('password',['class'=> 'form-control', 'title'=>'Solo letras mayúsculas, minúsculas y números min: 8 max: 20', 'placeholder'=>'********************', 'minlength'=>'8', 'maxlength' => '20', 'required', 'pattern'=>'[A-za-z0-9 ]+']) !!}
+						{!! Form::label('password','Verificar Clave') !!}
+						{!! Form::password('password2',['class'=> 'form-control', 'title'=>'Solo letras mayúsculas, minúsculas y números min: 8 max: 20', 'placeholder'=>'********************', 'minlength'=>'8', 'maxlength' => '20', 'required', 'pattern'=>'[A-za-z0-9 ]+']) !!}
 						</div>
 					@endif
 					

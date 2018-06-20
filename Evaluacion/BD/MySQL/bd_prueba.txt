@@ -1,15 +1,17 @@
+use evaluacion; /* indicas que utilizaras la  BD evaluacion */
+
 CREATE TABLE cliente (
 	id 			INT(6) auto_increment 		 	PRIMARY KEY,
 	nombre 		VARCHAR(30) 	NOT NULL,
 	apellido 	VARCHAR(30) 	NOT NULL,
 	cedula 		DOUBLE 			NOT NULL 	UNIQUE
-)
+);
 
 CREATE TABLE tienda (
 	id 			INT(6) auto_increment 		 	PRIMARY KEY,
 	nombre 		VARCHAR(30) 	NOT NULL,
 	rif			VARCHAR(15)		NOT NULL UNIQUE
-)
+);
 
 
 
@@ -18,14 +20,14 @@ CREATE TABLE producto (
 	descripcion 		VARCHAR(30) 	NOT NULL,
 	precio 				DOUBLE 			NOT NULL,
 	codigo				VARCHAR(30)		NOT NULL 	UNIQUE
-)
+);
 
 CREATE TABLE compra (
 	id 					INT(6) auto_increment 		 	PRIMARY KEY,
 	observacion 		VARCHAR(30) 	NOT NULL,
 	fecha				DATE			NOT NULL,
 	fk_cliente			INT 			NOT NULL	/* FK  */		
-)
+);
 
 
 CREATE TABLE detalle (
@@ -34,4 +36,4 @@ CREATE TABLE detalle (
 	precio 				DOUBLE 			NOT NULL,
 	fk_compra			INT 			NOT NULL,   /* fk */
 	fk_producto			INT 			NOT NULL	/* fk */
-)
+);

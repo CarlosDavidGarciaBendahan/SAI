@@ -150,7 +150,7 @@
 
 						<div>
 							<a href="{{ route('codigoPC.index') }}" class="btn btn-info">
-						      		<span class="glyphicon glyphicon-arrow-left"></span> Regresar al listado
+						      		<span class=""></span> Regresar al listado
 						     </a>
 						</div>
 

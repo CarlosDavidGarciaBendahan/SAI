@@ -1,0 +1,84 @@
+/* PROCEDIMIENTOS PARA AGREGAR DATOS*/
+
+CREATE OR REPLACE procedure agregra_cliente (nom IN varchar, ape IN varchar, ci IN float)
+ as 
+ begin
+   insert into cliente(id,nombre,apellido,cedula) values (sec_cliente.nextval,nom,ape,ci);
+ end ;
+
+ CREATE OR REPLACE procedure agregra_tienda (nom IN varchar, r IN varchar)
+ as 
+ begin
+   insert into tienda(id,nombre,rif) values (sec_tienda.nextval,nom,r);
+ end ;
+
+ CREATE OR REPLACE procedure agregra_producto (des IN varchar, cod IN varchar, pre IN float)
+ as 
+ begin
+   insert into producto(id,descripcion,precio,codigo) values (sec_producto.nextval,des,pre,cod);
+ end ;
+
+ CREATE OR REPLACE procedure agregra_compra (obs IN varchar, f IN date, ci IN float)
+ as 
+ begin
+   insert into compra(id,observacion,fecha,fk_cliente) values (sec_compra.nextval,obs,f,ci);
+ end ;
+
+ CREATE OR REPLACE procedure agregra_detalle (id_com IN int, id_pro IN int, can IN float, pre IN float)
+ as 
+ begin
+   insert into detalle(id,cantidad,precio,fk_compra,fk_producto) values (sec_detalle.nextval,can,pre,id_com,id_pro);
+ end ;
+
+ /* PROCEDIMIENTO PARA ELIMINAR DATOS*/
+
+CREATE OR REPLACE procedure eliminar_cliente (ci IN float)
+ as 
+ begin
+ 	delete from cliente where cedula = ci;
+ end ;
+
+ CREATE OR REPLACE procedure eliminar_tienda ( r IN varchar)
+ as 
+ begin
+ 	delete from tienda where rif = r;
+ end ;
+
+ CREATE OR REPLACE procedure eliminar_producto (cod IN varchar)
+ as 
+ begin
+ 	delete from producto where codigo = cod;
+ end ;
+
+ CREATE OR REPLACE procedure eliminar_compra (i IN int)
+ as 
+ begin
+ 	delete from compra where id = i;
+ end ;
+
+ CREATE OR REPLACE procedure eliminar_detalle (id_com IN int, id_pro IN int, can IN float, pre IN float)
+ as 
+ begin
+ 	delete from detalle where fk_compra = id_com and fk_producto = id_pro;
+ end ;
+
+ /* PROCEDIMIENTO PARA MODIFICAR DATOS*/
+
+
+CREATE OR REPLACE procedure modificar_cliente (nom IN varchar, ape IN varchar, ci IN float)
+ as 
+ begin
+ 	update cliente set nombre = nom, apellido = ape where cedula = ci;
+ end ;
+
+ CREATE OR REPLACE procedure modificar_tienda (nom IN varchar, r IN varchar)
+ as 
+ begin
+		update tienda set nombre=nom where rif = r;
+ end ;
+
+ CREATE OR REPLACE procedure modificar_producto (des IN varchar, cod IN varchar, pre IN float)
+ as 
+ begin
+		update producto set descripcion=des,precio=pre where codigo = cod;
+ end ;

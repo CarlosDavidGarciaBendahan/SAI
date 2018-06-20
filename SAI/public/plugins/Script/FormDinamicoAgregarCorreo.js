@@ -13,7 +13,8 @@
 					$(correos).append("  <div> "+
 						"<label>Correo "+(contador+2)+" </label>"+
 						"<input class='form-control'  type='email' name='correos[]' placeholder='correo@gmail.com' required='true' pattern='.+@[gG]?[mM]?[aA]?[iI]?[lL]?[hH]?[oO]?[tT]?[mM]?[aA]?[iI]?[lL]?[.][cC][oO][mM]' title='Solo se permiten cuentas GMAIL o HOTMAIL'>"+
-						" <a href='' class='remove btn btn-info'> <span class='glyphicon glyphicon-arrow-left'></span> quitar</a>" +
+						//" <a href='' class='remove btn btn-info'> <span class='glyphicon glyphicon-arrow-left'></span> quitar</a>" +
+						" <a href='' class='remove btn btn-danger ' title='Quitar Tlf'> <span class='fa fa-close'></span></a>"+
 						"</div>");
 					contador++;
 				}else{

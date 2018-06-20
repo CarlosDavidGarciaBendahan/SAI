@@ -16,9 +16,9 @@
 
 @section('body')
 	{{-- expr --}}
-	<section class="container">
+	<section class="container-fluid">
 		<div class="row">
-			<div class="col-sm-8 offset-2">
+			<div class="col-sm-12">
 				{!! Form::open(['route' => ['oficina.update',$oficina], 'method' => 'PUT' ]) !!}
 					
 					<div class="form-group">

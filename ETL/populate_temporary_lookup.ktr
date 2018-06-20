@@ -745,7 +745,7 @@
         <negated>N</negated>
         <leftvalue>date_id</leftvalue>
         <function>&lt;</function>
-        <rightvalue>today</rightvalue>
+        <rightvalue>ultimo_dia_ano_prox</rightvalue>
       </condition>
     </compare>
     <cluster_schema/>
@@ -877,6 +877,10 @@
       <field>
         <name>today</name>
         <type>next month end</type>
+      </field>
+      <field>
+        <name>ultimo_dia_ano_prox</name>
+        <type>next year end</type>
       </field>
     </fields>
     <cluster_schema/>

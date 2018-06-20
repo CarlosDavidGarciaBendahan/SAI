@@ -182,15 +182,19 @@
 					</table>
 					{{ $codigosPC->links() }}
 					</div>
-					</div>
-					<div class="row">
-						
-						<div class="col-sm-12">
+
+	
+					<div class="col-sm-12">
 							<a href="{{ route('producto_computador.index') }}" class="btn btn-info">
-						      		<span class="glyphicon glyphicon-arrow-left"></span> Regresar al listado
+						      		<span class=""></span> Regresar al listado
 						     </a>
 						</div>
 					</div>
+
+					
+					
+						
+							
 					
 						
 						
