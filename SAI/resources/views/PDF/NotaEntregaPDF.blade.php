@@ -2,26 +2,32 @@
 
 
 @section('title', 'Nota de entrega')
-
+@section('titulo')
+ <div class="titulo">
+      <h2>NOTA DE ENTREGA #{{$notaEntrega->id  }}</h2>
+    </div>
+@endsection
 @section('empresa')
     
     
     <div class="div-marco">       
         <div class="div-texto">
-           {{ $notaEntrega->empresa->emp_nombre }} 
+           <strong>{{ $notaEntrega->empresa->emp_nombre }} </strong>
         </div>
         <div class="div-texto">
-            {{ $notaEntrega->empresa->emp_identificador ."-".$notaEntrega->empresa->emp_rif }} 
+            <strong>RIF: </strong> {{ $notaEntrega->empresa->emp_identificador ."-".$notaEntrega->empresa->emp_rif }} 
         </div>
         <div class="div-texto">
-            {{ $notaEntrega->empresa->emp_direccion.". Par. ".$notaEntrega->empresa->parroquia->par_nombre.". Mun. ".$notaEntrega->empresa->parroquia->municipio->mun_nombre.". Edo. ".$notaEntrega->empresa->parroquia->municipio->estado->est_nombre }}
+            <strong>Dirección: </strong>{{ $notaEntrega->empresa->emp_direccion.". Par. ".$notaEntrega->empresa->parroquia->par_nombre.". Mun. ".$notaEntrega->empresa->parroquia->municipio->mun_nombre.". Edo. ".$notaEntrega->empresa->parroquia->municipio->estado->est_nombre }}
         </div>
         <div class="div-texto">
+          <strong>Correos: </strong>
             @foreach ($notaEntrega->empresa->Contacto_Correos as $correo)
                    {{ $correo->con_cor_correo ." / "}}
             @endforeach 
         </div>
         <div class="div-texto">
+          <strong>Teléfonos: </strong>
             @foreach ($notaEntrega->empresa->Contacto_telefonos as $tlf)
                    {{ $tlf->con_tel_codigo ."-".$tlf->con_tel_numero." / "}}
             @endforeach
@@ -33,24 +39,26 @@
 @endsection
 
 @section('cliente')
-
+  <hr>
     <div class="div-marco">
         @if ($notaEntrega->Venta->cliente_natural !== null)
            <div class="div-texto">
-               {{ $notaEntrega->Venta->cliente_natural->cli_nat_nombre ." ".$notaEntrega->Venta->cliente_natural->cli_nat_nombre2 ." ".$notaEntrega->Venta->cliente_natural->cli_nat_apellido ." ".$notaEntrega->Venta->cliente_natural->cli_nat_apellido2 }}
+               <strong>Cliente: </strong> {{ $notaEntrega->Venta->cliente_natural->cli_nat_nombre ." ".$notaEntrega->Venta->cliente_natural->cli_nat_nombre2 ." ".$notaEntrega->Venta->cliente_natural->cli_nat_apellido ." ".$notaEntrega->Venta->cliente_natural->cli_nat_apellido2 }}
            </div>
            <div class="div-texto">
-               {{ $notaEntrega->Venta->cliente_natural->cli_nat_identificador."-".$notaEntrega->Venta->cliente_natural->cli_nat_cedula }}
+               <strong>Cédula: </strong>{{ $notaEntrega->Venta->cliente_natural->cli_nat_identificador."-".$notaEntrega->Venta->cliente_natural->cli_nat_cedula }}
            </div>
            <div class="div-texto">
-               {{ $notaEntrega->Venta->cliente_natural->cli_nat_direccion.". Par. ".$notaEntrega->Venta->cliente_natural->parroquia->par_nombre.". Mun. ".$notaEntrega->Venta->cliente_natural->parroquia->municipio->mun_nombre.". Edo. ".$notaEntrega->Venta->cliente_natural->parroquia->municipio->estado->est_nombre }}
+               <strong>Dirección: </strong>{{ $notaEntrega->Venta->cliente_natural->cli_nat_direccion.". Par. ".$notaEntrega->Venta->cliente_natural->parroquia->par_nombre.". Mun. ".$notaEntrega->Venta->cliente_natural->parroquia->municipio->mun_nombre.". Edo. ".$notaEntrega->Venta->cliente_natural->parroquia->municipio->estado->est_nombre }}
            </div>
            <div class="div-texto">
+              <strong>Correos: </strong>
                @foreach ($notaEntrega->Venta->cliente_natural->Contacto_Correos as $correo)
                    {{ $correo->con_cor_correo ." / "}}
                 @endforeach   
            </div>
            <div class="div-texto">
+              <strong>Teléfonos: </strong>
                @foreach ($notaEntrega->Venta->cliente_natural->Contacto_telefonos as $tlf)
                    {{ $tlf->con_tel_codigo ."-".$tlf->con_tel_numero." / "}}
                 @endforeach 
@@ -59,20 +67,22 @@
         @else
             @if ($notaEntrega->Venta->cliente_juridico !== null)
                 <div class="div-texto">
-                   {{ $notaEntrega->Venta->cliente_juridico->cli_jur_nombre }}
+                   <strong>Cliente: </strong>{{ $notaEntrega->Venta->cliente_juridico->cli_jur_nombre }}
                </div>
                <div class="div-texto">
-                   {{ $notaEntrega->Venta->cliente_juridico->cli_jur_identificador."-".$notaEntrega->Venta->cliente_juridico->cli_jur_rif }}
+                   <strong>RIF: </strong>{{ $notaEntrega->Venta->cliente_juridico->cli_jur_identificador."-".$notaEntrega->Venta->cliente_juridico->cli_jur_rif }}
                </div>
                <div class="div-texto">
-                   {{ $notaEntrega->Venta->cliente_juridico->cli_jur_direccion.". Par. ".$notaEntrega->Venta->cliente_juridico->parroquia->par_nombre.". Mun. ".$notaEntrega->Venta->cliente_juridico->parroquia->municipio->mun_nombre.". Edo. ".$notaEntrega->Venta->cliente_juridico->parroquia->municipio->estado->est_nombre }}
+                   <strong>Dirección: </strong>{{ $notaEntrega->Venta->cliente_juridico->cli_jur_direccion.". Par. ".$notaEntrega->Venta->cliente_juridico->parroquia->par_nombre.". Mun. ".$notaEntrega->Venta->cliente_juridico->parroquia->municipio->mun_nombre.". Edo. ".$notaEntrega->Venta->cliente_juridico->parroquia->municipio->estado->est_nombre }}
                </div>
                <div class="div-texto">
+                <strong>Correos: </strong>
                    @foreach ($notaEntrega->Venta->cliente_juridico->Contacto_Correos as $correo)
                        {{ $correo->con_cor_correo ." / "}}
                     @endforeach   
                </div>
                <div class="div-texto">
+              <strong>Teléfonos: </strong>
                    @foreach ($notaEntrega->Venta->cliente_juridico->Contacto_telefonos as $tlf)
                        {{ $tlf->con_tel_codigo ."-".$tlf->con_tel_numero." / "}}
                     @endforeach 
@@ -88,13 +98,16 @@
 
 @section('presupuesto')
     <div class="div-marco">
-        <div class="div-texto">
-            Nota de entrega #{{ $notaEntrega->id }}
+        <div class="div-texto ">
+            
+              <!--<span class="nota_entrega">
+                 <strong>Nota de entrega #{{ $notaEntrega->id }}</strong>            
+               </span> -->
+              <span class="nota_entrega_fecha">
+                  <strong>Fecha de emisión: </strong>{{ date("d/m/Y", strtotime($notaEntrega->not_fecha)) }}
+              </span>
+            
         </div>
-        <div class="div-texto">
-            Solicitado :{{ date("d/m/Y", strtotime($notaEntrega->not_fecha)) }}
-        </div>
-    
     </div>
 @endsection
 
@@ -105,11 +118,11 @@
         <table class="table table-inverse">
           <thead>
             <tr>
-              <th>Código</th>
-              <th>Marca/Modelo</th>
-              <th>Tipo</th>
-              <th>Componentes/Capacidad</th>
-              <th>Costo</th>
+              <th class="th_nt_codigo">Código</th>
+              <th class="th_nt_marca">Marca/Modelo</th>
+              <th class="th_nt_tipo">Tipo</th>
+              <th class="th_nt_componentes">Componentes/Capacidad</th>
+              <th class="th_nt_costo">Costo</th>
 
             </tr>
           </thead>
@@ -118,7 +131,7 @@
             @foreach ($notaEntrega->venta->ventaPCs as $codigoPC)
               <tr>
                 <th scope="row">{{ $codigoPC->cod_pc_codigo }}</th>
-                <td>{{ "Marca: ".$codigoPC->producto_computador->modelo->marca->mar_marca ." Modelo: ".$codigoPC->producto_computador->modelo->mod_modelo }}</td> 
+                <td>{{ $codigoPC->producto_computador->modelo->marca->mar_marca ." ".$codigoPC->producto_computador->modelo->mod_modelo }}</td> 
                 <td>{{ $codigoPC->producto_computador->Tipo_Producto->tip_tipo }}</td>
                   
                 <td>
@@ -135,7 +148,7 @@
             @foreach ($notaEntrega->venta->ventaArticulos as $codigoArticulo)
               <tr>
                 <th scope="row">{{ $codigoArticulo->cod_art_codigo }}</th>
-                <td>{{ "Marca: ".$codigoArticulo->producto_articulo->modelo->marca->mar_marca ." Modelo: ".$codigoArticulo->producto_articulo->modelo->mod_modelo }}</td> 
+                <td>{{ $codigoArticulo->producto_articulo->modelo->marca->mar_marca ." ".$codigoArticulo->producto_articulo->modelo->mod_modelo }}</td> 
                 <td>{{ $codigoArticulo->producto_articulo->Tipo_Producto->tip_tipo }}</td>
                <td>
                   {{ $codigoArticulo->producto_articulo->pro_art_capacidad." ".$codigoArticulo->producto_articulo->unidadMedida->uni_medida }}
@@ -155,24 +168,24 @@
 
 
 
-    <div>
+    <div class="total">
         
         <p>
-            SubTotal: {{ $notaEntrega->not_subtotal }} Bs.<br>
-            Total:    {{ $notaEntrega->not_subtotal *1.12 }} Bs.
+            <strong>SubTotal:</strong> {{ $notaEntrega->not_subtotal }} Bs.<br>
+            <strong>Total:</strong>    {{ $notaEntrega->not_subtotal *1.12 }} Bs.
         </p>
     
     </div>
     
-    <div>
-      {{ $notaEntrega->not_observaciones }}
-    </div>
+    <!--<div>
+      { { $notaEntrega->not_observaciones }}
+    </div>-->
     
 @endsection
 
 @section('observaciones')
     <div>
-      <h5>Observaciones</h5>
+      <h3><strong>Observaciones:</strong></h3>
       {{ $notaEntrega->not_observaciones }}
     </div>
 @endsection

@@ -24,7 +24,7 @@
 			{!! Form::label('venta','Registrar nota de entrega de una venta.',['class'=> ' col-sm']) !!}
 		</div>
 		<div class="row">
-			<div class="col-sm-8 offset-2">
+			<div class="col-sm-12">
 				 
 
 				<table class="table table-inverse">

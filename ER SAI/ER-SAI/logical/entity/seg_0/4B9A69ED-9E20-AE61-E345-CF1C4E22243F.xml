@@ -15,6 +15,16 @@
 <minVolumes>0</minVolumes>
 <normalForm>Third</normalForm>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="fecha" id="7236DD30-DB26-CC65-1BBD-16BD7F695D44">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-06-23 07:43:02 UTC</createdTime>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
 <Attribute name="precio_dolar" id="2817EE2C-85BA-F90A-9017-C2B44187BBC4">
 <createdBy>Carlos</createdBy>
 <createdTime>2018-04-26 17:19:54 UTC</createdTime>
@@ -35,9 +45,6 @@
 <item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
 </engineerTo>
 <pk>true</pk>
-<usedAttributes>
-<attributeRef>2817EE2C-85BA-F90A-9017-C2B44187BBC4</attributeRef>
-</usedAttributes>
 </identifier>
 </identifiers>
 </Entity>

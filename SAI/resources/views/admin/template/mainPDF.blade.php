@@ -13,7 +13,9 @@
 
 	</head>
 	<body>
-
+		<section id="section-titulo">
+			@yield('titulo')
+		</section>
 		<!-- Datos de la empresa-->	
 		<section id="section-empresa">
 			@yield('empresa')

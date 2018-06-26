@@ -1,43 +1,60 @@
+
 #section-empresa{
-	border: 1px solid #333;
+	/*border: 1px solid #333;*/
 
 	position: fixed;
 	left: 0%;
 	/*right: 0%*/
-	top: 0%;
+	top: 7%;
 	/*bottom: 0%;*/
-	height: 15%;
-	width: 59%;
+	height: 20%;
+	width: 75%;
+}
+.titulo{
+	top: 0%;
+	position: fixed;
+	text-align: center;
+	height: 7%;
+	width: 100%;
+}
+.nota_entrega{
+	text-align: left;
+	width: 50%;
+}
+.nota_entrega_fecha{
+	text-align: right;
+	/*width: 50%;*/
 }
 #section-presupuesto{
-	border: 1px solid #333;
+	/*border: 1px solid #333;*/
 	position: fixed;
-	left: 59%;
+	left: 75%;
 	/*right: 0%;*/
-	top: 0%;
-	height: 15%;
-	width: 30%;
+	top: 7%;
+	height: 10%;
+	width: 20%;
 }
 
 #section-cliente{
-	border: 1px solid #333;
+	/*border: 1px solid #333;*/
 	position: fixed;
-	top: 14%;
+	top: 17%;
 	height: 15%;
 	width: 100%;
+
 }
 
 #section-productos{
-	border: 1px solid #333;
+	/*border: 1px solid #333;*/
 	position: relative;
-	top: 31%;
+	top: 35%;
 	/*height: 15%;*/
 	width: 100%;
 }
 #section-observaciones{
-	border: 1px solid #333;
+	/*border: 1px solid #333;*/
 	position: relative;
-	top: 31%;
+	top: 35%;
 	/*height: 15%;*/
 	width: 100%;
 }
@@ -51,19 +68,56 @@ th, td {
 }
 .th_descripcion{
    width: 40%;
+   background-color: lightgray;
+
 }
 .th_codigo{
    width: 15%;
+   background-color: lightgray;
+
 }
 .th_precio{
    width: 15%;
+   background-color: lightgray;
+
 }
 .th_cantidad{
    width: 15%;
+   background-color: lightgray;
+
 }
 .th_total{
    width: 15%;
+   background-color: lightgray;
+
 }
+
+.th_nt_codigo{
+	width: 15%;
+	background-color: lightgray;
+}
+.th_nt_marca{
+	width: 20%;
+	background-color: lightgray;
+}
+.th_nt_tipo{
+	width: 15%;
+	background-color: lightgray;
+}
+.th_nt_componentes{
+	width: 35%;
+	background-color: lightgray;
+}
+.th_nt_costo{
+	width: 15%;
+	background-color: lightgray;
+}
+
+
+.total{
+	text-align: right;
+}
+
 .div-texto{
 	margin: 1px 0px 1px;	
 }

@@ -135,16 +135,6 @@
 <use>0</use>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
-<Attribute name="FRECUENCIA_COMPRA" id="9F7A7D75-9AC4-67C0-5C0A-CB3BAFBD089F">
-<createdBy>Carlos</createdBy>
-<createdTime>2018-05-25 13:17:00 UTC</createdTime>
-<ownerDesignName>ME-venta</ownerDesignName>
-<engineerTo>
-<item key="251BA8E6-B170-84CB-FFBB-BADB899C537C" value="true"/>
-</engineerTo>
-<use>0</use>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-</Attribute>
 <Attribute name="ID_VENTA" id="A94A73D0-F6B6-F1D9-9A69-3B490738912F">
 <createdBy>Carlos</createdBy>
 <createdTime>2018-06-12 13:34:58 UTC</createdTime>
