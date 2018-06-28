@@ -148,6 +148,16 @@
 <use>0</use>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
+<Attribute name="cantidad_minima" id="9BC76458-B284-DFDE-69AB-7100FECAD7A3">
+<createdBy>Carlos</createdBy>
+<createdTime>2018-06-28 23:09:50 UTC</createdTime>
+<ownerDesignName>ER-SAI</ownerDesignName>
+<engineerTo>
+<item key="71E3D2E8-76BA-EFCA-5A3B-836EE0C77344" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
 </attributes>
 <identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
 <identifier id="3B6C8A24-BF91-8C3D-1685-B63F50BFF68E" name="Producto PK">
