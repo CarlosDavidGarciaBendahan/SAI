@@ -33,7 +33,7 @@
 
 					<div class="form-group">
 						{!! Form::label('venta','Tipo de solicitud',['class'=> ' col-sm']) !!}
-						{!! Form::select('sol_tipo',['cambio'=>'Cambio de producto','devolucion' => 'Devolución del producto'], $solicitud->sol_tipo, ['class'=>'form-control col-sm input-sm ', 'placeholder'=>'', 'required'] ) !!}
+						{!! Form::select('sol_tipo',['cambio'=>'Cambio de producto','devolucion' => 'Devolución del producto'], $solicitud->sol_tipo, ['class'=>'form-control col-sm input-sm ', 'placeholder'=>'', 'required','disabled'=>'true'] ) !!}
 							
 					</div>
 
@@ -59,6 +59,7 @@
 					</div>
 
 					<!-- VERIFICAR... PORQUE CREO QUE LOS PRODUCTOS MOSTRADOS DEBEN ESTAR EN LA SOLICITUD!! NO EN LA NOTA DE ENTREGA... O VERIFICAR LA CONDICIONES DE ABAJO!!!-->
+					{{-- }
 					<div>	
 						{!! Form::label('venta','Elegir productos a cambiar',['class'=> '']) !!}
 						<table class="table table-inverse">
@@ -297,7 +298,7 @@
 
 				<div>
 					@if ($solicitud->sol_tipo === 'cambio')
-						{{-- expr --}}
+						 expr 
 					
 						@if (count($solicitud->CodigoPCsEntregado) !== 0)
 						{!! Form::label('venta','Productos que se entregarán por cambio',['class'=> ' col-sm']) !!}
@@ -452,12 +453,16 @@
 					@endif
 
 				</div>
-
-
+				--}}
+				
 
 
 					<div class="form-group">
 						{!! Form::submit('Registrar',['class'=>'btn btn-primary']) !!}
+						<a  href="{{ route('solicitud.elegirProductosACambiar', [$solicitud->id]) }}" class="btn btn-primary" title="Productos a cambiar">
+											      		<span class="">Seleccionar productos a cambiar</span>
+						</a> 
+						
 					</div>
 
 					

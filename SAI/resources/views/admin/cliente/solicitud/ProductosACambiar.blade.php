@@ -187,7 +187,7 @@
 				    </tr>
 				  </thead>
 				  <tbody>
-
+				  	@if (count($solicitud->CodigoPCsEntregado) < count($solicitud->CodigoPCs))
 				  	@foreach ($codigoPCs as $codigoPC)
 				  	
 				  		<tr>
@@ -221,6 +221,9 @@
 				  	
 				  		
 				  	@endforeach
+				  	@endif
+
+				  	@if (count($solicitud->CodigoArticulosEntregado) < count($solicitud->CodigoArticulos))
 				  	@foreach ($codigoArticulos as  $codigoArticulo)
 				  	
 				  		<tr>
@@ -251,6 +254,7 @@
 				    	</tr>
 				  	
 				  	@endforeach
+				  	@endif
 				  </tbody>
 
 				</table>

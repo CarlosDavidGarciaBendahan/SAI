@@ -137,7 +137,7 @@ class SolicitudController extends Controller
     {
         $solicitud = solicitud::find($id);
 
-        $PC = new CodigoPCController();
+        /*$PC = new CodigoPCController();
         $Articulo = new CodigoArticuloController();
 
 
@@ -189,10 +189,10 @@ class SolicitudController extends Controller
             if($Articulo->disponibilidadArticuloParaSolicitud($CodigoArticulo,$solicitud->notaEntrega->venta->ven_fecha_compra)){
                 $CodigoArticulos->push($CodigoArticulo);//agrego los disponibles!!!
             }
-        }
+        }*/
 
         //dd($CodigoPCs);
-        return view('admin.cliente.solicitud.edit')->with(compact('solicitud','CodigoPCs','CodigoArticulos','codigoArticulosCambio','codigoPCsCambio'));
+        return view('admin.cliente.solicitud.edit')->with(compact('solicitud'));//,'CodigoPCs','CodigoArticulos','codigoArticulosCambio','codigoPCsCambio'));
     }
 
     /**
