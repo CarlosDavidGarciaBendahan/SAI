@@ -80,7 +80,12 @@
 					  	  </td>
 
 					  	  <td>
-					  	  	@if ($CodigoPCs->contains($codigoPC)) <!-- Si la pc esta en la lista-->
+					  	  	@if ($disponibleVentaPC->contains($codigoPC))
+					  	  		<a  class="btn btn-default" title="Producto disponible para vender. NO puede estar en una solicitud">
+									<span class="class glyphicon glyphicon-thumbs-down"></span>
+								</a>
+					  	  	@else
+					  	  		@if ($CodigoPCs->contains($codigoPC)) <!-- Si la pc esta en la lista-->
 					  	  		
 					  	  		@if (count($codigoPC->solicitudes)===0)
 					  	  			<a href="{{ route('solicitud.agregarProducto', [$solicitud->id,$codigoPC->id,'pc']) }}" onclick="return confirm('Seguro que desea agregar este computador de la solicitud?')" class="btn btn-success" title="Agregar producto de esta solicitud">
@@ -144,11 +149,71 @@
 
 						  	  		@endforeach
 					  	  	@endif
+					  	  	@endif
+					  	  	
 					  	  </td>
 				    	</tr>
 				  	
 				  		
 				  	@endforeach
+<!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+-->
+@foreach ($PCsentregados as $codigoPC)
+				  	
+				  		<tr>
+					      <th scope="row">{{ $codigoPC->cod_pc_codigo }}</th>
+					      <td>{{ "Marca: ".$codigoPC->producto_computador->modelo->marca->mar_marca ." Modelo: ".$codigoPC->producto_computador->modelo->mod_modelo }}</td>	
+					      <td>{{ $codigoPC->producto_computador->Tipo_Producto->tip_tipo }}</td>
+					      	
+					      <td>
+					      	@foreach ($codigoPC->CodigoArticulos as $componente)
+					      		{{ $componente->producto_articulo->pro_art_capacidad." ".$componente->producto_articulo->unidadMedida->uni_medida." / " }}
+					      	@endforeach
+					  	  </td>	
+					  	  <td>
+					  	  	{{ $codigoPC->producto_computador->pro_com_precio." ".$codigoPC->producto_computador->pro_com_moneda }}
+					  	  </td>
+
+					  	  <td>
+					  	  		@if (count($codigoPC->solicitudes)===0)
+					  	  			<a href="{{ route('solicitud.agregarProducto', [$solicitud->id,$codigoPC->id,'pc']) }}" onclick="return confirm('Seguro que desea agregar este computador de la solicitud?')" class="btn btn-success" title="Agregar producto de esta solicitud">
+							      		<span class="class glyphicon glyphicon-ok"></span>
+						      		</a> 
+						      	@else <!-- SI TIENE SOLICITUDES ENTRA EN EL ELSE-->
+						      		@foreach ($codigoPC->solicitudes as $sol) <!--RECORRO LAS SOLICITUDES-->
+						  	  			<!-- DEBO VERIFICAR SI LA SOLICITUD QUE ESTOY HACIENDO ES LA MAS RECIENTE-->
+						  	  			@if ($sol->sol_aprobado === 'S'  && $solicitud->id < $sol->id)
+						  	  			<!-- Si la solicilitud (sol) esta aprobada-->
+						  	  			<!-- Si el id de la solicitud es mayor que todas entonces debe poder seleccionarse-->
+						  	  				<a href="{{ route('solicitud.agregarProducto', [$solicitud->id,$codigoPC->id,'pc']) }}" onclick="return confirm('Seguro que desea agregar este computador de la solicitud?')" class="btn btn-success" title="Agregar producto de esta solicitud">
+								      		<span class="class glyphicon glyphicon-ok"> </span>
+							      		</a> 
+						  	  			@else
+						  	  				@if ($sol->sol_aprobado === 'S'  && $solicitud->sol_fecha >= $sol->sol_fecha )					  	  		
+								  	  			@if ($solicitud->id <= $sol->id)
+								  	  				<a href="{{ route('solicitud.eliminarProducto', [$solicitud->id,$codigoPC->id,'pc']) }}" onclick="return confirm('Seguro que desea quitar este computador de la solicitud?')" class="btn btn-danger" title="Quitar producto de esta solicitud">
+											      		<span class="class glyphicon glyphicon-remove-circle"></span>
+										      		</a> 
+										      	@else
+										      		<a  class="btn btn-default" title="Producto NO disponible para esta solicitud. Ya ha sido ingresado en una solicitud anterior.">
+											      		<span class="class glyphicon glyphicon-thumbs-down"></span>
+										      		</a> 
+								  	  			@endif
+							  	  			@endif
+						  	  			@endif
+
+
+						  	  			
+
+						  	  		@endforeach
+					  	  		@endif 
+					  	  </td>
+				    	</tr>
+				  	
+				  		
+				  	@endforeach
+<!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+-->
 				  	@foreach ($notaEntrega->venta->ventaArticulos as  $codigoArticulo)
 				  	
 				  		<tr>
@@ -163,7 +228,12 @@
 					  	  </td>
 					  	  {
 					  	  <td>
-					  	  	@if ($CodigoArticulos->contains($codigoArticulo)) 
+					  	  	@if ($disponibleVentaArticulo->contains($codigoArticulo))
+					  	  		<a  class="btn btn-default" title="Producto disponible para vender. NO puede estar en una solicitud">
+									<span class="class glyphicon glyphicon-thumbs-down"></span>
+								</a>
+					  	  	@else
+					  	  		@if ($CodigoArticulos->contains($codigoArticulo)) 
 					  	  		@if (count($codigoArticulo->solicitudes)===0)
 					  	  			<a href="{{ route('solicitud.agregarProducto', [$solicitud->id,$codigoArticulo->id,'articulo']) }}" onclick="return confirm('Seguro que desea agregar este artículo de la solicitud?')" class="btn btn-success" title="Agregar producto de esta solicitud">
 							      		<span class="class glyphicon glyphicon-ok"></span>
@@ -189,11 +259,7 @@
 										      		</a> 
 								  	  			@endif
 							  	  			@endif
-						  	  			@endif
-
-
-						  	  			
-
+						  	  			@endif						 
 						  	  		@endforeach
 					  	  		@endif
 					  	  		
@@ -226,12 +292,65 @@
 						  	  		@endforeach
 					  	  		
 					  	  	@endif
+					  	  	@endif
 					  	  </td>
 					       
 
 				    	</tr>
 				  	
 				  	@endforeach
+<!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+-->
+@foreach ($ArticulosEntregados as  $codigoArticulo)
+				  	
+				  		<tr>
+					      <th scope="row">{{ $codigoArticulo->cod_art_codigo }}</th>
+					      <td>{{ "Marca: ".$codigoArticulo->producto_articulo->modelo->marca->mar_marca ." Modelo: ".$codigoArticulo->producto_articulo->modelo->mod_modelo }}</td>	
+					      <td>{{ $codigoArticulo->producto_articulo->Tipo_Producto->tip_tipo }}</td>
+					     <td>
+					  	  	{{ $codigoArticulo->producto_articulo->pro_art_capacidad." ".$codigoArticulo->producto_articulo->unidadMedida->uni_medida }}
+					  	  </td>
+					      <td>
+					  	  	{{ $codigoArticulo->producto_articulo->pro_art_precio." ".$codigoArticulo->producto_articulo->pro_art_moneda }}
+					  	  </td>
+					  	  {
+					  	  <td>
+					  	   @if (count($codigoArticulo->solicitudes)===0)
+					  	  			<a href="{{ route('solicitud.agregarProducto', [$solicitud->id,$codigoArticulo->id,'articulo']) }}" onclick="return confirm('Seguro que desea agregar este artículo de la solicitud?')" class="btn btn-success" title="Agregar producto de esta solicitud">
+							      		<span class="class glyphicon glyphicon-ok"></span>
+						      		</a> 
+						      	@else
+						      		@foreach ($codigoArticulo->solicitudes as $sol) <!--RECORRO LAS SOLICITUDES-->
+						  	  			<!-- DEBO VERIFICAR SI LA SOLICITUD QUE ESTOY HACIENDO ES LA MAS RECIENTE-->
+						  	  			@if ($sol->sol_aprobado === 'S'  && $solicitud->id < $sol->id)
+						  	  			<!-- Si la solicilitud (sol) esta aprobada-->
+						  	  			<!-- Si el id de la solicitud es mayor que todas entonces debe poder seleccionarse-->
+						  	  				<a href="{{ route('solicitud.agregarProducto', [$solicitud->id,$codigoArticulo->id,'articulo']) }}" onclick="return confirm('Seguro que desea agregar este articulo de la solicitud?')" class="btn btn-success" title="Agregar producto de esta solicitud">
+								      		<span class="class glyphicon glyphicon-ok"> </span>
+							      		</a> 
+						  	  			@else
+						  	  				@if ($sol->sol_aprobado === 'S'  && $solicitud->sol_fecha >= $sol->sol_fecha )					  	  		
+								  	  			@if ($solicitud->id <= $sol->id)
+								  	  				<a href="{{ route('solicitud.eliminarProducto', [$solicitud->id,$codigoArticulo->id,'articulo']) }}" onclick="return confirm('Seguro que desea quitar este articulo de la solicitud?')" class="btn btn-danger" title="Quitar producto de esta solicitud">
+											      		<span class="class glyphicon glyphicon-remove-circle"></span>
+										      		</a> 
+										      	@else
+										      		<a  class="btn btn-default" title="Producto NO disponible para esta solicitud. Ya ha sido ingresado en una solicitud anterior.">
+											      		<span class="class glyphicon glyphicon-thumbs-down"></span>
+										      		</a> 
+								  	  			@endif
+							  	  			@endif
+						  	  			@endif						 
+						  	  		@endforeach
+					  	  		@endif
+					  	  </td>
+					       
+
+				    	</tr>
+				  	
+				  	@endforeach
+<!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+-->
 				  </tbody>
 
 				</table>

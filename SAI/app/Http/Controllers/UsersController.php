@@ -146,8 +146,10 @@ class UsersController extends Controller
                     $valida = $this->ValidarClave($request->password,$request->password2);
                     if($valida){
                         $user->password = bcrypt($request->password); 
+                    }else{
+                        return back();
                     }
-                    return back();
+                    
 
                 } else {//diferente usuario
                     if ($user->id !== 0) {//puedo editar siempre y cuando no sea el user admin (id=0)
@@ -318,6 +320,8 @@ class UsersController extends Controller
             flash("Las claves no son iguales")->error();
             return false;
         }
+
+        return true;
     }
 
 }

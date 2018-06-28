@@ -15,7 +15,7 @@ use App\http\Controllers\CodigoArticuloController;
 class SolicitudController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display a listing of the resource. 
      *
      * @return \Illuminate\Http\Response
      */
@@ -33,7 +33,7 @@ class SolicitudController extends Controller
             } 
 
         dd($codigoPCs);*/
-
+        //$this->ObtenerPCsEntregadasPorCambio(6);
         $solicitudes = Solicitud::orderBy('id','DESC')->paginate(10);
 
         return view('admin.cliente.solicitud.index')->with(compact('solicitudes'));
@@ -246,20 +246,54 @@ class SolicitudController extends Controller
         $CodigoPCs = collect() ;
         $CodigoArticulos = collect() ;
 
+        $disponibleVentaPC = collect() ;
+        $disponibleVentaArticulo = collect() ;
+
         foreach ($notaEntrega->venta->ventaPCs as $CodigoPC) {
-            
-            if($PC->disponibilidadPCParaSolicitud($CodigoPC,$notaEntrega->venta->ven_fecha_compra)){
+            //dd(!$PC->disponibilidadPC($CodigoPC));
+            if(!$PC->disponibilidadPC($CodigoPC) && $PC->disponibilidadPCParaSolicitud($CodigoPC,$notaEntrega->venta->ven_fecha_compra) ){
                 $CodigoPCs->push($CodigoPC);//agrego los disponibles!!!
+            }
+            if ($PC->disponibilidadPC($CodigoPC)) {//verifico si esta disponible para vender
+                $disponibleVentaPC->push($CodigoPC);//agrego los disponibles!!!
             }
         }
         foreach ($notaEntrega->venta->ventaArticulos as $CodigoArticulo) {
-            
-            if($Articulo->disponibilidadArticuloParaSolicitud($CodigoArticulo,$notaEntrega->venta->ven_fecha_compra)){
+            //dd($Articulo->disponibilidadArticulo($CodigoArticulo));
+            if(!$Articulo->disponibilidadArticulo($CodigoArticulo) && $Articulo->disponibilidadArticuloParaSolicitud($CodigoArticulo,$notaEntrega->venta->ven_fecha_compra)){
                 $CodigoArticulos->push($CodigoArticulo);//agrego los disponibles!!!
             }
+            if ($Articulo->disponibilidadArticulo($CodigoArticulo)) {//verifico si esta disponible para vender
+                $disponibleVentaArticulo->push($CodigoArticulo);//agrego los disponibles!!!
+            }
         }
+
+        $PCsentregados = $this->ObtenerPCsEntregadasPorCambio($notaEntrega->id);
+        $ArticulosEntregados = $this->ObtenerArticulosEntregadasPorCambio($notaEntrega->id);
+        ////////////////////////////////////////////////////////
+        //OBTENER PRODUCTOS DE LA SOLICITUD
+        /*
+        foreach ($this->ObtenerPCsEntregadasPorCambio($notaEntrega->id) as $CodigoPC) {
+            //dd(!$PC->disponibilidadPC($CodigoPC));
+            if(!$PC->disponibilidadPC($CodigoPC) && $PC->disponibilidadPCParaSolicitud($CodigoPC,$notaEntrega->venta->ven_fecha_compra) ){
+                $CodigoPCs->push($CodigoPC);//agrego los disponibles!!!
+            }
+            if ($PC->disponibilidadPC($CodigoPC)) {//verifico si esta disponible para vender
+                $disponibleVentaPC->push($CodigoPC);//agrego los disponibles!!!
+            }
+        }
+        foreach ($this->ObtenerArticulosEntregadasPorCambio($notaEntrega->id) as $CodigoArticulo) {
+            //dd($Articulo->disponibilidadArticulo($CodigoArticulo));
+            if(!$Articulo->disponibilidadArticulo($CodigoArticulo) && $Articulo->disponibilidadArticuloParaSolicitud($CodigoArticulo,$notaEntrega->venta->ven_fecha_compra)){
+                $CodigoArticulos->push($CodigoArticulo);//agrego los disponibles!!!
+            }
+            if ($Articulo->disponibilidadArticulo($CodigoArticulo)) {//verifico si esta disponible para vender
+                $disponibleVentaArticulo->push($CodigoArticulo);//agrego los disponibles!!!
+            }
+        }*/
+        ////////////////////////////////////////////////////////
         
-        return view('admin.cliente.solicitud.create-productos')->with(compact('solicitud','notaEntrega','CodigoPCs','CodigoArticulos'));
+        return view('admin.cliente.solicitud.create-productos')->with(compact('solicitud','notaEntrega','CodigoPCs','CodigoArticulos','disponibleVentaArticulo','disponibleVentaPC','PCsentregados','ArticulosEntregados'));
     }
 
 
@@ -522,7 +556,7 @@ class SolicitudController extends Controller
         if(count($ObjetoPC) > 0 ){
             foreach ($notaEntrega->venta->ventaPCs as $pc) {
                 if($ObjetoPC[0]->id === $pc->id){
-                    if($PC->disponibilidadPCParaSolicitud($pc,$notaEntrega->venta->ven_fecha_compra)){
+                    if(!$PC->disponibilidadPC($pc) && $PC->disponibilidadPCParaSolicitud($pc,$notaEntrega->venta->ven_fecha_compra)){
                         //$CodigoPCs->push($CodigoPC);//agrego los disponibles!!!
                         $this->agregarProducto($solicitud_id,$pc->id,"pc");
                         $valido = true;
@@ -539,7 +573,7 @@ class SolicitudController extends Controller
         if(count($ObjetoArticulo) > 0){
             foreach ($notaEntrega->venta->ventaArticulos as $art) {
                 if($ObjetoArticulo[0]->id === $art->id){
-                    if($Articulo->disponibilidadArticuloParaSolicitud($art,$notaEntrega->venta->ven_fecha_compra)){
+                    if(!$Articulo->disponibilidadArticulo($art)  && $Articulo->disponibilidadArticuloParaSolicitud($art,$notaEntrega->venta->ven_fecha_compra)){
                         //$CodigoArticulos->push($CodigoArticulo);//agrego los disponibles!!!
                         $valido = true;
                             $this->agregarProducto($solicitud_id,$art->id,"articulo");
@@ -604,4 +638,56 @@ class SolicitudController extends Controller
 
         return $valido;
     }
+
+
+
+    public function ObtenerPCsEntregadasPorCambio($notaEntrega_id){
+
+        //BUSCO NOTA DE ENTREGA  DE LA CUAL BUSCARE TODAS LA SOLICITUDES
+        $notaEntrega = NotaEntrega::find($notaEntrega_id);
+
+        //CREO UNA COLLECTION PARA GUARDAR LOS PRODUCTOS
+        $productos = collect() ;
+
+        //BUSCO TODAS LAS SOLICITUDES DE UNA NOTA DE ENTREGA
+        foreach ($notaEntrega->solicitudes  as $solicitud) {
+            //VERIFICO LA SOLICITUD ESTE APROBADA Y QUE SEA DE TIPO CAMBIO
+            //PORQUE SOLO NECESITO CONSEGUIR LOS PRODUCTOS QUE SE ENTREGARON A CAMBIO DE OTROS
+            if ($solicitud->sol_aprobado === 'S' and $solicitud->sol_tipo === 'cambio') {
+                //SI LA SOLICITUD ESTA APROBADA Y ES TIPO CAMBIO
+                //BUSCO TODAS LAS PCS QUE SE HAN ENTREGADO A CAMBIO
+
+                foreach ($solicitud->CodigoPCsEntregado as $PCentregado) {
+                    $productos->push($PCentregado);
+                }
+            }
+        }
+        //dd($productos);
+        return $productos;
+    }
+    public function ObtenerArticulosEntregadasPorCambio($notaEntrega_id){
+
+        //BUSCO NOTA DE ENTREGA  DE LA CUAL BUSCARE TODAS LA SOLICITUDES
+        $notaEntrega = NotaEntrega::find($notaEntrega_id);
+
+        //CREO UNA COLLECTION PARA GUARDAR LOS PRODUCTOS
+        $productos = collect() ;
+
+        //BUSCO TODAS LAS SOLICITUDES DE UNA NOTA DE ENTREGA
+        foreach ($notaEntrega->solicitudes  as $solicitud) {
+            //VERIFICO LA SOLICITUD ESTE APROBADA Y QUE SEA DE TIPO CAMBIO
+            //PORQUE SOLO NECESITO CONSEGUIR LOS PRODUCTOS QUE SE ENTREGARON A CAMBIO DE OTROS
+            if ($solicitud->sol_aprobado === 'S' and $solicitud->sol_tipo === 'cambio') {
+                //SI LA SOLICITUD ESTA APROBADA Y ES TIPO CAMBIO
+                //BUSCO TODAS LAS PCS QUE SE HAN ENTREGADO A CAMBIO
+
+                foreach ($solicitud->CodigoArticulosEntregado as $ArticuloEntregado) {
+                    $productos->push($ArticuloEntregado);
+                }
+            }
+        }
+        //dd($productos);
+        return $productos;
+    }
+
 }

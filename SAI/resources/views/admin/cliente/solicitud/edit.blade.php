@@ -180,7 +180,7 @@
 						  	
 						  		
 						  	@endforeach
-<!-- ************************************************************************************************-->
+<!-- ************************************************************************************************-
 @foreach ($solicitud->notaEntrega->solicitudes as $solicitud)
 	@foreach ($solicitud->CodigoPCsEntregado as $codigoPC)
 						  	
