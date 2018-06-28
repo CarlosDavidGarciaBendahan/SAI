@@ -218,6 +218,7 @@
             <li class="active"><a href="{{ route('reportesolicitud.index') }}"><i class="fa fa-circle-o"></i> Solicitudes </a></li>
             <li class="active"><a href="{{ route('reporteventa.index') }}"><i class="fa fa-circle-o"></i> Ventas </a></li>
             <li class="active"><a href="{{ route('reporteproducto.index') }}"><i class="fa fa-circle-o"></i> Productos </a></li>
+            <li class="active"><a href="{{ route('reporteInventario.index') }}"><i class="fa fa-circle-o"></i> Inventario </a></li>
           </ul>
         </li>
         <!-- /MENU DE REPORTE-->

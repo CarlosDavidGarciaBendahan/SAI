@@ -578,6 +578,10 @@ Route::prefix('admin/reportes/')->group( function(){
 		'uses'	=> 'reporteproductoController@index',
 		'as'	=> 'reporteproducto.index'
 	])->middleware('auth');
+	Route::get('reporteInventario/index',[
+		'uses'	=> 'reporteInventarioController@index',
+		'as'	=> 'reporteInventario.index'
+	])->middleware('auth');
 
 });
 
