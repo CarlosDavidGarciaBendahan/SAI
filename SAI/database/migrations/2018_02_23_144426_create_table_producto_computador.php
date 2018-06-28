@@ -24,6 +24,8 @@ class CreateTableProductoComputador extends Migration
             $table->integer('pro_com_fk_sector')->unsigned();
             $table->integer('pro_com_fk_modelo')->unsigned();
             $table->integer('pro_com_fk_tipo_producto')->unsigned();
+            $table->integer('cantidad_minima')->nullable(true);
+
             $table->timestamps();
 
             $table->unique('pro_com_codigo','PRODUCTO_COMPUTADOR_UNIQUE_pro_com_codigo');

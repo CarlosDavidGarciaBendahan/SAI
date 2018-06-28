@@ -128,6 +128,11 @@
 									{!! Form::label('pro_art_descripcion','Descripcion') !!}
 									{!! Form::text('pro_art_descripcion',$producto_articulo->pro_art_descripcion,['class'=> 'form-control', 'title'=>'Solo letras mayúsculas, minúsculas y números de 0-9, min: 10 max: 100', 'placeholder'=>'B201223.', 'required', 'minlength'=>'10', 'maxlength' => '100', 'pattern'=>'[A-za-z0-9 ]+']) !!}
 								</div>
+								<div class="form-group  ">
+									{!! Form::label('cantidad_minima','Cantidad mínima del producto') !!}
+									{!! Form::text('cantidad_minima',$producto_articulo->cantidad_minima,['class'=> 'form-control', 'placeholder'=>'0', 'required', 'maxlength' => '5', 'pattern'=>'[0-9]+']) !!}
+								</div>
+
 							</div>
 							<div class="col-sm-6">
 								<div class="form-group ">
@@ -137,7 +142,7 @@
 					
 						<div class="form-group ">
 							{!! Form::label('pro_art_moneda','Moneda') !!}
-							{!! Form::select('pro_art_moneda',['$'=>'$','Bs'=>'Bs'], $producto_articulo->pro_art_moneda, ['class'=>'form-control', 'placeholder'=>'$', 'required'] ) !!}
+							{!! Form::select('pro_art_moneda',['$'=>'$'], $producto_articulo->pro_art_moneda, ['class'=>'form-control', 'placeholder'=>'$', 'required'] ) !!}
 						</div>
 					
 						<div class="form-group ">

@@ -28,7 +28,7 @@ class Producto_Computador extends Model
     	'id','pro_com_codigo','pro_com_descripcion',
     	'pro_com_cantidad','pro_com_precio','pro_com_moneda',
     	'pro_com_catalogo','pro_com_fk_sector','pro_com_fk_modelo',
-    	'pro_com_fk_tipo_producto'
+    	'pro_com_fk_tipo_producto','cantidad_minima'
     ];
 
 

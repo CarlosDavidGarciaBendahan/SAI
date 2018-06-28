@@ -136,17 +136,37 @@
                         <tr>
                             <td class="">{{ $detalle->producto_computador->pro_com_descripcion }}</td>
                             <td class="">{{ $detalle->producto_computador->pro_com_codigo }}</td>
-                            <td class="">{{ $detalle->precio_unitario }}</td>
+                            @foreach ($cotizaciones as $cotizacion)
+                              @if ($cotizacion->fecha === $presupuesto->pre_fecha_solicitud)
+                                <td class="">{{ number_format(($detalle->precio_unitario*$cotizacion->precio_dolar))." Bs"  }}</td>
+                                {{-- ($articulo_venta->precio_unitario*$cotizacion->precio_dolar)." Bs" --}}
+                              @endif
+                            @endforeach
                             <td class="">{{ $detalle->det_cantidad}}</td>
-                            <td class="">{{ $detalle->det_total}}</td>
+                            @foreach ($cotizaciones as $cotizacion)
+                              @if ($cotizacion->fecha === $presupuesto->pre_fecha_solicitud)
+                                <td class="">{{ number_format(($detalle->det_total*$cotizacion->precio_dolar))." Bs"  }}</td>
+                                {{-- ($articulo_venta->precio_unitario*$cotizacion->precio_dolar)." Bs" --}}
+                              @endif
+                            @endforeach
                         </tr>
                     @else
                         <tr>
                             <td class="">{{ $detalle->producto_articulo->pro_art_descripcion }}</td>
                             <td class="">{{ $detalle->producto_articulo->pro_art_codigo }}</td>
-                            <td class="">{{ $detalle->precio_unitario }}</td>
+                            @foreach ($cotizaciones as $cotizacion)
+                              @if ($cotizacion->fecha === $presupuesto->pre_fecha_solicitud)
+                                <td class="">{{ number_format(($detalle->precio_unitario*$cotizacion->precio_dolar))." Bs"  }}</td>
+                                {{-- ($articulo_venta->precio_unitario*$cotizacion->precio_dolar)." Bs" --}}
+                              @endif
+                            @endforeach
                             <td class="">{{ $detalle->det_cantidad}}</td>
-                            <td class="">{{ $detalle->det_total}}</td>
+                            @foreach ($cotizaciones as $cotizacion)
+                              @if ($cotizacion->fecha === $presupuesto->pre_fecha_solicitud)
+                                <td class="">{{ number_format(($detalle->det_total*$cotizacion->precio_dolar))." Bs"  }}</td>
+                                {{-- ($articulo_venta->precio_unitario*$cotizacion->precio_dolar)." Bs" --}}
+                              @endif
+                            @endforeach
                         </tr>
                     @endif
                 @endforeach
@@ -156,8 +176,18 @@
     <div class="total">
         
         <p>
-            <strong>SubTotal:</strong> {{ $presupuesto->pre_subtotal }} Bs.<br>
-            <strong>Total:</strong>    {{ $presupuesto->pre_subtotal*1.12 }} Bs.
+            <strong>SubTotal:</strong> @foreach ($cotizaciones as $cotizacion)
+                              @if ($cotizacion->fecha === $presupuesto->pre_fecha_solicitud)
+                                {{ number_format(($presupuesto->pre_subtotal*$cotizacion->precio_dolar))." Bs"  }}
+                                {{-- ($articulo_venta->precio_unitario*$cotizacion->precio_dolar)." Bs" --}}
+                              @endif
+                            @endforeach{{-- $presupuesto->pre_subtotal --}} <br>
+            <strong>Total:</strong> @foreach ($cotizaciones as $cotizacion)
+                              @if ($cotizacion->fecha === $presupuesto->pre_fecha_solicitud)
+                                {{ number_format(($presupuesto->pre_subtotal*$cotizacion->precio_dolar)*1.12)." Bs"  }}
+                                {{-- ($articulo_venta->precio_unitario*$cotizacion->precio_dolar)." Bs" --}}
+                              @endif
+                            @endforeach
         </p>
     
     </div>

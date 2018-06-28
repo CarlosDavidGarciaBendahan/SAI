@@ -52,7 +52,7 @@
 					      		@foreach ($venta->RegistroPagos as $pago)
 					      			<?php $monto_pagado = $monto_pagado + $pago->reg_monto; ?>
 					      		@endforeach
-					      		{{ $monto_pagado." Bs" }}
+					      		{{ $monto_pagado." $" }}
 					      	
 					      		
 					      	@endif

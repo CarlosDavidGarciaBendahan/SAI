@@ -140,6 +140,13 @@
 							{!! Form::label('pro_com_catalogo','Publicado') !!}
 							{!! Form::select('pro_com_catalogo',[0=>'NO',1=>'SI'], $producto_computador->pro_com_catalogo, ['class'=>'form-control', 'placeholder'=>'', 'required', 'disabled'] ) !!}
 						</div>
+						<div class="col-sm-6">
+							
+								<div class="form-group  ">
+									{!! Form::label('cantidad_minima','Cantidad mínima del producto') !!}
+									{!! Form::text('cantidad_minima',$producto_computador->cantidad_minima,['class'=> 'form-control', 'placeholder'=>'0', 'required', 'maxlength' => '5', 'pattern'=>'[0-9]+', 'readonly'=>'true']) !!}
+								</div>
+						</div>
 						
 					</div>
 

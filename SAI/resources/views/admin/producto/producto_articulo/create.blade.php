@@ -117,6 +117,10 @@
 							{!! Form::label('pro_art_catalogo','Publicado') !!}
 							{!! Form::select('pro_art_catalogo',[0=>'NO',1=>'SI'], 1, ['class'=>'form-control', 'placeholder'=>'SI', 'required'] ) !!}
 						</div>
+						<div class="form-group col-sm-6 ">
+							{!! Form::label('cantidad_minima','Cantidad mínima del producto') !!}
+							{!! Form::text('cantidad_minima',null,['class'=> 'form-control', 'placeholder'=>'0', 'required', 'maxlength' => '5', 'pattern'=>'[0-9]+']) !!}
+						</div>
 						<div class="form-group col-sm-6"> 
 						
 							{!! Form::label('ima','Imagen') !!}

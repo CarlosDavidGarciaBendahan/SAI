@@ -14,6 +14,7 @@ use App\Producto_Articulo;
 use Carbon\Carbon;
 use App\Mail\EnvioDePresupuesto;
 use App\Historico_Falta_Stock;
+use App\cambio_bolivar;
 
 class PresupuestoController extends Controller
 {
@@ -153,9 +154,10 @@ class PresupuestoController extends Controller
     public function show($id)
     {
         $presupuesto = Presupuesto::find($id);
+        $cotizaciones = cambio_bolivar::orderby('fecha','ASC')->get();
         //dd($presupuesto->cliente_juridico);
         //dd($presupuesto->cliente_natural);
-        $pdf = \PDF::loadView('vistaPDF',['presupuesto'=> $presupuesto]);
+        $pdf = \PDF::loadView('vistaPDF',['presupuesto'=> $presupuesto, 'cotizaciones'=>$cotizaciones]);
         //return $pdf->download('presupuesto'.'#'.$presupuesto_id.'.pdf');
 
 
@@ -232,9 +234,10 @@ class PresupuestoController extends Controller
         //$file->move($path,$name);
 
         $presupuesto = Presupuesto::find($id);
+        $cotizaciones = cambio_bolivar::orderby('fecha','ASC')->get();
         //dd($presupuesto->cliente_juridico);
         //dd($presupuesto->cliente_natural);
-        $pdf = \PDF::loadView('vistaPDF',['presupuesto'=> $presupuesto]);
+        $pdf = \PDF::loadView('vistaPDF',['presupuesto'=> $presupuesto, 'cotizaciones'=>$cotizaciones]);
         //return $pdf->download('presupuesto'.'#'.$presupuesto_id.'.pdf');
         return $pdf->download('presupuesto'.'#'.$presupuesto->id.'.pdf');
     }
@@ -242,9 +245,10 @@ class PresupuestoController extends Controller
 
     public function downloadServer($id){
         $presupuesto2 = Presupuesto::find($id);     
+        $cotizaciones = cambio_bolivar::orderby('fecha','ASC')->get();
         $name = 'Presupuesto#' . $presupuesto2->id  . '.pdf';
         $path = public_path() . '/presupuesto/';   
-        $pdf = \PDF::loadView('vistaPDF',['presupuesto'=> $presupuesto2])->save( $path . $name );
+        $pdf = \PDF::loadView('vistaPDF',['presupuesto'=> $presupuesto2, 'cotizaciones'=>$cotizaciones])->save( $path . $name );
     }
 
     public function enviarPresupuesto($id){

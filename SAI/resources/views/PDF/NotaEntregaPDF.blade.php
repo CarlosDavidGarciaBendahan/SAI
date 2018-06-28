@@ -142,7 +142,11 @@
                 <td>
                   @foreach ($notaEntrega->venta->pc_venta as $pc_venta)
                     @if ($pc_venta->pc_ven_fk_codigopc === $codigoPC->id)
-                      {{ $pc_venta->precio_unitario." Bs"}}
+                      @foreach ($cotizaciones as $cotizacion)
+                        @if ($cotizacion->fecha === $notaEntrega->not_fecha)
+                          {{ number_format(($pc_venta->precio_unitario*$cotizacion->precio_dolar))." Bs" }}
+                        @endif
+                      @endforeach
                     @endif
                   @endforeach
                   
@@ -161,7 +165,12 @@
                 <td>
                   @foreach ($notaEntrega->venta->articulo_venta as $articulo_venta)
                     @if ($articulo_venta->art_ven_fk_codigoarticulo === $codigoArticulo->id)
-                      {{ $articulo_venta->precio_unitario." Bs" }}
+                      @foreach ($cotizaciones as $cotizacion)
+                        @if ($cotizacion->fecha === $notaEntrega->not_fecha)
+                          {{ number_format(($articulo_venta->precio_unitario*$cotizacion->precio_dolar))." Bs" }}
+                        @endif
+                      @endforeach
+                      
                     @endif
                   @endforeach
                   
@@ -181,8 +190,20 @@
     <div class="total">
         
         <p>
-            <strong>SubTotal:</strong> {{ $notaEntrega->not_subtotal }} Bs.<br>
-            <strong>Total:</strong>    {{ $notaEntrega->not_subtotal *1.12 }} Bs.
+
+
+            <strong>SubTotal:</strong> @foreach ($cotizaciones as $cotizacion)
+                                        @if ($cotizacion->fecha === $notaEntrega->not_fecha)
+                                          {{ number_format(($notaEntrega->not_subtotal*$cotizacion->precio_dolar))." Bs" }}
+                                        @endif
+                                      @endforeach
+                                      {{-- $notaEntrega->not_subtotal --}}<br>
+            <strong>Total:</strong>    @foreach ($cotizaciones as $cotizacion)
+                                        @if ($cotizacion->fecha === $notaEntrega->not_fecha)
+                                          {{ number_format(($notaEntrega->not_subtotal*$cotizacion->precio_dolar*1.12))." Bs" }}
+                                        @endif
+                                      @endforeach
+                                      {{-- $notaEntrega->not_subtotal *1.12 --}}
         </p>
     
     </div>

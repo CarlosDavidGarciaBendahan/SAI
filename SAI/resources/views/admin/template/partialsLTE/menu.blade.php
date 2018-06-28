@@ -162,6 +162,8 @@
                 
               </ul>
             </li>
+
+            <li class="active"><a href="{{ route('cambio_bolivar.create') }}"><i class="fa fa-circle-o"></i> Cotización </a></li>
             
                 
           </ul>

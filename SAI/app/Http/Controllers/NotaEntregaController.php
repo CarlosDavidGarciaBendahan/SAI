@@ -10,6 +10,7 @@ use App\Empresa;
 use App\Venta;
 use Illuminate\Support\Facades\DB;
 use App\Mail\EnvioDeNotaEntrega;
+use App\cambio_bolivar;
 
 class NotaEntregaController extends Controller
 {
@@ -21,6 +22,7 @@ class NotaEntregaController extends Controller
     public function index()
     {
         //$notaEntregas = NotaEntrega::orderby('id','ASC')->paginate(10);
+        
 
 
         $notaEntregas = NotaEntrega::orderby('id','ASC')->paginate(10);
@@ -75,9 +77,10 @@ class NotaEntregaController extends Controller
     public function show($id)
     {
         $notaEntrega = notaEntrega::find($id);
+        $cotizaciones = cambio_bolivar::orderby('fecha','ASC')->get();
         //dd($notaEntrega->cliente_juridico);
         //dd($notaEntrega->cliente_natural);
-        $pdf = \PDF::loadView('PDF.NotaEntregaPDF',['notaEntrega'=> $notaEntrega]);
+        $pdf = \PDF::loadView('PDF.NotaEntregaPDF',['notaEntrega'=> $notaEntrega, 'cotizaciones'=>$cotizaciones]);
         //return $pdf->download('presupuesto'.'#'.$presupuesto_id.'.pdf');
 
 
@@ -140,15 +143,17 @@ class NotaEntregaController extends Controller
 
     public function downloadServer($id){
         $notaEntrega = NotaEntrega::find($id);     
+        $cotizaciones = cambio_bolivar::orderby('fecha','ASC')->get();
         $name = 'NotaEntrega#' . $notaEntrega->id  . '.pdf';
         $path = public_path() . '/notaEntrega/';   
-        $pdf = \PDF::loadView('PDF.NotaEntregaPDF',['notaEntrega'=> $notaEntrega])->save( $path . $name );
+        $pdf = \PDF::loadView('PDF.NotaEntregaPDF',['notaEntrega'=> $notaEntrega, 'cotizaciones'=>$cotizaciones])->save( $path . $name );
     }
 
     public function download($id){//descarga para el usuario!!!
         
         $notaEntrega = notaEntrega::find($id);
-        $pdf = \PDF::loadView('PDF.NotaEntregaPDF',['notaEntrega'=> $notaEntrega]);
+        $cotizaciones = cambio_bolivar::orderby('fecha','ASC')->get();
+        $pdf = \PDF::loadView('PDF.NotaEntregaPDF',['notaEntrega'=> $notaEntrega, 'cotizaciones'=>$cotizaciones]);
         return $pdf->download('notaEntrega'.'#'.$notaEntrega->id.'.pdf');
     }
 

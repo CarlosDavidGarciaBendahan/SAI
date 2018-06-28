@@ -113,6 +113,11 @@
 						{!! Form::select('componentes[]',$producto_articulos,null,['class'=> 'form-control select-componentes', 'multiple','required']) !!}
 						</div>
 
+						<div class="form-group col-sm-6 ">
+							{!! Form::label('cantidad_minima','Cantidad mínima del producto') !!}
+							{!! Form::text('cantidad_minima',null,['class'=> 'form-control', 'placeholder'=>'0', 'required', 'maxlength' => '5', 'pattern'=>'[0-9]+']) !!}
+						</div>
+
 						<div class="form-group col-sm-6"> 
 						
 							{!! Form::label('ima','Imagen') !!}

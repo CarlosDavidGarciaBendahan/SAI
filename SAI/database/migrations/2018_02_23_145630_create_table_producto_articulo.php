@@ -26,6 +26,8 @@ class CreateTableProductoArticulo extends Migration
             $table->integer('pro_art_fk_sector')->unsigned();
             $table->integer('pro_art_fk_modelo')->unsigned();
             $table->integer('pro_art_fk_tipo_producto')->unsigned();
+            $table->integer('cantidad_minima')->nullable(true);
+
             $table->timestamps();
 
             $table->unique('pro_art_codigo','PRODUCTO_ARTICULO_UNIQUE_pro_com_codigo');

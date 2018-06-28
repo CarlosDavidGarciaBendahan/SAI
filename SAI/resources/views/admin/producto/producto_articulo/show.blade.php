@@ -150,19 +150,24 @@
 								</div>
 
 								<div class="form-group ">
-							<label>Unidad de medida </label>
-							<select class="form-control input-sm" name="pro_art_fk_unidadmedida" id="unidadmedida" disabled="true">
-								<option value=""> Seleccionar unidad de medida</option>
-								@foreach ($unidadmedidas as $unidadmedida)
-									@if ($unidadmedida->id === $producto_articulo->unidadmedida->id)
-										<option value="{{ $unidadmedida->id }}" selected="true"> {{ $unidadmedida->uni_medida }}</option>
-									@else
-										<option value="{{ $unidadmedida->id }}"> {{ $unidadmedida->uni_medida }}</option>
-									@endif
-									
-								@endforeach
-							</select>
-						</div>
+									<label>Unidad de medida </label>
+									<select class="form-control input-sm" name="pro_art_fk_unidadmedida" id="unidadmedida" disabled="true">
+										<option value=""> Seleccionar unidad de medida</option>
+										@foreach ($unidadmedidas as $unidadmedida)
+											@if ($unidadmedida->id === $producto_articulo->unidadmedida->id)
+												<option value="{{ $unidadmedida->id }}" selected="true"> {{ $unidadmedida->uni_medida }}</option>
+											@else
+												<option value="{{ $unidadmedida->id }}"> {{ $unidadmedida->uni_medida }}</option>
+											@endif
+											
+										@endforeach
+									</select>
+								</div>
+							
+								<div class="form-group  ">
+									{!! Form::label('cantidad_minima','Cantidad mínima del producto') !!}
+									{!! Form::text('cantidad_minima',$producto_articulo->cantidad_minima,['class'=> 'form-control', 'placeholder'=>'0', 'required', 'maxlength' => '5', 'pattern'=>'[0-9]+', 'readonly'=>'true']) !!}
+									</div>
 							</div>
 							<div class="col-sm-12">
 								<table class="table table-inverse">

@@ -152,7 +152,7 @@
 						<div class="form-group col-sm-6">
 							<div class="form-group ">
 								{!! Form::label('pro_com_moneda','Moneda') !!}
-								{!! Form::select('pro_com_moneda',['$'=>'$','Bs'=>'Bs'], $producto_computador->pro_com_moneda, ['class'=>'form-control', 'placeholder'=>'$', 'required'] ) !!}
+								{!! Form::select('pro_com_moneda',['$'=>'$'], $producto_computador->pro_com_moneda, ['class'=>'form-control', 'placeholder'=>'$', 'required'] ) !!}
 							</div>
 						</div>
 
@@ -169,7 +169,14 @@
 								{!! Form::select('pro_com_catalogo',[0=>'NO',1=>'SI'], $producto_computador->pro_com_catalogo, ['class'=>'form-control', 'placeholder'=>'', 'required'] ) !!}
 							</div>
 						</div>
-
+						
+						<div class="col-sm-12">
+							
+								<div class="form-group  ">
+									{!! Form::label('cantidad_minima','Cantidad mínima del producto') !!}
+									{!! Form::text('cantidad_minima',$producto_computador->cantidad_minima,['class'=> 'form-control', 'placeholder'=>'0', 'required', 'maxlength' => '5', 'pattern'=>'[0-9]+']) !!}
+								</div>
+						</div>
 						<div class="form-group col-sm-12">
 						
 						{!! Form::label('Componentes','Componentes') !!}

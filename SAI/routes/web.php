@@ -700,3 +700,16 @@ Route::post('/solicitud/importarExcel',[
 		'uses'	=> 'solicitudController@importarExcel',
 		'as'	=> 'solicitud.importarExcel'
 ])->middleware('auth');
+
+
+
+
+Route::resource('cambio_bolivar','cambio_bolivarController')->middleware('auth');
+Route::get('/cambio_bolivar',[
+		'uses'	=> 'cambio_bolivarController@create',
+		'as'	=> 'cambio_bolivar.create'
+])->middleware('auth');
+	Route::get('cambio_bolivar/{id}/destroy',[
+		'uses'	=> 'cambio_bolivarController@destroy',
+		'as'	=> 'cambio_bolivar.destroy'
+])->middleware('auth');

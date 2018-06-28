@@ -84,9 +84,25 @@ class SolicitudController extends Controller
         //dd($request->all());
 
         $solicitud = new Solicitud($request->all());
-        $solicitud->save();
-
         $notaEntrega = $solicitud->NotaEntrega;
+        
+
+        $fecha = Carbon::now();
+        $fecha = $fecha->format('d-m-Y');
+        /* VERIFICO LA GARANTIA */    
+        $fecha = Carbon::parse($fecha);        
+        $dias = $fecha->diffInDays(Carbon::parse($notaEntrega->not_fecha));
+        $Garantia = false;
+
+        if($dias <= 90){
+            $solicitud->save();
+        }else{/* FIN   VERIFICO LA GARANTIA */
+            flash('No puede crearse una solicitud porque la Nota de entrega no está en garantía. Tiene '.($dias-90). ' dias vencida')->error();
+            return redirect()->route('solicitud.index');
+        }
+
+
+        
 
         //dd($solicitud->NotaEntrega)
 
