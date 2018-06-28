@@ -64,9 +64,9 @@
 						
 						{!! Form::label('password','Clave') !!}
 
-						{!! Form::password('password',['class'=> 'form-control', 'title'=>'Solo letras mayúsculas, minúsculas y números min: 8 max: 20', 'placeholder'=>'********************', 'minlength'=>'8', 'maxlength' => '20', 'required', 'pattern'=>'[A-za-z0-9 ]+']) !!}
+						{!! Form::password('password',['class'=> 'form-control', 'title'=>'Solo letras mayúsculas, minúsculas y números min: 8 max: 20', 'placeholder'=>'********************', 'minlength'=>'8', 'maxlength' => '20', 'required', 'pattern'=>'[A-za-z0-9]+', 'id'=>'password']) !!}
 						{!! Form::label('password','Verificar Clave') !!}
-						{!! Form::password('password2',['class'=> 'form-control', 'title'=>'Solo letras mayúsculas, minúsculas y números min: 8 max: 20', 'placeholder'=>'********************', 'minlength'=>'8', 'maxlength' => '20', 'required', 'pattern'=>'[A-za-z0-9 ]+']) !!}
+						{!! Form::password('password2',['class'=> 'form-control', 'title'=>'Solo letras mayúsculas, minúsculas y números min: 8 max: 20', 'placeholder'=>'********************', 'minlength'=>'8', 'maxlength' => '20', 'required', 'pattern'=>'[A-za-z0-9]+', 'id'=>'confirm-password']) !!}
 						</div>
 					@endif
 					
@@ -89,7 +89,7 @@
 					@endif
 
 					<div class="form-group">
-						{!! Form::submit('Editar',['class'=>'btn btn-primary']) !!}
+						{!! Form::submit('Editar',['class'=>'btn btn-primary', 'id'=>'btn_editar']) !!}
 						<a href="{{ route('users.index') }}" class="btn btn-danger">Calcelar</a>
 					</div>
 
@@ -107,4 +107,7 @@
 @endsection
 @section('scripts')
 	<script src = "{{ asset('plugins/Script/ChosenMultipleSelectorRoles.js') }}"></script>
+
+
+	
 @endsection

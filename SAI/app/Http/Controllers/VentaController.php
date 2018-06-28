@@ -19,6 +19,7 @@ use App\FuenteVenta;
 use App\PC_Venta;
 use App\Articulo_Venta;
 use App\Presupuesto;
+//use App\Http\Controller\PresupuestoController;
 
 class VentaController extends Controller
 {
@@ -184,7 +185,10 @@ class VentaController extends Controller
             }
         }
         
-
+        /*if($venta->ven_fk_presupuesto !== null){
+            $presupuesto = new PresupuestoController();
+            $presupuesto->edit($venta->ven_fk_presupuesto);
+        }*/
         flash("Se ha creado exitosamente la venta #".$venta->id)->success();
         return redirect()->route('venta.index');
     

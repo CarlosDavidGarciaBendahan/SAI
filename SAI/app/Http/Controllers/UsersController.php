@@ -143,7 +143,11 @@ class UsersController extends Controller
             if (Auth::user()->rol->rol_rol === 'Administrador' || Auth::user()->id === $user->id) {
                 if ($request->password !== null && auth()->user()->id === $user->id  ) {//mismo usuario
                     
-                    $user->password = bcrypt($request->password); 
+                    $valida = $this->ValidarClave($request->password,$request->password2);
+                    if($valida){
+                        $user->password = bcrypt($request->password); 
+                    }
+                    return back();
 
                 } else {//diferente usuario
                     if ($user->id !== 0) {//puedo editar siempre y cuando no sea el user admin (id=0)
@@ -302,6 +306,18 @@ class UsersController extends Controller
         return redirect()->route('users.index');
     }
 
+    public function ValidarClave($p1,$p2){
 
+        if ($p1 === null || $p2 === null || $p1 === " " || $p2 === " ") {
+            
+            flash("Debe ingresar los dos campos de clave.")->error();
+            return false;
+        }
+        if ($p1 !== $p2) {
+            
+            flash("Las claves no son iguales")->error();
+            return false;
+        }
+    }
 
 }

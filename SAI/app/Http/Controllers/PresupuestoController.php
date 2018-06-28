@@ -102,6 +102,7 @@ class PresupuestoController extends Controller
                 $detalle->Presupuesto()->associate($presupuesto); 
                 $detalle->Producto_Computador()->associate($computador); 
                 $detalle->det_fk_producto_articulo = null;
+                $detalle->precio_unitario = $computador->pro_com_precio;
 
                 $detalle->save();
 
@@ -121,6 +122,7 @@ class PresupuestoController extends Controller
                 $detalle->Presupuesto()->associate($presupuesto);           //vinculo la fk presupuesto
                 $detalle->Producto_Articulo()->associate($request->articulo_id[$i]); //vinculo la fk del articulo
                 $detalle->det_fk_producto_computador = null;                //detalle de articulo -> fk_PC = null
+                $detalle->precio_unitario = $articulo->pro_art_precio;
 
                 $detalle->save();
 

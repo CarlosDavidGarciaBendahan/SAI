@@ -140,7 +140,12 @@
                   @endforeach
                 </td> 
                 <td>
-                  {{ $codigoPC->producto_computador->pro_com_precio." ".$codigoPC->producto_computador->pro_com_moneda }}
+                  @foreach ($notaEntrega->venta->pc_venta as $pc_venta)
+                    @if ($pc_venta->pc_ven_fk_codigopc === $codigoPC->id)
+                      {{ $pc_venta->precio_unitario." Bs"}}
+                    @endif
+                  @endforeach
+                  
                 </td>
                 
               </tr>
@@ -154,7 +159,12 @@
                   {{ $codigoArticulo->producto_articulo->pro_art_capacidad." ".$codigoArticulo->producto_articulo->unidadMedida->uni_medida }}
                 </td>
                 <td>
-                  {{ $codigoArticulo->producto_articulo->pro_art_precio." ".$codigoArticulo->producto_articulo->pro_art_moneda }}
+                  @foreach ($notaEntrega->venta->articulo_venta as $articulo_venta)
+                    @if ($articulo_venta->art_ven_fk_codigoarticulo === $codigoArticulo->id)
+                      {{ $articulo_venta->precio_unitario." Bs" }}
+                    @endif
+                  @endforeach
+                  
                 </td>
                   
               </tr>

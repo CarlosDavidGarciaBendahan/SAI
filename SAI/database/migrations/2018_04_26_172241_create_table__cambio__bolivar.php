@@ -16,7 +16,7 @@ class CreateTableCambioBolivar extends Migration
         Schema::create('cambio_bolivar', function (Blueprint $table) {
             //$table->increments('id');
             $table->decimal('precio_dolar',9,2)->nullable(false);
-            //$table->date('cam_fecha')->nullable(false);
+            $table->date('fecha')->nullable(false);
             //$table->timestamps();
         });
     }

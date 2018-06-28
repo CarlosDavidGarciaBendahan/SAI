@@ -180,6 +180,58 @@
 						  	
 						  		
 						  	@endforeach
+<!-- ************************************************************************************************-->
+@foreach ($solicitud->notaEntrega->solicitudes as $solicitud)
+	@foreach ($solicitud->CodigoPCsEntregado as $codigoPC)
+						  	
+						  		<tr>
+							      <th scope="row">{{ $codigoPC->cod_pc_codigo }}</th>
+							      <td>{{ "Marca: ".$codigoPC->producto_computador->modelo->marca->mar_marca ." Modelo: ".$codigoPC->producto_computador->modelo->mod_modelo }}</td>	
+							      <td>{{ $codigoPC->producto_computador->Tipo_Producto->tip_tipo }}</td>
+							      	
+							      <td>
+							      	@foreach ($codigoPC->CodigoArticulos as $componente)
+							      		{{ $componente->producto_articulo->pro_art_capacidad." ".$componente->producto_articulo->unidadMedida->uni_medida." / " }}
+							      	@endforeach
+							  	  </td>	
+							  	  <td>
+							  	  	{{ $codigoPC->producto_computador->pro_com_precio." ".$codigoPC->producto_computador->pro_com_moneda }}
+							  	  </td>
+	<td>
+					  	  	
+					  	  		
+					  	  		@if (count($codigoPC->solicitudes)===0)
+					  	  			<a href="{{ route('solicitud.agregarProducto', [$solicitud->id,$codigoPC->id,'pc']) }}" onclick="return confirm('Seguro que desea agregar este computador de la solicitud?')" class="btn btn-success" title="Agregar producto de esta solicitud">
+							      		<span class="class glyphicon glyphicon-ok"></span>
+						      		</a> 
+						      	@else
+						      		@foreach ($codigoPC->solicitudes as $sol)
+						  	  			@if ($sol->sol_aprobado === 'S'  && $solicitud->sol_fecha >= $sol->sol_fecha )					  	  		
+							  	  			@if ($solicitud->id <= $sol->id)
+							  	  				<a href="{{ route('solicitud.eliminarProducto', [$solicitud->id,$codigoPC->id,'pc']) }}" onclick="return confirm('Seguro que desea quitar este computador de la solicitud?')" class="btn btn-danger" title="Quitar producto de esta solicitud">
+										      		<span class="class glyphicon glyphicon-remove-circle"></span>
+									      		</a> 
+									      	@else
+									      		<a  class="btn btn-default" title="Producto NO disponible para esta solicitud. Ya ha sido ingresado en una solicitud anterior.">
+										      		<span class="class glyphicon glyphicon-thumbs-down"></span>
+									      		</a> 
+							  	  			@endif
+						  	  			@endif
+
+						  	  		@endforeach
+					  	  		@endif
+					      		
+					  	  	
+					  	  	
+					  	  </td>
+							  	  
+						    	</tr>
+						  	
+						  		
+						  	@endforeach
+@endforeach
+<!-- ************************************************************************************************-->
+
 						  	@foreach ($solicitud->notaEntrega->venta->ventaArticulos as  $codigoArticulo)
 						  	
 						  		<tr>
@@ -398,6 +450,7 @@
 
 					</table>
 					@endif
+
 				</div>
 
 

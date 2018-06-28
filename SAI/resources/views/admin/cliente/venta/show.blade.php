@@ -88,7 +88,11 @@
 					      	@endforeach
 					  	  </td>	
 					  	  <td>
-					  	  	{{ $codigoPC->producto_computador->pro_com_precio }}
+					  	  	@foreach ($venta->pc_venta as $pc_venta)
+			                    @if ($pc_venta->pc_ven_fk_codigopc === $codigoPC->id)
+			                      {{ $pc_venta->precio_unitario." ".$codigoPC->producto_computador->pro_com_moneda }}
+			                    @endif
+			                  @endforeach
 					  	  </td>
 					  	  
 				    	</tr>
@@ -124,7 +128,11 @@
 						      <td>{{ $codigoArticulo->producto_articulo->Tipo_Producto->tip_tipo }}</td>
 						      <td>{{ $codigoArticulo->producto_articulo->pro_art_capacidad." ".$codigoArticulo->producto_articulo->unidadMedida->uni_medida }}</td>
 						      <td>
-						  	  	{{ $codigoArticulo->producto_articulo->pro_art_precio }}
+						  	  	@foreach ($venta->articulo_venta as $articulo_venta)
+				                    @if ($articulo_venta->art_ven_fk_codigoarticulo === $codigoArticulo->id)
+				                      {{ $articulo_venta->precio_unitario." ".$codigoArticulo->producto_articulo->pro_art_moneda }}
+				                    @endif
+				                  @endforeach
 						  	  </td>
 					    	</tr>
 					@endforeach

@@ -45,7 +45,8 @@ class UserEditRequest extends FormRequest
             'name'          =>'min:3|max:20|required|string|exists:users',
             'activa'        =>'nullable|integer',
             'fk_rol'        =>'nullable|integer',
-            'password'      =>'min:8|nullable|string'
+            'password'      =>'min:8|nullable|string',
+            'password2'      =>'min:8|nullable|string'
             ];
         }
         

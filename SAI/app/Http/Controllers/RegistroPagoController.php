@@ -200,6 +200,7 @@ class RegistroPagoController extends Controller
         //dd('ddd');
         return view('admin.cliente.registroPago.cargarArchivo');
     }
+    
     public function ImportarExcel(Request $request){
 
         //dd($request->all());

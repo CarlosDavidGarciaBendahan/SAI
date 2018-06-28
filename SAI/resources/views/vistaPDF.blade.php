@@ -136,7 +136,7 @@
                         <tr>
                             <td class="">{{ $detalle->producto_computador->pro_com_descripcion }}</td>
                             <td class="">{{ $detalle->producto_computador->pro_com_codigo }}</td>
-                            <td class="">{{ $detalle->producto_computador->pro_com_precio }}</td>
+                            <td class="">{{ $detalle->precio_unitario }}</td>
                             <td class="">{{ $detalle->det_cantidad}}</td>
                             <td class="">{{ $detalle->det_total}}</td>
                         </tr>
@@ -144,7 +144,7 @@
                         <tr>
                             <td class="">{{ $detalle->producto_articulo->pro_art_descripcion }}</td>
                             <td class="">{{ $detalle->producto_articulo->pro_art_codigo }}</td>
-                            <td class="">{{ $detalle->producto_articulo->pro_art_precio }}</td>
+                            <td class="">{{ $detalle->precio_unitario }}</td>
                             <td class="">{{ $detalle->det_cantidad}}</td>
                             <td class="">{{ $detalle->det_total}}</td>
                         </tr>

@@ -19,7 +19,7 @@ class SolicitudController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index() 
     {
         /*$codigoPCs = CodigoPC::orderby('cod_pc_codigo','ASC')->get();
         $PC = new CodigoPCController();
@@ -112,8 +112,6 @@ class SolicitudController extends Controller
             flash("Se ha agregado los productos a la solicitud #".$solicitud->id." exitosamente.")->success();
             return redirect()->route('solicitud.index');
         }
-        
-        
 
     }
     /**
@@ -206,7 +204,15 @@ class SolicitudController extends Controller
      */
     public function update(Request $request, $id)
     {
-        dd($request->all());
+        //dd($request->all());
+        $solicitud = solicitud::find($id);
+
+        $solicitud->sol_aprobado = $request->sol_aprobado;
+        $solicitud->sol_observaciones = $request->sol_observaciones;
+
+        $solicitud->save();
+        flash("solicitud#".$id." se modificó exitosamente")->success();
+        return redirect()->route('solicitud.index');
     }
 
     /**
@@ -408,7 +414,194 @@ class SolicitudController extends Controller
             return view('admin.cliente.solicitud.ProductosACambiar')->with(compact('solicitud','codigoPCs','codigoArticulos'));
     }
 
+    public function cargarArchivo(){
+        return view('admin.cliente.solicitud.cargarArchivo');
+    }
+
+
+    public function ImportarExcel(Request $request){
+
+
+        //dd($request->all());
+
+        $file = $request->file('imagen');        
+        $name = 'indatechC.A._' . time() . '.' . $request->file('imagen')->getClientOriginalExtension();
+        $path = public_path() . '/solicitud/';
+        $file->move($path,$name);
+
+
+        //$path = public_path() . '/registroPago/';
+        //$name = "registroPago1.xlsx";
+        //dd($columnas);
+        \Excel::selectSheets('registro')->load($path.$name, function($archivo){
+
+            //selecciono las columnas que necesito
+            $columnas = array('tipo_solicitud','concepto','numero_de_nota_entrega','productos');
+
+            //agarro los resultados..
+            $resultados = $archivo->get($columnas);
+            //dd($resultados->all());
+            $notaEntrega = NotaEntrega::find($resultados[0]->numero_de_nota_entrega);
+            if($notaEntrega !== null){  
+                $solicitud = new solicitud(); 
+
+                $solicitud->sol_tipo = $resultados[0]->tipo_solicitud;
+                $solicitud->sol_concepto = $resultados[0]->concepto;
+                $solicitud->sol_fk_notaentrega = $notaEntrega->id;
+
+                $fecha = Carbon::now();
+                $fecha = $fecha->format('d-m-Y');
+
+                $solicitud->sol_fecha = $fecha;
+                $solicitud->sol_aprobado = 'N';
+
+                /* VERIFICO LA GARANTIA */    
+                $fecha = Carbon::parse($fecha);        
+                $dias = $fecha->diffInDays(Carbon::parse($notaEntrega->not_fecha));
+                $Garantia = false;
+
+                if($dias <= 90){
+                    $Garantia = true;
+                    $solicitud->sol_observaciones = "Si tiene garantía.";
+                }else{/* FIN   VERIFICO LA GARANTIA */
+                    $solicitud->sol_observaciones = "No es aprobada la solicitud porque no está en garantia";
+                    flash("No está en garantía esta nota de entrega. Supera los 90 días")->error();
+                    //return  back();
+                }
+
+                $solicitud->save();
+            
+            
+
+            //agregarProducto($solicitud_id,$producto_id,$tipo_producto,$editar=false)
+                //if($Garantia){
+                $CodVal = "";
+                $CodNoVal = "";
+                    foreach ($resultados as $resultado) {
+                        //AQUI VOY VALIDANDO E INGRESANDO LOS PRODUCTOS DE LA NOTA ENTREGA.
+                        if($this->validarCodigoProductoArchivo($notaEntrega,strtoupper($resultado->productos),$solicitud->id)){
+                            $CodVal = $resultado->productos."-".$CodVal ;
+                        }else{
+                            $CodNoVal = $resultado->productos  ."-".$CodNoVal;
+                        }
+                        //flash($resultado->productos)->warning();
+                        //break;//ejecuto este codigo una sola vez y lo rompo
+                    }
+                    flash("Códigos válidos: ".$CodVal)->success();
+                    flash("Códigos NO válidos: ".$CodNoVal)->error();
+                    flash('Se ha cargado la solicitud con exito desde el archivo.')->success();
+
+                //}
+            }else{
+                //dd($archivo);
+                
+                flash("No existe la nota de entrega#".$resultados[0]->numero_de_nota_entrega)->error();
+                if(file_exists($archivo->file)){//elimino el archivo xls creado en el servidor
+                    unlink($archivo->file);
+                }
+                //return back();
+            }
+        })->get();
+
+        return redirect()->route('solicitud.index');
+        //return redirect()->route('venta.index');    
+    }
 
 
 
+    public function validarCodigoProductoArchivo(NotaEntrega $notaEntrega,$codigo,$solicitud_id){
+        $PC = new CodigoPCController();
+        $Articulo = new CodigoArticuloController();
+
+        $ObjetoPC = codigoPC::wherecod_pc_codigo($codigo)->get();
+        $ObjetoArticulo = codigoArticulo::wherecod_art_codigo($codigo)->get();
+
+        $valido = false;
+        //dd($ObjetoPC[0]);
+       //dd($ObjetoArticulo[0]);
+        if(count($ObjetoPC) > 0 ){
+            foreach ($notaEntrega->venta->ventaPCs as $pc) {
+                if($ObjetoPC[0]->id === $pc->id){
+                    if($PC->disponibilidadPCParaSolicitud($pc,$notaEntrega->venta->ven_fecha_compra)){
+                        //$CodigoPCs->push($CodigoPC);//agrego los disponibles!!!
+                        $this->agregarProducto($solicitud_id,$pc->id,"pc");
+                        $valido = true;
+                        break;
+                    }
+                    /*$valido = true;
+                    break;*/
+                    //flash("Producto con código '' ".$codigo." '' válido")->success();
+                }
+            }
+            //flash("Producto con código '' ".$codigo." '' válido")->success();
+        }
+
+        if(count($ObjetoArticulo) > 0){
+            foreach ($notaEntrega->venta->ventaArticulos as $art) {
+                if($ObjetoArticulo[0]->id === $art->id){
+                    if($Articulo->disponibilidadArticuloParaSolicitud($art,$notaEntrega->venta->ven_fecha_compra)){
+                        //$CodigoArticulos->push($CodigoArticulo);//agrego los disponibles!!!
+                        $valido = true;
+                            $this->agregarProducto($solicitud_id,$art->id,"articulo");
+                        break;
+                    }
+                    /*$valido = true;
+                    break;*/
+                    //flash("Producto con código '' ".$codigo." '' válido")->warning();
+                    //flash("Producto con código '' ".$codigo." '' válido")->success();
+                }
+            }
+        }
+        if (!count($ObjetoArticulo) > 0 && !count($ObjetoPC) > 0) {
+            flash("WARNING: código '' ".$codigo." '' no existe!!!")->warning();
+            //return -1;
+        }
+        
+
+        if(count($ObjetoPC) > 0 ){
+            foreach ($notaEntrega->solicitudes as $solicitud) {
+                foreach ($solicitud->CodigoPCsEntregado as $PCentregado) {
+                    if($ObjetoPC[0]->id === $PCentregado->id){
+                        if($PC->disponibilidadPCParaSolicitud($PCentregado,$solicitud->sol_fecha)){
+                            //$CodigoPCs->push($CodigoPC);//agrego los disponibles!!!
+                            $valido = true;
+                            $this->agregarProducto($solicitud_id,$PCentregado->id,"pc");
+
+                            break;
+                        }
+                        /*$valido = true;
+                        break;*/
+                        //flash("Producto con código '' ".$codigo." '' válido")->success();
+                    }
+                }
+                
+            }
+            //flash("Producto con código '' ".$codigo." '' válido")->success();
+        }
+
+        if(count($ObjetoArticulo) > 0){
+            foreach ($notaEntrega->solicitudes as $solicitud) {
+                foreach ($solicitud->CodigoArticulosEntregado as $Articuloentregado) {
+                    if($ObjetoArticulo[0]->id === $Articuloentregado->id){
+                        if($Articulo->disponibilidadArticuloParaSolicitud($Articuloentregado,$notaEntrega->venta->ven_fecha_compra)){
+                            //$CodigoArticulos->push($CodigoArticulo);//agrego los disponibles!!!
+                            $valido = true;
+                            $this->agregarProducto($solicitud_id,$Articuloentregado->id,"articulo");
+                            break;
+                        }
+                        /*$valido = true;
+                        break;*/
+                        //flash("Producto con código '' ".$codigo." '' válido")->warning();
+                        //flash("Producto con código '' ".$codigo." '' válido")->success();
+                    }
+                }
+                
+            }
+        }
+
+
+
+
+        return $valido;
+    }
 }

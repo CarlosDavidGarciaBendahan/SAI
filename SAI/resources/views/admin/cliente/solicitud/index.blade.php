@@ -24,8 +24,9 @@
 					<a href="{{ route('solicitud.listarNotas',0) }}" class="btn btn-info">Registrar nueva solicitud</a>
 				</div> 
 
+
 			<div class="col-sm-2">
-				<a href="{{ route('registroPago.cargarArchivo') }}" class="btn btn-info" title="Cargar archivo Excel de registro pago">
+				<a href="{{ route('solicitud.cargarArchivo') }}" class="btn btn-info" title="Cargar archivo Excel de solicitud">
 					<span class="fa fa-file-excel-o"></span>
 				</a>
 				{!! Form::label('venta','Cargar archivo',['class'=> ' col-sm']) !!}

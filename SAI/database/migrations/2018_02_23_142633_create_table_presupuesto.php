@@ -22,6 +22,7 @@ class CreateTablePresupuesto extends Migration
             $table->integer('pre_fk_empresa')->unsigned()->nullable(false);
             $table->integer('pre_fk_cliente_natural')->unsigned()->nullable(true);
             $table->integer('pre_fk_cliente_juridico')->unsigned()->nullable(true);
+            $table->float('precio_unitario',9,2)->nullable(false);
 
             $table->timestamps();
         });

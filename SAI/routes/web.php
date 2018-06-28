@@ -692,3 +692,11 @@ Route::post('/registroPago/importarExcel',[
 		'uses'	=> 'registroPagoController@importarExcel',
 		'as'	=> 'registroPago.importarExcel'
 ])->middleware('auth');
+Route::get('/solicitud/cargarArchivo',[
+		'uses'	=> 'solicitudController@cargarArchivo',
+		'as'	=> 'solicitud.cargarArchivo'
+])->middleware('auth');
+Route::post('/solicitud/importarExcel',[
+		'uses'	=> 'solicitudController@importarExcel',
+		'as'	=> 'solicitud.importarExcel'
+])->middleware('auth');

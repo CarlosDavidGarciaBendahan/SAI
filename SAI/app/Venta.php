@@ -63,4 +63,13 @@ class Venta extends Model
     public function Presupuesto(){
         return $this->belongsTo('App\Presupuesto','ven_fk_presupuesto','id');
     }
+
+     //Referencia hacia la tabla N a M ebtre Venta y codigo arrticulo
+    public function articulo_venta(){
+        return $this->hasMany('App\articulo_venta','art_ven_fk_venta','id');
+    }
+     //Referencia hacia la tabla N a M ebtre Venta y codigo arrticulo
+    public function pc_venta(){
+        return $this->hasMany('App\pc_venta','pc_ven_fk_venta','id');
+    }
 }

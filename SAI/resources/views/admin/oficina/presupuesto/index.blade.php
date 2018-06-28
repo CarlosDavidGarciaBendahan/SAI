@@ -19,7 +19,7 @@
 	<section class="container-fluid">
 
 		<div class="row">
-			<div class="col-sm-10 offset-1">
+			<div class="col-sm-12">
 
 				<a href="{{ route('presupuesto.create') }}" class="btn btn-info">Registrar nuevo presupuesto</a>
 				 

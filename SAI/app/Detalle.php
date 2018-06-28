@@ -26,7 +26,8 @@ class Detalle extends Model
 
     protected $fillable = [
     	'id','det_cantidad','det_total',
-    	'det_fk_presupuesto','det_fk_producto_computador','det_fk_producto_articulo'
+    	'det_fk_presupuesto','det_fk_producto_computador','det_fk_producto_articulo',
+        'precio_unitario'
     ];
 
 
