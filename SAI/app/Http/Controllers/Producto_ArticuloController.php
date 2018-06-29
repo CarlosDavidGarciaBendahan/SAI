@@ -198,6 +198,7 @@ class Producto_ArticuloController extends Controller
                 $producto_articulo->pro_art_fk_modelo = $request->pro_art_fk_modelo;
                 $producto_articulo->pro_art_fk_tipo_producto = $request->pro_art_fk_tipo_producto;
                 $producto_articulo->pro_art_fk_unidadmedida = $request->pro_art_fk_unidadmedida;
+                $producto_articulo->cantidad_minima = $request->cantidad_minima;
 
                 $producto_articulo->save();
 

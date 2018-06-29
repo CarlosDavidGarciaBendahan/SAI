@@ -15,8 +15,10 @@ class ReporteInventarioController extends Controller
      */
     public function index()
     {
-        
-        return view('admin.reportes.inventario.index'); 
+        $PCs = Producto_Computador::orderby('pro_com_codigo','ASC')->get();
+        $Arts = Producto_Articulo::orderby('pro_art_codigo','ASC')->get();
+
+        return view('admin.reportes.inventario.index')->with(compact('PCs','Arts')); 
     }
 
     /**

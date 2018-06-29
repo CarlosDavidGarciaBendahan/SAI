@@ -21,7 +21,7 @@
 		 <!-- AREA CHART -->
           <div class="box box-primary">
             <div class="box-header with-border">
-              <h3 class="box-title">Area Chart</h3>
+              <h3 class="box-title">Cantidad en inventario por producto y su mínimo</h3>
 
               <div class="box-tools pull-right">
                 <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -86,7 +86,19 @@
     var areaChart       = new Chart(areaChartCanvas)
 
     var areaChartData = {
-      labels  : ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+      //labels  : ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+
+
+      labels  : [
+      			@foreach ($PCs as $PC)
+      				"{{ $PC->pro_com_codigo }}",
+      			@endforeach	
+
+      			@foreach ($Arts as $art)
+      				"{{ $art->pro_art_codigo}}",
+      			@endforeach
+
+      ],
       datasets: [
         {
           label               : 'Electronics',
@@ -96,7 +108,16 @@
           pointStrokeColor    : '#c1c7d1',
           pointHighlightFill  : '#fff',
           pointHighlightStroke: 'rgba(220,220,220,1)',
-          data                : [65, 59, 80, 81, 56, 55, 40]
+          data                : //[65, 59, 80, 81, 56, 55, 40]
+          [
+      			@foreach ($PCs as $PC)
+      				{{ $PC->pro_com_cantidad}},
+      			@endforeach	
+
+      			@foreach ($Arts as $art)
+      				{{ $art->pro_art_cantidad}},
+      			@endforeach
+          ]
         },
         {
           label               : 'Digital Goods',
@@ -106,7 +127,16 @@
           pointStrokeColor    : 'rgba(60,141,188,1)',
           pointHighlightFill  : '#fff',
           pointHighlightStroke: 'rgba(60,141,188,1)',
-          data                : [28, 48, 40, 19, 86, 27, 90]
+          data                : //[28, 48, 40, 19, 86, 27, 90]
+          [
+      			@foreach ($PCs as $PC)
+      				{{ $PC->cantidad_minima}},
+      			@endforeach	
+
+      			@foreach ($Arts as $art)
+      				{{ $art->cantidad_minima}},
+      			@endforeach
+          ]
         }
       ]
     }

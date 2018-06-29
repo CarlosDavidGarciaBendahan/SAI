@@ -190,6 +190,7 @@ class Producto_ComputadorController extends Controller
                 $producto_computador->pro_com_fk_sector = $request->pro_com_fk_sector;
                 $producto_computador->pro_com_fk_modelo = $request->pro_com_fk_modelo;
                 $producto_computador->pro_com_fk_tipo_producto = $request->pro_com_fk_tipo_producto;
+                $producto_computador->cantidad_minima = $request->cantidad_minima;
 
                 $producto_computador->save();
 
