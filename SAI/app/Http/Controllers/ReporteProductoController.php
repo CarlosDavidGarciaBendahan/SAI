@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\CodigoPc;
 use App\CodigoArticulo;
+use App\Producto_Computador;
+use App\Producto_Articulo;
 
 class ReporteProductoController extends Controller
 {
@@ -15,11 +17,15 @@ class ReporteProductoController extends Controller
      */
     public function index()
     {
-        $PCs = codigoPC::orderby('cod_pc_codigo','ASC')->paginate(15);
-        $Articulos = codigoArticulo::orderby('cod_art_codigo','ASC')->paginate(15);
+        $PCs = codigoPC::orderby('cod_pc_codigo','ASC')->paginate(5);
+        $Articulos = codigoArticulo::orderby('cod_art_codigo','ASC')->paginate(5);
 
 
-        return view('admin.reportes.productos.index')->with(compact('PCs','Articulos'));
+        $pcs = Producto_Computador::orderby('pro_com_codigo','ASC')->get();//->paginate(15);
+        $arts = Producto_Articulo::orderby('pro_art_codigo','ASC')->get();//->paginate(15);
+
+
+        return view('admin.reportes.productos.index')->with(compact('PCs','Articulos','pcs','arts'));
     }
 
     /**

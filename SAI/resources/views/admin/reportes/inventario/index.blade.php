@@ -91,11 +91,11 @@
 
       labels  : [
       			@foreach ($PCs as $PC)
-      				"{{ $PC->pro_com_codigo }}",
+      				"{{ $PC->pro_com_codigo.'('.$PC->Tipo_Producto->tip_tipo.')' }}",
       			@endforeach	
 
       			@foreach ($Arts as $art)
-      				"{{ $art->pro_art_codigo}}",
+      				"{{ $art->pro_art_codigo.'('.$art->Tipo_Producto->tip_tipo.')'}}",
       			@endforeach
 
       ],
